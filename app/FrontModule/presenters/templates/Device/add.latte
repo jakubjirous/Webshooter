@@ -1,0 +1,28 @@
+{extends '../@index.latte'}
+
+{* Device:add *}
+
+{block header}
+   <header>
+      <h1 n:block=title>New device</h1>
+   </header>
+{/block}
+
+{block breadcrumbContent}
+   <li class="breadcrumb-item"><a n:href="Device:settings">Device settings</a></li>
+   <li class="breadcrumb-item active">New device</li>
+{/block}
+
+{block content}
+   <div class="container">
+      <div class="device-add">
+         <div class="row">
+            <div class="col-xs-12">
+
+               {control deviceAddForm}
+
+            </div>
+         </div>
+      </div>
+   </div>
+{/block}

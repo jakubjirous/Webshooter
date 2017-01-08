@@ -1,0 +1,281 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Shoot add
+// ---------------------------------------------------------------------------------------------------------------------
+
+.shoot-add {
+
+   .addon-left {
+      width: 45px;
+   }
+
+   #webkit {
+      background: url('../images/chrome2.png') no-repeat;
+      background-size: 60px;
+      background-position-x: 50%;
+      background-position: 50% 0;
+      height: 100px;
+      @include transition(all $transition-effect-speed ease-in-out);
+   }
+
+   #webkit.checked {
+      background: url('../images/chrome.png') no-repeat;
+      background-size: 60px;
+      background-position-x: 50%;
+      background-position: 50% 0;
+      height: 100px;
+   }
+
+   #gecko {
+      background: url('../images/firefox2.png') no-repeat;
+      background-size: 60px;
+      background-position-x: 50%;
+      background-position: 50% 0;
+      height: 100px;
+      @include transition(all $transition-effect-speed ease-in-out);
+   }
+
+   #gecko.checked {
+      background: url('../images/firefox.png') no-repeat;
+      background-size: 60px;
+      background-position-x: 50%;
+      background-position: 50% 0;
+      height: 100px;
+   }
+
+   #webkit, #gecko {
+      font-size: 14pt;
+      width: 100%;
+      text-align: center;
+      padding-top: 65px;
+   }
+
+   #webkit img,
+   #gecko img {
+      width: 80px;
+   }
+
+   form {
+      .custom-radio-type {
+         i {
+            display: block;
+            font-size: 50px;
+            color: $space;
+         }
+         input[type="radio"] {
+            display: none;
+         }
+         label {
+            cursor: pointer;
+            color: $space;
+            i {
+               margin-top: 20px;
+               @include transition(all $transition-effect-speed ease-in-out);
+            }
+            &.checked {
+               i {
+                  color: $azure;
+               }
+            }
+         }
+         label span {
+            display: inline-block;
+            width: 21px;
+            height: 21px;
+            margin: 10px 0 10px 0;
+            vertical-align: middle;
+            cursor: pointer;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background-color: $space;
+            @include transition(all $transition-effect-speed ease-in-out);
+         }
+         input[type="radio"]:checked + span {
+            background-color: $azure;
+         }
+      }
+      .custom-radio {
+         input[type="radio"] {
+            display: none;
+         }
+         label {
+            cursor: pointer;
+            color: $azure;
+         }
+         label span {
+            display: inline-block;
+            width: 21px;
+            height: 21px;
+            margin: -3px 6px 0 0;
+            vertical-align: middle;
+            cursor: pointer;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background-color: $space;
+            @include transition(all $transition-effect-speed ease-in-out);
+         }
+         input[type="radio"]:checked + span {
+            background-color: $azure;
+         }
+      }
+   }
+
+   .choose {
+      background: #f7f7f9;
+      @include transition(all $transition-effect-speed ease-in-out);
+   }
+
+   thead, tbody {
+      th, td {
+         vertical-align: middle;
+      }
+   }
+
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      thead, tbody {
+         th, td {
+            display: block;
+            padding: rem(10px);
+            text-align: center !important;
+            white-space: normal;
+            &.custom-radio {
+               padding-top: 18px;
+               span {
+                  text-align: left !important;
+               }
+            }
+         }
+      }
+      thead {
+         position: absolute;
+         padding: 0;
+         border: 0;
+         height: 1px;
+         width: 1px;
+         overflow: hidden;
+      }
+      tbody {
+         tr {
+            border-bottom: 1px solid $gray-lighter;
+            &:last-child {
+               border-bottom: none;
+            }
+            td, th {
+               width: 100%;
+               border-bottom: 1px solid $gray-lighter;
+               &[data-title]:before {
+                  content: attr(data-title);
+                  float: left;
+                  width: 100%;
+                  text-align: center !important;
+                  @include font-bold;
+                  color: $gray;
+               }
+               label {
+                  @include font-bold;
+                  color: $azure;
+               }
+            }
+         }
+      }
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      thead, tbody {
+         th, td {
+            display: block;
+            padding: rem(10px) rem(20px);
+            text-align: left !important;
+            white-space: normal;
+            &.custom-radio {
+               padding-top: 18px;
+               span {
+                  text-align: left !important;
+               }
+            }
+         }
+      }
+      thead {
+         position: absolute;
+         padding: 0;
+         border: 0;
+         height: 1px;
+         width: 1px;
+         overflow: hidden;
+      }
+      tbody {
+         tr {
+            border-bottom: 1px solid $gray-lighter;
+            &:last-child {
+               border-bottom: none;
+            }
+            td, th {
+               width: 100%;
+               border-bottom: 1px solid $gray-lighter;
+               &[data-title]:before {
+                  content: attr(data-title);
+                  float: left;
+                  width: 50%;
+                  text-align: left !important;
+                  @include font-bold;
+                  color: $gray;
+               }
+            }
+            label {
+               @include font-bold;
+               color: $azure;
+            }
+         }
+      }
+   }
+
+   //md
+   @include media-breakpoint-up(md) {
+      table {
+         thead {
+            tr {
+               th {
+                  padding: rem(10px) 0 !important;
+                  text-align: center !important;
+                  a {
+                     color: $gray;
+                     text-decoration: none !important;
+                     i {
+                        @include opacity(0);
+                        @include transition(all $transition-effect-speed ease-in-out);
+                     }
+                     &.active {
+                        i {
+                           @include opacity(1);
+                        }
+                        color: $azure;
+                     }
+                     &:hover {
+                        i {
+                           @include opacity(1);
+                        }
+                        text-decoration: none !important;
+                     }
+                  }
+               }
+            }
+         }
+         tbody {
+            tr {
+               td, th {
+                  text-align: center;
+                  &.custom-radio {
+                     padding-top: 22px;
+                     text-align: left !important;
+                  }
+               }
+               label {
+                  @include font-bold;
+                  color: $azure;
+               }
+            }
+         }
+      }
+   }
+}

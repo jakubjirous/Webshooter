@@ -1,0 +1,79 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------------------------------------------------
+
+html {
+   @include font-regular;
+   font-size: $base-font-size;
+   line-height: $base-line-height;
+   background: $white;
+   color: $font-color;
+}
+
+html,
+body {
+   height: 100%;
+}
+
+.wrapper {
+   min-height: 100%;
+   position: relative;
+}
+
+main {
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      padding-bottom: rem((map_get($footer-height, xs)) + (map_get($footer-padding-top, xs))); // height of footer + padding
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      padding-bottom: rem(map_get($footer-height, sm) + map_get($footer-padding-top, sm)); // height of footer + padding
+   }
+
+   //md
+   @include media-breakpoint-between(md, lg) {
+      padding-bottom: rem(map_get($footer-height, md) + map_get($footer-padding-top, md)); // height of footer + padding
+   }
+
+   //lg
+   @include media-breakpoint-between(lg, xl) {
+      padding-bottom: rem(map_get($footer-height, lg) + map_get($footer-padding-top, lg)); // height of footer + padding
+   }
+
+   //xl
+   @include media-breakpoint-up(xl) {
+      padding-bottom: rem(map_get($footer-height, xl) + map_get($footer-padding-top, xl)); // height of footer + padding
+   }
+}
+
+footer {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      height: rem(map_get($footer-height, xs)); // height of footer
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      height: rem(map_get($footer-height, sm)); // height of footer
+   }
+
+   //md
+   @include media-breakpoint-between(md, lg) {
+      height: rem(map_get($footer-height, md)); // height of footer
+   }
+
+   //lg
+   @include media-breakpoint-between(lg, xl) {
+      height: rem(map_get($footer-height, lg)); // height of footer
+   }
+
+   //xl
+   @include media-breakpoint-up(xl) {
+      height: rem(map_get($footer-height, xl)); // height of footer
+   }
+}

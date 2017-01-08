@@ -1,0 +1,156 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Typography
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Title H1
+// ----------
+
+// [1] Výchozí styl pro nadpisy h1
+h1, .h1 {
+   @include font-bold;
+   text-align: center;
+   padding: rem(40px) 0;
+
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+
+   }
+
+   //md
+   @include media-breakpoint-between(md, lg) {
+
+   }
+
+   //lg
+   @include media-breakpoint-between(lg, xl) {
+
+   }
+
+   //xl
+   @include media-breakpoint-up(xl) {
+
+   }
+}
+
+// Title H2
+// ----------
+
+// [1] Výchozí styl pro nadpisy h2
+h2, .h2 {
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+
+   }
+
+   //md
+   @include media-breakpoint-between(md, lg) {
+
+   }
+
+   //lg
+   @include media-breakpoint-between(lg, xl) {
+
+   }
+
+   //xl
+   @include media-breakpoint-up(xl) {
+
+   }
+}
+
+// Title H3
+// ----------
+
+// [1] Výchozí styl pro nadpisy h3
+h3, .h3 {
+   text-align: center;
+
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      margin: 20px 0 20px 0;
+   }
+
+   //sm
+   @include media-breakpoint-up(sm) {
+      margin: 20px 0 20px 0;
+   }
+}
+
+a, button {
+   outline: none !important;
+}
+
+p {
+   margin: rem(15px) 0;
+}
+
+#flash-message {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   margin: auto;
+}
+
+.margin-top {
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      margin-top: map_get($margin-top, xs) !important;
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      margin-top: map_get($margin-top, sm) !important;
+   }
+
+   //md
+   @include media-breakpoint-between(md, lg) {
+      margin-top: map_get($margin-top, md) !important;
+   }
+
+   //lg
+   @include media-breakpoint-between(lg, xl) {
+      margin-top: map_get($margin-top, lg) !important;
+   }
+
+   //xl
+   @include media-breakpoint-up(xl) {
+      margin-top: map_get($margin-top, xl) !important;
+   }
+}
+
+.margin-bottom {
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      margin-bottom: map_get($margin-bottom, xs) !important;
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      margin-bottom: map_get($margin-bottom, sm) !important;
+   }
+
+   //md
+   @include media-breakpoint-between(md, lg) {
+      margin-bottom: map_get($margin-bottom, md) !important;
+   }
+
+   //lg
+   @include media-breakpoint-between(lg, xl) {
+      margin-bottom: map_get($margin-bottom, lg) !important;
+   }
+
+   //xl
+   @include media-breakpoint-up(xl) {
+      margin-bottom: map_get($margin-bottom, xl) !important;
+   }
+}
+

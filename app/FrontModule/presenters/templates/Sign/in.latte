@@ -1,0 +1,68 @@
+{extends '../@index.latte'}
+
+
+
+{block header}
+   <header class="index">
+      <h1 n:block=title>Sign in</h1>
+   </header>
+{/block}
+
+{block breadcrumb}{/block}
+
+{block content}
+   <div class="container">
+      <div class="row">
+         <div class="col-xs-12">
+            {*{control signInForm}*}
+
+            <form n:name="signInForm">
+               <div class="form-group row required">
+                  <div class="col-xs-12 col-sm-4 col-md-4 text-sm-right control-label">
+                     <label n:name="username" class="required">
+                        Username:
+                     </label>
+                  </div>
+                  <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4">
+                     <input type="text" n:name="username" class="form-control text" required="" />
+                  </div>
+               </div>
+
+               <div class="form-group row required">
+                  <div class="col-xs-12 col-sm-4 col-md-4 text-sm-right control-label">
+                     <label n:name="password" class="required">Password:</label>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4">
+                     <input type="password" n:name="password" class="form-control text" />
+                  </div>
+               </div>
+
+               <div class="form-group row">
+                  <div class="col-xs-12 col-sm-4 col-md-4 text-sm-right control-label"></div>
+
+                  <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4">
+                     <label n:name="remember" class="custom-checkbox">
+                        <input type="checkbox" n:name="remember" class="checkbox-input">
+                        <span class="checkbox-label">Keep me signed in</span>
+                     </label>
+                  </div>
+               </div>
+
+               <div class="form-group row">
+                  <div class="col-xs-12 col-sm-4 col-md-4 text-sm-right control-label"></div>
+
+                  <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4"><input type="submit" name="send"
+                                                                           class="btn btn-primary button"
+                                                                           value="Sign in"></div>
+               </div>
+
+
+               <input type="hidden" name="_do" value="signInForm-submit">
+            </form>
+
+            <p class="text-xs-center"><a n:href="up">Don't have an account yet? Sign up.</a></p>
+         </div>
+      </div>
+   </div>
+{/block}

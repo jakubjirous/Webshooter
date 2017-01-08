@@ -1,0 +1,46 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Footer
+// ---------------------------------------------------------------------------------------------------------------------
+
+footer {
+   background: $iron;
+   @include link($azure, $azure);
+   span {
+      padding: 0 8px;
+   }
+
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      .row {
+         height: rem(map_get($footer-height, xs));
+      }
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      .row {
+         height: rem(map_get($footer-height, sm));
+      }
+   }
+
+   //md
+   @include media-breakpoint-between(md, lg) {
+      .row {
+         height: rem(map_get($footer-height, md));
+      }
+   }
+
+   //lg
+   @include media-breakpoint-between(lg, xl) {
+      .row {
+         height: rem(map_get($footer-height, lg));
+      }
+   }
+
+   //xl
+   @include media-breakpoint-up(xl) {
+      .row {
+         height: rem(map_get($footer-height, xl));
+      }
+   }
+}

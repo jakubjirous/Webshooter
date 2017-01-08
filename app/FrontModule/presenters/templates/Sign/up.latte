@@ -1,0 +1,22 @@
+{extends '../@index.latte'}
+
+{* Sign:up *}
+
+{block header}
+   <header class="index">
+      <h1 n:block=title>Sign up</h1>
+   </header>
+{/block}
+
+{block breadcrumb}{/block}
+
+{block content}
+   <div class="container">
+      <div class="row">
+         <div class="col-xs-12">
+            {control signUpForm}
+            <p class="text-xs-center"><a n:href="Sign:in">Already have an account? Log in.</a></p>
+         </div>
+      </div>
+   </div>
+{/block}

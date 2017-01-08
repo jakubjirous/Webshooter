@@ -1,0 +1,19 @@
+{extends '@layout.latte'}
+
+{block header}
+{/block}
+
+{block breadcrumb}
+   <div class="container">
+      <ol class="breadcrumb bg-faded">
+         <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
+         {include breadcrumbContent}
+      </ol>
+   </div>
+{/block}
+
+{block contentLayout}
+   <main>
+      {include content}
+   </main>
+{/block}

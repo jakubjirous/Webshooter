@@ -1,0 +1,28 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Header
+// ---------------------------------------------------------------------------------------------------------------------
+
+header {
+   &.homepage {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .inner {
+         margin-top: rem(-180px);
+         h1 {
+            padding-bottom: rem(15px);
+         }
+         a {
+            margin: rem(40px) 0;
+         }
+      }
+   }
+   &.index {
+      margin-top: rem(75px);
+   }
+
+   @include media-breakpoint-between(xs, sm) {
+      margin-top: rem(75px);
+   }
+}

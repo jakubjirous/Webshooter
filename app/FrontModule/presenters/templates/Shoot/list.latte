@@ -1,0 +1,202 @@
+{extends '../@index.latte'}
+
+{* Shoot:list *}
+
+{block header}
+   <header class="index">
+      <h1 n:block=title>Web shoots</h1>
+   </header>
+{/block}
+
+{block breadcrumb}{/block}
+
+{block content}
+   <div class="container">
+      <div class="shoot-list">
+
+         {*<a n:href="show! 'full'">Complete</a>*}
+         {*<a n:href="show! 'full'">Smart</a>*}
+         {*<a n:href="show! 'full'">Simple</a>*}
+
+         {foreach $shoots as $shoot}
+            <div class="shoot-item">
+               <div class="row">
+                  <div class="col-xs-12">
+                     <h3>
+                        <a href="{$shoot->url}" target="_blank">{$shoot->url_autority}</a>
+                     </h3>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                     <div class="image">
+                        <a href="{$basePath}{$shoot->path_img}" class="shoot-thumbnail" data-toggle="lightbox"
+                           data-parent="" data-gallery="#shoots" data-title="{$shoot->url_autority}">
+                           <img class="img-thumbnail img-responsive" src="{$basePath}{$shoot->path_img}"
+                                alt="{$shoot->url_autority}">
+                        </a>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                     <table class="table">
+                        <tr>
+                           <td>URL</td>
+                           <td><strong><a href="{$shoot->url}" target="_blank">{$shoot->url_autority}</a></strong></td>
+                        </tr>
+                        <tr>
+                           <td>Created</td>
+                           <td><strong>{$shoot->date|date:'d.n.Y H:i:s'}</strong></td>
+                        </tr>
+                        <tr>
+                           <td>Engine</td>
+                           <td><strong>{$shoot->engine|firstUpper}</strong></td>
+                        </tr>
+                        <tr>
+                           <td>Image type</td>
+                           <td><strong>{$shoot->img_type|upper}</strong></td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary">
+                                 <i class="fa fa-download"></i>
+                                 Download
+                              </a>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <div class="col-xs-12 col-md-4">
+                     {if $shoot->device != null}
+                        <table class="table">
+                           <tr>
+                              <td>Device type</td>
+                              <td>
+                                 <strong title="{$shoot->device->type->type}">
+                                    <i class="fa fa-{$shoot->device->type->type|lower}"></i>
+                                 </strong>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>Device</td>
+                              <td><strong>{$shoot->device->device}</strong></td>
+                           </tr>
+                           <tr>
+                              <td>Platform</td>
+                              <td><strong>{$shoot->device->platform}</strong></td>
+                           </tr>
+                           <tr>
+                              <td>Screen dimensions</td>
+                              <td>
+                                 <strong>
+                                    {$shoot->device->screen_in}
+                                    <small>in</small> {$shoot->device->screen_width_in}<small>×</small>{$shoot->device->screen_height_in}
+                                    <small>in</small>
+                                    <br>
+                                    {$shoot->device->screen_cm}
+                                    <small>cm</small>
+                                    {$shoot->device->screen_width_cm}<small>×</small>{$shoot->device->screen_height_cm}
+                                    <small>cm</small>
+                                 </strong>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>Width
+                                 <small>×</small>
+                                 Height
+                              </td>
+                              <td>
+                                 <strong>
+                                    {$shoot->device->width_px}<small>×</small>{$shoot->device->height_px}
+                                    <small>px</small>
+                                    <br>
+                                    {$shoot->device->width_dp}<small>×</small>{$shoot->device->height_dp}
+                                    <small>dp</small>
+                                 </strong>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>Aspect ratio</td>
+                              <td><strong>{$shoot->device->aspect_ratio}</strong></td>
+                           </tr>
+                           <tr>
+                              <td>Density</td>
+                              <td><strong>{$shoot->device->density|number:1}</strong></td>
+                           </tr>
+                        </table>
+                     {else}
+                        {if $shoot->other_width != null}
+                           <table class="table">
+                              <tr>
+                                 <td>Type</td>
+                                 <td><strong title="Custom"><i class="fa fa-cogs"></i></strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Custom width</td>
+                                 <td><strong>{$shoot->other_width}
+                                       <small>px</small>
+                                    </strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Custom height</td>
+                                 <td><strong>{$shoot->other_height == null ? 'MAX' : $shoot->other_height}
+                                       <small>px</small>
+                                    </strong></td>
+                              </tr>
+                           </table>
+                        {/if}
+
+                        {if $shoot->crop_viewport_width != null and $shoot->crop_viewport_height != null}
+                           <table class="table">
+                              <tr>
+                                 <td>Type</td>
+                                 <td><strong title="Crop"><i class="fa fa-crop"></i></strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Viewport width</td>
+                                 <td><strong>{$shoot->crop_viewport_width == null ? 0 : $shoot->crop_viewport_width}
+                                       <small>px</small>
+                                    </strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Viewport height</td>
+                                 <td><strong>{$shoot->crop_viewport_height == null ? 0 : $shoot->crop_viewport_height}
+                                       <small>px</small>
+                                    </strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Top</td>
+                                 <td><strong>{$shoot->crop_top == null ? 0 : $shoot->crop_top}
+                                       <small>px</small>
+                                    </strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Left</td>
+                                 <td><strong>{$shoot->crop_left == null ? 0 : $shoot->crop_left}
+                                       <small>px</small>
+                                    </strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Crop width</td>
+                                 <td><strong>{$shoot->crop_width == null ? 0 : $shoot->crop_width}
+                                       <small>px</small>
+                                    </strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Crop height</td>
+                                 <td><strong>{$shoot->crop_height == null ? 0 : $shoot->crop_height}
+                                       <small>px</small>
+                                    </strong></td>
+                              </tr>
+                           </table>
+                        {/if}
+                     {/if}
+                  </div>
+               </div>
+            </div>
+
+            {if !$iterator->last}
+               <hr>
+            {/if}
+         {/foreach}
+
+      </div>
+   </div>
+{/block}

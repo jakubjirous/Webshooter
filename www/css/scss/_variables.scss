@@ -1,0 +1,205 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Variables
+// ---------------------------------------------------------------------------------------------------------------------
+
+
+@function rem($size) {
+   $remSize: $size / (16px);
+   @return #{$remSize}rem;
+}
+
+@function count-2($a, $b) {
+   @return $a + $b;
+}
+
+
+// Footer height
+// ----------
+
+// [1] Nastavení výšky patičky podle breakpointů
+// [2] Nastavení horního odsazení hlavního kontejneru od patičky podle breakpointů
+$footer-height: (
+      xs: 120px,
+      sm: 60px,
+      md: 60px,
+      lg: 60px,
+      xl: 60px,
+);
+
+$footer-padding-top: (
+      xs: 30px,
+      sm: 30px,
+      md: 30px,
+      lg: 30px,
+      xl: 30px,
+);
+
+// Margins
+// ----------
+
+// [1] Nastavení horního odsazení pro blok nebo komponenty, výhoda využití při
+//     vícenásobném použití na různých místech webu
+// [2] Nastavení dolního odsazení, funguje obdobně jako horní
+$margin-top: (
+      xs: 20px,
+      sm: 40px,
+      md: 40px,
+      lg: 60px,
+      xl: 60px,
+);
+
+$margin-bottom: (
+      xs: 20px,
+      sm: 40px,
+      md: 40px,
+      lg: 60px,
+      xl: 60px,
+);
+
+// Colors
+// ----------
+
+// [1] Definice základních barev
+// [2] Definice barev specifických pro konkrétní web
+// [3] Definice barvy pro odkaz
+// [4] Definice barvy pro rámečky
+$white: #ffffff;
+$black: #000000;
+
+$space: #373a3c;
+$azure: #007fff;
+$iron: #e0e0e3;
+
+$link-color: $black;
+$border-color: $black;
+
+// Typography
+// ----------
+
+// [1] Základní velikost fontu
+// [2] Základní výška řádkování
+// [3] Základní výška řádkování textu
+// [4] Definice barvy pro text v rámci celého webu
+$base-font-size: rem(16px);
+$base-line-height: rem(32px);
+$text-line-height: rem(32px);
+$font-color: $space;
+
+// Effects
+// ----------
+
+// [1] Definice délky provádění CSS3 efektů
+$transition-effect-speed: 0.4s;
+
+@mixin transition($transition...) {
+   -moz-transition: $transition;
+   -o-transition: $transition;
+   -webkit-transition: $transition;
+   transition: $transition;
+}
+
+@mixin opacity($opacity) {
+   -moz-opacity: $opacity;
+   -o-opacity: $opacity;
+   -webkit-opacity: $opacity;
+   opacity: $opacity;
+}
+
+// Mixins
+// ----------
+
+@mixin change-gutter($pixels) {
+   .row {
+      margin-left: -($pixels);
+      margin-right: -($pixels);
+   }
+   .row [class*='col-']:not(:first-child),
+   .row [class*='col-']:not(:last-child) {
+      padding-right: $pixels;
+      padding-left: $pixels;
+   }
+}
+
+// Links
+// ----------
+
+// Definice hezkých odkazů s :hover efektem
+// [1] Barva odkazu
+// [2] Barva podtržeí odkazu
+// [3] Styl výchozího zobrazení odkazu
+//     $underline: TRUE    - zobrazí se podtržený odkaz, při :hover podtržení zmízí
+//     $underline: FALSE   - zobrazí se odkaz bez podtržení, při :hover se podtrhne
+// [4] Definice použití mixinu
+//     $tag: TRUE    - mixin lze použít mimo tag <a>, ten je doplněn automaticky
+//     $tag: FALSE   - mixin se musí použít uvnitř tagu <a>, tím lze možné přetížít nadefinované výchozí vlastnosti
+// [5] Link reset - reset hezkých odkazů zpět do výchozího chování
+@mixin link($color, $color-underline, $underline: true, $tag: true) {
+   @if ($tag == true) {
+      a {
+         color: $color;
+         text-decoration: none;
+         @include transition(all $transition-effect-speed ease-in-out);
+
+         @if ($underline == true) {
+            border-bottom: 1px solid transparentize($color-underline, 0);
+            &:hover {
+               text-decoration: none;
+               border-bottom: 1px solid transparentize($color-underline, 1);
+            }
+         } @else {
+            border-bottom: 1px solid transparentize($color-underline, 1);
+            &:hover {
+               text-decoration: none;
+               border-bottom: 1px solid transparentize($color-underline, 0);
+            }
+         }
+      }
+   } @else {
+      color: $color;
+      text-decoration: none;
+      @include transition(all $transition-effect-speed ease-in-out);
+
+      @if ($underline == true) {
+         border-bottom: 1px solid transparentize($color-underline, 0);
+         &:hover {
+            text-decoration: none;
+            border-bottom: 1px solid transparentize($color-underline, 1);
+         }
+      } @else {
+         border-bottom: 1px solid transparentize($color-underline, 1);
+         &:hover {
+            text-decoration: none;
+            border-bottom: 1px solid transparentize($color-underline, 0);
+         }
+      }
+   }
+}
+
+// TWBS media queries help
+//xs
+@include media-breakpoint-between(xs, sm) {
+}
+
+//sm
+@include media-breakpoint-between(sm, md) {
+
+}
+
+//md
+@include media-breakpoint-between(md, lg) {
+
+}
+
+//lg
+@include media-breakpoint-between(lg, xl) {
+
+}
+
+//xl
+@include media-breakpoint-up(xl) {
+
+}
+
+@include media-breakpoint-between(md, lg) {
+
+}

@@ -1,0 +1,34 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// SCSS Style
+// ---------------------------------------------------------------------------------------------------------------------
+
+// twbs 4.0.0-aplha.5
+@import "../../vendor/twbs/bootstrap/scss/bootstrap-flex";
+@import "../../vendor/twbs/bootstrap/scss/bootstrap-grid";
+@import "../../vendor/twbs/bootstrap/scss/bootstrap-reboot";
+
+// webshooter style
+@import "scss/font";
+@import "scss/variables";
+@import "scss/typography";
+@import "scss/base";
+
+@import "scss/nav";
+@import "scss/header";
+@import "scss/breadcrumb";
+@import "scss/footer";
+
+@import "scss/form";
+
+
+// shoot
+@import "scss/shoot/add";
+@import "scss/shoot/list";
+
+
+// device
+@import "scss/device/list";
+@import "scss/device/add";
+
+//user
+@import "scss/user/list";

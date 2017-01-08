@@ -1,0 +1,21 @@
+{extends '../@index.latte'}
+
+{* Sign:out *}
+
+{block header}
+   <header class="index">
+      <h1 n:block=title>You have been signed out</h1>
+   </header>
+{/block}
+
+{block breadcrumb}{/block}
+
+{block content}
+   <div class="container">
+      <div class="row">
+         <div class="col-xs-12 text-xs-center">
+            <p class="text-xs-center"><a n:href="Sign:in" class="btn btn-outline-primary btn-lg">Sign in to another account</a></p>
+         </div>
+      </div>
+   </div>
+{/block}

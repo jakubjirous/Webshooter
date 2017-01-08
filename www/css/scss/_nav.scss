@@ -1,0 +1,27 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Nav
+// ---------------------------------------------------------------------------------------------------------------------
+
+nav {
+   &.navbar {
+      padding: rem(20px) 0;
+   }
+   .navbar-brand {
+      @include font-bold;
+      color: $azure !important;
+      font-size: rem(20px) !important;
+      padding-top: 0.1rem;
+   }
+   .nav-item {
+      @include font-bold;
+      text-transform: uppercase;
+      font-size: rem(13px);
+      .nav-link {
+         padding-top: 0.55rem;
+      }
+   }
+
+   .dropdown-item {
+      font-size: rem(13px);
+   }
+}

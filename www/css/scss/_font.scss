@@ -1,0 +1,39 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Fonts
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Definice všech fontů používaných na webu
+// [1] normální řez písma
+// [2] kurzíva
+$font-family: (
+      1: 'Montserrat',
+      2: 'Helvetica Neue',
+      3: 'Arial',
+      4: 'sans-serif'
+);
+
+//normal
+@mixin font-regular {
+   font-family: map_get($font-family, 1), map_get($font-family, 2), map_get($font-family, 3), map_get($font-family, 4) !important;
+   font-weight: 400 !important;
+   font-style: normal !important;
+}
+
+@mixin font-bold {
+   font-family: map_get($font-family, 1), map_get($font-family, 2), map_get($font-family, 3), map_get($font-family, 4) !important;
+   font-weight: 700 !important;
+   font-style: normal !important;
+}
+
+//italic
+@mixin font-regular-italic {
+   font-family: map_get($font-family, 1), map_get($font-family, 2), map_get($font-family, 3), map_get($font-family, 4) !important;
+   font-weight: 400 !important;
+   font-style: italic !important;
+}
+
+@mixin font-bold-italic {
+   font-family: map_get($font-family, 1), map_get($font-family, 2), map_get($font-family, 3), map_get($font-family, 4) !important;
+   font-weight: 700 !important;
+   font-style: italic !important;
+}

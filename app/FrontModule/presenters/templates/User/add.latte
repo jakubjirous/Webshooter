@@ -1,0 +1,28 @@
+{extends '../@index.latte'}
+
+{* User:add *}
+
+{block header}
+   <header>
+      <h1 n:block=title>New user</h1>
+   </header>
+{/block}
+
+{block breadcrumbContent}
+   <li class="breadcrumb-item"><a n:href="User:list">User settings</a></li>
+   <li class="breadcrumb-item active">New user</li>
+{/block}
+
+{block content}
+   <div class="container">
+      <div class="device-add">
+         <div class="row">
+            <div class="col-xs-12">
+
+               {control userAddForm}
+
+            </div>
+         </div>
+      </div>
+   </div>
+{/block}

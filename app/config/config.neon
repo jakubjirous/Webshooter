@@ -1,0 +1,36 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# https://nette.org/security-warning
+#
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	- App\FrontModule\Model\SessionManager
+	- App\FrontModule\Model\UserManager
+	- App\FrontModule\Model\UserRoleManager
+	- App\FrontModule\Model\DeviceManager
+	- App\FrontModule\Model\DeviceTypeManager
+	- App\FrontModule\Model\ShootManager
+
+	- App\FrontModule\Forms\FormFactory
+	- App\FrontModule\Forms\SignInFormFactory
+	- App\FrontModule\Forms\SignUpFormFactory
+	- App\FrontModule\Forms\UserEditFormFactory
+	- App\FrontModule\Forms\UserAddFormFactory
+	- App\FrontModule\Forms\DeviceAddFormFactory
+	- App\FrontModule\Forms\DeviceEditFormFactory
+	- App\FrontModule\Forms\ShootAddFormFactory
+
+	router: App\RouterFactory::createRouter
+
