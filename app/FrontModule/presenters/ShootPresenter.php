@@ -33,6 +33,11 @@ class ShootPresenter extends BasePresenter
    private $jsDir;
    private $shootsDir;
 
+   /**
+    * LG, MD, SM, XS
+    */
+   private $view = self::VIEW_MD;
+
 
    public function __construct(Model\SessionManager $sm, Model\DeviceManager $dm, Model\ShootManager $stm)
    {
@@ -73,12 +78,28 @@ class ShootPresenter extends BasePresenter
    public function renderList()
    {
       $this->template->shoots = $this->stm->getAllShoot();
+
+      $sessionView = $this->sm->getShootView();
+      $this->template->view = ($sessionView == FALSE) ? $this->view : $sessionView;
+
+      $this->template->viewLG = self::VIEW_LG;
+      $this->template->viewMD = self::VIEW_MD;
+      $this->template->viewSM = self::VIEW_SM;
+      $this->template->viewXS = self::VIEW_XS;
    }
 
 
    public function renderSettings()
    {
       $this->template->shoots = $this->stm->getAllShoot();
+
+      $sessionView = $this->sm->getShootView();
+      $this->template->view = ($sessionView == FALSE) ? $this->view : $sessionView;
+
+      $this->template->viewLG = self::VIEW_LG;
+      $this->template->viewMD = self::VIEW_MD;
+      $this->template->viewSM = self::VIEW_SM;
+      $this->template->viewXS = self::VIEW_XS;
 
       // admin identity
       $identity = $this->user->getIdentity();
@@ -140,6 +161,23 @@ class ShootPresenter extends BasePresenter
          $this->flashMessage('New web shoot was added.', self::FLASH_MESSAGE_SUCCESS);
          $this->redirect('Shoot:settings');
       });
+   }
+
+
+   /**
+    * Switching between shoots view
+    * @param $view
+    */
+   public function handleChangeView($view)
+   {
+      $this->view = $view;
+      $this->sm->setShootView($view);
+
+      if ($this->isAjax()) {
+         $this->redrawControl('changeView');
+      } else {
+         $this->redirect('this');
+      }
    }
 
 

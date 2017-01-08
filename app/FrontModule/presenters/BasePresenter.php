@@ -71,6 +71,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    const SHOOTS_PER_PAGE = 9;
 
 
+   const VIEW_LG = "lg";
+   const VIEW_MD = "md";
+   const VIEW_SM = "sm";
+   const VIEW_XS = "xs";
+
    /**
     * Front menu component
     * @return \FrontMenu

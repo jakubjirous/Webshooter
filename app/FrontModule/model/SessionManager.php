@@ -117,4 +117,20 @@ class SessionManager
    }
 
 
+
+
+   /**
+    * SHOOT
+    */
+   public function setShootView($view)
+   {
+      $this->section->shootView = $view;
+   }
+   public function getShootView()
+   {
+      return $this->section->shootView;
+   }
+
+
+
 }

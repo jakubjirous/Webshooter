@@ -6984,6 +6984,9 @@ form .custom-checkbox {
 
 .shoot-list .shoot-new {
   margin: 1.25rem 0; }
+.shoot-list .change-view {
+  text-align: center;
+  margin-bottom: 20px; }
 .shoot-list .shoot-item h3 a {
   color: #007fff;
   text-decoration: none;
@@ -6997,9 +7000,6 @@ form .custom-checkbox {
     border-bottom: 1px solid #007fff; }
 .shoot-list .shoot-item .image {
   text-align: center; }
-  .shoot-list .shoot-item .image img {
-    max-height: 400px;
-    margin: auto; }
   .shoot-list .shoot-item .image a {
     -moz-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
@@ -7018,6 +7018,55 @@ form .custom-checkbox {
   .shoot-list .shoot-item a:not(.btn):hover {
     text-decoration: none;
     border-bottom: 1px solid #007fff; }
+.shoot-list .shoot-item.view-lg .image a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem; }
+  .shoot-list .shoot-item.view-lg .image a .img-thumbnail {
+    border: none; }
+  .shoot-list .shoot-item.view-lg .image a:hover {
+    border: 1px solid #007fff; }
+.shoot-list .shoot-item.view-md .image a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 450px;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem; }
+  .shoot-list .shoot-item.view-md .image a .img-thumbnail {
+    border: none; }
+  .shoot-list .shoot-item.view-md .image a:hover {
+    border: 1px solid #007fff; }
+.shoot-list .shoot-item.view-sm .image a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem; }
+  .shoot-list .shoot-item.view-sm .image a .img-thumbnail {
+    border: none; }
+  .shoot-list .shoot-item.view-sm .image a:hover {
+    border: 1px solid #007fff; }
+.shoot-list .shoot-item.view-xs .image a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem; }
+  .shoot-list .shoot-item.view-xs .image a .img-thumbnail {
+    border: none; }
+  .shoot-list .shoot-item.view-xs .image a:hover {
+    border: 1px solid #007fff; }
+.shoot-list .shoot-item.view-xs .table {
+  margin: 20px 0; }
+  .shoot-list .shoot-item.view-xs .table tr td {
+    vertical-align: middle; }
 .shoot-list hr {
   border: 0;
   height: 4px;
@@ -7026,14 +7075,18 @@ form .custom-checkbox {
   .shoot-list .shoot-item .image {
     margin-bottom: 20px; }
   .shoot-list .shoot-item .table {
-    width: 100%; } }
+    width: 100%; }
+  .shoot-list .shoot-item.view-xs .image {
+    margin-bottom: 0; } }
 @media (min-width: 576px) and (max-width: 1091px) {
   .shoot-list .shoot-item .image {
     margin-bottom: 20px; }
   .shoot-list .shoot-item .table {
     width: 100%; }
     .shoot-list .shoot-item .table:first-child {
-      margin-bottom: 20px; } }
+      margin-bottom: 20px; }
+  .shoot-list .shoot-item.view-xs .image {
+    margin-bottom: 0; } }
 
 @media (min-width: 768px) and (max-width: 1359px) {
   .shoot-list .shoot-item .row {
@@ -7046,13 +7099,17 @@ form .custom-checkbox {
   .shoot-list .shoot-item .image {
     margin-bottom: 20px; }
   .shoot-list .shoot-item .table {
-    width: 100%; } }
+    width: 100%; }
+  .shoot-list .shoot-item.view-xs .image {
+    margin-bottom: 0; } }
 
 @media (min-width: 1092px) {
   .shoot-list .shoot-item .image {
     margin-bottom: 20px; }
   .shoot-list .shoot-item .table {
-    width: 100%; } }
+    width: 100%; }
+  .shoot-list .shoot-item.view-xs .image {
+    margin-bottom: 0; } }
 
 .device-list .device-new {
   margin: 1.25rem 0; }
