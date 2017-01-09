@@ -32,7 +32,9 @@
 		"latte/latte": "^2.4",
 		"tracy/tracy": "^2.4",
 		"dg/adminer-custom": "^1.6",
-		"twbs/bootstrap": "4.0.0-alpha.5"
+		"twbs/bootstrap": "4.0.0-alpha.5",
+		"thadafinser/user-agent-parser": "^1.5",
+		"piwik/device-detector": "^3.7"
 	},
 	"require-dev": {
 		"nette/tester": "^1.6"

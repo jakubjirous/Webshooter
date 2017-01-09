@@ -54,7 +54,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    const IMAGE_TYPES = [
       'png' => 'PNG – image/png',
       'jpg' => 'JPEG – image/jpeg',
-      'gif' => 'GIF – image/gif',
+//      'gif' => 'GIF – image/gif',
       'bmp' => 'BMP – image/bmp'
    ];
 

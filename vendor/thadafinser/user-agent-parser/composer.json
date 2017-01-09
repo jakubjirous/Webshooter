@@ -1,0 +1,124 @@
+{
+    "name": "thadafinser/user-agent-parser",
+    
+    "description": "UserAgentParser abstraction for different parse providers",
+    "keywords": [
+        "UA",
+        "UA parser",
+        "UAparser",
+        "User agent",
+        "User agent parser",
+        "User agent detection",
+        "UserAgent", 
+        "UserAgentParser",
+        
+        "Sniffing",
+        "Parser", 
+        "Detection",
+        
+        "Browser",
+        "Engine",
+        "Rendering engine",
+        "OS",
+        "Operating system",
+        "Device",
+        "device detection",
+        "mobile detection",
+        "mobile detector",
+        "mobile device detection",
+        "bot detection", 
+        
+        "get_browser",
+        "browscap",
+        "donatj",
+        "jenssegers",
+        "piwik",
+        "sinergi",
+        "ua-parser",
+        "whichbrowser",
+        "woothee",
+        "wurfl",
+        
+        "DeviceAtlas",
+        "NeutrinoApiCom",
+        "UdgerCom",
+        "UserAgentApiCom",
+        "UserAgentStringCom",
+        "WhatIsMyBrowserCom"
+    ],
+    
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ThaDafinser",
+            "email": "martin.keckeis1@gmail.com"
+        }
+    ],
+    
+    "autoload": {
+        "psr-4": {
+            "UserAgentParser\\":  "src"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "UserAgentParserTest\\Unit\\":  "tests/unit",
+            "UserAgentParserTest\\Integration\\":  "tests/integration"
+        }
+    },
+    
+    "require": {
+        "php": "~5.6|~7.0",
+        "guzzlehttp/guzzle": "^6.1",
+        "thadafinser/package-info": "^1.0"
+    },
+    
+    "conflict": {
+        "browscap/browscap-php": "<3,>=4",
+        "donatj/phpuseragentparser": "<0.5,>=1",
+        "jenssegers/agent": "<2.3,>=3",
+        "mobiledetect/mobiledetectlib": "<2.7.5,>=3",
+        "piwik/device-detector": "<3.6,>=4",
+        "sinergi/browser-detector": "<6,>=7",
+        "ua-parser/uap-php": "<3.4.3,>=4",
+        "whichbrowser/parser": "<2.0.10,>=3",
+        "woothee/woothee": "<1.2,>=2",
+        "mimmi20/wurfl": "<1.6.4,>=2",
+        "zsxsoft/php-useragent": "<1.2,>=2"
+    },
+    
+    "suggest": {
+        "browscap/browscap-php": "Needed to use Provider\\BrowscapPhp",
+        "donatj/phpuseragentparser": "Needed to use Provider\\DonatjUAParser",
+        "endorphin-studio/browser-detector": "Needed to use Provider\\Endorphin",
+        "handsetdetection/php-apikit": "Needed to use Provider\\HandsetDetection",
+        "jenssegers/agent": "Needed to use Provider\\JenssegersAgent",
+        "piwik/device-detector": "Needed to use Provider\\PiwikDeviceDetector",
+        "sinergi/browser-detector": "Needed to use Provider\\SinergiBrowserDetector",
+        "ua-parser/uap-php": "Needed to use Provider\\UAParser",
+        "whichbrowser/parser": "Needed to use Provider\\WhichBrowser",
+        "woothee/woothee": "Needed to use Provider\\Woothee",
+        "mimmi20/wurfl": "Needed to use Provider\\Wurfl",
+        "zsxsoft/php-useragent": "Needed to use Provider\\Zsxsoft"
+    },
+    
+    "require-dev": {
+        "phpunit/phpunit": "^5.4",
+        "friendsofphp/php-cs-fixer": "^1.11",
+        
+        "browscap/browscap-php": "^3.0",
+        "donatj/phpuseragentparser": "^0.5.0",
+        "endorphin-studio/browser-detector": "^3.0",
+        "handsetdetection/php-apikit": "^4.1.1",
+        "jenssegers/agent": "^2.3",
+        "mobiledetect/mobiledetectlib": "^2.7.5",
+        "piwik/device-detector": "^3.6",
+        "sinergi/browser-detector": "^6.0",
+        "ua-parser/uap-php": "^3.4.3",
+        "whichbrowser/parser": "^2.0.10",
+        "woothee/woothee": "^1.2",
+        "mimmi20/wurfl": "^1.7.1.1",
+        "zsxsoft/php-useragent": ">=1.2,<1.4"
+    }
+}

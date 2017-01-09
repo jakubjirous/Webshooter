@@ -5,6 +5,7 @@ namespace App\FrontModule\Forms;
 use App\FrontModule\Model\ShootManager;
 use App\FrontModule\Model\DeviceManager;
 use App\FrontModule\Model\DeviceTypeManager;
+use App\FrontModule\Presenters\UserAgentParser;
 use Nette;
 use Nette\Http\Url;
 use Nette\Utils\Html;
@@ -47,9 +48,11 @@ class ShootAddFormFactory
    private $typeCrop;
 
    private $path;
+   private $browserName;
+   private $browserVersion;
 
    // Waiting to load page before creating render
-   const RENDER_TIMEOUT = 1000;  //ms
+   const RENDER_TIMEOUT = 500;  //ms
 
 
    public function __construct(FormFactory $factory, DeviceManager $dm, DeviceTypeManager $tm, ShootManager $stm)
@@ -58,6 +61,11 @@ class ShootAddFormFactory
       $this->dm = $dm;
       $this->tm = $tm;
       $this->stm = $stm;
+
+      // user agent parsing browser name and version
+      $uap = new UserAgentParser();
+      $this->browserName = $uap->getBrowserName();
+      $this->browserVersion = $uap->getBrowserVersion();
    }
 
 
@@ -484,6 +492,8 @@ class ShootAddFormFactory
             $deviceID,
             $date->__toString(),
             $engine,
+            $this->browserName,
+            $this->browserVersion,
             $absoluteUrlDB,
             $authorityUrl,
             $imgType,

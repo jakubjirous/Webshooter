@@ -8,8 +8,65 @@ class ComposerStaticInitb39b15a29145d3552670cbfd0f4bc494
 {
     public static $files = array (
         '7745382c92b7799bf1294b1f43023ba2' => __DIR__ . '/..' . '/tracy/tracy/src/shortcuts.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
         'e7a6fd2e7a869bb207158e9416bdd9b0' => __DIR__ . '/..' . '/nette/application/src/compatibility.php',
         'a1d067aa2e53d6b47171c03cfc0ea5be' => __DIR__ . '/..' . '/nette/safe-stream/src/loader.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+    );
+
+    public static $prefixLengthsPsr4 = array (
+        'U' => 
+        array (
+            'UserAgentParser\\' => 16,
+        ),
+        'P' => 
+        array (
+            'Psr\\Http\\Message\\' => 17,
+            'PackageInfo\\' => 12,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
+        ),
+        'D' => 
+        array (
+            'DeviceDetector\\' => 15,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'UserAgentParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/thadafinser/user-agent-parser/src',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'PackageInfo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/thadafinser/package-info/src',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'DeviceDetector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/piwik/device-detector',
+        ),
     );
 
     public static $classMap = array (
@@ -369,6 +426,8 @@ class ComposerStaticInitb39b15a29145d3552670cbfd0f4bc494
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb39b15a29145d3552670cbfd0f4bc494::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb39b15a29145d3552670cbfd0f4bc494::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitb39b15a29145d3552670cbfd0f4bc494::$classMap;
 
         }, null, ClassLoader::class);

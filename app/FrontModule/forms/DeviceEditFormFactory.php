@@ -78,16 +78,25 @@ class DeviceEditFormFactory
       $form->addText('screen_cm', 'Screen (cm):')
          ->setDefaultValue($device->screen_cm)
          ->addRule($form::FLOAT, 'Screen must be number')
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter screen size in centimetres.');
 
       $form->addText('screen_width_cm', 'Screen width (cm):')
          ->setDefaultValue($device->screen_width_cm)
          ->addRule($form::FLOAT, 'Screen width must be number')
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter screen width in centimetres.');
 
       $form->addText('screen_height_cm', 'Screen height (cm):')
          ->setDefaultValue($device->screen_height_cm)
          ->addRule($form::FLOAT, 'Screen height must be number')
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter screen height in centimetres.');
 
       $form->addGroup('Screen dimensions in inches');
@@ -95,36 +104,57 @@ class DeviceEditFormFactory
       $form->addText('screen_in', 'Screen (in):')
          ->setDefaultValue($device->screen_in)
          ->addRule($form::FLOAT, 'Screen must be number')
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter screen size in inches.');
 
       $form->addText('screen_width_in', 'Screen width (in):')
          ->setDefaultValue($device->screen_width_in)
          ->addRule($form::FLOAT, 'Screen width must be number')
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter screen width in inches.');
 
       $form->addText('screen_height_in', 'Screen height (in):')
          ->setDefaultValue($device->screen_height_in)
          ->addRule($form::FLOAT, 'Screen height must be number')
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter screen height in inches.');
 
       $form->addGroup('Device size in pixels');
 
       $form->addText('width_px', 'Width (px):')
          ->setDefaultValue($device->width_px)
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter device width in pixels.');
 
       $form->addText('height_px', 'Height (px):')
          ->setDefaultValue($device->height_px)
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter device height in pixels.');
 
       $form->addGroup('Device size in density independent pixels');
 
       $form->addText('width_dp', 'Width (dp):')
          ->setDefaultValue($device->width_dp)
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter device width in density independent pixels.');
 
       $form->addText('height_dp', 'Height (dp):')
          ->setDefaultValue($device->height_dp)
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter device height in density independent pixels.');
 
       $form->addGroup('Advanced options');
@@ -136,6 +166,9 @@ class DeviceEditFormFactory
       $form->addText('density', 'Density:')
          ->setDefaultValue($device->density)
          ->addRule($form::FLOAT, 'Density must be number')
+         ->setType('number')
+         ->setAttribute('step', 'any')
+         ->setAttribute('min', '0')
          ->setRequired('Please enter density.');
 
 

@@ -1,0 +1,9 @@
+checks:
+    php: true
+        
+filter:
+    excluded_paths: [tests/*]
+
+tools:
+    external_code_coverage:
+        timeout: 1200    # Timeout in seconds.

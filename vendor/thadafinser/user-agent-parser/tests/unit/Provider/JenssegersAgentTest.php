@@ -1,0 +1,281 @@
+<?php
+namespace UserAgentParserTest\Unit\Provider;
+
+use UserAgentParser\Provider\JenssegersAgent;
+
+/**
+ *
+ *
+ * @author Martin Keckeis <martin.keckeis1@gmail.com>
+ * @license MIT
+ *
+ * @covers UserAgentParser\Provider\JenssegersAgent
+ */
+class JenssegersAgentTest extends AbstractProviderTestCase implements RequiredProviderTestInterface
+{
+    /**
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    private function getParser()
+    {
+        $parser = self::createMock('Jenssegers\Agent\Agent');
+
+        return $parser;
+    }
+
+    public function testGetName()
+    {
+        $provider = new JenssegersAgent();
+
+        $this->assertEquals('JenssegersAgent', $provider->getName());
+    }
+
+    public function testGetHomepage()
+    {
+        $provider = new JenssegersAgent();
+
+        $this->assertEquals('https://github.com/jenssegers/agent', $provider->getHomepage());
+    }
+
+    public function testGetPackageName()
+    {
+        $provider = new JenssegersAgent();
+
+        $this->assertEquals('jenssegers/agent', $provider->getPackageName());
+    }
+
+    public function testVersion()
+    {
+        $provider = new JenssegersAgent();
+
+        $this->assertInternalType('string', $provider->getVersion());
+    }
+
+    public function testUpdateDate()
+    {
+        $provider = new JenssegersAgent();
+
+        $this->assertInstanceOf('DateTime', $provider->getUpdateDate());
+    }
+
+    public function testDetectionCapabilities()
+    {
+        $provider = new JenssegersAgent();
+
+        $this->assertEquals([
+
+            'browser' => [
+                'name'    => true,
+                'version' => true,
+            ],
+
+            'renderingEngine' => [
+                'name'    => false,
+                'version' => false,
+            ],
+
+            'operatingSystem' => [
+                'name'    => true,
+                'version' => true,
+            ],
+
+            'device' => [
+                'model'    => false,
+                'brand'    => false,
+                'type'     => false,
+                'isMobile' => true,
+                'isTouch'  => false,
+            ],
+
+            'bot' => [
+                'isBot' => true,
+                'name'  => true,
+                'type'  => false,
+            ],
+        ], $provider->getDetectionCapabilities());
+    }
+
+    public function testIsRealResult()
+    {
+        $provider = new JenssegersAgent();
+
+        /*
+         * browser name
+         */
+        $this->assertIsRealResult($provider, false, 'GenericBrowser', 'browser', 'name');
+        $this->assertIsRealResult($provider, true, 'GenericBrowser something', 'browser', 'name');
+        $this->assertIsRealResult($provider, true, 'something GenericBrowser', 'browser', 'name');
+    }
+
+    public function testParser()
+    {
+        $provider = new JenssegersAgent();
+
+        $this->assertInstanceOf('Jenssegers\Agent\Agent', $provider->getParser());
+    }
+
+    /**
+     * @expectedException \UserAgentParser\Exception\NoResultFoundException
+     */
+    public function testParseNoResultFoundException()
+    {
+        $parser = $this->getParser();
+
+        $provider = new JenssegersAgent();
+
+        $reflection = new \ReflectionClass($provider);
+        $property   = $reflection->getProperty('parser');
+        $property->setAccessible(true);
+        $property->setValue($provider, $parser);
+
+        $result = $provider->parse('A real user agent...');
+    }
+
+    /**
+     * Bot
+     */
+    public function testParseBot()
+    {
+        $parser = $this->getParser();
+        $parser->expects($this->any())
+            ->method('isRobot')
+            ->will($this->returnValue(true));
+
+        $parser->expects($this->any())
+            ->method('robot')
+            ->will($this->returnValue('Googlebot'));
+
+        $provider = new JenssegersAgent();
+
+        $reflection = new \ReflectionClass($provider);
+        $property   = $reflection->getProperty('parser');
+        $property->setAccessible(true);
+        $property->setValue($provider, $parser);
+
+        $result = $provider->parse('A real user agent...');
+
+        $expectedResult = [
+            'bot' => [
+                'isBot' => true,
+                'name'  => 'Googlebot',
+                'type'  => null,
+            ],
+        ];
+
+        $this->assertProviderResult($result, $expectedResult);
+    }
+
+    /**
+     * Browser only
+     */
+    public function testParseBrowser()
+    {
+        $parser = $this->getParser();
+        $parser->expects($this->any())
+            ->method('browser')
+            ->will($this->returnValue('Firefox'));
+        $parser->expects($this->any())
+            ->method('version')
+            ->will($this->returnValue('3.2.1'));
+
+        $provider = new JenssegersAgent();
+
+        $reflection = new \ReflectionClass($provider);
+        $property   = $reflection->getProperty('parser');
+        $property->setAccessible(true);
+        $property->setValue($provider, $parser);
+
+        $result = $provider->parse('A real user agent...');
+
+        $expectedResult = [
+            'browser' => [
+                'name'    => 'Firefox',
+                'version' => [
+                    'major' => 3,
+                    'minor' => 2,
+                    'patch' => 1,
+
+                    'alias' => null,
+
+                    'complete' => '3.2.1',
+                ],
+            ],
+        ];
+
+        $this->assertProviderResult($result, $expectedResult);
+    }
+
+    /**
+     * OS only
+     */
+    public function testParseOs()
+    {
+        $parser = $this->getParser();
+        $parser->expects($this->any())
+            ->method('platform')
+            ->will($this->returnValue('Windows'));
+        $parser->expects($this->any())
+            ->method('version')
+            ->will($this->returnValue('7.0.1'));
+
+        $provider = new JenssegersAgent();
+
+        $reflection = new \ReflectionClass($provider);
+        $property   = $reflection->getProperty('parser');
+        $property->setAccessible(true);
+        $property->setValue($provider, $parser);
+
+        $result = $provider->parse('A real user agent...');
+
+        $expectedResult = [
+            'operatingSystem' => [
+                'name'    => 'Windows',
+                'version' => [
+                    'major' => 7,
+                    'minor' => 0,
+                    'patch' => 1,
+
+                    'alias' => null,
+
+                    'complete' => '7.0.1',
+                ],
+            ],
+        ];
+
+        $this->assertProviderResult($result, $expectedResult);
+    }
+
+    /**
+     * Device only
+     */
+    public function testDeviceOnly()
+    {
+        $parser = $this->getParser();
+        $parser->expects($this->any())
+            ->method('isMobile')
+            ->will($this->returnValue(true));
+
+        $provider = new JenssegersAgent();
+
+        $reflection = new \ReflectionClass($provider);
+        $property   = $reflection->getProperty('parser');
+        $property->setAccessible(true);
+        $property->setValue($provider, $parser);
+
+        $result = $provider->parse('A real user agent...');
+
+        $expectedResult = [
+            'device' => [
+                'model' => null,
+                'brand' => null,
+                'type'  => null,
+
+                'isMobile' => true,
+                'isTouch'  => null,
+            ],
+        ];
+
+        $this->assertProviderResult($result, $expectedResult);
+    }
+}
