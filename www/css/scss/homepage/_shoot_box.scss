@@ -1,0 +1,47 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Shoot box
+// ---------------------------------------------------------------------------------------------------------------------
+
+.shoot-box {
+   margin: 40px 0;
+   .shoot-item {
+      .image {
+         a {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+            border: 1px solid #ddd;
+            @include border-radius(0.25rem);
+            @include transition(all $transition-effect-speed ease-in-out);
+            .img-thumbnail {
+               border: none;
+            }
+            &:hover {
+               border: 1px solid $azure;
+            }
+         }
+      }
+   }
+
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      .shoot-item {
+         margin: 10px 0;
+      }
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      .shoot-item {
+         margin: 15px 0;
+      }
+   }
+
+   //md
+   @include media-breakpoint-up(md) {
+      .shoot-item {
+         margin: 15px 0;
+      }
+   }
+}

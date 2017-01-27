@@ -9,9 +9,16 @@ use App\FrontModule\Model;
 class HomepagePresenter extends BasePresenter
 {
 
-	public function renderDefault()
-	{
-		$this->template->anyVariable = 'any value';
-	}
+   private $stm;
 
+
+   public function __construct(Model\ShootManager $stm)
+   {
+      $this->stm = $stm;
+   }
+
+   public function renderDefault()
+   {
+      $this->template->shoots = $this->stm->getShootBox(4);
+   }
 }

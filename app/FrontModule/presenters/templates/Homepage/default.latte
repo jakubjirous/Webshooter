@@ -1,6 +1,6 @@
 {extends '../@index.latte'}
 
-{* Homepage:default *}
+
 
 {block header}
    <header class="homepage">
@@ -8,6 +8,7 @@
          <div class="row">
             <div class="col-xs-12 text-xs-center">
                <div class="inner">
+                  <i class="fa fa-image"></i>
                   <h1>What is Webshooter?</h1>
                   <h5>Web page application to creating website screenshots</h5>
                   <h6>You can use a lot of prepared settings</h6>
@@ -23,36 +24,28 @@
 {/block}
 
 {block content}
-   <section class="screen-box">
+   <section class="shoot-box">
       <div class="container">
          <div class="row">
             <div class="col-xs-12">
-               <h2>Screens</h2>
+               <h2>Latest web shoots</h2>
             </div>
          </div>
 
          <div class="row">
-            <div class="col-xs-12">
-               <div class="screen-item">
-
+            {foreach $shoots as $shoot}
+               <div class="col-xs-12 col-md-6 col-lg-3">
+                  <div class="shoot-item">
+                     <div class="image">
+                        <a href="{$basePath}{$shoot->path_img}" class="shoot-thumbnail" data-toggle="lightbox"
+                           data-parent="" data-gallery="#shoots" data-title="{$shoot->url_autority}">
+                           <img class="img-thumbnail img-responsive" src="{$basePath}{$shoot->path_img}"
+                                alt="{$shoot->url_autority}">
+                        </a>
+                     </div>
+                  </div>
                </div>
-            </div>
-         </div>
-
-         <div class="row">
-            <div class="col-xs-12">
-               <div class="screen-item">
-
-               </div>
-            </div>
-         </div>
-
-         <div class="row">
-            <div class="col-xs-12">
-               <div class="screen-item">
-
-               </div>
-            </div>
+            {/foreach}
          </div>
 
       </div>
@@ -68,25 +61,44 @@
          </div>
 
          <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                <div class="tech-item">
-
+                  <h5>Nette Framework</h5>
                </div>
             </div>
-         </div>
-
-         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                <div class="tech-item">
-
+                  <h5>PHP7</h5>
                </div>
             </div>
-         </div>
-
-         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                <div class="tech-item">
-
+                  <h5>MySQL DB</h5>
+               </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+               <div class="tech-item">
+                  <h5>Phantom JS</h5>
+               </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+               <div class="tech-item">
+                  <h5>Slimer JS</h5>
+               </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+               <div class="tech-item">
+                  <h5>Resamble JS</h5>
+               </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+               <div class="tech-item">
+                  <h5>HTML5</h5>
+               </div>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+               <div class="tech-item">
+                  <h5>CSS3</h5>
                </div>
             </div>
          </div>

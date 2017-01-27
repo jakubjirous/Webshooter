@@ -9,7 +9,12 @@ header {
       justify-content: center;
       align-items: center;
       .inner {
-         margin-top: rem(-180px);
+         margin-top: rem(-80px);
+         i {
+            font-size: 50px;
+            color: $azure;
+            animation: scaleAnimation 20s infinite linear;
+         }
          h1 {
             padding-bottom: rem(15px);
          }
@@ -26,3 +31,17 @@ header {
       margin-top: rem(75px);
    }
 }
+
+@keyframes scaleAnimation {
+   0% {
+      transform: scale(1);
+   }
+   50% {
+      transform: scale(1.4);
+   }
+   100% {
+      transform: scale(1);
+   }
+}
+
+

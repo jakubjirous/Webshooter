@@ -59,6 +59,21 @@ class ShootManager
 
 
    /**
+    * Get shoots limited by count
+    * @param $count
+    * @return array|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getShootBox($count)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->order(self::COLUMN_DATE . ' DESC')
+         ->limit($count)
+         ->fetchAll();
+   }
+
+
+   /**
     * Get shoot by ID
     * @param $id
     * @return array|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
@@ -69,6 +84,94 @@ class ShootManager
          ->select('*')
          ->where(self::COLUMN_ID, $id)
          ->fetch();
+   }
+
+
+   /**
+    * Check if shoot by ID exist
+    * @param $id
+    * @return bool
+    */
+   public function existShootById($id)
+   {
+      $result = $this->db->table(self::TABLE_NAME)
+         ->select(self::COLUMN_ID)
+         ->where(self::COLUMN_ID, $id)
+         ->fetch();
+
+      return $result == NULL ? FALSE : TRUE;
+   }
+
+
+   /**
+    * Get similar shoot with shoot get by ID
+    * URL, Device, Other or Crop options must be same
+    * @param $id
+    * @return array|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection|null
+    */
+   public function getSimilarShootsWithShootById($id)
+   {
+      $shoot = $this->getShootById($id);
+      $url = $shoot->url;
+      $deviceId = $shoot->id_device;
+
+      $otherWidth = $shoot->other_width;
+      $otherHeight = $shoot->other_height;
+
+      $cropViewportWidth = $shoot->crop_viewport_width;
+      $cropViewportHeight = $shoot->crop_viewport_height;
+      $cropTop = $shoot->crop_top;
+      $cropLeft = $shoot->crop_left;
+      $cropWidth = $shoot->crop_width;
+      $cropHeight = $shoot->crop_height;
+
+      $result = NULL;
+
+      if ($deviceId != NULL) {
+         /**
+          * Compare same URL and Device
+          */
+
+         $result = $this->db->table(self::TABLE_NAME)
+            ->select('*')
+            ->where(self::COLUMN_URL, $url)
+            ->where(self::COLUMN_DEVICE, $deviceId)
+            ->where(self::COLUMN_ID . ' != ', $id)
+            ->fetchAll();
+
+      } else {
+
+         if ($otherWidth != NULL) {
+            /**
+             * Compare same URL and Other
+             */
+            $result = $this->db->table(self::TABLE_NAME)
+               ->select('*')
+               ->where(self::COLUMN_URL, $url)
+               ->where(self::COLUMN_OTHER_WIDTH, $otherWidth)
+               ->where(self::COLUMN_OTHER_HEIGHT, $otherHeight)
+               ->where(self::COLUMN_ID . ' != ', $id)
+               ->fetchAll();
+         } else {
+
+            /**
+             * Compare same URL and Crop
+             */
+            $result = $this->db->table(self::TABLE_NAME)
+               ->select('*')
+               ->where(self::COLUMN_URL, $url)
+               ->where(self::COLUMN_CROP_VIEWPORT_WIDTH, $cropViewportWidth)
+               ->where(self::COLUMN_CROP_VIEWPORT_HEIGHT, $cropViewportHeight)
+               ->where(self::COLUMN_CROP_TOP, $cropTop)
+               ->where(self::COLUMN_CROP_LEFT, $cropLeft)
+               ->where(self::COLUMN_CROP_WIDTH, $cropWidth)
+               ->where(self::COLUMN_CROP_HEIGHT, $cropHeight)
+               ->where(self::COLUMN_ID . ' != ', $id)
+               ->fetchAll();
+         }
+      }
+
+      return $result;
    }
 
 

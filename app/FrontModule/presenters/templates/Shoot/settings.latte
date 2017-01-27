@@ -4,7 +4,7 @@
 
 {block header}
    <header>
-      <h1 n:block=title>Web shoots</h1>
+      <h1 n:block=title>Shoots settings</h1>
    </header>
 {/block}
 
@@ -13,7 +13,7 @@
       <div class="container">
          <ol class="breadcrumb bg-faded">
             <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
-            <li class="breadcrumb-item active">Web shoots</li>
+            <li class="breadcrumb-item active">Shoots settings</li>
          </ol>
       </div>
    {/if}
@@ -247,6 +247,15 @@
                                     </td>
                                  {/if}
                               </tr>
+                              <tr>
+                                 <td>
+                                    <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success">
+                                       <i class="fa fa-exchange"></i>
+                                       Compare
+                                    </a>
+                                 </td>
+                                 <td></td>
+                              </tr>
                            </table>
                         </div>
                      </div>
@@ -360,6 +369,15 @@
                                        </td>
                                     {/if}
                                  </tr>
+                                 <tr>
+                                    <td>
+                                       <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success">
+                                          <i class="fa fa-exchange"></i>
+                                          Compare
+                                       </a>
+                                    </td>
+                                    <td></td>
+                                 </tr>
                               </table>
                            </div>
                         </div>
@@ -420,15 +438,18 @@
                                  {$shoot->date|date:'d.n.Y H:i:s'}
                               </td>
                               <td data-title="Action">
+                                 <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success btn-sm">
+                                    <i class="fa fa-exchange"></i>
+                                    Compare
+                                 </a>
                                  <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary btn-sm">
                                     <i class="fa fa-download"></i>
                                     Download
                                  </a>
                                  {if $roleAdmin}
                                     <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger btn-sm"
-                                                                         data-confirm="Are you sure to delete this shoot?">
+                                                                         data-confirm="Are you sure to delete this shoot?" title="Delete">
                                        <i class="fa fa-trash"></i>
-                                       Delete
                                     </a>
                                  {/if}
                               </td>

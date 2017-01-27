@@ -1,0 +1,122 @@
+{extends '../@index.latte'}
+
+
+
+{block header}
+   <header class="index">
+      <h1 n:block=title>Compare shoots</h1>
+   </header>
+{/block}
+
+{block breadcrumb}
+   {if $isLoggedIn}
+      <div class="container">
+         <ol class="breadcrumb bg-faded">
+            <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
+            <li class="breadcrumb-item"><a n:href="Shoot:settings">Shoots settings</a></li>
+            <li class="breadcrumb-item active">Compare shoots</li>
+         </ol>
+      </div>
+   {/if}
+{/block}
+
+{block content}
+   <div class="container">
+      <div class="compare-list">
+
+         <div class="row">
+            <div class="col-xs-6">
+               <h4>{$shoot->url_autority}</h4>
+
+               <a href="{$basePath}{$shoot->path_img}" class="shoot-thumbnail" data-toggle="lightbox"
+                  data-parent="" data-gallery="#shoots" data-title="{$shoot->url_autority}">
+                  <img class="img-thumbnail img-responsive" src="{$basePath}{$shoot->path_img}"
+                       alt="{$shoot->url_autority}" width="400">
+               </a>
+
+               <ul>
+                  <li>
+                     {$shoot->url}
+                  </li>
+                  <li>
+                     {$shoot->engine|firstUpper}
+                  </li>
+                  <li>
+                     {$shoot->browser_name|firstUpper} {$shoot->browser_version}
+                  </li>
+                  <li>
+                     {$shoot->img_type|upper}
+                  </li>
+                  <li>
+                     {$shoot->date|date:'d.n.Y H:i:s'}
+                  </li>
+                  <li>
+
+                  </li>
+                  {ifset $shoot->device}
+                     <li>
+                        {$shoot->device->device}
+                     </li>
+                     <li>
+                        {$shoot->device->type->type}
+                     </li>
+                  {/ifset}
+               </ul>
+            </div>
+            <div class="col-xs-6">
+               <h4>Similar shoots</h4>
+
+               {if $similarShoots != NULL}
+
+                  {foreach $similarShoots as $similar}
+                     <h5>{$similar->url_autority}</h5>
+
+                     <a href="{$basePath}{$similar->path_img}" class="shoot-thumbnail" data-toggle="lightbox"
+                        data-parent="" data-gallery="#shoots" data-title="{$similar->url_autority}">
+                        <img class="img-thumbnail img-responsive" src="{$basePath}{$similar->path_img}"
+                             alt="{$similar->url_autority}" width="400">
+                     </a>
+
+                     <ul>
+                        <li>
+                           {$similar->url}
+                        </li>
+                        <li>
+                           {$similar->engine|firstUpper}
+                        </li>
+                        <li>
+                           {$similar->browser_name|firstUpper} {$similar->browser_version}
+                        </li>
+                        <li>
+                           {$similar->img_type|upper}
+                        </li>
+                        <li>
+                           {$similar->date|date:'d.n.Y H:i:s'}
+                        </li>
+                        <li>
+
+                        </li>
+                        {ifset $similar->device}
+                           <li>
+                              {$similar->device->device}
+                           </li>
+                           <li>
+                              {$similar->device->type->type}
+                           </li>
+                        {/ifset}
+                     </ul>
+
+                     <hr>
+                  {/foreach}
+               {else}
+                  <div class="alert alert-success fade in" role="alert">
+                     <strong>This shoot hasn't any similar shoot to compare yet!</strong>
+                  </div>
+               {/if}
+
+            </div>
+         </div>
+
+      </div>
+   </div>
+{/block}

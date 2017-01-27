@@ -6646,7 +6646,11 @@ header.homepage {
   justify-content: center;
   align-items: center; }
   header.homepage .inner {
-    margin-top: -11.25rem; }
+    margin-top: -5rem; }
+    header.homepage .inner i {
+      font-size: 50px;
+      color: #007fff;
+      animation: scaleAnimation 20s infinite linear; }
     header.homepage .inner h1 {
       padding-bottom: 0.9375rem; }
     header.homepage .inner a {
@@ -6657,6 +6661,13 @@ header.index {
   header {
     margin-top: 4.6875rem; } }
 
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1); }
+  50% {
+    transform: scale(1.4); }
+  100% {
+    transform: scale(1); } }
 .breadcrumb {
   margin-top: 5.625rem; }
   .breadcrumb a {
@@ -6759,6 +6770,34 @@ form .custom-checkbox {
   form .custom-checkbox .old-ie .checkbox-label:before,
   form .custom-checkbox .old-ie .checkbox-label:after {
     display: none; }
+
+.shoot-box {
+  margin: 40px 0; }
+  .shoot-box .shoot-item .image a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out; }
+    .shoot-box .shoot-item .image a .img-thumbnail {
+      border: none; }
+    .shoot-box .shoot-item .image a:hover {
+      border: 1px solid #007fff; }
+  @media (max-width: 767px) {
+    .shoot-box .shoot-item {
+      margin: 10px 0; } }
+@media (min-width: 576px) and (max-width: 1091px) {
+  .shoot-box .shoot-item {
+    margin: 15px 0; } }
+
+  @media (min-width: 768px) {
+    .shoot-box .shoot-item {
+      margin: 15px 0; } }
 
 .shoot-add .addon-left {
   width: 45px; }
