@@ -1,18 +1,27 @@
 // ---------------------------------------------------------------------------------------------------------------------
-// Shoot list
+// Compare list
 // ---------------------------------------------------------------------------------------------------------------------
 
-.shoot-list {
-   .shoot-new {
-      margin: rem(20px) 0;
-   }
+.compare-list {
    .change-view {
       text-align: center;
       margin-bottom: 20px;
    }
-   .shoot-item {
+
+   .compare-source {
+      margin-bottom: 40px;
+   }
+
+   .compare-target {
+
+   }
+
+   .compare-item {
       h3 {
          @include link($azure, $azure, false);
+      }
+      h4 {
+         margin: 20px 0;
       }
       .image {
          text-align: center;
@@ -124,11 +133,14 @@
       border: 0;
       height: 4px;
       background: $iron;
+      &.compare {
+         background: $azure;
+      }
    }
 
    //xs
    @include media-breakpoint-between(xs, sm) {
-      .shoot-item {
+      .compare-item {
          .image {
             margin-bottom: 20px;
          }
@@ -188,7 +200,7 @@
 
    //sm
    @include media-breakpoint-between(sm, md) {
-      .shoot-item {
+      .compare-item {
          .image {
             margin-bottom: 20px;
          }
@@ -196,6 +208,28 @@
             width: 100%;
             &:first-child {
                margin-bottom: 20px;
+            }
+         }
+
+         &.view-md {
+            &.compare-target {
+               border-left: 2px solid $azure;
+               margin-left: -10px;
+               padding-left: 20px;
+               h3 {
+                  margin-top: 0;
+               }
+            }
+         }
+
+         &.view-sm {
+            &.compare-target {
+               border-left: 2px solid $azure;
+               margin-left: -10px;
+               padding-left: 20px;
+               h3 {
+                  margin-top: 0;
+               }
             }
          }
 
@@ -249,13 +283,35 @@
 
    //md
    @include media-breakpoint-between(md, lg) {
-      .shoot-item {
+      .compare-item {
          @include change-gutter(5px);
          .image {
             margin-bottom: 20px;
          }
          .table {
             width: 100%;
+         }
+
+         &.view-md {
+            &.compare-target {
+               border-left: 2px solid $azure;
+               margin-left: -10px;
+               padding-left: 20px;
+               h3 {
+                  margin-top: 0;
+               }
+            }
+         }
+
+         &.view-sm {
+            &.compare-target {
+               border-left: 2px solid $azure;
+               margin-left: -10px;
+               padding-left: 20px;
+               h3 {
+                  margin-top: 0;
+               }
+            }
          }
 
          &.view-xs {
@@ -267,7 +323,29 @@
    }
 
    @include media-breakpoint-up(md) {
-      .shoot-item {
+      .compare-item {
+         &.view-md {
+            &.compare-target {
+               border-left: 2px solid $azure;
+               margin-left: -10px;
+               padding-left: 20px;
+               h3 {
+                  margin-top: 0;
+               }
+            }
+         }
+
+         &.view-sm {
+            &.compare-target {
+               border-left: 2px solid $azure;
+               margin-left: -10px;
+               padding-left: 20px;
+               h3 {
+                  margin-top: 0;
+               }
+            }
+         }
+
          &.view-xs {
             .image {
                margin-left: calc(50% - 30px);
@@ -321,12 +399,34 @@
 
    //lg
    @include media-breakpoint-up(lg) {
-      .shoot-item {
+      .compare-item {
          .image {
             margin-bottom: 20px;
          }
          .table {
             width: 100%;
+         }
+
+         &.view-md {
+            &.compare-target {
+               border-left: 2px solid $azure;
+               margin-left: -10px;
+               padding-left: 20px;
+               h3 {
+                  margin-top: 0;
+               }
+            }
+         }
+
+         &.view-sm {
+            &.compare-target {
+               border-left: 2px solid $azure;
+               margin-left: -10px;
+               padding-left: 20px;
+               h3 {
+                  margin-top: 0;
+               }
+            }
          }
 
          &.view-xs {

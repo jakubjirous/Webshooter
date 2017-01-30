@@ -1,0 +1,109 @@
+{extends '../@index.latte'}
+
+
+
+{block header}
+   <header>
+      <h1 n:block=title>Comparision result</h1>
+   </header>
+{/block}
+
+{block breadcrumb}
+   {if $isLoggedIn}
+      <div class="container">
+         <ol class="breadcrumb bg-faded">
+            <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
+            <li class="breadcrumb-item"><a n:href="Shoot:settings">Shoots settings</a></li>
+            <li class="breadcrumb-item"><a n:href="Compare:list $shoot->id_shoot">Select comparision</a></li>
+            <li class="breadcrumb-item active">Comparision result</li>
+         </ol>
+      </div>
+   {/if}
+{/block}
+
+{block content}
+   <div class="container">
+      <div class="compare-result">
+
+         <h2 class="text-xs-center">
+            <a href="{$similar->url}" target="_blank">{$similar->url_autority}</a>
+         </h2>
+
+         <div class="row">
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+               <div class="compare-source">
+                  <h4>Source shoot</h4>
+
+                  <div class="image">
+                     <a href="{$basePath}{$shoot->path_img}" class="shoot-thumbnail" data-toggle="lightbox"
+                        data-parent="" data-gallery="#shoots" data-title="Source shoot">
+                        <img class="img-thumbnail img-responsive" src="{$basePath}{$shoot->path_img}"
+                             alt="{$shoot->url_autority}">
+                     </a>
+                  </div>
+
+                  <a n:href="download! $shoot->id_shoot"
+                        class="btn btn-primary btn-outline-primary">
+                     <i class="fa fa-download"></i>
+                     Download
+                  </a>
+               </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-lg-4">
+               <div class="compare-target">
+                  <h4>Target shoot</h4>
+
+                  <div class="image">
+                     <a href="{$basePath}{$similar->path_img}" class="shoot-thumbnail"
+                        data-toggle="lightbox"
+                        data-parent="" data-gallery="#shoots" data-title="Target shoot">
+                        <img class="img-thumbnail img-responsive"
+                             src="{$basePath}{$similar->path_img}"
+                             alt="{$similar->url_autority}">
+                     </a>
+                  </div>
+
+                  <a n:href="download! $similar->id_shoot"
+                        class="btn btn-primary btn-outline-primary">
+                     <i class="fa fa-download"></i>
+                     Download
+                  </a>
+               </div>
+            </div>
+
+            <div class="col-xs-12 col-lg-4">
+               <div class="compare-result">
+                  <h4>Result</h4>
+
+                  <div id="result" class="image">
+                     <a href="" class="shoot-thumbnail" data-toggle="lightbox" data-parent="" data-gallery="#shoots" data-title="Result">
+                        <img class="img-thumbnail img-responsive"
+                             src=""
+                             alt="Loading ...">
+                     </a>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+
+         {var image1 = $basePath.$shoot->path_img}
+         {var image2 = $basePath.$similar->path_img}
+
+         <script src="{$basePath}/js/resemble.js"></script>
+         <script>
+            var resultThumbnail = resemble({$image1})
+                  .compareTo({$image2})
+                  .ignoreColors()
+                  .onComplete(function (data) {
+                     var diffImage = new Image();
+                     diffImage.src = data.getImageDataUrl();
+
+                     $('#result img').attr('src', diffImage.src);
+                     $('#result a').attr('href', diffImage.src);
+                  });
+         </script>
+
+      </div>
+   </div>
+{/block}

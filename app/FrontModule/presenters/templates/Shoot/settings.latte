@@ -251,7 +251,7 @@
                                  <td>
                                     <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success">
                                        <i class="fa fa-exchange"></i>
-                                       Compare
+                                       Comparision
                                     </a>
                                  </td>
                                  <td></td>
@@ -276,7 +276,7 @@
             {if $shoots}
                <div class="row">
                   {foreach $shoots as $shoot}
-                     <div class="col-xs-12 col-sm-6 col-md-4">
+                     <div class="col-xs-12 col-sm-6 col-lg-4">
                         <div class="shoot-item view-md">
                            <div class="row">
                               <div class="col-xs-12">
@@ -293,6 +293,20 @@
                                             alt="{$shoot->url_autority}">
                                     </a>
                                  </div>
+                                 <div class="action">
+                                    <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary" title="Download">
+                                       <i class="fa fa-download"></i>
+                                    </a>
+                                    <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success" title="Comparision">
+                                       <i class="fa fa-exchange"></i>
+                                    </a>
+                                    {if $roleAdmin}
+                                       <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger float-xs-right"
+                                                                            data-confirm="Are you sure to delete this shoot?" title="Delete">
+                                          <i class="fa fa-trash"></i>
+                                       </a>
+                                    {/if}
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -301,7 +315,7 @@
                </div>
             {else}
                <div class="alert alert-info" role="alert">
-                  There is now shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
+                  There is no shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
                </div>
             {/if}
 
@@ -373,7 +387,7 @@
                                     <td>
                                        <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success">
                                           <i class="fa fa-exchange"></i>
-                                          Compare
+                                          Comparision
                                        </a>
                                     </td>
                                     <td></td>
@@ -387,7 +401,7 @@
             </div>
             {else}
                <div class="alert alert-info" role="alert">
-                  There is now shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
+                  There is no shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
                </div>
             {/if}
 
@@ -440,7 +454,7 @@
                               <td data-title="Action">
                                  <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success btn-sm">
                                     <i class="fa fa-exchange"></i>
-                                    Compare
+                                    Comparision
                                  </a>
                                  <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary btn-sm">
                                     <i class="fa fa-download"></i>
@@ -462,7 +476,7 @@
             </div>
             {else}
                <div class="alert alert-info" role="alert">
-                  There is now shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
+                  There is no shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
                </div>
             {/if}
 

@@ -22,8 +22,10 @@ class ComparePresenter extends BasePresenter
    /** @var Model\ShootManager */
    private $stm;
 
+   private $wwwDir;
+
    /**
-    * LG, MD, SM, XS
+    * MD, SM, XS
     */
    private $view = self::VIEW_MD;
 
@@ -36,6 +38,16 @@ class ComparePresenter extends BasePresenter
    }
 
 
+   public function startup()
+   {
+      parent::startup();
+
+      $ds = DIRECTORY_SEPARATOR;
+      $ds2 = '/';
+      $this->wwwDir = $this->context->parameters['wwwDir'] . $ds;
+   }
+
+
    public function renderList($id)
    {
       $this->isLoggedIn();
@@ -44,6 +56,26 @@ class ComparePresenter extends BasePresenter
       $this->template->isLoggedIn = $this->user->isLoggedIn();
       $this->template->shoot = $this->stm->getShootById($id);
       $this->template->similarShoots = $this->stm->getSimilarShootsWithShootById($id);
+
+      $sessionView = $this->sm->getShootView();
+      $this->template->view = ($sessionView == FALSE) ? $this->view : $sessionView;
+
+      $this->template->viewLG = self::VIEW_LG;
+      $this->template->viewMD = self::VIEW_MD;
+      $this->template->viewSM = self::VIEW_SM;
+      $this->template->viewXS = self::VIEW_XS;
+   }
+
+
+   public function renderResult($shootId, $similarId)
+   {
+      $this->isLoggedIn();
+      $this->validateShootId($shootId);
+      $this->validateShootId($similarId);
+
+      $this->template->isLoggedIn = $this->user->isLoggedIn();
+      $this->template->shoot = $this->stm->getShootById($shootId);
+      $this->template->similar = $this->stm->getShootById($similarId);
    }
 
 
@@ -71,49 +103,6 @@ class ComparePresenter extends BasePresenter
       if (!$exist) {
          $this->error();
       }
-   }
-
-
-   /**
-    * Add new shoot form factory.
-    * @return Nette\Application\UI\Form
-    */
-   protected function createComponentShootAddForm()
-   {
-      if ($this->getUser()->isLoggedIn()) {
-         $this->shootAddFactory->setUserId($this->getUser()->getIdentity()->id_user);
-      }
-
-      $this->shootAddFactory->setEngineTypes(self::ENGINE_TYPES);
-      $this->shootAddFactory->setImageTypes(self::IMAGE_TYPES);
-
-      $this->shootAddFactory->setWebkit(self::WEBKIT);
-      $this->shootAddFactory->setGecko(self::GECKO);
-
-      $this->shootAddFactory->setTypeMobile(self::TYPE_MOBILE);
-      $this->shootAddFactory->setTypeTablet(self::TYPE_TABLET);
-      $this->shootAddFactory->setTypeLaptop(self::TYPE_LAPTOP);
-      $this->shootAddFactory->setTypeDesktop(self::TYPE_DESKTOP);
-      $this->shootAddFactory->setTypeOther(self::TYPE_OTHER);
-      $this->shootAddFactory->setTypeCrop(self::TYPE_CROP);
-
-      $this->shootAddFactory->setPath(
-         [
-            'wwwDir' => $this->wwwDir,
-            'wwwBinDir' => $this->wwwBinDir,
-            'wwwJsDir' => $this->wwwJsDir,
-            'wwwShootsDir' => $this->wwwShootsDir,
-            'binDir' => $this->binDir,
-            'jsDir' => $this->jsDir,
-            'shootsDir' => $this->shootsDir
-         ]
-
-      );
-
-      return $this->shootAddFactory->create(function () {
-         $this->flashMessage('New web shoot was added.', self::FLASH_MESSAGE_SUCCESS);
-         $this->redirect('Shoot:settings');
-      });
    }
 
 
