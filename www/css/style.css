@@ -7556,6 +7556,14 @@ form .custom-checkbox {
   .compare-result h2 a:hover {
     text-decoration: none;
     border-bottom: 1px solid #007fff; }
+.compare-result .change-color .color-red i {
+  color: red; }
+.compare-result .change-color .color-green i {
+  color: lime; }
+.compare-result .change-color .color-blue i {
+  color: blue; }
+.compare-result .change-color .color-yellow i {
+  color: yellow; }
 .compare-result .image {
   margin-bottom: 20px; }
   .compare-result .image a {

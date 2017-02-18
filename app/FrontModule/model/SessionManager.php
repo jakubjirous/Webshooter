@@ -132,5 +132,31 @@ class SessionManager
    }
 
 
+   /**
+    * COMPARE RESULT COLOR
+    */
+   public function setResultColor($color)
+   {
+      $this->section->resultColor = $color;
+   }
+   public function getResultColor()
+   {
+      return $this->section->resultColor;
+   }
+
+
+   /**
+    * COMPARE RESULT BACKGROUND
+    */
+   public function setResultBackground($background)
+   {
+      $this->section->resultBackground = $background;
+   }
+   public function getResultBackground()
+   {
+      return $this->section->resultBackground;
+   }
+
+
 
 }

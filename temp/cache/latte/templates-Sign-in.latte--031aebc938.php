@@ -45,6 +45,7 @@ class Template031aebc938 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
+		if (isset($this->params['error'])) trigger_error('Variable $error overwritten in foreach on line 20');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -90,6 +91,24 @@ class Template031aebc938 extends Latte\Runtime\Template
 		?>            <form<?php
 		echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin(end($this->global->formsStack), array (
 		), FALSE) ?>>
+
+<?php
+		if ($form->ownErrors) {
+?>               <div class="alert alert-danger">
+<?php
+			$iterations = 0;
+			foreach ($form->ownErrors as $error) {
+				?>                  <strong><?php echo LR\Filters::escapeHtmlText($error) /* line 20 */ ?></strong>
+<?php
+				$iterations++;
+			}
+?>
+                  <br>
+               </div>
+<?php
+		}
+?>
+
                <div class="form-group row required">
                   <div class="col-xs-12 col-sm-4 col-md-4 text-sm-right control-label">
                      <label class="required"<?php

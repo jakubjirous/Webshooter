@@ -10,6 +10,7 @@ class Template30b9d7a486 extends Latte\Runtime\Template
 		'title' => 'blockTitle',
 		'breadcrumb' => 'blockBreadcrumb',
 		'content' => 'blockContent',
+		'_changeResult' => 'blockChangeResult',
 	];
 
 	public $blockTypes = [
@@ -17,6 +18,7 @@ class Template30b9d7a486 extends Latte\Runtime\Template
 		'title' => 'html',
 		'breadcrumb' => 'html',
 		'content' => 'html',
+		'_changeResult' => 'html',
 	];
 
 
@@ -103,94 +105,203 @@ class Template30b9d7a486 extends Latte\Runtime\Template
 		echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 29 */ ?></a>
          </h2>
 
-         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-lg-4">
-               <div class="compare-source">
-                  <h4>Source shoot</h4>
+<div id="<?php echo htmlSpecialChars($this->global->snippetDriver->getHtmlId('changeResult')) ?>"><?php $this->renderBlock('_changeResult', $this->params) ?></div>
+      </div>
+   </div>
+<?php
+	}
 
-                  <div class="image">
-                     <a href="<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 38 */;
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 38 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
-                        data-parent="" data-gallery="#shoots" data-title="Source shoot">
-                        <img class="img-thumbnail img-responsive" src="<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 40 */;
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 40 */ ?>"
-                             alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 41 */ ?>">
-                     </a>
+
+	function blockChangeResult($_args)
+	{
+		extract($_args);
+		$this->global->snippetDriver->enter("changeResult", "static");
+?>
+            <h4>Result settings</h4>
+            <div class="row">
+               <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="change-color">
+                     <p><strong>Change result color:</strong></p>
+                     <div class="btn-group" role="group" aria-label="Result change color">
+                        <a type="button"
+                                                         class="btn btn-secondary <?php
+		if ($color == $color1) {
+			?>active<?php
+		}
+		?> color-<?php echo LR\Filters::escapeHtmlAttr($color1) /* line 40 */ ?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeColor!", [$color1])) ?>">
+                           <i class="fa fa-image"></i>
+                        </a>
+                        <a type="button"
+                                                         class="btn btn-secondary <?php
+		if ($color == $color2) {
+			?>active<?php
+		}
+		?> color-<?php echo LR\Filters::escapeHtmlAttr($color2) /* line 44 */ ?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeColor!", [$color2])) ?>">
+                           <i class="fa fa-image"></i>
+                        </a>
+                        <a type="button"
+                                                         class="btn btn-secondary <?php
+		if ($color == $color3) {
+			?>active<?php
+		}
+		?> color-<?php echo LR\Filters::escapeHtmlAttr($color3) /* line 48 */ ?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeColor!", [$color3])) ?>">
+                           <i class="fa fa-image"></i>
+                        </a>
+                        <a type="button"
+                                                         class="btn btn-secondary <?php
+		if ($color == $color4) {
+			?>active<?php
+		}
+		?> color-<?php echo LR\Filters::escapeHtmlAttr($color4) /* line 52 */ ?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeColor!", [$color4])) ?>">
+                           <i class="fa fa-image"></i>
+                        </a>
+                     </div>
                   </div>
+               </div>
 
-                  <a
-                        class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
-                     <i class="fa fa-download"></i>
-                     Download
-                  </a>
+               <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="background-color">
+                     <p><strong>Change background color:</strong></p>
+                     <div class="btn-group" role="group" aria-label="Result background color">
+                        <a type="button" class="btn btn-secondary <?php
+		if ($background== $background1) {
+			?>active<?php
+		}
+		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeBackground!", [$background1])) ?>">
+                           Default
+                        </a>
+                        <a type="button" class="btn btn-secondary <?php
+		if ($background == $background2) {
+			?>active<?php
+		}
+		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeBackground!", [$background2])) ?>">
+                           Grayscale
+                        </a>
+                        <a type="button" class="btn btn-secondary <?php
+		if ($background == $background3) {
+			?>active<?php
+		}
+		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeBackground!", [$background3])) ?>">
+                           White
+                        </a>
+                        <a type="button" class="btn btn-secondary <?php
+		if ($background == $background4) {
+			?>active<?php
+		}
+		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeBackground!", [$background4])) ?>">
+                           Black
+                        </a>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="stats">
+                     <p><strong>Compare different:</strong></p>
+                     <p><?php echo LR\Filters::escapeHtmlText($percents) /* line 82 */ ?> %</p>
+                  </div>
+               </div>
+
+               <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div class="stats">
+                     <p>
+                        <label for="tolerance"><strong>Tolerance:</strong></label>
+                     </p>
+                     <input type="range" min="0" max="100" value="50" step="1" id="tolerance">
+                     <output for="tolerance">50</output>
+                  </div>
                </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-lg-4">
-               <div class="compare-target">
-                  <h4>Target shoot</h4>
 
-                  <div class="image">
-                     <a href="<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 57 */;
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 57 */ ?>" class="shoot-thumbnail"
-                        data-toggle="lightbox"
-                        data-parent="" data-gallery="#shoots" data-title="Target shoot">
-                        <img class="img-thumbnail img-responsive"
-                             src="<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 61 */;
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 61 */ ?>"
-                             alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 62 */ ?>">
+            <div class="row">
+               <div class="col-xs-12 col-sm-6 col-lg-4">
+                  <div class="compare-source">
+                     <h4>Source shoot</h4>
+
+                     <div class="image">
+                        <a href="<?php
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 103 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 103 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
+                           data-parent="" data-gallery="#shoots" data-title="Source shoot">
+                           <img class="img-thumbnail img-responsive" src="<?php
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 105 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 105 */ ?>"
+                                alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 106 */ ?>">
+                        </a>
+                     </div>
+
+                     <a
+                           class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
+                        <i class="fa fa-download"></i>
+                        Download
                      </a>
                   </div>
-
-                  <a
-                        class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$similar->id_shoot])) ?>">
-                     <i class="fa fa-download"></i>
-                     Download
-                  </a>
                </div>
-            </div>
+               <div class="col-xs-12 col-sm-6 col-lg-4">
+                  <div class="compare-target">
+                     <h4>Target shoot</h4>
 
-            <div class="col-xs-12 col-lg-4">
-               <div class="compare-result">
-                  <h4>Result</h4>
+                     <div class="image">
+                        <a href="<?php
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 122 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 122 */ ?>" class="shoot-thumbnail"
+                           data-toggle="lightbox"
+                           data-parent="" data-gallery="#shoots" data-title="Target shoot">
+                           <img class="img-thumbnail img-responsive"
+                                src="<?php
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 126 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 126 */ ?>"
+                                alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 127 */ ?>">
+                        </a>
+                     </div>
 
-                  <div id="result" class="image">
-                     <a href="" class="shoot-thumbnail" data-toggle="lightbox" data-parent="" data-gallery="#shoots" data-title="Result">
-                        <img class="img-thumbnail img-responsive"
-                             src=""
-                             alt="Loading ...">
+                     <a
+                           class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$similar->id_shoot])) ?>">
+                        <i class="fa fa-download"></i>
+                        Download
                      </a>
                   </div>
+               </div>
 
+               <div class="col-xs-12 col-lg-4">
+                  <div class="compare-result">
+                     <h4>Result</h4>
+
+                     <div class="image">
+                        <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 144 */ ?>/diff.png" class="shoot-thumbnail"
+                           data-toggle="lightbox"
+                           data-parent="" data-gallery="#shoots" data-title="Target shoot">
+                           <img class="img-thumbnail img-responsive"
+                                src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 148 */ ?>/diff.png"
+                                alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 149 */ ?>">
+                        </a>
+                     </div>
+
+                  </div>
                </div>
             </div>
-         </div>
 
 <?php
 		$image1 = $basePath.$shoot->path_img;
 		$image2 = $basePath.$similar->path_img;
 ?>
 
-         <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 93 */ ?>/js/resemble.js"></script>
-         <script>
-            var resultThumbnail = resemble(<?php echo LR\Filters::escapeJs($image1) /* line 95 */ ?>)
-                  .compareTo(<?php echo LR\Filters::escapeJs($image2) /* line 96 */ ?>)
-                  .ignoreColors()
-                  .onComplete(function (data) {
-                     var diffImage = new Image();
-                     diffImage.src = data.getImageDataUrl();
+            <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 169 */ ?>/js/resemble.js"></script>
+            <script>
+               var resultThumbnail = resemble(<?php echo LR\Filters::escapeJs($image1) /* line 171 */ ?>)
+                     .compareTo(<?php echo LR\Filters::escapeJs($image2) /* line 172 */ ?>)
+                     .ignoreColors()
+                     .onComplete(function (data) {
+                        var diffImage = new Image();
+                        diffImage.src = data.getImageDataUrl();
 
-                     $('#result img').attr('src', diffImage.src);
-                     $('#result a').attr('href', diffImage.src);
-                  });
-         </script>
-
-      </div>
-   </div>
+                        $('#result img').attr('src', diffImage.src);
+                        $('#result a').attr('href', diffImage.src);
+                     });
+            </script>
 <?php
+		$this->global->snippetDriver->leave();
+		
 	}
 
 }

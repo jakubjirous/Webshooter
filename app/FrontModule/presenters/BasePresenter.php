@@ -70,11 +70,25 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    // Pagination
    const SHOOTS_PER_PAGE = 9;
 
-
+   // Shoots view switching
    const VIEW_LG = "lg";
    const VIEW_MD = "md";
    const VIEW_SM = "sm";
    const VIEW_XS = "xs";
+
+
+   // Compare shoots result colors
+   const COLOR_1 = "red";
+   const COLOR_2 = "green";
+   const COLOR_3 = "blue";
+   const COLOR_4 = "yellow";
+
+   // Compare shoots result background
+   const BACKGROUND_1 = "default";
+   const BACKGROUND_2 = "grayscale";
+   const BACKGROUND_3 = "white";
+   const BACKGROUND_4 = "black";
+
 
    /**
     * Front menu component

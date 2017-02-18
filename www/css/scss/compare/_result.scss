@@ -17,6 +17,29 @@
       @include link($azure, $azure, false);
    }
 
+   .change-color {
+      .color-red {
+         i {
+            color: rgb(255, 0, 0);
+         }
+      }
+      .color-green {
+         i {
+            color: rgb(0, 255, 0);
+         }
+      }
+      .color-blue {
+         i {
+            color: rgb(0, 0, 255);
+         }
+      }
+      .color-yellow {
+         i {
+            color: rgb(255, 255, 0);
+         }
+      }
+   }
+
    .image {
       margin-bottom: 20px;
       a {

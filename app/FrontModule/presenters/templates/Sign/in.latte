@@ -14,9 +14,13 @@
    <div class="container">
       <div class="row">
          <div class="col-xs-12">
-            {*{control signInForm}*}
-
             <form n:name="signInForm">
+
+               <div class="alert alert-danger" n:if="$form->ownErrors">
+                  <strong n:foreach="$form->ownErrors as $error">{$error}</strong>
+                  <br>
+               </div>
+
                <div class="form-group row required">
                   <div class="col-xs-12 col-sm-4 col-md-4 text-sm-right control-label">
                      <label n:name="username" class="required">
@@ -24,7 +28,7 @@
                      </label>
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4">
-                     <input type="text" n:name="username" class="form-control text" required="" />
+                     <input type="text" n:name="username" class="form-control text" required=""/>
                   </div>
                </div>
 
@@ -34,7 +38,7 @@
                   </div>
 
                   <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4">
-                     <input type="password" n:name="password" class="form-control text" />
+                     <input type="password" n:name="password" class="form-control text"/>
                   </div>
                </div>
 
