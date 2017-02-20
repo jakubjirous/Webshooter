@@ -158,5 +158,41 @@ class SessionManager
    }
 
 
+   /**
+    * COMPARE RESULT TOLERANCE
+    */
+   public function setResultTolerance($tolerance)
+   {
+      $this->section->resultTolerance = $tolerance;
+   }
+   public function getResultTolerance()
+   {
+      return $this->section->resultTolerance;
+   }
 
+
+   /**
+    * COMPARE RESULT IGNORE ACTIVE
+    */
+   public function setResultIgnoreActive($ignoreActive)
+   {
+      $this->section->resultIgnoreActive = $ignoreActive;
+   }
+   public function getResultIgnoreActive()
+   {
+      return $this->section->resultIgnoreActive;
+   }
+
+
+   /**
+    * COMPARE RESULT IGNORE
+    */
+   public function setResultIgnore($ignore)
+   {
+      $this->section->resultIgnore = $ignore;
+   }
+   public function getResultIgnore()
+   {
+      return $this->section->resultIgnore;
+   }
 }

@@ -22,6 +22,7 @@ services:
 	- App\FrontModule\Model\DeviceManager
 	- App\FrontModule\Model\DeviceTypeManager
 	- App\FrontModule\Model\ShootManager
+	- App\FrontModule\Model\ResultManager
 
 	- App\FrontModule\Forms\FormFactory
 	- App\FrontModule\Forms\SignInFormFactory
@@ -31,6 +32,8 @@ services:
 	- App\FrontModule\Forms\DeviceAddFormFactory
 	- App\FrontModule\Forms\DeviceEditFormFactory
 	- App\FrontModule\Forms\ShootAddFormFactory
+	- App\FrontModule\Forms\ResultToleranceFormFactory
+	- App\FrontModule\Forms\ResultIgnoreFormFactory
 
 	router: App\RouterFactory::createRouter
 

@@ -68,4 +68,8 @@ $(function () {
         $("input[type=radio]:not(:checked)").parent().parent().parent().removeClass('choose');
         $(this).parent().parent().parent().addClass('choose');
     });
+
+    $('[data-tolerance-change]').on('input', function () {
+        $('[data-tolerance-value]').html($(this).val());
+    });
 });

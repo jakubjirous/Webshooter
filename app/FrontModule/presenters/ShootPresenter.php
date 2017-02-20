@@ -134,6 +134,10 @@ class ShootPresenter extends BasePresenter
       $this->shootAddFactory->setEngineTypes(self::ENGINE_TYPES);
       $this->shootAddFactory->setImageTypes(self::IMAGE_TYPES);
 
+      $this->shootAddFactory->setImagePNG(self::IMAGE_PNG);
+      $this->shootAddFactory->setImageJPG(self::IMAGE_JPG);
+      $this->shootAddFactory->setImageBMP(self::IMAGE_BMP);
+
       $this->shootAddFactory->setWebkit(self::WEBKIT);
       $this->shootAddFactory->setGecko(self::GECKO);
 

@@ -55,8 +55,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
       'png' => 'PNG – image/png',
       'jpg' => 'JPEG – image/jpeg',
 //      'gif' => 'GIF – image/gif',
-      'bmp' => 'BMP – image/bmp'
+//      'bmp' => 'BMP – image/bmp'
    ];
+
+   const IMAGE_PNG = 'png';
+   const IMAGE_JPG = 'jpg';
+   const IMAGE_BMP = 'bmp';
 
    // Device types by ID
    const TYPE_MOBILE = 1;
@@ -88,6 +92,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    const BACKGROUND_2 = "grayscale";
    const BACKGROUND_3 = "white";
    const BACKGROUND_4 = "black";
+
+   // Compare shoots result tolerance
+   const DEFAULT_TOLERANCE = 0;
 
 
    /**

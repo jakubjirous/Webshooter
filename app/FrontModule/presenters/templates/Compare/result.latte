@@ -14,7 +14,7 @@
          <ol class="breadcrumb bg-faded">
             <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
             <li class="breadcrumb-item"><a n:href="Shoot:settings">Shoots settings</a></li>
-            <li class="breadcrumb-item"><a n:href="Compare:list $shoot->id_shoot">Select comparision</a></li>
+            <li class="breadcrumb-item"><a n:href="Compare:list $source->id_shoot">Select comparision</a></li>
             <li class="breadcrumb-item active">Comparision result</li>
          </ol>
       </div>
@@ -26,13 +26,13 @@
       <div class="compare-result">
 
          <h2 class="text-xs-center">
-            <a href="{$similar->url}" target="_blank">{$similar->url_autority}</a>
+            <a href="{$target->url}" target="_blank">{$target->url_autority}</a>
          </h2>
 
          {snippet changeResult}
             <h4>Result settings</h4>
             <div class="row">
-               <div class="col-xs-12 col-sm-6 col-md-4">
+               <div class="col-xs-12 col-md-6 col-lg-4">
                   <div class="change-color">
                      <p><strong>Change result color:</strong></p>
                      <div class="btn-group" role="group" aria-label="Result change color">
@@ -56,40 +56,104 @@
                   </div>
                </div>
 
-               <div class="col-xs-12 col-sm-6 col-md-4">
-                  <div class="background-color">
+               <div class="col-xs-12 col-md-6 col-lg-4">
+                  <div class="change-background">
                      <p><strong>Change background color:</strong></p>
                      <div class="btn-group" role="group" aria-label="Result background color">
-                        <a n:href="changeBackground! $background1" type="button" class="btn btn-secondary {if $background== $background1}active{/if}">
+                        <a n:href="changeBackground! $background1" type="button"
+                                                                   class="btn btn-secondary {if $background== $background1}active{/if}">
                            Default
                         </a>
-                        <a n:href="changeBackground! $background2" type="button" class="btn btn-secondary {if $background == $background2}active{/if}">
+                        <a n:href="changeBackground! $background2" type="button"
+                                                                   class="btn btn-secondary {if $background == $background2}active{/if}">
                            Grayscale
                         </a>
-                        <a n:href="changeBackground! $background3" type="button" class="btn btn-secondary {if $background == $background3}active{/if}">
+                        <a n:href="changeBackground! $background3" type="button"
+                                                                   class="btn btn-secondary {if $background == $background3}active{/if}">
                            White
                         </a>
-                        <a n:href="changeBackground! $background4" type="button" class="btn btn-secondary {if $background == $background4}active{/if}">
+                        <a n:href="changeBackground! $background4" type="button"
+                                                                   class="btn btn-secondary {if $background == $background4}active{/if}">
                            Black
                         </a>
                      </div>
                   </div>
                </div>
 
-               <div class="col-xs-12 col-sm-6 col-md-4">
-                  <div class="stats">
-                     <p><strong>Compare different:</strong></p>
-                     <p>{$percents} %</p>
+               <div class="col-xs-12 col-md-6 push-md-6 col-lg-4 push-lg-0">
+                  <div class="change-tolerance">
+                     <form n:name="resultToleranceForm">
+                        <label n:name="tolerance">
+                           <p><strong>Change tolerance:</strong></p>
+                           <input type="range" n:name="tolerance" min="0" max="100" step="1" data-tolerance-change>
+                           <output data-tolerance-value>{$tolerance}</output>
+                        </label>
+                        <button type="submit" name="set" class="btn btn-primary btn-outline-primary">Set</button>
+                     </form>
                   </div>
                </div>
 
-               <div class="col-xs-12 col-sm-6 col-md-4">
+               <div class="col-xs-12 col-md-6 pull-md-6 col-lg-8 pull-lg-0">
+                  <div class="change-ignore">
+                     <p><strong>Ignore part definition:</strong></p>
+
+                     <form n:name="resultIgnoreForm">
+                        <div class="row">
+                           <div class="col-xs-12 col-lg-2 custom-switch">
+                              <label class="switch">
+                                 <input type="checkbox" n:name="ignoreActive">
+                                 <div class="slider round"></div>
+                              </label>
+                           </div>
+                           <div class="col-xs-12 col-sm-6 col-lg-2 {*input-group input-group-left*}">
+                              <div class="form-group">
+                                 <label n:name="ignoreTop">Top (px):</label>
+                                 <input type="number" n:name="ignoreTop" class="form-control">
+                                 <small class="form-text text-muted"></small>
+                              </div>
+
+                                 {*<div class="input-group-addon addon-left"><i class="fa fa-arrow-down"></i></div>*}
+                                 {*<input n:name="ignoreTop" type="number" class="form-control">*}
+                                 {*<div class="input-group-addon addon-right">px</div>*}
+
+                           </div>
+                           <div class="col-xs-12 col-sm-6 col-lg-2">
+                              <div class="form-group">
+                                 <label n:name="ignoreLeft">Left (px):</label>
+                                 <input type="number" n:name="ignoreLeft" class="form-control">
+                                 <small class="form-text text-muted"></small>
+                              </div>
+                           </div>
+                           <div class="col-xs-12 col-sm-6 col-lg-2">
+                              <div class="form-group">
+                                 <label n:name="ignoreWidth">Width (px):</label>
+                                 <input type="number" n:name="ignoreWidth" class="form-control">
+                                 <small class="form-text text-muted"></small>
+                              </div>
+                           </div>
+                           <div class="col-xs-12 col-sm-6 col-lg-2">
+                              <div class="form-group">
+                                 <label n:name="ignoreHeight">Height (px):</label>
+                                 <input type="number" n:name="ignoreHeight" class="form-control">
+                                 <small class="form-text text-muted"></small>
+                              </div>
+                           </div>
+                           <div class="col-xs-12 col-sm-6 col-lg-2">
+                              <div class="form-group">
+                                 <button type="submit" name="set" class="btn btn-primary btn-outline-primary">Set
+                                 </button>
+                              </div>
+
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+
+               <div class="col-xs-12 col-md-6 col-lg-4">
                   <div class="stats">
-                     <p>
-                        <label for="tolerance"><strong>Tolerance:</strong></label>
-                     </p>
-                     <input type="range" min="0" max="100" value="50" step="1" id="tolerance">
-                     <output for="tolerance">50</output>
+                     <p><strong>Differences in comparison:</strong></p>
+                     <p class="difference">{$difference} %</p>
                   </div>
                </div>
             </div>
@@ -100,14 +164,14 @@
                      <h4>Source shoot</h4>
 
                      <div class="image">
-                        <a href="{$basePath}{$shoot->path_img}" class="shoot-thumbnail" data-toggle="lightbox"
+                        <a href="{$basePath}{$source->path_img}" class="shoot-thumbnail" data-toggle="lightbox"
                            data-parent="" data-gallery="#shoots" data-title="Source shoot">
-                           <img class="img-thumbnail img-responsive" src="{$basePath}{$shoot->path_img}"
-                                alt="{$shoot->url_autority}">
+                           <img class="img-thumbnail img-responsive" src="{$basePath}{$source->path_img}"
+                                alt="{$source->url_autority}">
                         </a>
                      </div>
 
-                     <a n:href="download! $shoot->id_shoot"
+                     <a n:href="download! $source->id_shoot"
                            class="btn btn-primary btn-outline-primary">
                         <i class="fa fa-download"></i>
                         Download
@@ -119,16 +183,16 @@
                      <h4>Target shoot</h4>
 
                      <div class="image">
-                        <a href="{$basePath}{$similar->path_img}" class="shoot-thumbnail"
+                        <a href="{$basePath}{$target->path_img}" class="shoot-thumbnail"
                            data-toggle="lightbox"
                            data-parent="" data-gallery="#shoots" data-title="Target shoot">
                            <img class="img-thumbnail img-responsive"
-                                src="{$basePath}{$similar->path_img}"
-                                alt="{$similar->url_autority}">
+                                src="{$basePath}{$target->path_img}"
+                                alt="{$target->url_autority}">
                         </a>
                      </div>
 
-                     <a n:href="download! $similar->id_shoot"
+                     <a n:href="download! $target->id_shoot"
                            class="btn btn-primary btn-outline-primary">
                         <i class="fa fa-download"></i>
                         Download
@@ -141,14 +205,20 @@
                      <h4>Result</h4>
 
                      <div class="image">
-                        <a href="{$basePath}/diff.png" class="shoot-thumbnail"
+                        <a href="{$basePath}{$result}" class="shoot-thumbnail"
                            data-toggle="lightbox"
-                           data-parent="" data-gallery="#shoots" data-title="Target shoot">
+                           data-parent="" data-gallery="#shoots" data-title="Result">
                            <img class="img-thumbnail img-responsive"
-                                src="{$basePath}/diff.png"
-                                alt="{$similar->url_autority}">
+                                src="{$basePath}{$result}"
+                                alt="{$target->url_autority}">
                         </a>
                      </div>
+
+                     <a n:href="downloadResult! $source->id_shoot, $target->id_shoot"
+                           class="btn btn-primary btn-outline-primary">
+                        <i class="fa fa-download"></i>
+                        Download
+                     </a>
 
                      {*<div id="result" class="image">*}
                         {*<a href="" class="shoot-thumbnail" data-toggle="lightbox" data-parent="" data-gallery="#shoots"*}
@@ -163,8 +233,8 @@
                </div>
             </div>
 
-         {var image1 = $basePath.$shoot->path_img}
-         {var image2 = $basePath.$similar->path_img}
+         {var image1 = $basePath.$source->path_img}
+         {var image2 = $basePath.$target->path_img}
 
             <script src="{$basePath}/js/resemble.js"></script>
             <script>

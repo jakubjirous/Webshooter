@@ -37,6 +37,10 @@ class ShootAddFormFactory
    private $engineTypes;
    private $imageTypes;
 
+   private $imageJPG;
+   private $imagePNG;
+   private $imageBMP;
+
    private $webkit;
    private $gecko;
 
@@ -299,7 +303,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $width,
-                  $height
+                  $height,
+                  $imgType
                );
             } else if ($engine === $this->getGecko()) {
                $this->deviceSlimerJS(
@@ -307,7 +312,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $width,
-                  $height
+                  $height,
+                  $imgType
                );
             }
 
@@ -327,7 +333,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $width,
-                  $height
+                  $height,
+                  $imgType
                );
             } else if ($engine === $this->getGecko()) {
                $this->deviceSlimerJS(
@@ -335,7 +342,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $width,
-                  $height
+                  $height,
+                  $imgType
                );
             }
 
@@ -355,7 +363,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $width,
-                  $height
+                  $height,
+                  $imgType
                );
             } else if ($engine === $this->getGecko()) {
                $this->deviceSlimerJS(
@@ -363,7 +372,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $width,
-                  $height
+                  $height,
+                  $imgType
                );
             }
 
@@ -383,7 +393,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $width,
-                  $height
+                  $height,
+                  $imgType
                );
             } else if ($engine === $this->getGecko()) {
                $this->deviceSlimerJS(
@@ -391,7 +402,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $width,
-                  $height
+                  $height,
+                  $imgType
                );
             }
 
@@ -412,7 +424,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $otherWidth,
-                  $otherHeight
+                  $otherHeight,
+                  $imgType
                );
             } else if ($engine === $this->getGecko()) {
                $this->deviceSlimerJS(
@@ -420,7 +433,8 @@ class ShootAddFormFactory
                   $filenameShoot,
                   $filenameJS,
                   $otherWidth,
-                  $otherHeight
+                  $otherHeight,
+                  $imgType
                );
             }
 
@@ -467,7 +481,8 @@ class ShootAddFormFactory
                   $cropTop,
                   $cropLeft,
                   $cropWidth,
-                  $cropHeight
+                  $cropHeight,
+                  $imgType
                );
             } else if ($engine === $this->getGecko()) {
                $this->cropSlimerJS(
@@ -479,7 +494,8 @@ class ShootAddFormFactory
                   $cropTop,
                   $cropLeft,
                   $cropWidth,
-                  $cropHeight
+                  $cropHeight,
+                  $imgType
                );
             }
          }
@@ -528,8 +544,9 @@ class ShootAddFormFactory
     * @param $filenameJS
     * @param $width
     * @param $height
+    * @param $imgType
     */
-   public function devicePhantomJS($absoluteUrl, $filenameShoot, $filenameJS, $width, $height)
+   public function devicePhantomJS($absoluteUrl, $filenameShoot, $filenameJS, $width, $height, $imgType)
    {
       $path = $this->getPath();
       $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
@@ -537,28 +554,55 @@ class ShootAddFormFactory
       $renderTimeout = self::RENDER_TIMEOUT;
 
       if ($height === null) {
-         $content = "
-			var page = require('webpage').create();
-			    page.viewportSize = { width: {$width}, height: 768 };
-			    page.open('{$absoluteUrl}', function () {
-				 window.setTimeout(function () {
-                 page.render('{$filenameShoot}');
-                 phantom.exit();			    
-			    }, '{$renderTimeout}');
-			    });
-			";
+         if ($imgType === $this->imageJPG) {
+            $content = "
+               var page = require('webpage').create();
+                   page.viewportSize = { width: {$width}, height: 768 };
+                   page.open('{$absoluteUrl}', function () {
+                   window.setTimeout(function () {
+                       page.render('{$filenameShoot}', {format: 'jpeg', quality: '100'});
+                       phantom.exit();			    
+                   }, '{$renderTimeout}');
+                   });
+               ";
+         } else {
+            $content = "
+               var page = require('webpage').create();
+                   page.viewportSize = { width: {$width}, height: 768 };
+                   page.open('{$absoluteUrl}', function () {
+                   window.setTimeout(function () {
+                       page.render('{$filenameShoot}');
+                       phantom.exit();			    
+                   }, '{$renderTimeout}');
+                   });
+               ";
+         }
       } else {
-         $content = "
-			var page = require('webpage').create();
-			    page.viewportSize = { width: {$width}, height: {$height} };
-			    page.clipRect = { top: 0, left: 0, width: {$width}, height: {$height} };			    
-			    page.open('{$absoluteUrl}', function () {
-				 window.setTimeout(function () {
-                 page.render('{$filenameShoot}');
-                 phantom.exit();			    
-			    }, '{$renderTimeout}');
-			    });
-			";
+         if ($imgType === $this->imageJPG) {
+            $content = "
+               var page = require('webpage').create();
+                   page.viewportSize = { width: {$width}, height: {$height} };
+                   page.clipRect = { top: 0, left: 0, width: {$width}, height: {$height} };			    
+                   page.open('{$absoluteUrl}', function () {
+                   window.setTimeout(function () {
+                       page.render('{$filenameShoot}', {format: 'jpeg', quality: '100'});
+                       phantom.exit();			    
+                   }, '{$renderTimeout}');
+                   });
+               ";
+         } else {
+            $content = "
+               var page = require('webpage').create();
+                   page.viewportSize = { width: {$width}, height: {$height} };
+                   page.clipRect = { top: 0, left: 0, width: {$width}, height: {$height} };			    
+                   page.open('{$absoluteUrl}', function () {
+                   window.setTimeout(function () {
+                       page.render('{$filenameShoot}');
+                       phantom.exit();			    
+                   }, '{$renderTimeout}');
+                   });
+               ";
+         }
       }
 
       // get content to server JS file
@@ -588,25 +632,40 @@ class ShootAddFormFactory
     * @param $cropLeft
     * @param $cropWidth
     * @param $cropHeight
+    * @param $imgType
     */
-   public function cropPhantomJS($absoluteUrl, $filenameShoot, $filenameJS, $viewportWidth, $viewportHeight, $cropTop, $cropLeft, $cropWidth, $cropHeight)
+   public function cropPhantomJS($absoluteUrl, $filenameShoot, $filenameJS, $viewportWidth, $viewportHeight, $cropTop, $cropLeft, $cropWidth, $cropHeight, $imgType)
    {
       $path = $this->getPath();
       $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
       $fullPathJS = $path['wwwJsDir'] . $filenameJS;
       $renderTimeout = self::RENDER_TIMEOUT;
 
-      $content = "
-			var page = require('webpage').create();
-			    page.viewportSize = { width: {$viewportWidth}, height: {$viewportHeight} };
-			    page.clipRect = { top: {$cropTop}, left: {$cropLeft}, width: {$cropWidth}, height: {$cropHeight} };			    
-			    page.open('{$absoluteUrl}', function () {
-			    window.setTimeout(function () {
-                 page.render('{$filenameShoot}');
-                 phantom.exit();			    
-			    }, '{$renderTimeout}');
-			    });
-			";
+      if ($imgType === $this->imageJPG) {
+         $content = "
+            var page = require('webpage').create();
+                page.viewportSize = { width: {$viewportWidth}, height: {$viewportHeight} };
+                page.clipRect = { top: {$cropTop}, left: {$cropLeft}, width: {$cropWidth}, height: {$cropHeight} };			    
+                page.open('{$absoluteUrl}', function () {
+                window.setTimeout(function () {
+                    page.render('{$filenameShoot}', {format: 'jpeg', quality: '100'});
+                    phantom.exit();			    
+                }, '{$renderTimeout}');
+                });
+            ";
+      } else {
+         $content = "
+            var page = require('webpage').create();
+                page.viewportSize = { width: {$viewportWidth}, height: {$viewportHeight} };
+                page.clipRect = { top: {$cropTop}, left: {$cropLeft}, width: {$cropWidth}, height: {$cropHeight} };			    
+                page.open('{$absoluteUrl}', function () {
+                window.setTimeout(function () {
+                    page.render('{$filenameShoot}');
+                    phantom.exit();			    
+                }, '{$renderTimeout}');
+                });
+            ";
+      }
 
       // get content to server JS file
       file_put_contents($fullPathJS, $content);
@@ -631,8 +690,9 @@ class ShootAddFormFactory
     * @param $filenameJS
     * @param $width
     * @param $height
+    * @param $imgType
     */
-   public function deviceSlimerJS($absoluteUrl, $filenameShoot, $filenameJS, $width, $height)
+   public function deviceSlimerJS($absoluteUrl, $filenameShoot, $filenameJS, $width, $height, $imgType)
    {
       $path = $this->getPath();
       $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
@@ -640,28 +700,56 @@ class ShootAddFormFactory
       $renderTimeout = self::RENDER_TIMEOUT;
 
       if ($height === null) {
-         $content = "
-			var page = require('webpage').create();
-			    page.open('{$absoluteUrl}', function () {
-				 page.viewportSize = { width: {$width}, height: 768 };
-				 window.setTimeout(function () {
-                 page.render('{$filenameShoot}');
-                 slimer.exit();			    
-			    }, '{$renderTimeout}');
-				 });
-			";
+         if ($imgType === $this->imageJPG) {
+            $content = "
+               var page = require('webpage').create();
+                   page.open('{$absoluteUrl}', function () {
+                   page.viewportSize = { width: {$width}, height: 768 };
+                   window.setTimeout(function () {
+                       page.render('{$filenameShoot}', {format: 'jpg', quality: '100'});
+                       slimer.exit();			    
+                   }, '{$renderTimeout}');
+                   });
+               ";
+         } else {
+            $content = "
+               var page = require('webpage').create();
+                   page.open('{$absoluteUrl}', function () {
+                   page.viewportSize = { width: {$width}, height: 768 };
+                   window.setTimeout(function () {
+                       page.render('{$filenameShoot}');
+                       slimer.exit();			    
+                   }, '{$renderTimeout}');
+                   });
+               ";
+         }
       } else {
-         $content = "
-			var page = require('webpage').create();
-			    page.open('{$absoluteUrl}', function () {
-             page.viewportSize = { width: {$width}, height: {$height} };
-				 page.clipRect = { top: 0, left: 0, width: {$width}, height: {$height} };			    
-				 window.setTimeout(function () {
-                 page.render('{$filenameShoot}');
-                 slimer.exit();			    
-			    }, '{$renderTimeout}');
-			    });
-			";
+         if ($imgType === $this->imageJPG) {
+            $content = "
+               var page = require('webpage').create();
+                   page.open('{$absoluteUrl}', function () {
+                   page.viewportSize = { width: {$width}, height: {$height} };
+                   page.clipRect = { top: 0, left: 0, width: {$width}, height: {$height} };			    
+                   window.setTimeout(function () {
+                       page.render('{$filenameShoot}', {format: 'jpg', quality: '100'});
+                       slimer.exit();			    
+                   }, '{$renderTimeout}');
+                   });
+               ";
+
+         } else {
+            $content = "
+               var page = require('webpage').create();
+                   page.open('{$absoluteUrl}', function () {
+                   page.viewportSize = { width: {$width}, height: {$height} };
+                   page.clipRect = { top: 0, left: 0, width: {$width}, height: {$height} };			    
+                   window.setTimeout(function () {
+                       page.render('{$filenameShoot}');
+                       slimer.exit();			    
+                   }, '{$renderTimeout}');
+                   });
+               ";
+         }
       }
 
       // get content to server JS file
@@ -691,25 +779,31 @@ class ShootAddFormFactory
     * @param $cropLeft
     * @param $cropWidth
     * @param $cropHeight
+    * @param $imgType
     */
-   public function cropSlimerJS($absoluteUrl, $filenameShoot, $filenameJS, $viewportWidth, $viewportHeight, $cropTop, $cropLeft, $cropWidth, $cropHeight)
+   public function cropSlimerJS($absoluteUrl, $filenameShoot, $filenameJS, $viewportWidth, $viewportHeight, $cropTop, $cropLeft, $cropWidth, $cropHeight, $imgType)
    {
       $path = $this->getPath();
       $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
       $fullPathJS = $path['wwwJsDir'] . $filenameJS;
       $renderTimeout = self::RENDER_TIMEOUT;
 
-      $content = "
-			var page = require('webpage').create();
-			    page.open('{$absoluteUrl}', function () {
-				 page.viewportSize = { width: {$viewportWidth}, height: {$viewportHeight} };
-				 page.clipRect = { top: {$cropTop}, left: {$cropLeft}, width: {$cropWidth}, height: {$cropHeight} };			    				
-				 window.setTimeout(function () {
-                 page.render('{$filenameShoot}');
-                 slimer.exit();			    
-			    }, '{$renderTimeout}');
-			    });
-			";
+      if ($imgType === $this->imageJPG) {
+
+      } else {
+         $content = "
+            var page = require('webpage').create();
+                page.open('{$absoluteUrl}', function () {
+                page.viewportSize = { width: {$viewportWidth}, height: {$viewportHeight} };
+                page.clipRect = { top: {$cropTop}, left: {$cropLeft}, width: {$cropWidth}, height: {$cropHeight} };			    				
+                window.setTimeout(function () {
+                    page.render('{$filenameShoot}');
+                    slimer.exit();			    
+                }, '{$renderTimeout}');
+                });
+            ";
+      }
+
 
       // get content to server JS file
       file_put_contents($fullPathJS, $content);
@@ -920,5 +1014,53 @@ class ShootAddFormFactory
    public function setPath($path)
    {
       $this->path = $path;
+   }
+
+   /**
+    * @return mixed
+    */
+   public function getImageJPG()
+   {
+      return $this->imageJPG;
+   }
+
+   /**
+    * @param mixed $imageJPG
+    */
+   public function setImageJPG($imageJPG)
+   {
+      $this->imageJPG = $imageJPG;
+   }
+
+   /**
+    * @return mixed
+    */
+   public function getImagePNG()
+   {
+      return $this->imagePNG;
+   }
+
+   /**
+    * @param mixed $imagePNG
+    */
+   public function setImagePNG($imagePNG)
+   {
+      $this->imagePNG = $imagePNG;
+   }
+
+   /**
+    * @return mixed
+    */
+   public function getImageBMP()
+   {
+      return $this->imageBMP;
+   }
+
+   /**
+    * @param mixed $imageBMP
+    */
+   public function setImageBMP($imageBMP)
+   {
+      $this->imageBMP = $imageBMP;
    }
 }

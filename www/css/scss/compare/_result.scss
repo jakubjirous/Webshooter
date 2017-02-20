@@ -25,19 +25,191 @@
       }
       .color-green {
          i {
-            color: rgb(0, 255, 0);
+            color: rgb(0, 200, 0);
          }
       }
       .color-blue {
          i {
-            color: rgb(0, 0, 255);
+            color: rgb(0, 127, 255);
          }
       }
       .color-yellow {
          i {
-            color: rgb(255, 255, 0);
+            color: rgb(230, 230, 0);
          }
       }
+   }
+
+   $trackLighten: 20%;
+   .change-tolerance {
+      input[type="range"] {
+         float: left;
+         min-width: 280px;
+         outline: none;
+      }
+      output {
+         float: left;
+         margin: 2px 0 0 20px;
+         width: 40px;
+      }
+      button {
+         float: right;
+         margin-top: 50px;
+         outline: none;
+      }
+
+      input[type=range] {
+         -webkit-appearance: none;
+         margin: 15px 0;
+      }
+      input[type=range]:focus {
+         outline: none;
+      }
+      input[type=range]::-webkit-slider-runnable-track {
+         width: 100%;
+         height: 5px;
+         cursor: pointer;
+         animate: 0.2s;
+         box-shadow: 0 0 0 $azure;
+         background: lighten($azure, $trackLighten);
+         border-radius: 5px;
+         border: 0 solid $azure;
+      }
+      input[type=range]::-webkit-slider-thumb {
+         box-shadow: 0 0 0 $black;
+         border: 1px solid $azure;
+         height: 30px;
+         width: 15px;
+         border-radius: 5px;
+         background: $azure;
+         cursor: pointer;
+         -webkit-appearance: none;
+         margin-top: -13px;
+      }
+      input[type=range]:focus::-webkit-slider-runnable-track {
+         background: lighten($azure, $trackLighten);
+      }
+      input[type=range]::-moz-range-track {
+         width: 100%;
+         height: 5px;
+         cursor: pointer;
+         animate: 0.2s;
+         box-shadow: 0 0 0 $azure;
+         background: lighten($azure, $trackLighten);
+         border-radius: 5px;
+         border: 0 solid $azure;
+      }
+      input[type=range]::-moz-range-thumb {
+         box-shadow: 0 0 0 $black;
+         border: 1px solid $azure;
+         height: 30px;
+         width: 15px;
+         border-radius: 5px;
+         background: $azure;
+         cursor: pointer;
+      }
+      input[type=range]::-ms-track {
+         width: 100%;
+         height: 5px;
+         cursor: pointer;
+         animate: 0.2s;
+         background: transparent;
+         border-color: transparent;
+         color: transparent;
+      }
+      input[type=range]::-ms-fill-lower {
+         background: lighten($azure, $trackLighten);
+         border: 0 solid $azure;
+         border-radius: 10px;
+         box-shadow: 0 0 0 $azure;
+      }
+      input[type=range]::-ms-fill-upper {
+         background: lighten($azure, $trackLighten);
+         border: 0 solid $azure;
+         border-radius: 10px;
+         box-shadow: 0 0 0 $azure;
+      }
+      input[type=range]::-ms-thumb {
+         box-shadow: 0 0 0 $black;
+         border: 1px solid $azure;
+         height: 30px;
+         width: 15px;
+         border-radius: 5px;
+         background: $azure;
+         cursor: pointer;
+      }
+      input[type=range]:focus::-ms-fill-lower {
+         background: lighten($azure, $trackLighten);
+      }
+      input[type=range]:focus::-ms-fill-upper {
+         background: lighten($azure, $trackLighten);
+      }
+   }
+
+   .change-ignore {
+      /* The switch - the box around the slider */
+      .switch {
+         position: relative;
+         display: inline-block;
+         width: 60px;
+         height: 34px;
+      }
+
+      /* Hide default HTML checkbox */
+      .switch input {display:none;}
+
+      /* The slider */
+      .slider {
+         position: absolute;
+         cursor: pointer;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background-color: #ccc;
+         -webkit-transition: .4s;
+         transition: .4s;
+      }
+
+      .slider:before {
+         position: absolute;
+         content: "";
+         height: 26px;
+         width: 26px;
+         left: 4px;
+         bottom: 4px;
+         background-color: white;
+         -webkit-transition: .4s;
+         transition: .4s;
+      }
+
+      input:checked + .slider {
+         background-color: $azure;
+      }
+
+      input:focus + .slider {
+         box-shadow: 0 0 1px $azure;
+      }
+
+      input:checked + .slider:before {
+         -webkit-transform: translateX(26px);
+         -ms-transform: translateX(26px);
+         transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+         border-radius: 34px;
+      }
+
+      .slider.round:before {
+         border-radius: 50%;
+      }
+   }
+
+   .difference {
+      @include font-bold;
+      font-size: 30px;
    }
 
    .image {
@@ -64,25 +236,76 @@
 
    //xs
    @include media-breakpoint-between(xs, sm) {
-
+      .change-tolerance {
+         input[type="range"] {
+            min-width: 180px;
+         }
+      }
+      .change-ignore {
+         .custom-switch {
+            text-align: center;
+         }
+      }
    }
 
    //sm
    @include media-breakpoint-between(sm, md) {
-
+      .change-tolerance {
+         input[type="range"] {
+            min-width: 390px;
+         }
+      }
+      .change-ignore {
+         .custom-switch {
+            text-align: left;
+         }
+      }
    }
 
    //md
    @include media-breakpoint-between(md, lg) {
-
-   }
-
-   @include media-breakpoint-up(md) {
-
+      .change-tolerance {
+         input[type="range"] {
+            min-width: 200px;
+         }
+      }
+      .change-ignore {
+         .custom-switch {
+            text-align: left;
+         }
+      }
    }
 
    //lg
    @include media-breakpoint-up(lg) {
+      .change-tolerance {
+         input[type="range"] {
+            min-width: 200px;
+         }
+      }
+      .change-ignore {
+         .custom-switch {
+            padding-top: 33px;
+         }
+         .form-group {
+            float: left;
+         }
+         button {
+            float: right;
+            margin-top: 32px;
+         }
+      }
+      .stats {
+         margin-top: 42px;
+      }
+   }
 
+   //xl
+   @include media-breakpoint-up(xl) {
+      .change-tolerance {
+         input[type="range"] {
+            min-width: 280px;
+         }
+      }
    }
 }
