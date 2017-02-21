@@ -137,6 +137,7 @@ class ShootManager
             ->where(self::COLUMN_URL, $url)
             ->where(self::COLUMN_DEVICE, $deviceId)
             ->where(self::COLUMN_ID . ' != ', $id)
+            ->order(self::COLUMN_DATE . ' DESC')
             ->fetchAll();
 
       } else {
@@ -151,6 +152,7 @@ class ShootManager
                ->where(self::COLUMN_OTHER_WIDTH, $otherWidth)
                ->where(self::COLUMN_OTHER_HEIGHT, $otherHeight)
                ->where(self::COLUMN_ID . ' != ', $id)
+               ->order(self::COLUMN_DATE . ' DESC')
                ->fetchAll();
          } else {
 
@@ -167,6 +169,7 @@ class ShootManager
                ->where(self::COLUMN_CROP_WIDTH, $cropWidth)
                ->where(self::COLUMN_CROP_HEIGHT, $cropHeight)
                ->where(self::COLUMN_ID . ' != ', $id)
+               ->order(self::COLUMN_DATE . ' DESC')
                ->fetchAll();
          }
       }

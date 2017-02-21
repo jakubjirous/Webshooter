@@ -246,6 +246,12 @@
             text-align: center;
          }
       }
+      .type {
+         text-align: center;
+         i {
+            font-size: 120px;
+         }
+      }
    }
 
    //sm
@@ -260,6 +266,12 @@
             text-align: left;
          }
       }
+      .type {
+         text-align: center;
+         i {
+            font-size: 180px;
+         }
+      }
    }
 
    //md
@@ -272,6 +284,12 @@
       .change-ignore {
          .custom-switch {
             text-align: left;
+         }
+      }
+      .type {
+         text-align: center;
+         i {
+            font-size: 240px;
          }
       }
    }
@@ -297,6 +315,12 @@
       }
       .stats {
          margin-top: 42px;
+      }
+      .type {
+         text-align: center;
+         i {
+            font-size: 300px;
+         }
       }
    }
 

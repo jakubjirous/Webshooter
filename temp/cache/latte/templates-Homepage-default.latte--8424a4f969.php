@@ -157,11 +157,6 @@ class Template8424a4f969 extends Latte\Runtime\Template
             </div>
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                <div class="tech-item">
-                  <h5>Resamble JS</h5>
-               </div>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-               <div class="tech-item">
                   <h5>HTML5</h5>
                </div>
             </div>

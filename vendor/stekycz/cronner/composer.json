@@ -1,0 +1,48 @@
+{
+	"name": "stekycz/cronner",
+	"type": "nette-addon",
+	"description": "Simple tool which helps with maintenance of cron tasks.",
+	"keywords": ["nette", "cron", "manager", "task"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Martin Štekl",
+			"email": "martin.stekl@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "martin.stekl@gmail.com",
+		"issues": "https://github.com/stekycz/Cronner/issues",
+		"source": "https://github.com/stekycz/Cronner"
+	},
+	"require": {
+		"php": ">=5.3.3",
+		"tracy/tracy": "@dev",
+		"nette/di": "@dev",
+		"nette/bootstrap": "@dev",
+		"nette/utils": "@dev",
+		"nette/reflection": "@dev",
+		"nette/safe-stream": "@dev"
+	},
+	"require-dev": {
+		"nette/tester": "~1.3",
+		"janmarek/mockista": "~1.0",
+		"jakub-onderka/php-parallel-lint": "~0.8"
+	},
+	"suggest": {
+		"kdyby/events": "Events for Nette Framework",
+		"kdyby/console": "Symfony Console integration for Kdyby components"
+	},
+	"autoload": {
+		"classmap": ["Cronner/"]
+	},
+	"autoload-dev": {
+		"classmap": ["tests/CronnerTests/objects"]
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "v1.1.x-dev"
+		}
+	}
+}

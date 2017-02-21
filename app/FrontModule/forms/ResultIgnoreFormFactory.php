@@ -40,48 +40,45 @@ class ResultIgnoreFormFactory
       $ignore = $this->sm->getResultIgnore();
       $ignoreTop = ($ignore["top"] == FALSE) ? 0 : $ignore["top"];
       $ignoreLeft = ($ignore["left"] == FALSE) ? 0 : $ignore["left"];
-      $ignoreWidth = ($ignore["width"] == FALSE) ? "" : $ignore["width"];
-      $ignoreHeight = ($ignore["height"] == FALSE) ? "" : $ignore["height"];
+      $ignoreWidth = ($ignore["width"] == FALSE) ? 0 : $ignore["width"];
+      $ignoreHeight = ($ignore["height"] == FALSE) ? 0 : $ignore["height"];
 
       $form = $this->factory->create();
 
       $form->addCheckbox('ignoreActive', 'Active ignore part')
          ->setDefaultValue($ignoreActive);
-//         ->addCondition($form::EQUAL, TRUE)
-//         ->toggle('ignore-top')
-//         ->toggle('ignore-left')
-//         ->toggle('ignore-width')
-//         ->toggle('ignore-height');
 
       $form->addText('ignoreTop', 'Top:')
          ->setType('number')
-         ->setOption('id', 'ignore-top')
-         ->addRule($form::RANGE, 'Top position must be in range %d–%d px', [0, $this->sourceSize[1]])
-         ->setRequired('Set top position of ignore part')
-         ->setDefaultValue($ignoreTop);
+         ->setDefaultValue($ignoreTop)
+         ->addConditionOn($form["ignoreActive"], $form::EQUAL, TRUE)
+            ->addRule($form::RANGE, 'Top position must be in range %d–%d px', [0, $this->sourceSize[1]])
+            ->setRequired('Set top position of ignore part')
+         ->endCondition();
 
       $form->addText('ignoreLeft', 'Left:')
          ->setType('number')
-         ->setOption('id', 'ignore-left')
-         ->addRule($form::RANGE, 'Left position must be in range %d–%d px', [0, $this->sourceSize[0]])
-         ->setRequired('Set left position of ignore part')
-         ->setDefaultValue($ignoreLeft);
+         ->setDefaultValue($ignoreLeft)
+         ->addConditionOn($form["ignoreActive"], $form::EQUAL, TRUE)
+            ->addRule($form::RANGE, 'Left position must be in range %d–%d px', [0, $this->sourceSize[0]])
+            ->setRequired('Set left position of ignore part')
+         ->endCondition();
 
       $form->addText('ignoreWidth', 'Width:')
          ->setType('number')
-         ->setOption('id', 'ignore-width')
-         ->addRule($form::RANGE, 'Width must be in range %d–%d px', [0, $this->sourceSize[0]])
-         ->setRequired('Set width of ignore part')
-         ->setDefaultValue($ignoreWidth);
+         ->setDefaultValue($ignoreWidth)
+         ->addConditionOn($form["ignoreActive"], $form::EQUAL, TRUE)
+            ->addRule($form::RANGE, 'Width must be in range %d–%d px', [0, $this->sourceSize[0]])
+            ->setRequired('Set width of ignore part')
+         ->endCondition();
 
       $form->addText('ignoreHeight', 'Height:')
          ->setType('number')
-         ->setOption('id', 'ignore-height')
-         ->addRule($form::RANGE, 'Height must be in range %d–%d px', [0, $this->sourceSize[1]])
-         ->setRequired('Set height of ignore part')
-         ->setDefaultValue($ignoreHeight);
-
-//      $this->factory->bootstrapRenderer($form, 'primary btn-outline-primary');
+         ->setDefaultValue($ignoreHeight)
+         ->addConditionOn($form["ignoreActive"], $form::EQUAL, TRUE)
+            ->addRule($form::RANGE, 'Height must be in range %d–%d px', [0, $this->sourceSize[1]])
+            ->setRequired('Set height of ignore part')
+         ->endCondition();
 
       $form->addSubmit('set', 'Set');
 
@@ -96,7 +93,6 @@ class ResultIgnoreFormFactory
 
          $this->sm->setResultIgnoreActive($values->ignoreActive);
          $this->sm->setResultIgnore($ignore);
-
 
          $onSuccess();
       };

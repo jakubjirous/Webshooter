@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fb53926a84b2309b9520c56b198e6223",
-    "content-hash": "04efbbd884fccfc729213ddc4264a982",
+    "hash": "5a10955d5e10cfac20fca7aa98664f97",
+    "content-hash": "ab630f11d4c69e1a9c809613fd2db483",
     "packages": [
         {
             "name": "dg/adminer-custom",
@@ -1436,6 +1436,69 @@
                 "response"
             ],
             "time": "2016-08-06 14:39:51"
+        },
+        {
+            "name": "stekycz/cronner",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stekycz/Cronner.git",
+                "reference": "c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stekycz/Cronner/zipball/c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350",
+                "reference": "c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350",
+                "shasum": ""
+            },
+            "require": {
+                "nette/bootstrap": "@dev",
+                "nette/di": "@dev",
+                "nette/reflection": "@dev",
+                "nette/safe-stream": "@dev",
+                "nette/utils": "@dev",
+                "php": ">=5.3.3",
+                "tracy/tracy": "@dev"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "~0.8",
+                "janmarek/mockista": "~1.0",
+                "nette/tester": "~1.3"
+            },
+            "suggest": {
+                "kdyby/console": "Symfony Console integration for Kdyby components",
+                "kdyby/events": "Events for Nette Framework"
+            },
+            "type": "nette-addon",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "v1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "Cronner/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Štekl",
+                    "email": "martin.stekl@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple tool which helps with maintenance of cron tasks.",
+            "keywords": [
+                "cron",
+                "manager",
+                "nette",
+                "task"
+            ],
+            "time": "2016-11-12 18:14:01"
         },
         {
             "name": "thadafinser/package-info",

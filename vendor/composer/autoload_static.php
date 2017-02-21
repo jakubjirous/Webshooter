@@ -8,11 +8,11 @@ class ComposerStaticInitb39b15a29145d3552670cbfd0f4bc494
 {
     public static $files = array (
         '7745382c92b7799bf1294b1f43023ba2' => __DIR__ . '/..' . '/tracy/tracy/src/shortcuts.php',
+        'a1d067aa2e53d6b47171c03cfc0ea5be' => __DIR__ . '/..' . '/nette/safe-stream/src/loader.php',
+        'e7a6fd2e7a869bb207158e9416bdd9b0' => __DIR__ . '/..' . '/nette/application/src/compatibility.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
-        'e7a6fd2e7a869bb207158e9416bdd9b0' => __DIR__ . '/..' . '/nette/application/src/compatibility.php',
-        'a1d067aa2e53d6b47171c03cfc0ea5be' => __DIR__ . '/..' . '/nette/safe-stream/src/loader.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
@@ -421,6 +421,22 @@ class ComposerStaticInitb39b15a29145d3552670cbfd0f4bc494
         'Tracy\\ILogger' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/ILogger.php',
         'Tracy\\Logger' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/Logger.php',
         'Tracy\\OutputDebugger' => __DIR__ . '/..' . '/tracy/tracy/src/Tracy/OutputDebugger.php',
+        'stekycz\\Cronner\\Bar\\Tasks' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/Bar/Tasks.php',
+        'stekycz\\Cronner\\CriticalSection' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/CriticalSection.php',
+        'stekycz\\Cronner\\Cronner' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/Cronner.php',
+        'stekycz\\Cronner\\DI\\CronnerExtension' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/DI/CronnerExtension.php',
+        'stekycz\\Cronner\\DuplicateTaskNameException' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/exceptions.php',
+        'stekycz\\Cronner\\EmptyTaskNameException' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/exceptions.php',
+        'stekycz\\Cronner\\ITimestampStorage' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/ITimestampStorage.php',
+        'stekycz\\Cronner\\InvalidArgumentException' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/exceptions.php',
+        'stekycz\\Cronner\\InvalidParameterException' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/exceptions.php',
+        'stekycz\\Cronner\\InvalidTaskNameException' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/exceptions.php',
+        'stekycz\\Cronner\\RuntimeException' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/exceptions.php',
+        'stekycz\\Cronner\\Tasks\\Parameters' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/Tasks/Parameters.php',
+        'stekycz\\Cronner\\Tasks\\Parser' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/Tasks/Parser.php',
+        'stekycz\\Cronner\\Tasks\\Task' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/Tasks/Task.php',
+        'stekycz\\Cronner\\TimestampStorage\\DummyStorage' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/TimestampStorage/DummyStorage.php',
+        'stekycz\\Cronner\\TimestampStorage\\FileStorage' => __DIR__ . '/..' . '/stekycz/cronner/Cronner/TimestampStorage/FileStorage.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

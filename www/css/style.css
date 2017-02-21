@@ -7721,18 +7721,30 @@ form .custom-checkbox {
   .compare-result .change-tolerance input[type="range"] {
     min-width: 180px; }
   .compare-result .change-ignore .custom-switch {
-    text-align: center; } }
+    text-align: center; }
+  .compare-result .type {
+    text-align: center; }
+    .compare-result .type i {
+      font-size: 120px; } }
 @media (min-width: 576px) and (max-width: 1091px) {
   .compare-result .change-tolerance input[type="range"] {
     min-width: 390px; }
   .compare-result .change-ignore .custom-switch {
-    text-align: left; } }
+    text-align: left; }
+  .compare-result .type {
+    text-align: center; }
+    .compare-result .type i {
+      font-size: 180px; } }
 
 @media (min-width: 768px) and (max-width: 1359px) {
   .compare-result .change-tolerance input[type="range"] {
     min-width: 200px; }
   .compare-result .change-ignore .custom-switch {
-    text-align: left; } }
+    text-align: left; }
+  .compare-result .type {
+    text-align: center; }
+    .compare-result .type i {
+      font-size: 240px; } }
 
 @media (min-width: 1092px) {
   .compare-result .change-tolerance input[type="range"] {
@@ -7745,7 +7757,11 @@ form .custom-checkbox {
     float: right;
     margin-top: 32px; }
   .compare-result .stats {
-    margin-top: 42px; } }
+    margin-top: 42px; }
+  .compare-result .type {
+    text-align: center; }
+    .compare-result .type i {
+      font-size: 300px; } }
 @media (min-width: 1360px) {
   .compare-result .change-tolerance input[type="range"] {
     min-width: 280px; } }

@@ -22,7 +22,7 @@ class SignPresenter extends BasePresenter
 	protected function createComponentSignInForm()
 	{
 		return $this->signInFactory->create(function () {
-         $this->redirect('Shoot:list');
+         $this->redirect('Shoot:settings');
 		});
 	}
 

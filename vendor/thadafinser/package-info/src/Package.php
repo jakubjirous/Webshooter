@@ -1787,6 +1787,83 @@ final class Package
     ),
     'time' => '2016-08-06 14:39:51',
   ),
+  'stekycz/cronner' => 
+  array (
+    'name' => 'stekycz/cronner',
+    'version' => 'v1.1.2',
+    'source' => 
+    array (
+      'type' => 'git',
+      'url' => 'https://github.com/stekycz/Cronner.git',
+      'reference' => 'c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350',
+    ),
+    'dist' => 
+    array (
+      'type' => 'zip',
+      'url' => 'https://api.github.com/repos/stekycz/Cronner/zipball/c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350',
+      'reference' => 'c7b5cfff5a57ea8431f8b2acfeef63fa44bb7350',
+      'shasum' => '',
+    ),
+    'require' => 
+    array (
+      'nette/bootstrap' => '@dev',
+      'nette/di' => '@dev',
+      'nette/reflection' => '@dev',
+      'nette/safe-stream' => '@dev',
+      'nette/utils' => '@dev',
+      'php' => '>=5.3.3',
+      'tracy/tracy' => '@dev',
+    ),
+    'require-dev' => 
+    array (
+      'jakub-onderka/php-parallel-lint' => '~0.8',
+      'janmarek/mockista' => '~1.0',
+      'nette/tester' => '~1.3',
+    ),
+    'suggest' => 
+    array (
+      'kdyby/console' => 'Symfony Console integration for Kdyby components',
+      'kdyby/events' => 'Events for Nette Framework',
+    ),
+    'type' => 'nette-addon',
+    'extra' => 
+    array (
+      'branch-alias' => 
+      array (
+        'dev-master' => 'v1.1.x-dev',
+      ),
+    ),
+    'autoload' => 
+    array (
+      'classmap' => 
+      array (
+        0 => 'Cronner/',
+      ),
+    ),
+    'notification-url' => 'https://packagist.org/downloads/',
+    'license' => 
+    array (
+      0 => 'MIT',
+    ),
+    'authors' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Martin Štekl',
+        'email' => 'martin.stekl@gmail.com',
+        'role' => 'Developer',
+      ),
+    ),
+    'description' => 'Simple tool which helps with maintenance of cron tasks.',
+    'keywords' => 
+    array (
+      0 => 'cron',
+      1 => 'manager',
+      2 => 'nette',
+      3 => 'task',
+    ),
+    'time' => '2016-11-12 18:14:01',
+  ),
   'thadafinser/package-info' => 
   array (
     'name' => 'thadafinser/package-info',
@@ -2210,6 +2287,7 @@ final class Package
       'nette/utils' => '^2.4',
       'php' => '>=5.6.0',
       'piwik/device-detector' => '^3.7',
+      'stekycz/cronner' => '^1.1',
       'thadafinser/user-agent-parser' => '^1.5',
       'tracy/tracy' => '^2.4',
       'twbs/bootstrap' => '4.0.0-alpha.5',

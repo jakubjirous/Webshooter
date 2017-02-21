@@ -37,3 +37,8 @@ services:
 
 	router: App\RouterFactory::createRouter
 
+extensions:
+    cronner: stekycz\Cronner\DI\CronnerExtension
+
+cronner:
+    timestampStorage: stekycz\Cronner\TimestampStorage\FileStorage(%wwwDir%/temp/cronner)
