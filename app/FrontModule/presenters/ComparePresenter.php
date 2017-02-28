@@ -159,7 +159,8 @@ class ComparePresenter extends BasePresenter
     * @param $diff
     * @param $pixelsDiffCount
     */
-   public function createResult($x, $y, $pixels1, $pixels2, $diff, $pixelsDiffCount) {
+   public function createResult($x, $y, $pixels1, $pixels2, $diff, $pixelsDiffCount)
+   {
 
    }
 
@@ -188,16 +189,16 @@ class ComparePresenter extends BasePresenter
       $pixelsDiffCount = 0;
       $pixelsTotalCount = $this->sourceSize[0] * $this->sourceSize[1];
 
-      for ($x = 0; $x < $this->sourceSize[0]; $x++) {  //$size[0];
-         for ($y = 0; $y < $this->sourceSize[1]; $y++) {   //$size[1]
+      for ($x = 0; $x < $this->sourceSize[0]; $x++) {
+         for ($y = 0; $y < $this->sourceSize[1]; $y++) {
             $rgb1 = imagecolorat($image1, $x, $y);
             $rgb2 = imagecolorat($image2, $x, $y);
             $pixels1 = imagecolorsforindex($image1, $rgb1);
             $pixels2 = imagecolorsforindex($image2, $rgb2);
 
 
-            if($this->ignoreActive) {
-               if(
+            if ($this->ignoreActive) {
+               if (
                   $x >= $this->ignore["left"] and $x <= $this->ignore["width"] and
                   $y >= $this->ignore["top"] and $y <= $this->ignore["height"]
                ) {
@@ -230,15 +231,10 @@ class ComparePresenter extends BasePresenter
                } else {
 
                   if (
-                     abs(($pixels1["red"] - $pixels2["red"])) <= $this->tolerance and
-                     abs(($pixels1["green"] - $pixels2["green"])) <= $this->tolerance and
-                     abs(($pixels1["blue"] - $pixels2["blue"])) <= $this->tolerance and
-                     abs(($pixels1["alpha"] - $pixels2["alpha"])) <= $this->tolerance
-
-//               ($pixels1["red"] == $pixels2["red"]) and
-//               ($pixels1["green"] == $pixels2["green"]) and
-//               ($pixels1["blue"] == $pixels2["blue"]) and
-//               ($pixels1["alpha"] == $pixels2["alpha"])
+                     (abs(($pixels1["red"] - $pixels2["red"])) / 255 * 100) <= $this->tolerance and
+                     (abs(($pixels1["green"] - $pixels2["green"])) / 255 * 100) <= $this->tolerance and
+                     (abs(($pixels1["blue"] - $pixels2["blue"])) / 255 * 100) <= $this->tolerance and
+                     (abs(($pixels1["alpha"] - $pixels2["alpha"])) / 255 * 100) <= $this->tolerance
                   ) {
 
                      if ($this->background == self::BACKGROUND_1) {
@@ -312,15 +308,10 @@ class ComparePresenter extends BasePresenter
             } else {
 
                if (
-                  abs(($pixels1["red"] - $pixels2["red"])) <= $this->tolerance and
-                  abs(($pixels1["green"] - $pixels2["green"])) <= $this->tolerance and
-                  abs(($pixels1["blue"] - $pixels2["blue"])) <= $this->tolerance and
-                  abs(($pixels1["alpha"] - $pixels2["alpha"])) <= $this->tolerance
-
-//               ($pixels1["red"] == $pixels2["red"]) and
-//               ($pixels1["green"] == $pixels2["green"]) and
-//               ($pixels1["blue"] == $pixels2["blue"]) and
-//               ($pixels1["alpha"] == $pixels2["alpha"])
+                  (abs(($pixels1["red"] - $pixels2["red"])) / 255 * 100) <= $this->tolerance and
+                  (abs(($pixels1["green"] - $pixels2["green"])) / 255 * 100) <= $this->tolerance and
+                  (abs(($pixels1["blue"] - $pixels2["blue"])) / 255 * 100) <= $this->tolerance and
+                  (abs(($pixels1["alpha"] - $pixels2["alpha"])) / 255 * 100) <= $this->tolerance
                ) {
 
                   if ($this->background == self::BACKGROUND_1) {

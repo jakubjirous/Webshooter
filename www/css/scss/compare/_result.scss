@@ -50,7 +50,7 @@
       output {
          float: left;
          margin: 2px 0 0 20px;
-         width: 40px;
+         width: 50px;
       }
       button {
          float: right;
@@ -238,7 +238,7 @@
    @include media-breakpoint-between(xs, sm) {
       .change-tolerance {
          input[type="range"] {
-            min-width: 180px;
+            min-width: 170px;
          }
       }
       .change-ignore {
@@ -258,7 +258,7 @@
    @include media-breakpoint-between(sm, md) {
       .change-tolerance {
          input[type="range"] {
-            min-width: 390px;
+            min-width: 380px;
          }
       }
       .change-ignore {
@@ -278,7 +278,7 @@
    @include media-breakpoint-between(md, lg) {
       .change-tolerance {
          input[type="range"] {
-            min-width: 200px;
+            min-width: 190px;
          }
       }
       .change-ignore {
@@ -298,7 +298,7 @@
    @include media-breakpoint-up(lg) {
       .change-tolerance {
          input[type="range"] {
-            min-width: 200px;
+            min-width: 190px;
          }
       }
       .change-ignore {
@@ -328,7 +328,7 @@
    @include media-breakpoint-up(xl) {
       .change-tolerance {
          input[type="range"] {
-            min-width: 280px;
+            min-width: 270px;
          }
       }
    }

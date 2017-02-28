@@ -36,7 +36,6 @@ $(function () {
     }, 3000);
 
 
-
     // radio inputs checked
     $("#engine-type input[type=radio]").change(function () {
         $("input[type=radio]:not(:checked)").parent().removeClass('checked');
@@ -70,6 +69,9 @@ $(function () {
     });
 
     $('[data-tolerance-change]').on('input', function () {
-        $('[data-tolerance-value]').html($(this).val());
+        $('[data-tolerance-value]').html($(this).val() + ' %');
     });
+
+
+    $('#datetimepicker1').datetimepicker();
 });

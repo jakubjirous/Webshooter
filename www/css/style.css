@@ -7571,7 +7571,7 @@ form .custom-checkbox {
 .compare-result .change-tolerance output {
   float: left;
   margin: 2px 0 0 20px;
-  width: 40px; }
+  width: 50px; }
 .compare-result .change-tolerance button {
   float: right;
   margin-top: 50px;
@@ -7719,7 +7719,7 @@ form .custom-checkbox {
       border: 1px solid #007fff; }
 @media (max-width: 767px) {
   .compare-result .change-tolerance input[type="range"] {
-    min-width: 180px; }
+    min-width: 170px; }
   .compare-result .change-ignore .custom-switch {
     text-align: center; }
   .compare-result .type {
@@ -7728,7 +7728,7 @@ form .custom-checkbox {
       font-size: 120px; } }
 @media (min-width: 576px) and (max-width: 1091px) {
   .compare-result .change-tolerance input[type="range"] {
-    min-width: 390px; }
+    min-width: 380px; }
   .compare-result .change-ignore .custom-switch {
     text-align: left; }
   .compare-result .type {
@@ -7738,7 +7738,7 @@ form .custom-checkbox {
 
 @media (min-width: 768px) and (max-width: 1359px) {
   .compare-result .change-tolerance input[type="range"] {
-    min-width: 200px; }
+    min-width: 190px; }
   .compare-result .change-ignore .custom-switch {
     text-align: left; }
   .compare-result .type {
@@ -7748,7 +7748,7 @@ form .custom-checkbox {
 
 @media (min-width: 1092px) {
   .compare-result .change-tolerance input[type="range"] {
-    min-width: 200px; }
+    min-width: 190px; }
   .compare-result .change-ignore .custom-switch {
     padding-top: 33px; }
   .compare-result .change-ignore .form-group {
@@ -7764,7 +7764,7 @@ form .custom-checkbox {
       font-size: 300px; } }
 @media (min-width: 1360px) {
   .compare-result .change-tolerance input[type="range"] {
-    min-width: 280px; } }
+    min-width: 270px; } }
 
 .device-list .device-new {
   margin: 1.25rem 0; }

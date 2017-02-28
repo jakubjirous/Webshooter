@@ -1787,6 +1787,59 @@ final class Package
     ),
     'time' => '2016-08-06 14:39:51',
   ),
+  'radekdostal/nette-datetimepicker' => 
+  array (
+    'name' => 'radekdostal/nette-datetimepicker',
+    'version' => '2.5.0',
+    'source' => 
+    array (
+      'type' => 'git',
+      'url' => 'https://github.com/radekdostal/Nette-DateTimePicker.git',
+      'reference' => '2cddfbf627efac9cc2326cd61bf8a8c4c6e7e766',
+    ),
+    'dist' => 
+    array (
+      'type' => 'zip',
+      'url' => 'https://api.github.com/repos/radekdostal/Nette-DateTimePicker/zipball/2cddfbf627efac9cc2326cd61bf8a8c4c6e7e766',
+      'reference' => '2cddfbf627efac9cc2326cd61bf8a8c4c6e7e766',
+      'shasum' => '',
+    ),
+    'require' => 
+    array (
+      'nette/di' => '^2.2.0',
+      'nette/forms' => '^2.2.0',
+      'nette/utils' => '^2.2.0',
+      'php' => '>=5.3.0',
+    ),
+    'require-dev' => 
+    array (
+      'tracy/tracy' => '^2.2.0',
+    ),
+    'type' => 'library',
+    'autoload' => 
+    array (
+      'classmap' => 
+      array (
+        0 => 'src/',
+      ),
+    ),
+    'notification-url' => 'https://packagist.org/downloads/',
+    'license' => 
+    array (
+      0 => 'LGPL-2.1',
+      1 => 'LGPL-3.0',
+    ),
+    'authors' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Radek Dostál',
+        'email' => 'radek.dostal@gmail.com',
+      ),
+    ),
+    'description' => 'DatePicker and DateTimePicker input controls for Nette Framework',
+    'time' => '2016-10-24 12:27:11',
+  ),
   'stekycz/cronner' => 
   array (
     'name' => 'stekycz/cronner',
@@ -2287,6 +2340,7 @@ final class Package
       'nette/utils' => '^2.4',
       'php' => '>=5.6.0',
       'piwik/device-detector' => '^3.7',
+      'radekdostal/nette-datetimepicker' => '^2.5',
       'stekycz/cronner' => '^1.1',
       'thadafinser/user-agent-parser' => '^1.5',
       'tracy/tracy' => '^2.4',

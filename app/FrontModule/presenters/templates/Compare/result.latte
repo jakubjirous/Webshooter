@@ -88,7 +88,7 @@
                         <label n:name="tolerance">
                            <p><strong>Change tolerance:</strong></p>
                            <input type="range" n:name="tolerance" min="0" max="100" step="1" data-tolerance-change>
-                           <output data-tolerance-value>{$tolerance}</output>
+                           <output data-tolerance-value>{$tolerance} %</output>
                         </label>
                         <button type="submit" name="set" class="btn btn-primary btn-outline-primary">Set</button>
                      </form>
@@ -254,6 +254,11 @@
                            class="btn btn-primary btn-outline-primary">
                         <i class="fa fa-download"></i>
                         Download
+                     </a>
+                     <a n:href="Plan:create $source->id_shoot, $target->id_shoot"
+                           class="btn btn-success btn-outline-success float-xs-right">
+                        <i class="fa fa-calendar-plus-o"></i>
+                        Plan comparision
                      </a>
                   </div>
                </div>

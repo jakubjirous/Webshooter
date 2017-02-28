@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.2.20)  21 FEB 2017 19:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.2.20)  26 FEB 2017 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -712,11 +712,23 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 
 
 
+] (./main.lof)
+\tf@lof=\write5
+\openout5 = `main.lof'.
+
+ [8
+
+]
+(./main.lot)
+\tf@lot=\write6
+\openout6 = `main.lot'.
+
+ [9
+
 ]
 \openout2 = `header/abbrlist.aux'.
 
- (./header/abbrlist.tex
-[8
+ (./header/abbrlist.tex [10
 
 
 ])
@@ -728,7 +740,7 @@ Kapitola 1.
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 3.
 
-) [9
+) [11
 
 
 
@@ -736,55 +748,91 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 ]
 Kapitola 2.
 
-Overfull \hbox (25.1875pt too wide) in paragraph at lines 82--82
+Overfull \hbox (25.1875pt too wide) in paragraph at lines 87--87
 []\OT1/cmr/bx/n/12 pozn^^Samky 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--82
+Underfull \hbox (badness 10000) in paragraph at lines 87--87
 \OT1/cmr/bx/n/12 na
  []
 
-[10
+[12
 
 
 ]
 Kapitola 3.
-<images/foto.jpg, id=109, 803.0pt x 1284.8pt>
+<images/foto.jpg, id=121, 803.0pt x 1284.8pt>
 File: images/foto.jpg Graphic file (type jpg)
  <use images/foto.jpg>
-Package pdftex.def Info: images/foto.jpg used on input line 101.
-(pdftex.def)             Requested size: 200.74951pt x 321.19922pt.
+Package pdftex.def Info: images/foto.jpg used on input line 106.
+(pdftex.def)             Requested size: 120.4448pt x 192.71169pt.
 
-Overfull \hbox (3.25833pt too wide) in paragraph at lines 108--109
+Overfull \hbox (3.25833pt too wide) in paragraph at lines 113--114
 [] [] \OT1/cmss/bx/n/12 po-dod-sta-vec[] \OT1/cmr/m/n/12 Jus-tice okam^^Tzit^^T
 e nej-presti^^Tzn^^Tej^^Ts^^S^^Pho zfor-mov^^San^^S^^P te-prve kter^^Seho elek-
 
  []
 
-[11
+[13
 
  <./images/foto.jpg (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 115.
- [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 115.
- (./main.aux
-(./header/acknowledgement.aux) (./header/abbrlist.aux) (./chapters/chapter1.aux
-))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 115.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 115.
+Overfull \hbox (3.7417pt too wide) in paragraph at lines 120--121
+[]\OT1/cmr/m/n/12 Justice okam^^Tzit^^Te nej-presti^^Tzn^^Tej^^Ts^^S^^Pho zfor-
+mov^^San^^S^^P te-prve kter^^Seho elek-tro-mag-ne-tick^^Sych
+ []
+
+
+Overfull \hbox (19.1471pt too wide) in paragraph at lines 120--121
+\OT1/cmr/m/n/12 pravd^^Tepodobn^^Se v^^Syrob^^Te gra-vi-tace na-sa-zen^^S^^P ro
+z-hodli se-vern^^S^^P posl^^Seze. By emise b^^Sylo^^Tzrav^^Sych
+ []
+
+
+Overfull \hbox (3.7417pt too wide) in paragraph at lines 127--128
+[]\OT1/cmr/m/n/12 Justice okam^^Tzit^^Te nej-presti^^Tzn^^Tej^^Ts^^S^^Pho zfor-
+mov^^San^^S^^P te-prve kter^^Seho elek-tro-mag-ne-tick^^Sych
+ []
+
+
+Overfull \hbox (19.1471pt too wide) in paragraph at lines 127--128
+\OT1/cmr/m/n/12 pravd^^Tepodobn^^Se v^^Syrob^^Te gra-vi-tace na-sa-zen^^S^^P ro
+z-hodli se-vern^^S^^P posl^^Seze. By emise b^^Sylo^^Tzrav^^Sych
+ []
+
+[14] [15]
+Overfull \hbox (3.7417pt too wide) in paragraph at lines 149--150
+[]\OT1/cmr/m/n/12 Justice okam^^Tzit^^Te nej-presti^^Tzn^^Tej^^Ts^^S^^Pho zfor-
+mov^^San^^S^^P te-prve kter^^Seho elek-tro-mag-ne-tick^^Sych
+ []
+
+
+Overfull \hbox (19.1471pt too wide) in paragraph at lines 149--150
+\OT1/cmr/m/n/12 pravd^^Tepodobn^^Se v^^Syrob^^Te gra-vi-tace na-sa-zen^^S^^P ro
+z-hodli se-vern^^S^^P posl^^Seze. By emise b^^Sylo^^Tzrav^^Sych
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 156.
+[16
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 156.
+ (./main.aux (./header/acknowledgement.aux) (./header/abbrlist.aux)
+(./chapters/chapter1.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 156.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 156.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BBC7D56B21844B629481DBC9FFD24D58;360.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 115.
+(rerunfilecheck)             Checksum: FD71FFBA7133EE6CEEBD1B0A885149CD;360.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 156.
  ) 
 Here is how much of TeX's memory you used:
- 7208 strings out of 493013
- 99681 string characters out of 6136993
- 211604 words of memory out of 5000000
- 10602 multiletter control sequences out of 15000+600000
- 10693 words of font info for 37 fonts, out of 8000000 for 9000
+ 7225 strings out of 493013
+ 99821 string characters out of 6136993
+ 218587 words of memory out of 5000000
+ 10604 multiletter control sequences out of 15000+600000
+ 11040 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,11n,54p,1319b,387s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,11n,54p,1113b,387s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2016/texmf-dist
@@ -793,11 +841,12 @@ e1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr8.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmss12.pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.
 pfb><c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb><c:/
-texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on main.pdf (12 pages, 795596 bytes).
+texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2
+016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (16 pages, 811353 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 136 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 161 compressed objects within 2 object streams
+ 41 named destinations out of 1000 (max. 500000)
  72 words of extra memory for PDF output out of 10000 (max. 10000000)
 

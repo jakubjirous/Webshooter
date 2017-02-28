@@ -35,7 +35,8 @@
 		"twbs/bootstrap": "4.0.0-alpha.5",
 		"thadafinser/user-agent-parser": "^1.5",
 		"piwik/device-detector": "^3.7",
-		"stekycz/cronner": "^1.1"
+		"stekycz/cronner": "^1.1",
+		"radekdostal/nette-datetimepicker": "^2.5"
 	},
 	"require-dev": {
 		"nette/tester": "^1.6"

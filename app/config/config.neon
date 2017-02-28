@@ -23,6 +23,9 @@ services:
 	- App\FrontModule\Model\DeviceTypeManager
 	- App\FrontModule\Model\ShootManager
 	- App\FrontModule\Model\ResultManager
+	- App\FrontModule\Model\PlanManager
+	- App\FrontModule\Model\RepeateStartManager
+	- App\FrontModule\Model\RepeateEndManager
 
 	- App\FrontModule\Forms\FormFactory
 	- App\FrontModule\Forms\SignInFormFactory
@@ -34,11 +37,16 @@ services:
 	- App\FrontModule\Forms\ShootAddFormFactory
 	- App\FrontModule\Forms\ResultToleranceFormFactory
 	- App\FrontModule\Forms\ResultIgnoreFormFactory
+	- App\FrontModule\Forms\PlanAddFormFactory
 
 	router: App\RouterFactory::createRouter
 
 extensions:
     cronner: stekycz\Cronner\DI\CronnerExtension
+    tbDateTimePicker: RadekDostal\NetteComponents\DateTimePicker\TbDateTimePicker\DI\TbDateTimePickerExtension
+
+tbDateTimePicker:
+    format: j. n. Y H:I
 
 cronner:
     timestampStorage: stekycz\Cronner\TimestampStorage\FileStorage(%wwwDir%/temp/cronner)
