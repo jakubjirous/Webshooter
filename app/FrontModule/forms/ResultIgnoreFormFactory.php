@@ -38,10 +38,10 @@ class ResultIgnoreFormFactory
       $ignoreActive = ($ignoreActiveSession == FALSE) ? FALSE : $ignoreActiveSession;
 
       $ignore = $this->sm->getResultIgnore();
-      $ignoreTop = ($ignore["top"] == FALSE) ? 0 : $ignore["top"];
-      $ignoreLeft = ($ignore["left"] == FALSE) ? 0 : $ignore["left"];
-      $ignoreWidth = ($ignore["width"] == FALSE) ? 0 : $ignore["width"];
-      $ignoreHeight = ($ignore["height"] == FALSE) ? 0 : $ignore["height"];
+      $ignoreTop = ($ignore['top'] == FALSE) ? 0 : $ignore['top'];
+      $ignoreLeft = ($ignore['left'] == FALSE) ? 0 : $ignore['left'];
+      $ignoreWidth = ($ignore['width'] == FALSE) ? 0 : $ignore['width'];
+      $ignoreHeight = ($ignore['height'] == FALSE) ? 0 : $ignore['height'];
 
       $form = $this->factory->create();
 
@@ -51,7 +51,7 @@ class ResultIgnoreFormFactory
       $form->addText('ignoreTop', 'Top:')
          ->setType('number')
          ->setDefaultValue($ignoreTop)
-         ->addConditionOn($form["ignoreActive"], $form::EQUAL, TRUE)
+         ->addConditionOn($form['ignoreActive'], $form::EQUAL, TRUE)
             ->addRule($form::RANGE, 'Top position must be in range %d–%d px', [0, $this->sourceSize[1]])
             ->setRequired('Set top position of ignore part')
          ->endCondition();
@@ -59,7 +59,7 @@ class ResultIgnoreFormFactory
       $form->addText('ignoreLeft', 'Left:')
          ->setType('number')
          ->setDefaultValue($ignoreLeft)
-         ->addConditionOn($form["ignoreActive"], $form::EQUAL, TRUE)
+         ->addConditionOn($form['ignoreActive'], $form::EQUAL, TRUE)
             ->addRule($form::RANGE, 'Left position must be in range %d–%d px', [0, $this->sourceSize[0]])
             ->setRequired('Set left position of ignore part')
          ->endCondition();
@@ -67,7 +67,7 @@ class ResultIgnoreFormFactory
       $form->addText('ignoreWidth', 'Width:')
          ->setType('number')
          ->setDefaultValue($ignoreWidth)
-         ->addConditionOn($form["ignoreActive"], $form::EQUAL, TRUE)
+         ->addConditionOn($form['ignoreActive'], $form::EQUAL, TRUE)
             ->addRule($form::RANGE, 'Width must be in range %d–%d px', [0, $this->sourceSize[0]])
             ->setRequired('Set width of ignore part')
          ->endCondition();
@@ -75,7 +75,7 @@ class ResultIgnoreFormFactory
       $form->addText('ignoreHeight', 'Height:')
          ->setType('number')
          ->setDefaultValue($ignoreHeight)
-         ->addConditionOn($form["ignoreActive"], $form::EQUAL, TRUE)
+         ->addConditionOn($form['ignoreActive'], $form::EQUAL, TRUE)
             ->addRule($form::RANGE, 'Height must be in range %d–%d px', [0, $this->sourceSize[1]])
             ->setRequired('Set height of ignore part')
          ->endCondition();

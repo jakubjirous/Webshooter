@@ -8,6 +8,7 @@ use App\FrontModule\Forms;
 use Nette\Utils\Validators;
 use Nette\Application\Responses\FileResponse;
 use Nette\Utils\FileSystem;
+use Nette\Utils\Strings;
 
 
 class PlanPresenter extends BasePresenter
@@ -98,9 +99,9 @@ class PlanPresenter extends BasePresenter
       $this->validateShootId($targetId);
 
       $this->template->isLoggedIn = $this->user->isLoggedIn();
-      $this->template->source = $this->stm->getShootById($sourceId);
-      $this->template->target = $this->stm->getShootById($targetId);
-
+      $this->template->source = $source = $this->stm->getShootById($sourceId);
+      $this->template->target = $target = $this->stm->getShootById($targetId);
+      $this->sourceSize = $this->imageSize($source);
    }
 
 
@@ -132,6 +133,16 @@ class PlanPresenter extends BasePresenter
    }
 
 
+   /**
+    * Get size from image
+    * @param $shoot
+    * @return array
+    */
+   public function imageSize($shoot)
+   {
+      return getimagesize($this->wwwDir . $shoot->path_img);
+   }
+
 
    /**
     * Download shoot from server
@@ -150,9 +161,31 @@ class PlanPresenter extends BasePresenter
     */
    protected function createComponentPlanAddForm()
    {
+      $colors = [
+         self::COLOR_1 => self::COLOR_1,
+         self::COLOR_2 => self::COLOR_2,
+         self::COLOR_3 => self::COLOR_3,
+         self::COLOR_4 => self::COLOR_4,
+      ];
+
+      $backgrounds = [
+         self::BACKGROUND_1 => self::BACKGROUND_1,
+         self::BACKGROUND_2 => self::BACKGROUND_2,
+         self::BACKGROUND_3 => self::BACKGROUND_3,
+         self::BACKGROUND_4 => self::BACKGROUND_4,
+      ];
+
+      $this->planAddFactory->setEmail($this->user->getIdentity()->email);
+
+      $this->planAddFactory->setColors($colors);
+      $this->planAddFactory->setBackgrounds($backgrounds);
+
+      $this->planAddFactory->setWidth($this->sourceSize[0]);
+      $this->planAddFactory->setHeight($this->sourceSize[1]);
+
       return $this->planAddFactory->create(function () {
-         $this->flashMessage('New comparision plan was successfully created');
-         $this->redirect('this');
+         $this->flashMessage('New comparision plan was successfully created', self::FLASH_MESSAGE_SUCCESS);
+//         $this->redirect('this');
       });
    }
 }
