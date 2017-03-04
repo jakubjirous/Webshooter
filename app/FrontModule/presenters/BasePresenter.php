@@ -96,6 +96,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    // Compare shoots result tolerance
    const DEFAULT_TOLERANCE = 0;
 
+   // Plan comparison
+   const REPEATE_START_DAILY = 1;
+   const REPEATE_START_WEEKLY = 2;
+   const REPEATE_START_MONTHLY = 3;
+   const REPEATE_START_YEARLY = 4;
+
+   const REPEATE_END_NEVER = 1;
+   const REPEATE_END_OCCURRENCES = 2;
+   const REPEATE_END_DATE = 3;
+
 
    /**
     * Front menu component

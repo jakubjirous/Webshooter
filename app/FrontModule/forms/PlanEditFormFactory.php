@@ -11,7 +11,7 @@ use Nette\Utils\Html;
 use Nette\Application\UI\Form;
 
 
-class PlanAddFormFactory
+class PlanEditFormFactory
 {
    use Nette\SmartObject;
 
@@ -67,29 +67,31 @@ class PlanAddFormFactory
    {
       $form = $this->factory->create();
 
-      $form->addHidden('userID', $this->getUserID());
-      $form->addHidden('sourceID', $this->getSourceID());
-      $form->addHidden('targetID', $this->getTargetID());
+      $plan = $this->pm->getPlanById($this->sm->getPlanEditID());
+
+      $form->addHidden('planID', $plan->id_plan);
 
       /* DATETIME, EMAIL */
+      $defaultStartDate = $plan->start_date->format('Y-m-d') . 'T' . $plan->start_date->format('H:i');
       $form->addGroup('');
       $form->addText('startDate', 'Start date & time:')
          ->setType('datetime-local')
-         ->setDefaultValue('2017-01-01T12:00')
+         ->setDefaultValue($defaultStartDate)
          ->setRequired('Please set start date and time for comparision plan');
 
       $form->addEmail('primaryEmail', 'Primary e-mail:')
-         ->setDefaultValue($this->primaryEmail ? $this->primaryEmail : '')
+         ->setDefaultValue($plan->primary_email)
          ->setRequired('Please fill your primary e-mail address for comparision plan');
 
       $form->addText('secondaryEmail', 'Secondary e-mail:')
+         ->setDefaultValue($plan->secondary_email)
          ->addCondition($form::FILLED)
          ->addRule($form::EMAIL)
          ->setRequired('Please fill your secondary e-mail address for comparision plan')
          ->endCondition();
 
       $form->addCheckbox('status', 'Enable repeat')
-         ->setDefaultValue(TRUE)
+         ->setDefaultValue($plan->status)
          ->addCondition($form::EQUAL, TRUE)
          ->toggle('repeate-options');
 
@@ -106,7 +108,7 @@ class PlanAddFormFactory
          $repeateStartSelect[$start->id_repeate] = $start->type;
       }
       $repeateStartType = $form->addRadioList('startType', 'Repeats:', $repeateStartSelect)
-         ->setDefaultValue($repeateStart[1]->id_repeate);
+         ->setDefaultValue($plan->start_type);
 
       $repeateStartType->addCondition($form::EQUAL, $repeateStart[1]->id_repeate)
          ->toggle('repeate-daily');
@@ -129,6 +131,7 @@ class PlanAddFormFactory
       }
       $form->addSelect('startDailyValue', 'Repeat once per:', $repeateDailyValueSelect)
          ->setPrompt('--- Choose days ---')
+         ->setDefaultValue($plan->start_value)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[1]->id_repeate)
          ->setRequired('Please select after how many days a plan to repeat')
          ->endCondition();
@@ -142,6 +145,7 @@ class PlanAddFormFactory
       }
       $form->addSelect('startWeeklyValue', 'Repeat once per:', $repeateWeeklyValueSelect)
          ->setPrompt('--- Choose weeks ---')
+         ->setDefaultValue($plan->start_value)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[2]->id_repeate)
          ->setRequired('Please select after how many weeks a plan to repeat')
          ->endCondition();
@@ -155,6 +159,7 @@ class PlanAddFormFactory
       }
       $form->addSelect('startMonthlyValue', 'Repeat once per:', $repeateMonthlyValueSelect)
          ->setPrompt('--- Choose months ---')
+         ->setDefaultValue($plan->start_value)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[3]->id_repeate)
          ->setRequired('Please select after how many months a plan to repeat')
          ->endCondition();
@@ -168,6 +173,7 @@ class PlanAddFormFactory
       }
       $form->addSelect('startYearlyValue', 'Repeat once per:', $repeateYearlyValueSelect)
          ->setPrompt('--- Choose years ---')
+         ->setDefaultValue($plan->start_value)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[4]->id_repeate)
          ->setRequired('Please select after how many years a plan to repeat')
          ->endCondition();
@@ -182,7 +188,7 @@ class PlanAddFormFactory
          $repeateEndSelect[$end->id_repeate] = $end->type;
       }
       $repeateEndType = $form->addRadioList('endType', 'Ends:', $repeateEndSelect)
-         ->setDefaultValue($repeateEnd[1]->id_repeate);
+         ->setDefaultValue($plan->end_type);
 
       $repeateEndType->addCondition($form::EQUAL, $repeateEnd[2]->id_repeate)
          ->toggle('end-after');
@@ -196,6 +202,7 @@ class PlanAddFormFactory
       $form->addText('endOccurrence', 'Number of occurrences:')
          ->setType('number')
          ->setAttribute('min', 0)
+         ->setDefaultValue($plan->end_occurrence)
          ->addConditionOn($repeateEndType, $form::EQUAL, $repeateEnd[2]->id_repeate)
          ->setRequired('Please select how many occurrences of plan termination')
          ->endCondition();
@@ -205,6 +212,7 @@ class PlanAddFormFactory
 
       $form->addText('endDate', 'End date & time:')
          ->setType('datetime-local')
+         ->setDefaultValue(($plan->end_date != NULL) ? $plan->end_date->format('Y-m-d') . 'T' . $plan->end_date->format('H:i') : '')
          ->addConditionOn($repeateEndType, $form::EQUAL, $repeateEnd[3]->id_repeate)
          ->setRequired('Please select the date of plan termination')
          ->endCondition();
@@ -215,12 +223,12 @@ class PlanAddFormFactory
 
       $form->addSelect('color', 'Result color:', $this->colors)
          ->setPrompt('--- Choose color ---')
-         ->setDefaultValue($this->sm->getResultColor() ? $this->sm->getResultColor() : $this->colors['red'])
+         ->setDefaultValue($plan->color)
          ->setRequired('Please choose color for comparision plan');
 
       $form->addSelect('background', 'Result background:', $this->backgrounds)
          ->setPrompt('--- Choose background ---')
-         ->setDefaultValue($this->sm->getResultBackground() ? $this->sm->getResultBackground() : $this->backgrounds['grayscale'])
+         ->setDefaultValue($plan->background)
          ->setRequired('Please choose background color for comparision plan');
 
       $form->addText('tolerance', 'Tolerance:')
@@ -228,7 +236,7 @@ class PlanAddFormFactory
          ->setAttribute('min', 0)
          ->setAttribute('max', 100)
          ->setAttribute('step', 1)
-         ->setDefaultValue($this->sm->getResultTolerance() ? $this->sm->getResultTolerance() : 50)
+         ->setDefaultValue($plan->tolerance)
          ->setRequired('Please set tolerance for comparision plan');
 
       $form->addText('difference', 'Difference:')
@@ -236,20 +244,13 @@ class PlanAddFormFactory
          ->setAttribute('min', 0)
          ->setAttribute('max', 100)
          ->setAttribute('step', 0.01)
-         ->setDefaultValue(0)
+         ->setDefaultValue($plan->difference)
          ->setRequired('Please set difference for comparision plan')
          ->setOption('description', 'If will be difference larger than you set, Webshooter send notification on your e-mail with comparision result');
 
 
       /* IGNORE PART DEFINITION */
-      $ignoreActiveSession = $this->sm->getResultIgnoreActive();
-      $ignoreActive = ($ignoreActiveSession == FALSE) ? FALSE : $ignoreActiveSession;
-
-      $ignore = $this->sm->getResultIgnore();
-      $ignoreTop = ($ignore['top'] == FALSE) ? 0 : $ignore['top'];
-      $ignoreLeft = ($ignore['left'] == FALSE) ? 0 : $ignore['left'];
-      $ignoreWidth = ($ignore['width'] == FALSE) ? 0 : $ignore['width'];
-      $ignoreHeight = ($ignore['height'] == FALSE) ? 0 : $ignore['height'];
+      $ignoreActive = ($plan->ignore_top != NULL and $plan->ignore_left != NULL and $plan->ignore_width != NULL and $plan->ignore_height != NULL) ? TRUE : FALSE;
 
       $form->addCheckbox('ignoreActive', 'Active ignore part')
          ->setDefaultValue($ignoreActive)
@@ -261,7 +262,7 @@ class PlanAddFormFactory
 
       $form->addText('ignoreTop', 'Top:')
          ->setType('number')
-         ->setDefaultValue($ignoreTop)
+         ->setDefaultValue($plan->ignore_top)
          ->addConditionOn($form['ignoreActive'], $form::EQUAL, TRUE)
          ->addRule($form::RANGE, 'Top position must be in range %d–%d px', [0, $this->height])
          ->setRequired('Set top position of ignore part')
@@ -269,7 +270,7 @@ class PlanAddFormFactory
 
       $form->addText('ignoreLeft', 'Left:')
          ->setType('number')
-         ->setDefaultValue($ignoreLeft)
+         ->setDefaultValue($plan->ignore_left)
          ->addConditionOn($form['ignoreActive'], $form::EQUAL, TRUE)
          ->addRule($form::RANGE, 'Left position must be in range %d–%d px', [0, $this->width])
          ->setRequired('Set left position of ignore part')
@@ -277,7 +278,7 @@ class PlanAddFormFactory
 
       $form->addText('ignoreWidth', 'Width:')
          ->setType('number')
-         ->setDefaultValue($ignoreWidth)
+         ->setDefaultValue($plan->ignore_width)
          ->addConditionOn($form['ignoreActive'], $form::EQUAL, TRUE)
          ->addRule($form::RANGE, 'Width must be in range %d–%d px', [0, $this->width])
          ->setRequired('Set width of ignore part')
@@ -285,7 +286,7 @@ class PlanAddFormFactory
 
       $form->addText('ignoreHeight', 'Height:')
          ->setType('number')
-         ->setDefaultValue($ignoreHeight)
+         ->setDefaultValue($plan->ignore_height)
          ->addConditionOn($form['ignoreActive'], $form::EQUAL, TRUE)
          ->addRule($form::RANGE, 'Height must be in range %d–%d px', [0, $this->height])
          ->setRequired('Set height of ignore part')
@@ -293,7 +294,7 @@ class PlanAddFormFactory
 
 
       $form->addGroup('');
-      $form->addSubmit('create', 'Create plan');
+      $form->addSubmit('save', 'Save');
 
       $this->factory->bootstrapRenderer($form);
 
@@ -311,10 +312,8 @@ class PlanAddFormFactory
             $startValue = $values->startYearlyValue;
          }
 
-         $this->pm->addPlan(
-            $values->userID,
-            $values->sourceID,
-            $values->targetID,
+         $this->pm->editPlan(
+            $values->planID,
             $values->startDate,
             $values->primaryEmail,
             $values->secondaryEmail,

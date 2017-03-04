@@ -1,0 +1,28 @@
+{extends '../@index.latte'}
+
+
+
+{block header}
+   <header>
+      <h1 n:block=title>Plan detail</h1>
+   </header>
+{/block}
+
+{block breadcrumbContent}
+   <li class="breadcrumb-item"><a n:href="Plan:settings">Plan settings</a></li>
+   <li class="breadcrumb-item active">Plan detail</li>
+{/block}
+
+{block content}
+   <div class="container">
+      <div class="plan-detail">
+         <div class="row">
+            <div class="col-xs-12">
+
+               {control planEditForm}
+
+            </div>
+         </div>
+      </div>
+   </div>
+{/block}

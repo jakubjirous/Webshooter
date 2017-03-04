@@ -29,6 +29,9 @@ class PlanPresenter extends BasePresenter
    /** @var Forms\PlanAddFormFactory @inject */
    public $planAddFactory;
 
+   /** @var Forms\PlanEditFormFactory @inject */
+   public $planEditFactory;
+
 
    /**
     * COLOR_1, COLOR_2, COLOR_3, COLOR_4
@@ -52,9 +55,13 @@ class PlanPresenter extends BasePresenter
    private $ignore = NULL;
 
    private $sourceSize;
+   private $editSize;
 
    private $wwwDir;
    private $resultDir;
+
+   private $sourceID;
+   private $targetID;
 
 
    public function __construct(Model\SessionManager $sm, Model\ShootManager $stm, Model\ResultManager $rm, Model\PlanManager $pm)
@@ -98,12 +105,44 @@ class PlanPresenter extends BasePresenter
       $this->validateShootId($sourceId);
       $this->validateShootId($targetId);
 
+      $this->sourceID = $sourceId;
+      $this->targetID = $targetId;
+
       $this->template->isLoggedIn = $this->user->isLoggedIn();
       $this->template->source = $source = $this->stm->getShootById($sourceId);
       $this->template->target = $target = $this->stm->getShootById($targetId);
       $this->sourceSize = $this->imageSize($source);
    }
 
+
+   public function renderSettings()
+   {
+      $this->isLoggedIn();
+      $this->template->isLoggedIn = $this->user->isLoggedIn();
+
+      $this->template->plans = $this->pm->getAllPlans();
+
+      $this->template->daily = self::REPEATE_START_DAILY;
+      $this->template->weekly = self::REPEATE_START_WEEKLY;
+      $this->template->monthly = self::REPEATE_START_MONTHLY;
+      $this->template->yearly = self::REPEATE_START_YEARLY;
+
+      $this->template->never = self::REPEATE_END_NEVER;
+      $this->template->occurrence = self::REPEATE_END_OCCURRENCES;
+      $this->template->date = self::REPEATE_END_DATE;
+   }
+
+
+   public function renderDetail($id)
+   {
+      $this->validatePlanId($id);
+      // save plan ID to session
+      $this->sm->setPlanEditID($id);
+
+      $this->template->plan = $plan = $this->pm->getPlanById($id);
+      $source = $this->stm->getShootById($plan->id_source);
+      $this->editSize = $this->imageSize($source);
+   }
 
 
    /**
@@ -134,6 +173,22 @@ class PlanPresenter extends BasePresenter
 
 
    /**
+    * Plan id validator
+    * @param $id
+    */
+   public function validatePlanId($id)
+   {
+      if (!Validators::isNumericInt($id)) {
+         $this->error();
+      }
+      $exist = $this->pm->existPlanById($id);
+      if (!$exist) {
+         $this->error();
+      }
+   }
+
+
+   /**
     * Get size from image
     * @param $shoot
     * @return array
@@ -152,6 +207,19 @@ class PlanPresenter extends BasePresenter
    {
       $shoot = $this->stm->getShootById($id);
       $this->sendResponse(new FileResponse($this->wwwDir . $shoot->path_img));
+   }
+
+
+   /**
+    * Delete plan
+    * @param $id
+    */
+   public function handleDelete($id)
+   {
+      $this->pm->deletePlan($id);
+
+      $this->flashMessage('Plan was deleted.', self::FLASH_MESSAGE_SUCCESS);
+      $this->redirect('this');
    }
 
 
@@ -175,7 +243,7 @@ class PlanPresenter extends BasePresenter
          self::BACKGROUND_4 => self::BACKGROUND_4,
       ];
 
-      $this->planAddFactory->setEmail($this->user->getIdentity()->email);
+      $this->planAddFactory->setPrimaryEmail($this->user->getIdentity()->email);
 
       $this->planAddFactory->setColors($colors);
       $this->planAddFactory->setBackgrounds($backgrounds);
@@ -183,9 +251,64 @@ class PlanPresenter extends BasePresenter
       $this->planAddFactory->setWidth($this->sourceSize[0]);
       $this->planAddFactory->setHeight($this->sourceSize[1]);
 
+      $this->planAddFactory->setUserID($this->user->getId());
+      $this->planAddFactory->setSourceID($this->sourceID);
+      $this->planAddFactory->setTargetID($this->targetID);
+
+      $this->planAddFactory->setRepeateStartDaily(self::REPEATE_START_DAILY);
+      $this->planAddFactory->setRepeateStartWeekly(self::REPEATE_START_WEEKLY);
+      $this->planAddFactory->setRepeateStartMonthly(self::REPEATE_START_MONTHLY);
+      $this->planAddFactory->setRepeateStartYearly(self::REPEATE_START_YEARLY);
+
+      $this->planAddFactory->setRepeateEndNever(self::REPEATE_END_NEVER);
+      $this->planAddFactory->setRepeateEndOccurrences(self::REPEATE_END_OCCURRENCES);
+      $this->planAddFactory->setRepeateEndDate(self::REPEATE_END_DATE);
+
       return $this->planAddFactory->create(function () {
-         $this->flashMessage('New comparision plan was successfully created', self::FLASH_MESSAGE_SUCCESS);
-//         $this->redirect('this');
+         $this->flashMessage('New comparision plan was successfully created.', self::FLASH_MESSAGE_SUCCESS);
+         $this->redirect('Plan:settings');
+      });
+   }
+
+
+   /**
+    * Edit plan form factory
+    * @return Nette\Application\UI\Form
+    */
+   protected function createComponentPlanEditForm()
+   {
+      $colors = [
+         self::COLOR_1 => self::COLOR_1,
+         self::COLOR_2 => self::COLOR_2,
+         self::COLOR_3 => self::COLOR_3,
+         self::COLOR_4 => self::COLOR_4,
+      ];
+
+      $backgrounds = [
+         self::BACKGROUND_1 => self::BACKGROUND_1,
+         self::BACKGROUND_2 => self::BACKGROUND_2,
+         self::BACKGROUND_3 => self::BACKGROUND_3,
+         self::BACKGROUND_4 => self::BACKGROUND_4,
+      ];
+
+      $this->planEditFactory->setColors($colors);
+      $this->planEditFactory->setBackgrounds($backgrounds);
+
+      $this->planEditFactory->setWidth($this->editSize[0]);
+      $this->planEditFactory->setHeight($this->editSize[1]);
+
+      $this->planEditFactory->setRepeateStartDaily(self::REPEATE_START_DAILY);
+      $this->planEditFactory->setRepeateStartWeekly(self::REPEATE_START_WEEKLY);
+      $this->planEditFactory->setRepeateStartMonthly(self::REPEATE_START_MONTHLY);
+      $this->planEditFactory->setRepeateStartYearly(self::REPEATE_START_YEARLY);
+
+      $this->planEditFactory->setRepeateEndNever(self::REPEATE_END_NEVER);
+      $this->planEditFactory->setRepeateEndOccurrences(self::REPEATE_END_OCCURRENCES);
+      $this->planEditFactory->setRepeateEndDate(self::REPEATE_END_DATE);
+
+      return $this->planEditFactory->create(function () {
+         $this->flashMessage('Comparision plan was changed.', self::FLASH_MESSAGE_SUCCESS);
+         $this->redirect('Plan:settings');
       });
    }
 }

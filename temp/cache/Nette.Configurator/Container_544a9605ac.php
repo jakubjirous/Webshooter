@@ -47,24 +47,25 @@ class Container_544a9605ac extends Nette\DI\Container
 			'App\FrontModule\Forms\DeviceEditFormFactory' => [1 => ['29_App_FrontModule_Forms_DeviceEditFormFactory']],
 			'App\FrontModule\Forms\FormFactory' => [1 => ['30_App_FrontModule_Forms_FormFactory']],
 			'App\FrontModule\Forms\PlanAddFormFactory' => [1 => ['31_App_FrontModule_Forms_PlanAddFormFactory']],
-			'App\FrontModule\Forms\ResultIgnoreFormFactory' => [1 => ['32_App_FrontModule_Forms_ResultIgnoreFormFactory']],
-			'App\FrontModule\Forms\ResultToleranceFormFactory' => [1 => ['33_App_FrontModule_Forms_ResultToleranceFormFactory']],
-			'App\FrontModule\Forms\ShootAddFormFactory' => [1 => ['34_App_FrontModule_Forms_ShootAddFormFactory']],
-			'App\FrontModule\Forms\SignInFormFactory' => [1 => ['35_App_FrontModule_Forms_SignInFormFactory']],
-			'App\FrontModule\Forms\SignUpFormFactory' => [1 => ['36_App_FrontModule_Forms_SignUpFormFactory']],
-			'App\FrontModule\Forms\UserAddFormFactory' => [1 => ['37_App_FrontModule_Forms_UserAddFormFactory']],
-			'App\FrontModule\Forms\UserEditFormFactory' => [1 => ['38_App_FrontModule_Forms_UserEditFormFactory']],
-			'App\FrontModule\Model\DeviceManager' => [1 => ['39_App_FrontModule_Model_DeviceManager']],
-			'App\FrontModule\Model\DeviceTypeManager' => [1 => ['40_App_FrontModule_Model_DeviceTypeManager']],
-			'App\FrontModule\Model\PlanManager' => [1 => ['41_App_FrontModule_Model_PlanManager']],
-			'App\FrontModule\Model\RepeateEndManager' => [1 => ['42_App_FrontModule_Model_RepeateEndManager']],
-			'App\FrontModule\Model\RepeateStartManager' => [1 => ['43_App_FrontModule_Model_RepeateStartManager']],
-			'App\FrontModule\Model\ResultManager' => [1 => ['44_App_FrontModule_Model_ResultManager']],
-			'App\FrontModule\Model\SessionManager' => [1 => ['45_App_FrontModule_Model_SessionManager']],
-			'App\FrontModule\Model\ShootManager' => [1 => ['46_App_FrontModule_Model_ShootManager']],
-			'Nette\Security\IAuthenticator' => [1 => ['47_App_FrontModule_Model_UserManager']],
-			'App\FrontModule\Model\UserManager' => [1 => ['47_App_FrontModule_Model_UserManager']],
-			'App\FrontModule\Model\UserRoleManager' => [1 => ['48_App_FrontModule_Model_UserRoleManager']],
+			'App\FrontModule\Forms\PlanEditFormFactory' => [1 => ['32_App_FrontModule_Forms_PlanEditFormFactory']],
+			'App\FrontModule\Forms\ResultIgnoreFormFactory' => [1 => ['33_App_FrontModule_Forms_ResultIgnoreFormFactory']],
+			'App\FrontModule\Forms\ResultToleranceFormFactory' => [1 => ['34_App_FrontModule_Forms_ResultToleranceFormFactory']],
+			'App\FrontModule\Forms\ShootAddFormFactory' => [1 => ['35_App_FrontModule_Forms_ShootAddFormFactory']],
+			'App\FrontModule\Forms\SignInFormFactory' => [1 => ['36_App_FrontModule_Forms_SignInFormFactory']],
+			'App\FrontModule\Forms\SignUpFormFactory' => [1 => ['37_App_FrontModule_Forms_SignUpFormFactory']],
+			'App\FrontModule\Forms\UserAddFormFactory' => [1 => ['38_App_FrontModule_Forms_UserAddFormFactory']],
+			'App\FrontModule\Forms\UserEditFormFactory' => [1 => ['39_App_FrontModule_Forms_UserEditFormFactory']],
+			'App\FrontModule\Model\DeviceManager' => [1 => ['40_App_FrontModule_Model_DeviceManager']],
+			'App\FrontModule\Model\DeviceTypeManager' => [1 => ['41_App_FrontModule_Model_DeviceTypeManager']],
+			'App\FrontModule\Model\PlanManager' => [1 => ['42_App_FrontModule_Model_PlanManager']],
+			'App\FrontModule\Model\RepeateEndManager' => [1 => ['43_App_FrontModule_Model_RepeateEndManager']],
+			'App\FrontModule\Model\RepeateStartManager' => [1 => ['44_App_FrontModule_Model_RepeateStartManager']],
+			'App\FrontModule\Model\ResultManager' => [1 => ['45_App_FrontModule_Model_ResultManager']],
+			'App\FrontModule\Model\SessionManager' => [1 => ['46_App_FrontModule_Model_SessionManager']],
+			'App\FrontModule\Model\ShootManager' => [1 => ['47_App_FrontModule_Model_ShootManager']],
+			'Nette\Security\IAuthenticator' => [1 => ['48_App_FrontModule_Model_UserManager']],
+			'App\FrontModule\Model\UserManager' => [1 => ['48_App_FrontModule_Model_UserManager']],
+			'App\FrontModule\Model\UserRoleManager' => [1 => ['49_App_FrontModule_Model_UserRoleManager']],
 			'App\FrontModule\Presenters\BasePresenter' => [
 				1 => [
 					'application.1',
@@ -256,23 +257,24 @@ class Container_544a9605ac extends Nette\DI\Container
 			'29_App_FrontModule_Forms_DeviceEditFormFactory' => 'App\FrontModule\Forms\DeviceEditFormFactory',
 			'30_App_FrontModule_Forms_FormFactory' => 'App\FrontModule\Forms\FormFactory',
 			'31_App_FrontModule_Forms_PlanAddFormFactory' => 'App\FrontModule\Forms\PlanAddFormFactory',
-			'32_App_FrontModule_Forms_ResultIgnoreFormFactory' => 'App\FrontModule\Forms\ResultIgnoreFormFactory',
-			'33_App_FrontModule_Forms_ResultToleranceFormFactory' => 'App\FrontModule\Forms\ResultToleranceFormFactory',
-			'34_App_FrontModule_Forms_ShootAddFormFactory' => 'App\FrontModule\Forms\ShootAddFormFactory',
-			'35_App_FrontModule_Forms_SignInFormFactory' => 'App\FrontModule\Forms\SignInFormFactory',
-			'36_App_FrontModule_Forms_SignUpFormFactory' => 'App\FrontModule\Forms\SignUpFormFactory',
-			'37_App_FrontModule_Forms_UserAddFormFactory' => 'App\FrontModule\Forms\UserAddFormFactory',
-			'38_App_FrontModule_Forms_UserEditFormFactory' => 'App\FrontModule\Forms\UserEditFormFactory',
-			'39_App_FrontModule_Model_DeviceManager' => 'App\FrontModule\Model\DeviceManager',
-			'40_App_FrontModule_Model_DeviceTypeManager' => 'App\FrontModule\Model\DeviceTypeManager',
-			'41_App_FrontModule_Model_PlanManager' => 'App\FrontModule\Model\PlanManager',
-			'42_App_FrontModule_Model_RepeateEndManager' => 'App\FrontModule\Model\RepeateEndManager',
-			'43_App_FrontModule_Model_RepeateStartManager' => 'App\FrontModule\Model\RepeateStartManager',
-			'44_App_FrontModule_Model_ResultManager' => 'App\FrontModule\Model\ResultManager',
-			'45_App_FrontModule_Model_SessionManager' => 'App\FrontModule\Model\SessionManager',
-			'46_App_FrontModule_Model_ShootManager' => 'App\FrontModule\Model\ShootManager',
-			'47_App_FrontModule_Model_UserManager' => 'App\FrontModule\Model\UserManager',
-			'48_App_FrontModule_Model_UserRoleManager' => 'App\FrontModule\Model\UserRoleManager',
+			'32_App_FrontModule_Forms_PlanEditFormFactory' => 'App\FrontModule\Forms\PlanEditFormFactory',
+			'33_App_FrontModule_Forms_ResultIgnoreFormFactory' => 'App\FrontModule\Forms\ResultIgnoreFormFactory',
+			'34_App_FrontModule_Forms_ResultToleranceFormFactory' => 'App\FrontModule\Forms\ResultToleranceFormFactory',
+			'35_App_FrontModule_Forms_ShootAddFormFactory' => 'App\FrontModule\Forms\ShootAddFormFactory',
+			'36_App_FrontModule_Forms_SignInFormFactory' => 'App\FrontModule\Forms\SignInFormFactory',
+			'37_App_FrontModule_Forms_SignUpFormFactory' => 'App\FrontModule\Forms\SignUpFormFactory',
+			'38_App_FrontModule_Forms_UserAddFormFactory' => 'App\FrontModule\Forms\UserAddFormFactory',
+			'39_App_FrontModule_Forms_UserEditFormFactory' => 'App\FrontModule\Forms\UserEditFormFactory',
+			'40_App_FrontModule_Model_DeviceManager' => 'App\FrontModule\Model\DeviceManager',
+			'41_App_FrontModule_Model_DeviceTypeManager' => 'App\FrontModule\Model\DeviceTypeManager',
+			'42_App_FrontModule_Model_PlanManager' => 'App\FrontModule\Model\PlanManager',
+			'43_App_FrontModule_Model_RepeateEndManager' => 'App\FrontModule\Model\RepeateEndManager',
+			'44_App_FrontModule_Model_RepeateStartManager' => 'App\FrontModule\Model\RepeateStartManager',
+			'45_App_FrontModule_Model_ResultManager' => 'App\FrontModule\Model\ResultManager',
+			'46_App_FrontModule_Model_SessionManager' => 'App\FrontModule\Model\SessionManager',
+			'47_App_FrontModule_Model_ShootManager' => 'App\FrontModule\Model\ShootManager',
+			'48_App_FrontModule_Model_UserManager' => 'App\FrontModule\Model\UserManager',
+			'49_App_FrontModule_Model_UserRoleManager' => 'App\FrontModule\Model\UserRoleManager',
 			'application.1' => 'App\FrontModule\Presenters\ComparePresenter',
 			'application.10' => 'App\FrontModule\Presenters\UserPresenter',
 			'application.11' => 'NetteModule\ErrorPresenter',
@@ -388,7 +390,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	public function createService__28_App_FrontModule_Forms_DeviceAddFormFactory()
 	{
 		$service = new App\FrontModule\Forms\DeviceAddFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('39_App_FrontModule_Model_DeviceManager'), $this->getService('40_App_FrontModule_Model_DeviceTypeManager'));
+			$this->getService('40_App_FrontModule_Model_DeviceManager'), $this->getService('41_App_FrontModule_Model_DeviceTypeManager'));
 		return $service;
 	}
 
@@ -399,8 +401,8 @@ class Container_544a9605ac extends Nette\DI\Container
 	public function createService__29_App_FrontModule_Forms_DeviceEditFormFactory()
 	{
 		$service = new App\FrontModule\Forms\DeviceEditFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('45_App_FrontModule_Model_SessionManager'), $this->getService('39_App_FrontModule_Model_DeviceManager'),
-			$this->getService('40_App_FrontModule_Model_DeviceTypeManager'));
+			$this->getService('46_App_FrontModule_Model_SessionManager'), $this->getService('40_App_FrontModule_Model_DeviceManager'),
+			$this->getService('41_App_FrontModule_Model_DeviceTypeManager'));
 		return $service;
 	}
 
@@ -421,8 +423,20 @@ class Container_544a9605ac extends Nette\DI\Container
 	public function createService__31_App_FrontModule_Forms_PlanAddFormFactory()
 	{
 		$service = new App\FrontModule\Forms\PlanAddFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('45_App_FrontModule_Model_SessionManager'), $this->getService('43_App_FrontModule_Model_RepeateStartManager'),
-			$this->getService('42_App_FrontModule_Model_RepeateEndManager'));
+			$this->getService('46_App_FrontModule_Model_SessionManager'), $this->getService('44_App_FrontModule_Model_RepeateStartManager'),
+			$this->getService('43_App_FrontModule_Model_RepeateEndManager'), $this->getService('42_App_FrontModule_Model_PlanManager'));
+		return $service;
+	}
+
+
+	/**
+	 * @return App\FrontModule\Forms\PlanEditFormFactory
+	 */
+	public function createService__32_App_FrontModule_Forms_PlanEditFormFactory()
+	{
+		$service = new App\FrontModule\Forms\PlanEditFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
+			$this->getService('46_App_FrontModule_Model_SessionManager'), $this->getService('44_App_FrontModule_Model_RepeateStartManager'),
+			$this->getService('43_App_FrontModule_Model_RepeateEndManager'), $this->getService('42_App_FrontModule_Model_PlanManager'));
 		return $service;
 	}
 
@@ -430,10 +444,10 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Forms\ResultIgnoreFormFactory
 	 */
-	public function createService__32_App_FrontModule_Forms_ResultIgnoreFormFactory()
+	public function createService__33_App_FrontModule_Forms_ResultIgnoreFormFactory()
 	{
 		$service = new App\FrontModule\Forms\ResultIgnoreFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('45_App_FrontModule_Model_SessionManager'));
+			$this->getService('46_App_FrontModule_Model_SessionManager'));
 		return $service;
 	}
 
@@ -441,10 +455,10 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Forms\ResultToleranceFormFactory
 	 */
-	public function createService__33_App_FrontModule_Forms_ResultToleranceFormFactory()
+	public function createService__34_App_FrontModule_Forms_ResultToleranceFormFactory()
 	{
 		$service = new App\FrontModule\Forms\ResultToleranceFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('45_App_FrontModule_Model_SessionManager'));
+			$this->getService('46_App_FrontModule_Model_SessionManager'));
 		return $service;
 	}
 
@@ -452,11 +466,11 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Forms\ShootAddFormFactory
 	 */
-	public function createService__34_App_FrontModule_Forms_ShootAddFormFactory()
+	public function createService__35_App_FrontModule_Forms_ShootAddFormFactory()
 	{
 		$service = new App\FrontModule\Forms\ShootAddFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('39_App_FrontModule_Model_DeviceManager'), $this->getService('40_App_FrontModule_Model_DeviceTypeManager'),
-			$this->getService('46_App_FrontModule_Model_ShootManager'));
+			$this->getService('40_App_FrontModule_Model_DeviceManager'), $this->getService('41_App_FrontModule_Model_DeviceTypeManager'),
+			$this->getService('47_App_FrontModule_Model_ShootManager'));
 		return $service;
 	}
 
@@ -464,7 +478,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Forms\SignInFormFactory
 	 */
-	public function createService__35_App_FrontModule_Forms_SignInFormFactory()
+	public function createService__36_App_FrontModule_Forms_SignInFormFactory()
 	{
 		$service = new App\FrontModule\Forms\SignInFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
 			$this->getService('security.user'));
@@ -475,10 +489,10 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Forms\SignUpFormFactory
 	 */
-	public function createService__36_App_FrontModule_Forms_SignUpFormFactory()
+	public function createService__37_App_FrontModule_Forms_SignUpFormFactory()
 	{
 		$service = new App\FrontModule\Forms\SignUpFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('47_App_FrontModule_Model_UserManager'));
+			$this->getService('48_App_FrontModule_Model_UserManager'));
 		return $service;
 	}
 
@@ -486,10 +500,10 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Forms\UserAddFormFactory
 	 */
-	public function createService__37_App_FrontModule_Forms_UserAddFormFactory()
+	public function createService__38_App_FrontModule_Forms_UserAddFormFactory()
 	{
 		$service = new App\FrontModule\Forms\UserAddFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('47_App_FrontModule_Model_UserManager'), $this->getService('48_App_FrontModule_Model_UserRoleManager'));
+			$this->getService('48_App_FrontModule_Model_UserManager'), $this->getService('49_App_FrontModule_Model_UserRoleManager'));
 		return $service;
 	}
 
@@ -497,11 +511,11 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Forms\UserEditFormFactory
 	 */
-	public function createService__38_App_FrontModule_Forms_UserEditFormFactory()
+	public function createService__39_App_FrontModule_Forms_UserEditFormFactory()
 	{
 		$service = new App\FrontModule\Forms\UserEditFormFactory($this->getService('30_App_FrontModule_Forms_FormFactory'),
-			$this->getService('45_App_FrontModule_Model_SessionManager'), $this->getService('47_App_FrontModule_Model_UserManager'),
-			$this->getService('48_App_FrontModule_Model_UserRoleManager'));
+			$this->getService('46_App_FrontModule_Model_SessionManager'), $this->getService('48_App_FrontModule_Model_UserManager'),
+			$this->getService('49_App_FrontModule_Model_UserRoleManager'));
 		return $service;
 	}
 
@@ -509,7 +523,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\DeviceManager
 	 */
-	public function createService__39_App_FrontModule_Model_DeviceManager()
+	public function createService__40_App_FrontModule_Model_DeviceManager()
 	{
 		$service = new App\FrontModule\Model\DeviceManager($this->getService('database.default.context'));
 		return $service;
@@ -519,7 +533,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\DeviceTypeManager
 	 */
-	public function createService__40_App_FrontModule_Model_DeviceTypeManager()
+	public function createService__41_App_FrontModule_Model_DeviceTypeManager()
 	{
 		$service = new App\FrontModule\Model\DeviceTypeManager($this->getService('database.default.context'));
 		return $service;
@@ -529,7 +543,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\PlanManager
 	 */
-	public function createService__41_App_FrontModule_Model_PlanManager()
+	public function createService__42_App_FrontModule_Model_PlanManager()
 	{
 		$service = new App\FrontModule\Model\PlanManager($this->getService('database.default.context'));
 		return $service;
@@ -539,7 +553,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\RepeateEndManager
 	 */
-	public function createService__42_App_FrontModule_Model_RepeateEndManager()
+	public function createService__43_App_FrontModule_Model_RepeateEndManager()
 	{
 		$service = new App\FrontModule\Model\RepeateEndManager($this->getService('database.default.context'));
 		return $service;
@@ -549,7 +563,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\RepeateStartManager
 	 */
-	public function createService__43_App_FrontModule_Model_RepeateStartManager()
+	public function createService__44_App_FrontModule_Model_RepeateStartManager()
 	{
 		$service = new App\FrontModule\Model\RepeateStartManager($this->getService('database.default.context'));
 		return $service;
@@ -559,7 +573,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\ResultManager
 	 */
-	public function createService__44_App_FrontModule_Model_ResultManager()
+	public function createService__45_App_FrontModule_Model_ResultManager()
 	{
 		$service = new App\FrontModule\Model\ResultManager($this->getService('database.default.context'));
 		return $service;
@@ -569,7 +583,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\SessionManager
 	 */
-	public function createService__45_App_FrontModule_Model_SessionManager()
+	public function createService__46_App_FrontModule_Model_SessionManager()
 	{
 		$service = new App\FrontModule\Model\SessionManager($this->getService('session.session'));
 		return $service;
@@ -579,7 +593,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\ShootManager
 	 */
-	public function createService__46_App_FrontModule_Model_ShootManager()
+	public function createService__47_App_FrontModule_Model_ShootManager()
 	{
 		$service = new App\FrontModule\Model\ShootManager($this->getService('database.default.context'));
 		return $service;
@@ -589,7 +603,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\UserManager
 	 */
-	public function createService__47_App_FrontModule_Model_UserManager()
+	public function createService__48_App_FrontModule_Model_UserManager()
 	{
 		$service = new App\FrontModule\Model\UserManager($this->getService('database.default.context'));
 		return $service;
@@ -599,7 +613,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	/**
 	 * @return App\FrontModule\Model\UserRoleManager
 	 */
-	public function createService__48_App_FrontModule_Model_UserRoleManager()
+	public function createService__49_App_FrontModule_Model_UserRoleManager()
 	{
 		$service = new App\FrontModule\Model\UserRoleManager($this->getService('database.default.context'));
 		return $service;
@@ -611,15 +625,15 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceApplication__1()
 	{
-		$service = new App\FrontModule\Presenters\ComparePresenter($this->getService('45_App_FrontModule_Model_SessionManager'),
-			$this->getService('39_App_FrontModule_Model_DeviceManager'), $this->getService('46_App_FrontModule_Model_ShootManager'),
-			$this->getService('44_App_FrontModule_Model_ResultManager'));
+		$service = new App\FrontModule\Presenters\ComparePresenter($this->getService('46_App_FrontModule_Model_SessionManager'),
+			$this->getService('40_App_FrontModule_Model_DeviceManager'), $this->getService('47_App_FrontModule_Model_ShootManager'),
+			$this->getService('45_App_FrontModule_Model_ResultManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
-		$service->resultToleranceFactory = $this->getService('33_App_FrontModule_Forms_ResultToleranceFormFactory');
-		$service->resultIgnoreFactory = $this->getService('32_App_FrontModule_Forms_ResultIgnoreFormFactory');
+		$service->resultToleranceFactory = $this->getService('34_App_FrontModule_Forms_ResultToleranceFormFactory');
+		$service->resultIgnoreFactory = $this->getService('33_App_FrontModule_Forms_ResultIgnoreFormFactory');
 		$service->invalidLinkMode = 5;
 		return $service;
 	}
@@ -630,14 +644,14 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceApplication__10()
 	{
-		$service = new App\FrontModule\Presenters\UserPresenter($this->getService('45_App_FrontModule_Model_SessionManager'),
-			$this->getService('47_App_FrontModule_Model_UserManager'));
+		$service = new App\FrontModule\Presenters\UserPresenter($this->getService('46_App_FrontModule_Model_SessionManager'),
+			$this->getService('48_App_FrontModule_Model_UserManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
-		$service->userEditFactory = $this->getService('38_App_FrontModule_Forms_UserEditFormFactory');
-		$service->userAddFactory = $this->getService('37_App_FrontModule_Forms_UserAddFormFactory');
+		$service->userEditFactory = $this->getService('39_App_FrontModule_Forms_UserEditFormFactory');
+		$service->userAddFactory = $this->getService('38_App_FrontModule_Forms_UserAddFormFactory');
 		$service->invalidLinkMode = 5;
 		return $service;
 	}
@@ -685,8 +699,8 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceApplication__3()
 	{
-		$service = new App\FrontModule\Presenters\DevicePresenter($this->getService('45_App_FrontModule_Model_SessionManager'),
-			$this->getService('39_App_FrontModule_Model_DeviceManager'));
+		$service = new App\FrontModule\Presenters\DevicePresenter($this->getService('46_App_FrontModule_Model_SessionManager'),
+			$this->getService('40_App_FrontModule_Model_DeviceManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
@@ -728,7 +742,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceApplication__6()
 	{
-		$service = new App\FrontModule\Presenters\HomepagePresenter($this->getService('46_App_FrontModule_Model_ShootManager'));
+		$service = new App\FrontModule\Presenters\HomepagePresenter($this->getService('47_App_FrontModule_Model_ShootManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
@@ -743,13 +757,14 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceApplication__7()
 	{
-		$service = new App\FrontModule\Presenters\PlanPresenter($this->getService('45_App_FrontModule_Model_SessionManager'),
-			$this->getService('46_App_FrontModule_Model_ShootManager'), $this->getService('44_App_FrontModule_Model_ResultManager'),
-			$this->getService('41_App_FrontModule_Model_PlanManager'));
+		$service = new App\FrontModule\Presenters\PlanPresenter($this->getService('46_App_FrontModule_Model_SessionManager'),
+			$this->getService('47_App_FrontModule_Model_ShootManager'), $this->getService('45_App_FrontModule_Model_ResultManager'),
+			$this->getService('42_App_FrontModule_Model_PlanManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
+		$service->planEditFactory = $this->getService('32_App_FrontModule_Forms_PlanEditFormFactory');
 		$service->planAddFactory = $this->getService('31_App_FrontModule_Forms_PlanAddFormFactory');
 		$service->invalidLinkMode = 5;
 		return $service;
@@ -761,13 +776,13 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceApplication__8()
 	{
-		$service = new App\FrontModule\Presenters\ShootPresenter($this->getService('45_App_FrontModule_Model_SessionManager'),
-			$this->getService('39_App_FrontModule_Model_DeviceManager'), $this->getService('46_App_FrontModule_Model_ShootManager'));
+		$service = new App\FrontModule\Presenters\ShootPresenter($this->getService('46_App_FrontModule_Model_SessionManager'),
+			$this->getService('40_App_FrontModule_Model_DeviceManager'), $this->getService('47_App_FrontModule_Model_ShootManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
-		$service->shootAddFactory = $this->getService('34_App_FrontModule_Forms_ShootAddFormFactory');
+		$service->shootAddFactory = $this->getService('35_App_FrontModule_Forms_ShootAddFormFactory');
 		$service->invalidLinkMode = 5;
 		return $service;
 	}
@@ -783,8 +798,8 @@ class Container_544a9605ac extends Nette\DI\Container
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
-		$service->signUpFactory = $this->getService('36_App_FrontModule_Forms_SignUpFormFactory');
-		$service->signInFactory = $this->getService('35_App_FrontModule_Forms_SignInFormFactory');
+		$service->signUpFactory = $this->getService('37_App_FrontModule_Forms_SignUpFormFactory');
+		$service->signInFactory = $this->getService('36_App_FrontModule_Forms_SignInFormFactory');
 		$service->invalidLinkMode = 5;
 		return $service;
 	}
@@ -1040,7 +1055,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceSecurity__user()
 	{
-		$service = new Nette\Security\User($this->getService('security.userStorage'), $this->getService('47_App_FrontModule_Model_UserManager'));
+		$service = new Nette\Security\User($this->getService('security.userStorage'), $this->getService('48_App_FrontModule_Model_UserManager'));
 		$this->getService('tracy.bar')->addPanel(new Nette\Bridges\SecurityTracy\UserPanel($service));
 		return $service;
 	}

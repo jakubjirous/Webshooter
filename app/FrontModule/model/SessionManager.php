@@ -195,4 +195,18 @@ class SessionManager
    {
       return $this->section->resultIgnore;
    }
+
+
+   /**
+    * PLAN
+    */
+   public function setPlanEditID($id)
+   {
+      $this->section->planEditID = $id;
+   }
+   public function getPlanEditID()
+   {
+      return $this->section->planEditID;
+   }
+
 }

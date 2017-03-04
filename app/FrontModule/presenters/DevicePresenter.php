@@ -129,7 +129,7 @@ class DevicePresenter extends BasePresenter
    protected function createComponentDeviceEditForm()
    {
       return $this->deviceEditFactory->create(function () {
-         $this->flashMessage('Device was edited.', self::FLASH_MESSAGE_SUCCESS);
+         $this->flashMessage('Device was changed.', self::FLASH_MESSAGE_SUCCESS);
          $this->redirect('Device:settings');
       });
    }

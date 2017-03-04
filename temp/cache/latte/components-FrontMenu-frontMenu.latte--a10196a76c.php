@@ -72,6 +72,10 @@ class Templatea10196a76c extends Latte\Runtime\Template
                            <i class="fa fa-bullseye"></i>
                            Shoots settings
                         </a>
+                        <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">
+                           <i class="fa fa-calendar-o"></i>
+                           Plan settings
+                        </a>
 <?php
 			}
 ?>

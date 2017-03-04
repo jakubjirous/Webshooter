@@ -481,6 +481,7 @@ class ComparePresenter extends BasePresenter
       if ($this->isAjax()) {
          $this->redrawControl('changeResult');
       } else {
+         $this->flashMessage('Result color was changed.', self::FLASH_MESSAGE_SUCCESS);
          $this->redirect('this');
       }
    }
@@ -498,6 +499,7 @@ class ComparePresenter extends BasePresenter
       if ($this->isAjax()) {
          $this->redrawControl('changeResult');
       } else {
+         $this->flashMessage('Result background color was changed.', self::FLASH_MESSAGE_SUCCESS);
          $this->redirect('this');
       }
    }
@@ -542,6 +544,8 @@ class ComparePresenter extends BasePresenter
 
       // delete shoot from DB
       $this->stm->deleteShoot($id);
+
+      $this->flashMessage('Shoot was deleted.', self::FLASH_MESSAGE_SUCCESS);
       $this->redirect('this');
    }
 
@@ -555,6 +559,7 @@ class ComparePresenter extends BasePresenter
       $this->resultToleranceFactory->setDefaultTolerance(self::DEFAULT_TOLERANCE);
 
       return $this->resultToleranceFactory->create(function () {
+         $this->flashMessage('Result tolerance was changed.', self::FLASH_MESSAGE_SUCCESS);
          $this->redirect('this');
       });
    }
@@ -569,6 +574,7 @@ class ComparePresenter extends BasePresenter
       $this->resultIgnoreFactory->setSourceSize($this->sourceSize);
 
       return $this->resultIgnoreFactory->create(function () {
+         $this->flashMessage('Ignore part was changed.', self::FLASH_MESSAGE_SUCCESS);
          $this->redirect('this');
       });
    }

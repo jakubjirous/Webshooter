@@ -38,6 +38,7 @@ services:
 	- App\FrontModule\Forms\ResultToleranceFormFactory
 	- App\FrontModule\Forms\ResultIgnoreFormFactory
 	- App\FrontModule\Forms\PlanAddFormFactory
+	- App\FrontModule\Forms\PlanEditFormFactory
 
 	router: App\RouterFactory::createRouter
 
