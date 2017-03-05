@@ -20,22 +20,22 @@
    .change-color {
       .color-red {
          i {
-            color: rgb(255, 0, 0);
+            color: $red;
          }
       }
       .color-green {
          i {
-            color: rgb(0, 200, 0);
+            color: $green;
          }
       }
       .color-blue {
          i {
-            color: rgb(0, 127, 255);
+            color: $blue;
          }
       }
       .color-yellow {
          i {
-            color: rgb(230, 230, 0);
+            color: $yellow;
          }
       }
    }

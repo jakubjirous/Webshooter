@@ -21,102 +21,120 @@
 
 {block content}
    <div class="container">
+      <div class="plan-settings">
 
-      <table class="table table-striped">
-         <thead>
-         <tr>
-            <th>#</th>
-            <th>User</th>
-            <th>Start date</th>
-            <th>E-mail</th>
-            <th>Start <br> options</th>
-            <th>End <br> options</th>
-            <th>Result <br> color</th>
-            <th>Result <br> background</th>
-            <th>Result <br> tolerance</th>
-            <th>Result <br> difference</th>
-            <th>Ignore <br> part</th>
-            <th></th>
-         </tr>
-         </thead>
-         <tbody>
-         {foreach $plans as $plan}
-            <tr>
-               <td>{$iterator->counter}</td>
-               <td>{$plan->user->username}</td>
-               <td>
-                  {$plan->start_date|date:'d.m.Y'}
-                  <br>
-                  <small>{$plan->start_date|date:'H:i'}</small>
-               </td>
-               <td>
-                  <a href="mailto:{$plan->primary_email}">{$plan->primary_email}</a>
-                  {if $plan->secondary_email != NULL}
-                     <br> <a href="mailto:{$plan->secondary_email}">{$plan->secondary_email}</a>
-                  {/if}
-               </td>
-               <td>
-                  {if $plan->status == TRUE}
-                     {$plan->start->type}
-                     <br>
-                     <small>
-                        every {$plan->start_value}
-                        {if $plan->start_type == $daily}
-                           {$plan->start_value == 1 ? 'day' : 'days'}
-                        {elseif $plan->start_type == $weekly}
-                           {$plan->start_value == 1 ? 'week' : 'weeks'}
-                        {elseif $plan->start_type == $monthly}
-                           {$plan->start_value == 1 ? 'month' : 'monthss'}
-                        {elseif $plan->start_type == $yearly}
-                           {$plan->start_value == 1 ? 'year' : 'years'}
+         {if $plans}
+            <table class="table table-striped">
+               <thead>
+               <tr>
+                  <th>#</th>
+                  <th>User</th>
+                  <th>Start date</th>
+                  <th>E-mail</th>
+                  <th>Start <br> options</th>
+                  <th>End <br> options</th>
+                  <th>Result <br> color</th>
+                  <th>Result <br> background</th>
+                  <th>Result <br> tolerance</th>
+                  <th>Result <br> difference</th>
+                  <th>Ignore <br> part</th>
+                  <th></th>
+               </tr>
+               </thead>
+               <tbody>
+               {foreach $plans as $plan}
+                  <tr>
+                     <td data-title="#">{$iterator->counter}</td>
+                     <td data-title="User">{$plan->user->username}</td>
+                     <td data-title="Start date">
+                        <span>
+                           {$plan->start_date|date:'d.m.Y'} <br>
+                           <small>{$plan->start_date|date:'H:i'}</small>
+                        </span>
+                     </td>
+                     <td data-title="E-mail">
+                        <span>
+                           <a href="mailto:{$plan->primary_email}" title="Primary e-mail">{$plan->primary_email}</a>
+                           {if $plan->secondary_email != NULL}
+                              <br>
+                              <small>
+                                 <a href="mailto:{$plan->secondary_email}" title="Secondary e-mail">{$plan->secondary_email}</a>
+                              </small>
+                           {/if}
+                        </span>
+                     </td>
+                     <td data-title="Start options">
+                        <span>
+                        {if $plan->status == TRUE}
+                           {$plan->start->type}
+                           <br>
+                           <small>
+                              every {$plan->start_value}
+                              {if $plan->start_type == $daily}
+                                 {$plan->start_value == 1 ? 'day' : 'days'}
+                              {elseif $plan->start_type == $weekly}
+                                 {$plan->start_value == 1 ? 'week' : 'weeks'}
+                              {elseif $plan->start_type == $monthly}
+                                 {$plan->start_value == 1 ? 'month' : 'months'}
+                              {elseif $plan->start_type == $yearly}
+                                 {$plan->start_value == 1 ? 'year' : 'years'}
+                              {/if}
+                           </small>
+                        {else}
+                           <i class="fa fa-close"></i>
                         {/if}
-                     </small>
-                  {else}
-                     <i class="fa fa-close"></i>
-                  {/if}
-               </td>
-               <td>
-                  {if $plan->status == TRUE}
-                     {if $plan->end_type == $never}
-                        {$plan->end->type}
-                     {elseif $plan->end_type == $occurrence}
-                        After <strong>{$plan->end_occurrence}</strong>
-                        <br>
-                        <small>{$plan->end_occurrence == 1 ? 'occurence' : 'occurences'}</small>
-                     {elseif $plan->end_type == $date}
-                     {$plan->end_date|date:'d.m.Y'}
-                        <br>
-                        <small>{$plan->end_date|date:'H:i'}</small>
-                     {/if}
-                  {else}
-                     <i class="fa fa-close"></i>
-                  {/if}
-               </td>
-               <td class="color-{$plan->color}">
-                  <i class="fa fa-image" title="{$plan->color}"></i>
-               </td>
-               <td>{$plan->background}</td>
-               <td>{$plan->tolerance} %</td>
-               <td>&le; {$plan->difference} %</td>
-               <td>
-                  {if $plan->ignore_top != NULL && $plan->ignore_left != NULL && $plan->ignore_width != NULL && $plan->ignore_height != NULL}
-                     <i class="fa fa-check"></i>
-                  {else}
-                     <i class="fa fa-close"></i>
-                  {/if}
-               </td>
-               <td>
-                  <a n:href="Plan:detail $plan->id_plan" class="btn btn-primary btn-sm">
-                     <i class="fa fa-edit"></i>
-                  </a>
-                  <a n:href="delete! $plan->id_plan" class="btn btn-danger btn-sm" title="Delete plan"
-                     data-confirm="Are you sure to delete this plan?">
-                     <i class="fa fa-trash"></i>
-                  </a>
-               </td>
-            </tr>
-         {/foreach}
-         </tbody>
-      </table>
+                        </span>
+                     </td>
+                     <td data-title="End options">
+                        <span>
+                        {if $plan->status == TRUE}
+                           {if $plan->end_type == $never}
+                              {$plan->end->type}
+                           {elseif $plan->end_type == $occurrence}
+                              After <strong>{$plan->end_occurrence}</strong>
+                              <br>
+                              <small>{$plan->end_occurrence == 1 ? 'occurence' : 'occurences'}</small>
+                           {elseif $plan->end_type == $date}
+                           {$plan->end_date|date:'d.m.Y'}
+                              <br>
+                              <small>{$plan->end_date|date:'H:i'}</small>
+                           {/if}
+                        {else}
+                           <i class="fa fa-close"></i>
+                        {/if}
+                        </span>
+                     </td>
+                     <td class="color-{$plan->color}" data-title="Result color">
+                        <i class="fa fa-image" title="{$plan->color}"></i>
+                     </td>
+                     <td data-title="Result background">{$plan->background}</td>
+                     <td data-title="Result tolerance">{$plan->tolerance} %</td>
+                     <td data-title="Result difference">&le; {$plan->difference} %</td>
+                     <td data-title="Ignore part">
+                        {if $plan->ignore_top != NULL && $plan->ignore_left != NULL && $plan->ignore_width != NULL && $plan->ignore_height != NULL}
+                           <i class="fa fa-check"></i>
+                        {else}
+                           <i class="fa fa-close"></i>
+                        {/if}
+                     </td>
+                     <td>
+                        <a n:href="Plan:detail $plan->id_plan" class="btn btn-primary btn-sm" title="Detail">
+                           <i class="fa fa-edit"></i>
+                        </a>
+                        <a n:href="delete! $plan->id_plan" class="btn btn-danger btn-sm float-sm-right float-lg-none" title="Delete plan"
+                                                           data-confirm="Are you sure to delete this plan?">
+                           <i class="fa fa-trash"></i>
+                        </a>
+                     </td>
+                  </tr>
+               {/foreach}
+               </tbody>
+            </table>
+         {else}
+            <div class="alert alert-info" role="alert">
+               There is no comparison plan yet.
+            </div>
+         {/if}
+      </div>
    </div>
 {/block}

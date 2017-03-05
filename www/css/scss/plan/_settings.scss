@@ -1,0 +1,162 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Plan settings
+// ---------------------------------------------------------------------------------------------------------------------
+
+.plan-settings {
+   table {
+      thead, tbody {
+         tr {
+            th, td {
+               vertical-align: middle;
+
+               &.color-red {
+                  i {
+                     color: $red;
+                  }
+               }
+               &.color-green {
+                  i {
+                     color: $green;
+                  }
+               }
+               &.color-blue {
+                  i {
+                     color: $blue;
+                  }
+               }
+               &.color-yellow {
+                  i {
+                     color: $yellow;
+                  }
+               }
+
+            }
+         }
+      }
+   }
+
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      thead, tbody {
+         th, td {
+            display: block;
+            padding: rem(10px);
+            text-align: center !important;
+            white-space: normal;
+         }
+      }
+      thead {
+         position: absolute;
+         padding: 0;
+         border: 0;
+         height: 1px;
+         width: 1px;
+         overflow: hidden;
+      }
+      tbody {
+         tr {
+            border-bottom: 1px solid $gray-lighter;
+            &:last-child {
+               border-bottom: none;
+            }
+            td, th {
+               width: 100%;
+               border-bottom: 1px solid $gray-lighter;
+               &[data-title]:before {
+                  content: attr(data-title);
+                  float: left;
+                  width: 100%;
+                  text-align: center !important;
+                  @include font-bold;
+                  color: $gray;
+               }
+            }
+         }
+      }
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      thead, tbody {
+         th, td {
+            display: block;
+            padding: rem(10px) rem(20px);
+            text-align: left !important;
+            white-space: normal;
+         }
+      }
+      thead {
+         position: absolute;
+         padding: 0;
+         border: 0;
+         height: 1px;
+         width: 1px;
+         overflow: hidden;
+      }
+      tbody {
+         tr {
+            border-bottom: 1px solid $gray-lighter;
+            &:last-child {
+               border-bottom: none;
+            }
+            td, th {
+               width: 100%;
+               border-bottom: 1px solid $gray-lighter;
+               span {
+                  display: inline-block;
+                  width: 50%;
+               }
+               &[data-title]:before {
+                  content: attr(data-title);
+                  float: left;
+                  width: 50%;
+                  text-align: left !important;
+                  @include font-bold;
+                  color: $gray;
+               }
+            }
+         }
+      }
+   }
+
+   //md
+   @include media-breakpoint-up(md) {
+      table {
+         thead {
+            tr {
+               th {
+                  padding: rem(10px) 0 !important;
+                  text-align: center !important;
+                  a {
+                     color: $gray;
+                     text-decoration: none !important;
+                     i {
+                        @include opacity(0);
+                        @include transition(all $transition-effect-speed ease-in-out);
+                     }
+                     &.active {
+                        i {
+                           @include opacity(1);
+                        }
+                        color: $azure;
+                     }
+                     &:hover {
+                        i {
+                           @include opacity(1);
+                        }
+                        text-decoration: none !important;
+                     }
+                  }
+               }
+            }
+         }
+         tbody {
+            tr {
+               td, th {
+                  text-align: center;
+               }
+            }
+         }
+      }
+   }
+}

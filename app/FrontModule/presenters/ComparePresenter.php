@@ -151,7 +151,7 @@ class ComparePresenter extends BasePresenter
 
 
    /**
-    * Create comparision result by settings
+    * Create comparison result by settings
     * @param $x
     * @param $y
     * @param $pixels1
@@ -176,7 +176,7 @@ class ComparePresenter extends BasePresenter
       $this->template->target = $target = $this->stm->getShootById($targetId);
 
       /**
-       * Generate image comparision by settings
+       * Generate image comparison by settings
        */
       $image1 = $this->imageCreate($source);
       $image2 = $this->imageCreate($target);

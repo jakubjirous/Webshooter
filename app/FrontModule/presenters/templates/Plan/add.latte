@@ -4,25 +4,38 @@
 
 {block header}
    <header>
-      <h1 n:block=title>Plan detail</h1>
+      <h1 n:block=title>Plan comparison</h1>
    </header>
 {/block}
 
-{block breadcrumbContent}
-   <li class="breadcrumb-item"><a n:href="Plan:settings">Plan settings</a></li>
-   <li class="breadcrumb-item active">Plan detail</li>
+{block breadcrumb}
+   {if $isLoggedIn}
+      <div class="container">
+         <ol class="breadcrumb bg-faded">
+            <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
+            <li class="breadcrumb-item"><a n:href="Shoot:settings">Shoots settings</a></li>
+            <li class="breadcrumb-item"><a n:href="Compare:list $source->id_shoot">Select comparison</a></li>
+            <li class="breadcrumb-item"><a n:href="Compare:result $source->id_shoot, $target->id_shoot">Comparison
+                  result</a></li>
+            <li class="breadcrumb-item active">Plan comparison</li>
+         </ol>
+      </div>
+   {/if}
 {/block}
 
 {block content}
    <div class="container">
-      <div class="plan-detail">
+      <div class="plan-add">
          <div class="row">
             <div class="col-xs-12">
 
-               <form n:name="planEditForm">
+               <form n:name="planAddForm">
 
                   {* HIDDEN FIELDS *}
-                  <input type="hidden" n:name="planID">
+                  <input type="hidden" n:name="userID">
+                  <input type="hidden" n:name="sourceID">
+                  <input type="hidden" n:name="targetID">
+
 
                   <fieldset>
                      <legend>Plan options</legend>
@@ -325,10 +338,10 @@
                   </div>
 
 
-                  <div class="row form-group margin-bottom">
-                     <div class="col-xs-12 col-md-6 offset-md-4 col-lg-4">
-                        <button type="submit" n:name="save" class="btn btn-primary">
-                           Save
+                  <div class="form-group margin-top margin-bottom">
+                     <div class="col-xs-12 text-xs-center">
+                        <button type="submit" n:name="create" class="btn btn-primary btn-lg">
+                           <i class="fa fa-calendar-plus-o"></i> Create plan
                         </button>
                      </div>
                   </div>

@@ -4,7 +4,7 @@
 
 {block header}
    <header>
-      <h1 n:block=title>Comparision result</h1>
+      <h1 n:block=title>Comparison result</h1>
    </header>
 {/block}
 
@@ -14,8 +14,8 @@
          <ol class="breadcrumb bg-faded">
             <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
             <li class="breadcrumb-item"><a n:href="Shoot:settings">Shoots settings</a></li>
-            <li class="breadcrumb-item"><a n:href="Compare:list $source->id_shoot">Select comparision</a></li>
-            <li class="breadcrumb-item active">Comparision result</li>
+            <li class="breadcrumb-item"><a n:href="Compare:list $source->id_shoot">Select comparison</a></li>
+            <li class="breadcrumb-item active">Comparison result</li>
          </ol>
       </div>
    {/if}
@@ -255,10 +255,10 @@
                         <i class="fa fa-download"></i>
                         Download
                      </a>
-                     <a n:href="Plan:create $source->id_shoot, $target->id_shoot"
+                     <a n:href="Plan:add $source->id_shoot, $target->id_shoot"
                            class="btn btn-success btn-outline-success float-xs-right">
                         <i class="fa fa-calendar-plus-o"></i>
-                        Plan comparision
+                        Plan comparison
                      </a>
                   </div>
                </div>

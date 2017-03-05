@@ -69,7 +69,7 @@ class Template30b9d7a486 extends Latte\Runtime\Template
 	function blockTitle($_args)
 	{
 		extract($_args);
-?>      <h1>Comparision result</h1>
+?>      <h1>Comparison result</h1>
 <?php
 	}
 
@@ -83,8 +83,8 @@ class Template30b9d7a486 extends Latte\Runtime\Template
          <ol class="breadcrumb bg-faded">
             <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:default")) ?>"><i class="fa fa-image"></i></a></li>
             <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:settings")) ?>">Shoots settings</a></li>
-            <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:list", [$source->id_shoot])) ?>">Select comparision</a></li>
-            <li class="breadcrumb-item active">Comparision result</li>
+            <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:list", [$source->id_shoot])) ?>">Select comparison</a></li>
+            <li class="breadcrumb-item active">Comparison result</li>
          </ol>
       </div>
 <?php
@@ -443,9 +443,9 @@ class Template30b9d7a486 extends Latte\Runtime\Template
                         Download
                      </a>
                      <a
-                           class="btn btn-success btn-outline-success float-xs-right" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:create", [$source->id_shoot, $target->id_shoot])) ?>">
+                           class="btn btn-success btn-outline-success float-xs-right" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:add", [$source->id_shoot, $target->id_shoot])) ?>">
                         <i class="fa fa-calendar-plus-o"></i>
-                        Plan comparision
+                        Plan comparison
                      </a>
                   </div>
                </div>

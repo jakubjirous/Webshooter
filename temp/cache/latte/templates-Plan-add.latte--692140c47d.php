@@ -1,21 +1,21 @@
 <?php
-// source: C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters/templates/Plan/detail.latte
+// source: C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters/templates/Plan/add.latte
 
 use Latte\Runtime as LR;
 
-class Template83d0e5f225 extends Latte\Runtime\Template
+class Template692140c47d extends Latte\Runtime\Template
 {
 	public $blocks = [
 		'header' => 'blockHeader',
 		'title' => 'blockTitle',
-		'breadcrumbContent' => 'blockBreadcrumbContent',
+		'breadcrumb' => 'blockBreadcrumb',
 		'content' => 'blockContent',
 	];
 
 	public $blockTypes = [
 		'header' => 'html',
 		'title' => 'html',
-		'breadcrumbContent' => 'html',
+		'breadcrumb' => 'html',
 		'content' => 'html',
 	];
 
@@ -33,7 +33,7 @@ class Template83d0e5f225 extends Latte\Runtime\Template
 ?>
 
 <?php
-		$this->renderBlock('breadcrumbContent', get_defined_vars());
+		$this->renderBlock('breadcrumb', get_defined_vars());
 ?>
 
 <?php
@@ -67,17 +67,29 @@ class Template83d0e5f225 extends Latte\Runtime\Template
 	function blockTitle($_args)
 	{
 		extract($_args);
-?>      <h1>Plan detail</h1>
+?>      <h1>Plan comparison</h1>
 <?php
 	}
 
 
-	function blockBreadcrumbContent($_args)
+	function blockBreadcrumb($_args)
 	{
 		extract($_args);
-		?>   <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:settings")) ?>">Plan settings</a></li>
-   <li class="breadcrumb-item active">Plan detail</li>
+		if ($isLoggedIn) {
+?>
+      <div class="container">
+         <ol class="breadcrumb bg-faded">
+            <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:default")) ?>"><i class="fa fa-image"></i></a></li>
+            <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:settings")) ?>">Shoots settings</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:list", [$source->id_shoot])) ?>">Select comparison</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:result", [$source->id_shoot, $target->id_shoot])) ?>">Comparison
+                  result</a></li>
+            <li class="breadcrumb-item active">Plan comparison</li>
+         </ol>
+      </div>
 <?php
+		}
+		
 	}
 
 
@@ -86,21 +98,32 @@ class Template83d0e5f225 extends Latte\Runtime\Template
 		extract($_args);
 ?>
    <div class="container">
-      <div class="plan-detail">
+      <div class="plan-add">
          <div class="row">
             <div class="col-xs-12">
 
 <?php
-		$form = $_form = $this->global->formsStack[] = $this->global->uiControl["planEditForm"];
+		$form = $_form = $this->global->formsStack[] = $this->global->uiControl["planAddForm"];
 		?>               <form<?php
 		echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin(end($this->global->formsStack), array (
 		), FALSE) ?>>
 
                   <input type="hidden"<?php
-		$_input = end($this->global->formsStack)["planID"];
+		$_input = end($this->global->formsStack)["userID"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'type' => NULL,
 		))->attributes() ?>>
+                  <input type="hidden"<?php
+		$_input = end($this->global->formsStack)["sourceID"];
+		echo $_input->getControlPart()->addAttributes(array (
+		'type' => NULL,
+		))->attributes() ?>>
+                  <input type="hidden"<?php
+		$_input = end($this->global->formsStack)["targetID"];
+		echo $_input->getControlPart()->addAttributes(array (
+		'type' => NULL,
+		))->attributes() ?>>
+
 
                   <fieldset>
                      <legend>Plan options</legend>
@@ -180,7 +203,7 @@ class Template83d0e5f225 extends Latte\Runtime\Template
                            <div class="row">
                               <div class="col-xs-12 col-md-3 col-lg-2 offset-lg-2 col-xl-2 custom-radio-type text-xs-left text-sm-center">
                                  <label class="checked">
-                                    <input type="radio" checked value="<?php echo LR\Filters::escapeHtmlAttr($daily) /* line 82 */ ?>"
+                                    <input type="radio" checked value="<?php echo LR\Filters::escapeHtmlAttr($daily) /* line 95 */ ?>"
                                            data-nette-rules='[{"op":":equal","rules":[],"control":"startType","toggle":{"repeate-daily":true},"arg":1},{"op":":equal","rules":[],"control":"startType","toggle":{"repeate-weekly":true},"arg":2},{"op":":equal","rules":[],"control":"startType","toggle":{"repeate-monthly":true},"arg":3},{"op":":equal","rules":[],"control":"startType","toggle":{"repeate-yearly":true},"arg":4}]'<?php
 		$_input = end($this->global->formsStack)["startType"];
 		echo $_input->getControlPart()->addAttributes(array (
@@ -195,7 +218,7 @@ class Template83d0e5f225 extends Latte\Runtime\Template
                               </div>
                               <div class="col-xs-12 col-md-3 col-lg-2 col-xl-2 custom-radio-type text-xs-left text-sm-center">
                                  <label>
-                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($weekly) /* line 90 */ ?>"<?php
+                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($weekly) /* line 103 */ ?>"<?php
 		$_input = end($this->global->formsStack)["startType"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'type' => NULL,
@@ -207,7 +230,7 @@ class Template83d0e5f225 extends Latte\Runtime\Template
                               </div>
                               <div class="col-xs-12 col-md-3 col-lg-2 col-xl-2 custom-radio-type text-xs-left text-sm-center">
                                  <label>
-                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($monthly) /* line 97 */ ?>"<?php
+                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($monthly) /* line 110 */ ?>"<?php
 		$_input = end($this->global->formsStack)["startType"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'type' => NULL,
@@ -219,7 +242,7 @@ class Template83d0e5f225 extends Latte\Runtime\Template
                               </div>
                               <div class="col-xs-12 col-md-3 col-lg-2 col-xl-2 custom-radio-type text-xs-left text-sm-center">
                                  <label>
-                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($yearly) /* line 104 */ ?>"<?php
+                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($yearly) /* line 117 */ ?>"<?php
 		$_input = end($this->global->formsStack)["startType"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'type' => NULL,
@@ -312,7 +335,7 @@ class Template83d0e5f225 extends Latte\Runtime\Template
                            <div class="row">
                               <div class="col-xs-12 col-md-3 col-lg-2 offset-lg-2 col-xl-2 custom-radio-type text-xs-left text-sm-center">
                                  <label class="checked">
-                                    <input type="radio" checked value="<?php echo LR\Filters::escapeHtmlAttr($never) /* line 169 */ ?>"
+                                    <input type="radio" checked value="<?php echo LR\Filters::escapeHtmlAttr($never) /* line 182 */ ?>"
                                            data-nette-rules='[{"op":":equal","rules":[],"control":"endType","toggle":{"end-after":true},"arg":2},{"op":":equal","rules":[],"control":"endType","toggle":{"end-date":true},"arg":3}]'<?php
 		$_input = end($this->global->formsStack)["endType"];
 		echo $_input->getControlPart()->addAttributes(array (
@@ -327,7 +350,7 @@ class Template83d0e5f225 extends Latte\Runtime\Template
                               </div>
                               <div class="col-xs-12 col-md-6 col-lg-4 col-xl-4 custom-radio-type text-xs-left text-sm-center">
                                  <label>
-                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($occurrence) /* line 177 */ ?>"<?php
+                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($occurrence) /* line 190 */ ?>"<?php
 		$_input = end($this->global->formsStack)["endType"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'type' => NULL,
@@ -339,7 +362,7 @@ class Template83d0e5f225 extends Latte\Runtime\Template
                               </div>
                               <div class="col-xs-12 col-md-3 col-lg-2 col-xl-2 custom-radio-type text-xs-left text-sm-center">
                                  <label>
-                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($date) /* line 184 */ ?>"<?php
+                                    <input type="radio" value="<?php echo LR\Filters::escapeHtmlAttr($date) /* line 197 */ ?>"<?php
 		$_input = end($this->global->formsStack)["endType"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'type' => NULL,
@@ -553,15 +576,15 @@ class Template83d0e5f225 extends Latte\Runtime\Template
                   </div>
 
 
-                  <div class="row form-group margin-bottom">
-                     <div class="col-xs-12 col-md-6 offset-md-4 col-lg-4">
-                        <button type="submit" class="btn btn-primary"<?php
-		$_input = end($this->global->formsStack)["save"];
+                  <div class="form-group margin-top margin-bottom">
+                     <div class="col-xs-12 text-xs-center">
+                        <button type="submit" class="btn btn-primary btn-lg"<?php
+		$_input = end($this->global->formsStack)["create"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'type' => NULL,
 		'class' => NULL,
 		))->attributes() ?>>
-                           Save
+                           <i class="fa fa-calendar-plus-o"></i> Create plan
                         </button>
                      </div>
                   </div>

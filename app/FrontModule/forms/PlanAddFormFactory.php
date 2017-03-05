@@ -9,6 +9,7 @@ use App\FrontModule\Model\SessionManager;
 use Nette;
 use Nette\Utils\Html;
 use Nette\Application\UI\Form;
+use Nette\Utils\DateTime;
 
 
 class PlanAddFormFactory
@@ -71,21 +72,26 @@ class PlanAddFormFactory
       $form->addHidden('sourceID', $this->getSourceID());
       $form->addHidden('targetID', $this->getTargetID());
 
+      $today = new DateTime();
+      $startDateDefault = $today->format('Y-m-d') . 'T' . $today->format('H:i');
+
       /* DATETIME, EMAIL */
       $form->addGroup('');
       $form->addText('startDate', 'Start date & time:')
          ->setType('datetime-local')
-         ->setDefaultValue('2017-01-01T12:00')
-         ->setRequired('Please set start date and time for comparision plan');
+         ->setAttribute('min', $startDateDefault)
+         ->setDefaultValue($startDateDefault)
+         ->setRequired('Please set start date and time for comparison plan');
+
 
       $form->addEmail('primaryEmail', 'Primary e-mail:')
          ->setDefaultValue($this->primaryEmail ? $this->primaryEmail : '')
-         ->setRequired('Please fill your primary e-mail address for comparision plan');
+         ->setRequired('Please fill your primary e-mail address for comparison plan');
 
       $form->addText('secondaryEmail', 'Secondary e-mail:')
          ->addCondition($form::FILLED)
          ->addRule($form::EMAIL)
-         ->setRequired('Please fill your secondary e-mail address for comparision plan')
+         ->setRequired('Please fill your secondary e-mail address for comparison plan')
          ->endCondition();
 
       $form->addCheckbox('status', 'Enable repeat')
@@ -210,18 +216,18 @@ class PlanAddFormFactory
          ->endCondition();
 
 
-      /* COMPARISION SETTINGS */
-      $form->addGroup('Comparision settings');
+      /* COMPARISON SETTINGS */
+      $form->addGroup('Comparison settings');
 
       $form->addSelect('color', 'Result color:', $this->colors)
          ->setPrompt('--- Choose color ---')
          ->setDefaultValue($this->sm->getResultColor() ? $this->sm->getResultColor() : $this->colors['red'])
-         ->setRequired('Please choose color for comparision plan');
+         ->setRequired('Please choose color for comparison plan');
 
       $form->addSelect('background', 'Result background:', $this->backgrounds)
          ->setPrompt('--- Choose background ---')
          ->setDefaultValue($this->sm->getResultBackground() ? $this->sm->getResultBackground() : $this->backgrounds['grayscale'])
-         ->setRequired('Please choose background color for comparision plan');
+         ->setRequired('Please choose background color for comparison plan');
 
       $form->addText('tolerance', 'Tolerance:')
          ->setType('number')
@@ -229,7 +235,7 @@ class PlanAddFormFactory
          ->setAttribute('max', 100)
          ->setAttribute('step', 1)
          ->setDefaultValue($this->sm->getResultTolerance() ? $this->sm->getResultTolerance() : 50)
-         ->setRequired('Please set tolerance for comparision plan');
+         ->setRequired('Please set tolerance for comparison plan');
 
       $form->addText('difference', 'Difference:')
          ->setType('number')
@@ -237,8 +243,8 @@ class PlanAddFormFactory
          ->setAttribute('max', 100)
          ->setAttribute('step', 0.01)
          ->setDefaultValue(0)
-         ->setRequired('Please set difference for comparision plan')
-         ->setOption('description', 'If will be difference larger than you set, Webshooter send notification on your e-mail with comparision result');
+         ->setRequired('Please set difference for comparison plan')
+         ->setOption('description', 'If will be difference larger than you set, Webshooter send notification on your e-mail with comparison result');
 
 
       /* IGNORE PART DEFINITION */

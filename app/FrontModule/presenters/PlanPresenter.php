@@ -99,7 +99,7 @@ class PlanPresenter extends BasePresenter
    }
 
 
-   public function renderCreate($sourceId, $targetId)
+   public function renderAdd($sourceId, $targetId)
    {
       $this->isLoggedIn();
       $this->validateShootId($sourceId);
@@ -112,6 +112,15 @@ class PlanPresenter extends BasePresenter
       $this->template->source = $source = $this->stm->getShootById($sourceId);
       $this->template->target = $target = $this->stm->getShootById($targetId);
       $this->sourceSize = $this->imageSize($source);
+
+      $this->template->daily = self::REPEATE_START_DAILY;
+      $this->template->weekly = self::REPEATE_START_WEEKLY;
+      $this->template->monthly = self::REPEATE_START_MONTHLY;
+      $this->template->yearly = self::REPEATE_START_YEARLY;
+
+      $this->template->never = self::REPEATE_END_NEVER;
+      $this->template->occurrence = self::REPEATE_END_OCCURRENCES;
+      $this->template->date = self::REPEATE_END_DATE;
    }
 
 
@@ -142,6 +151,15 @@ class PlanPresenter extends BasePresenter
       $this->template->plan = $plan = $this->pm->getPlanById($id);
       $source = $this->stm->getShootById($plan->id_source);
       $this->editSize = $this->imageSize($source);
+
+      $this->template->daily = self::REPEATE_START_DAILY;
+      $this->template->weekly = self::REPEATE_START_WEEKLY;
+      $this->template->monthly = self::REPEATE_START_MONTHLY;
+      $this->template->yearly = self::REPEATE_START_YEARLY;
+
+      $this->template->never = self::REPEATE_END_NEVER;
+      $this->template->occurrence = self::REPEATE_END_OCCURRENCES;
+      $this->template->date = self::REPEATE_END_DATE;
    }
 
 

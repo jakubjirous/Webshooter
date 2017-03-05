@@ -70,7 +70,7 @@ class Template711af195f2 extends Latte\Runtime\Template
 	function blockTitle($_args)
 	{
 		extract($_args);
-?>      <h1>Select comparision</h1>
+?>      <h1>Select comparison</h1>
 <?php
 	}
 
@@ -84,7 +84,7 @@ class Template711af195f2 extends Latte\Runtime\Template
          <ol class="breadcrumb bg-faded">
             <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:default")) ?>"><i class="fa fa-image"></i></a></li>
             <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:settings")) ?>">Shoots settings</a></li>
-            <li class="breadcrumb-item active">Select comparision</li>
+            <li class="breadcrumb-item active">Select comparison</li>
          </ol>
       </div>
 <?php

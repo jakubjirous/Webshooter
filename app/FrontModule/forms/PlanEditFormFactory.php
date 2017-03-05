@@ -77,17 +77,17 @@ class PlanEditFormFactory
       $form->addText('startDate', 'Start date & time:')
          ->setType('datetime-local')
          ->setDefaultValue($defaultStartDate)
-         ->setRequired('Please set start date and time for comparision plan');
+         ->setRequired('Please set start date and time for comparison plan');
 
       $form->addEmail('primaryEmail', 'Primary e-mail:')
          ->setDefaultValue($plan->primary_email)
-         ->setRequired('Please fill your primary e-mail address for comparision plan');
+         ->setRequired('Please fill your primary e-mail address for comparison plan');
 
       $form->addText('secondaryEmail', 'Secondary e-mail:')
          ->setDefaultValue($plan->secondary_email)
          ->addCondition($form::FILLED)
          ->addRule($form::EMAIL)
-         ->setRequired('Please fill your secondary e-mail address for comparision plan')
+         ->setRequired('Please fill your secondary e-mail address for comparison plan')
          ->endCondition();
 
       $form->addCheckbox('status', 'Enable repeat')
@@ -218,18 +218,18 @@ class PlanEditFormFactory
          ->endCondition();
 
 
-      /* COMPARISION SETTINGS */
-      $form->addGroup('Comparision settings');
+      /* COMPARISON SETTINGS */
+      $form->addGroup('Comparison settings');
 
       $form->addSelect('color', 'Result color:', $this->colors)
          ->setPrompt('--- Choose color ---')
          ->setDefaultValue($plan->color)
-         ->setRequired('Please choose color for comparision plan');
+         ->setRequired('Please choose color for comparison plan');
 
       $form->addSelect('background', 'Result background:', $this->backgrounds)
          ->setPrompt('--- Choose background ---')
          ->setDefaultValue($plan->background)
-         ->setRequired('Please choose background color for comparision plan');
+         ->setRequired('Please choose background color for comparison plan');
 
       $form->addText('tolerance', 'Tolerance:')
          ->setType('number')
@@ -237,7 +237,7 @@ class PlanEditFormFactory
          ->setAttribute('max', 100)
          ->setAttribute('step', 1)
          ->setDefaultValue($plan->tolerance)
-         ->setRequired('Please set tolerance for comparision plan');
+         ->setRequired('Please set tolerance for comparison plan');
 
       $form->addText('difference', 'Difference:')
          ->setType('number')
@@ -245,8 +245,8 @@ class PlanEditFormFactory
          ->setAttribute('max', 100)
          ->setAttribute('step', 0.01)
          ->setDefaultValue($plan->difference)
-         ->setRequired('Please set difference for comparision plan')
-         ->setOption('description', 'If will be difference larger than you set, Webshooter send notification on your e-mail with comparision result');
+         ->setRequired('Please set difference for comparison plan')
+         ->setOption('description', 'If will be difference larger than you set, Webshooter send notification on your e-mail with comparison result');
 
 
       /* IGNORE PART DEFINITION */

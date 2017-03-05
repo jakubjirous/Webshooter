@@ -46,6 +46,8 @@ class Templateba0cd00d76 extends Latte\Runtime\Template
    <link rel="stylesheet" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 20 */ ?>/css/ekko-lightbox-dark-theme.css">
    <link rel="stylesheet" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 21 */ ?>/css/style.css">
 
+   <link rel="shortcut icon" type="image/x-icon" href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 23 */ ?>/favicon.ico">
+
    <?php
 		if ($this->getParentName()) return get_defined_vars();
 		$this->renderBlock('head', get_defined_vars());
@@ -56,7 +58,7 @@ class Templateba0cd00d76 extends Latte\Runtime\Template
 <div class="wrapper">
 
 <?php
-		/* line 30 */ $_tmp = $this->global->uiControl->getComponent("frontMenu");
+		/* line 32 */ $_tmp = $this->global->uiControl->getComponent("frontMenu");
 		if ($_tmp instanceof Nette\Application\UI\IRenderable) $_tmp->redrawControl(NULL, FALSE);
 		$_tmp->render();
 ?>
@@ -69,12 +71,12 @@ class Templateba0cd00d76 extends Latte\Runtime\Template
 <?php
 		$iterations = 0;
 		foreach ($flashes as $flash) {
-			?>      <div class="alert alert-<?php echo LR\Filters::escapeHtmlAttr($flash->type) /* line 35 */ ?> fade in" role="alert">
+			?>      <div class="alert alert-<?php echo LR\Filters::escapeHtmlAttr($flash->type) /* line 37 */ ?> fade in" role="alert">
          <button type="button" class="close" data-dismiss="alert">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
          </button>
-         <strong><?php echo LR\Filters::escapeHtmlText($flash->message) /* line 40 */ ?></strong>
+         <strong><?php echo LR\Filters::escapeHtmlText($flash->message) /* line 42 */ ?></strong>
       </div>
 <?php
 			$iterations++;
@@ -92,7 +94,7 @@ class Templateba0cd00d76 extends Latte\Runtime\Template
 
    <footer>
 <?php
-		/* line 50 */ $_tmp = $this->global->uiControl->getComponent("footer");
+		/* line 52 */ $_tmp = $this->global->uiControl->getComponent("footer");
 		if ($_tmp instanceof Nette\Application\UI\IRenderable) $_tmp->redrawControl(NULL, FALSE);
 		$_tmp->render();
 ?>
@@ -112,7 +114,7 @@ class Templateba0cd00d76 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['flash'])) trigger_error('Variable $flash overwritten in foreach on line 35');
+		if (isset($this->params['flash'])) trigger_error('Variable $flash overwritten in foreach on line 37');
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
 	}
@@ -131,6 +133,8 @@ class Templateba0cd00d76 extends Latte\Runtime\Template
    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
    <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
 
+   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 61 */ ?>/js/moment-with-locales.js"></script>
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
            integrity="sha256-/5pHDZh2fv1eZImyfiThtB5Ag4LqDjyittT7fLjdT/8=" crossorigin="anonymous"></script>
 
@@ -141,10 +145,12 @@ class Templateba0cd00d76 extends Latte\Runtime\Template
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
 
-   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 70 */ ?>/js/nette.forms.js"></script>
-   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 71 */ ?>/js/nette.ajax.js"></script>
-   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 72 */ ?>/js/ekko-lightbox.js"></script>
-   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 73 */ ?>/js/main.js"></script>
+   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 76 */ ?>/js/bootstrap-datetimepicker.js"></script>
+
+   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 78 */ ?>/js/nette.forms.js"></script>
+   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 79 */ ?>/js/nette.ajax.js"></script>
+   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 80 */ ?>/js/ekko-lightbox.js"></script>
+   <script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 81 */ ?>/js/main.js"></script>
 <?php
 	}
 

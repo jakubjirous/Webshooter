@@ -47,7 +47,7 @@ class PlanManager
 
 
    /**
-    * Get all comparision plans
+    * Get all comparison plans
     * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
     */
    public function getAllPlans()
@@ -87,7 +87,7 @@ class PlanManager
 
 
    /**
-    * Create new comparision plan
+    * Create new comparison plan
     * @param $userID
     * @param $sourceID
     * @param $targetID

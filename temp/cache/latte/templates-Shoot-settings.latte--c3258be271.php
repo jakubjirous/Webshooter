@@ -401,7 +401,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                  <td>
                                     <a class="btn btn-success btn-outline-success" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:list", [$shoot->id_shoot])) ?>">
                                        <i class="fa fa-exchange"></i>
-                                       Comparision
+                                       Comparison
                                     </a>
                                  </td>
                                  <td></td>
@@ -471,7 +471,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
 					echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
                                        <i class="fa fa-download"></i>
                                     </a>
-                                    <a class="btn btn-success btn-outline-success" title="Comparision" href="<?php
+                                    <a class="btn btn-success btn-outline-success" title="Comparison" href="<?php
 					echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:list", [$shoot->id_shoot])) ?>">
                                        <i class="fa fa-exchange"></i>
                                     </a>
@@ -594,7 +594,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                     <td>
                                        <a class="btn btn-success btn-outline-success" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:list", [$shoot->id_shoot])) ?>">
                                           <i class="fa fa-exchange"></i>
-                                          Comparision
+                                          Comparison
                                        </a>
                                     </td>
                                     <td></td>
@@ -687,7 +687,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
                               <td data-title="Action">
                                  <a class="btn btn-success btn-outline-success btn-sm" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:list", [$shoot->id_shoot])) ?>">
                                     <i class="fa fa-exchange"></i>
-                                    Comparision
+                                    Comparison
                                  </a>
                                  <a class="btn btn-primary btn-outline-primary btn-sm" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
                                     <i class="fa fa-download"></i>
