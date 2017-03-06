@@ -51,9 +51,9 @@ class UserAddFormFactory
       $form->addText('username', 'Username:')
          ->setRequired('Please enter username.');
 
-      $form->addText('email', 'E-mail:');
-//         ->setRequired('Please enter user e-mail.')
-//         ->addRule($form::EMAIL);
+      $form->addText('email', 'E-mail:')
+         ->setRequired('Please enter user e-mail.')
+         ->addRule($form::EMAIL);
 
       $form->addPassword('password', 'Password:')
          ->setOption('description', sprintf('at least %d characters', self::PASSWORD_MIN_LENGTH))
