@@ -2,7 +2,7 @@
 // source: C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app/config/config.neon 
 // source: C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app/config/config.local.neon 
 
-class Container_544a9605ac extends Nette\DI\Container
+class Container_ad76470d2f extends Nette\DI\Container
 {
 	protected $meta = [
 		'types' => [
@@ -378,7 +378,7 @@ class Container_544a9605ac extends Nette\DI\Container
 			'wwwDir' => 'C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\www',
 			'debugMode' => TRUE,
 			'productionMode' => FALSE,
-			'consoleMode' => FALSE,
+			'consoleMode' => TRUE,
 			'tempDir' => 'C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app/../temp',
 		]);
 	}
@@ -1010,7 +1010,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceLatte__latteFactory()
 	{
-		return new Container_544a9605ac_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory($this);
+		return new Container_ad76470d2f_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory($this);
 	}
 
 
@@ -1123,12 +1123,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	public function initialize()
 	{
 		$this->getService('tracy.bar')->addPanel(new Nette\Bridges\DITracy\ContainerPanel($this));
-		header('X-Frame-Options: SAMEORIGIN');
-		header('X-Powered-By: Nette Framework');
-		header('Content-Type: text/html; charset=utf-8');
-		$this->getService('session.session')->exists() && $this->getService('session.session')->start();
 		Tracy\Debugger::setLogger($this->getService('tracy.logger'));
-		if ($tmp = $this->getByType("Nette\Http\Session", FALSE)) { $tmp->start(); Tracy\Debugger::dispatch(); };
 		$this->getByType('Tracy\Bar')->addPanel($this->getService('cronner.bar'));
 		RadekDostal\NetteComponents\DateTimePicker\TbDateTimePicker::register('j. n. Y H:I');
 	}
@@ -1137,18 +1132,18 @@ class Container_544a9605ac extends Nette\DI\Container
 
 
 
-final class Container_544a9605ac_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory implements Nette\Bridges\ApplicationLatte\ILatteFactory
+final class Container_ad76470d2f_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory implements Nette\Bridges\ApplicationLatte\ILatteFactory
 {
 	private $container;
 
 
-	public function __construct(Container_544a9605ac $container)
+	public function __construct(Container_ad76470d2f $container)
 	{
 		$this->container = $container;
 	}
 
 
-	public function create(): Latte\Engine
+	public function create()
 	{
 		$service = new Latte\Engine;
 		$service->setTempDirectory('C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app/../temp/cache/latte');

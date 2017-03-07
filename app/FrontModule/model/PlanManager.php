@@ -86,6 +86,222 @@ class PlanManager
    }
 
 
+   public function getPlanForTerminate($daily, $weekly, $monthly, $yearly, $never, $occurrence, $date)
+   {
+      $cronRunTime = 10;   // cron run each 10 minutes
+
+      $result = [];
+      $now = new DateTime();
+      $todayDateOnly = $now->format('Y-m-d');
+
+
+      /**
+       * Plans with: start_date == today_date, status = FALSE
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where(self::COLUMN_STATUS, FALSE)
+         ->where(self::COLUMN_START_DATE .' BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 1, end_type = 1
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $daily)
+         ->where('MOD(TIMESTAMPDIFF(DAY, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $never)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(DAY, ' . self::COLUMN_START_DATE . ', ?) DAY) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 1, end_type = 2
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $daily)
+         ->where('MOD(TIMESTAMPDIFF(DAY, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $occurrence)
+         ->where('? BETWEEN start_date AND DATE_ADD(start_date, INTERVAL (start_value * end_occurrence) DAY)', $now)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(DAY, ' . self::COLUMN_START_DATE . ', ?) DAY) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 1, end_type = 3
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $daily)
+         ->where('MOD(TIMESTAMPDIFF(DAY, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $date)
+         ->where('? BETWEEN start_date AND end_date', $now)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(DAY, ' . self::COLUMN_START_DATE . ', ?) DAY) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 2, end_type = 1
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $weekly)
+         ->where('TIMESTAMPDIFF(WEEK, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(WEEK, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $never)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(WEEK, ' . self::COLUMN_START_DATE . ', ?) WEEK) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 2, end_type = 2
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $weekly)
+         ->where('TIMESTAMPDIFF(WEEK, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(WEEK, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $occurrence)
+         ->where('? BETWEEN start_date AND DATE_ADD(start_date, INTERVAL (start_value * end_occurrence) WEEK)', $now)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(WEEK, ' . self::COLUMN_START_DATE . ', ?) WEEK) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 2, end_type = 3
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $weekly)
+         ->where('TIMESTAMPDIFF(WEEK, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(WEEK, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $date)
+         ->where('? BETWEEN start_date AND end_date', $now)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(WEEK, ' . self::COLUMN_START_DATE . ', ?) WEEK) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 3, end_type = 1
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $monthly)
+         ->where('TIMESTAMPDIFF(MONTH, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(MONTH, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $never)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(MONTH, ' . self::COLUMN_START_DATE . ', ?) MONTH) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 3, end_type = 2
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $monthly)
+         ->where('TIMESTAMPDIFF(MONTH, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(MONTH, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $occurrence)
+         ->where('? BETWEEN start_date AND DATE_ADD(start_date, INTERVAL (start_value * end_occurrence) MONTH)', $now)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(MONTH, ' . self::COLUMN_START_DATE . ', ?) MONTH) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 3, end_type = 3
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $monthly)
+         ->where('TIMESTAMPDIFF(MONTH, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(MONTH, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $date)
+         ->where('? BETWEEN start_date AND end_date', $now)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(MONTH, ' . self::COLUMN_START_DATE . ', ?) MONTH) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 4, end_type = 1
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $yearly)
+         ->where('TIMESTAMPDIFF(YEAR, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(YEAR, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $never)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(YEAR, ' . self::COLUMN_START_DATE . ', ?) YEAR) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 4, end_type = 2
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $yearly)
+         ->where('TIMESTAMPDIFF(YEAR, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(YEAR, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $occurrence)
+         ->where('? BETWEEN start_date AND DATE_ADD(start_date, INTERVAL (start_value * end_occurrence) MONTH)', $now)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(MONTH, ' . self::COLUMN_START_DATE . ', ?) MONTH) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      /**
+       * Plans with: start_date <= today_date, status = TRUE, start_type = 4, end_type = 3
+       */
+      $result += $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where('CAST(start_date AS DATE) <= ?', $todayDateOnly)
+         ->where(self::COLUMN_STATUS, TRUE)
+         ->where(self::COLUMN_START_TYPE, $yearly)
+         ->where('TIMESTAMPDIFF(YEAR, start_date, ?) > 0', $now)
+         ->where('MOD(TIMESTAMPDIFF(YEAR, start_date, ?), start_value) = 0', $now)
+         ->where(self::COLUMN_END_TYPE, $date)
+         ->where('? BETWEEN start_date AND end_date', $now)
+         ->where('DATE_ADD(' . self::COLUMN_START_DATE . ', INTERVAL TIMESTAMPDIFF(YEAR, ' . self::COLUMN_START_DATE . ', ?) YEAR) BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $now, $cronRunTime, $now)
+         ->fetchAll();
+
+
+      return $result;
+   }
+
+
    /**
     * Create new comparison plan
     * @param $userID

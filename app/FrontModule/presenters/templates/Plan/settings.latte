@@ -15,6 +15,7 @@
             <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
             <li class="breadcrumb-item active">Plan settings</li>
          </ol>
+         <a n:href="Plan:cron" class="btn btn-primary btn-lg">Plan cron action</a>
       </div>
    {/if}
 {/block}
@@ -118,6 +119,9 @@
                         {/if}
                      </td>
                      <td>
+                        <a n:href="Plan:history $plan->id_plan" class="btn btn-primary btn-sm" title="History">
+                           <i class="fa fa-history"></i>
+                        </a>
                         <a n:href="Plan:detail $plan->id_plan" class="btn btn-primary btn-sm" title="Detail">
                            <i class="fa fa-edit"></i>
                         </a>

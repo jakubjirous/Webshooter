@@ -2,7 +2,7 @@
 // source: C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app/config/config.neon 
 // source: C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app/config/config.local.neon 
 
-class Container_544a9605ac extends Nette\DI\Container
+class Container_441e33e6a1 extends Nette\DI\Container
 {
 	protected $meta = [
 		'types' => [
@@ -66,7 +66,19 @@ class Container_544a9605ac extends Nette\DI\Container
 			'Nette\Security\IAuthenticator' => [1 => ['48_App_FrontModule_Model_UserManager']],
 			'App\FrontModule\Model\UserManager' => [1 => ['48_App_FrontModule_Model_UserManager']],
 			'App\FrontModule\Model\UserRoleManager' => [1 => ['49_App_FrontModule_Model_UserRoleManager']],
-			'App\CliModule\Presenters\BasePresenter' => [1 => ['application.1']],
+			'App\FrontModule\Presenters\BasePresenter' => [
+				1 => [
+					'application.1',
+					'application.2',
+					'application.3',
+					'application.4',
+					'application.6',
+					'application.7',
+					'application.8',
+					'application.9',
+					'application.10',
+				],
+			],
 			'Nette\Application\UI\Presenter' => [
 				[
 					'application.1',
@@ -226,20 +238,8 @@ class Container_544a9605ac extends Nette\DI\Container
 					'application.12',
 				],
 			],
-			'App\CliModule\Presenters\CliPresenter' => [1 => ['application.1']],
-			'App\FrontModule\Presenters\BasePresenter' => [
-				1 => [
-					'application.2',
-					'application.3',
-					'application.4',
-					'application.6',
-					'application.7',
-					'application.8',
-					'application.9',
-					'application.10',
-				],
-			],
-			'App\FrontModule\Presenters\ComparePresenter' => [1 => ['application.2']],
+			'App\FrontModule\Presenters\ComparePresenter' => [1 => ['application.1']],
+			'App\FrontModule\Presenters\CronPresenter' => [1 => ['application.2']],
 			'App\FrontModule\Presenters\DevicePresenter' => [1 => ['application.3']],
 			'App\FrontModule\Presenters\Error4xxPresenter' => [1 => ['application.4']],
 			'App\FrontModule\Presenters\ErrorPresenter' => [1 => ['application.5']],
@@ -275,11 +275,11 @@ class Container_544a9605ac extends Nette\DI\Container
 			'47_App_FrontModule_Model_ShootManager' => 'App\FrontModule\Model\ShootManager',
 			'48_App_FrontModule_Model_UserManager' => 'App\FrontModule\Model\UserManager',
 			'49_App_FrontModule_Model_UserRoleManager' => 'App\FrontModule\Model\UserRoleManager',
-			'application.1' => 'App\CliModule\Presenters\CliPresenter',
+			'application.1' => 'App\FrontModule\Presenters\ComparePresenter',
 			'application.10' => 'App\FrontModule\Presenters\UserPresenter',
 			'application.11' => 'NetteModule\ErrorPresenter',
 			'application.12' => 'NetteModule\MicroPresenter',
-			'application.2' => 'App\FrontModule\Presenters\ComparePresenter',
+			'application.2' => 'App\FrontModule\Presenters\CronPresenter',
 			'application.3' => 'App\FrontModule\Presenters\DevicePresenter',
 			'application.4' => 'App\FrontModule\Presenters\Error4xxPresenter',
 			'application.5' => 'App\FrontModule\Presenters\ErrorPresenter',
@@ -334,11 +334,11 @@ class Container_544a9605ac extends Nette\DI\Container
 				'cronner.timestampStorage' => FALSE,
 			],
 			'nette.presenter' => [
-				'application.1' => 'App\CliModule\Presenters\CliPresenter',
+				'application.1' => 'App\FrontModule\Presenters\ComparePresenter',
 				'application.10' => 'App\FrontModule\Presenters\UserPresenter',
 				'application.11' => 'NetteModule\ErrorPresenter',
 				'application.12' => 'NetteModule\MicroPresenter',
-				'application.2' => 'App\FrontModule\Presenters\ComparePresenter',
+				'application.2' => 'App\FrontModule\Presenters\CronPresenter',
 				'application.3' => 'App\FrontModule\Presenters\DevicePresenter',
 				'application.4' => 'App\FrontModule\Presenters\Error4xxPresenter',
 				'application.5' => 'App\FrontModule\Presenters\ErrorPresenter',
@@ -378,7 +378,7 @@ class Container_544a9605ac extends Nette\DI\Container
 			'wwwDir' => 'C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\www',
 			'debugMode' => TRUE,
 			'productionMode' => FALSE,
-			'consoleMode' => FALSE,
+			'consoleMode' => TRUE,
 			'tempDir' => 'C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app/../temp',
 		]);
 	}
@@ -621,15 +621,19 @@ class Container_544a9605ac extends Nette\DI\Container
 
 
 	/**
-	 * @return App\CliModule\Presenters\CliPresenter
+	 * @return App\FrontModule\Presenters\ComparePresenter
 	 */
 	public function createServiceApplication__1()
 	{
-		$service = new App\CliModule\Presenters\CliPresenter;
+		$service = new App\FrontModule\Presenters\ComparePresenter($this->getService('46_App_FrontModule_Model_SessionManager'),
+			$this->getService('40_App_FrontModule_Model_DeviceManager'), $this->getService('47_App_FrontModule_Model_ShootManager'),
+			$this->getService('45_App_FrontModule_Model_ResultManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
+		$service->resultToleranceFactory = $this->getService('34_App_FrontModule_Forms_ResultToleranceFormFactory');
+		$service->resultIgnoreFactory = $this->getService('33_App_FrontModule_Forms_ResultIgnoreFormFactory');
 		$service->invalidLinkMode = 5;
 		return $service;
 	}
@@ -675,19 +679,16 @@ class Container_544a9605ac extends Nette\DI\Container
 
 
 	/**
-	 * @return App\FrontModule\Presenters\ComparePresenter
+	 * @return App\FrontModule\Presenters\CronPresenter
 	 */
 	public function createServiceApplication__2()
 	{
-		$service = new App\FrontModule\Presenters\ComparePresenter($this->getService('46_App_FrontModule_Model_SessionManager'),
-			$this->getService('40_App_FrontModule_Model_DeviceManager'), $this->getService('47_App_FrontModule_Model_ShootManager'),
-			$this->getService('45_App_FrontModule_Model_ResultManager'));
+		$service = new App\FrontModule\Presenters\CronPresenter;
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
 			$this->getService('security.user'), $this->getService('latte.templateFactory'));
-		$service->resultToleranceFactory = $this->getService('34_App_FrontModule_Forms_ResultToleranceFormFactory');
-		$service->resultIgnoreFactory = $this->getService('33_App_FrontModule_Forms_ResultIgnoreFormFactory');
+		$service->cronner = $this->getService('cronner.runner');
 		$service->invalidLinkMode = 5;
 		return $service;
 	}
@@ -1010,7 +1011,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceLatte__latteFactory()
 	{
-		return new Container_544a9605ac_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory($this);
+		return new Container_441e33e6a1_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory($this);
 	}
 
 
@@ -1123,12 +1124,7 @@ class Container_544a9605ac extends Nette\DI\Container
 	public function initialize()
 	{
 		$this->getService('tracy.bar')->addPanel(new Nette\Bridges\DITracy\ContainerPanel($this));
-		header('X-Frame-Options: SAMEORIGIN');
-		header('X-Powered-By: Nette Framework');
-		header('Content-Type: text/html; charset=utf-8');
-		$this->getService('session.session')->exists() && $this->getService('session.session')->start();
 		Tracy\Debugger::setLogger($this->getService('tracy.logger'));
-		if ($tmp = $this->getByType("Nette\Http\Session", FALSE)) { $tmp->start(); Tracy\Debugger::dispatch(); };
 		$this->getByType('Tracy\Bar')->addPanel($this->getService('cronner.bar'));
 		RadekDostal\NetteComponents\DateTimePicker\TbDateTimePicker::register('j. n. Y H:I');
 	}
@@ -1137,12 +1133,12 @@ class Container_544a9605ac extends Nette\DI\Container
 
 
 
-final class Container_544a9605ac_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory implements Nette\Bridges\ApplicationLatte\ILatteFactory
+final class Container_441e33e6a1_Nette_Bridges_ApplicationLatte_ILatteFactoryImpl_latte_latteFactory implements Nette\Bridges\ApplicationLatte\ILatteFactory
 {
 	private $container;
 
 
-	public function __construct(Container_544a9605ac $container)
+	public function __construct(Container_441e33e6a1 $container)
 	{
 		$this->container = $container;
 	}

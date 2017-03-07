@@ -45,7 +45,7 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['plan'])) trigger_error('Variable $plan overwritten in foreach on line 45');
+		if (isset($this->params['plan'])) trigger_error('Variable $plan overwritten in foreach on line 46');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -83,6 +83,7 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
             <li class="breadcrumb-item"><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:default")) ?>"><i class="fa fa-image"></i></a></li>
             <li class="breadcrumb-item active">Plan settings</li>
          </ol>
+         <a class="btn btn-primary btn-lg" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:cron")) ?>">Plan cron action</a>
       </div>
 <?php
 		}
@@ -123,25 +124,25 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 			foreach ($iterator = $this->global->its[] = new LR\CachingIterator($plans) as $plan) {
 ?>
                   <tr>
-                     <td data-title="#"><?php echo LR\Filters::escapeHtmlText($iterator->counter) /* line 47 */ ?></td>
-                     <td data-title="User"><?php echo LR\Filters::escapeHtmlText($plan->user->username) /* line 48 */ ?></td>
+                     <td data-title="#"><?php echo LR\Filters::escapeHtmlText($iterator->counter) /* line 48 */ ?></td>
+                     <td data-title="User"><?php echo LR\Filters::escapeHtmlText($plan->user->username) /* line 49 */ ?></td>
                      <td data-title="Start date">
                         <span>
-                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->start_date, 'd.m.Y')) /* line 51 */ ?> <br>
-                           <small><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->start_date, 'H:i')) /* line 52 */ ?></small>
+                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->start_date, 'd.m.Y')) /* line 52 */ ?> <br>
+                           <small><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->start_date, 'H:i')) /* line 53 */ ?></small>
                         </span>
                      </td>
                      <td data-title="E-mail">
                         <span>
-                           <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->primary_email)) /* line 57 */ ?>" title="Primary e-mail"><?php
-				echo LR\Filters::escapeHtmlText($plan->primary_email) /* line 57 */ ?></a>
+                           <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->primary_email)) /* line 58 */ ?>" title="Primary e-mail"><?php
+				echo LR\Filters::escapeHtmlText($plan->primary_email) /* line 58 */ ?></a>
 <?php
 				if ($plan->secondary_email != NULL) {
 ?>
                               <br>
                               <small>
-                                 <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->secondary_email)) /* line 61 */ ?>" title="Secondary e-mail"><?php
-					echo LR\Filters::escapeHtmlText($plan->secondary_email) /* line 61 */ ?></a>
+                                 <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->secondary_email)) /* line 62 */ ?>" title="Secondary e-mail"><?php
+					echo LR\Filters::escapeHtmlText($plan->secondary_email) /* line 62 */ ?></a>
                               </small>
 <?php
 				}
@@ -152,30 +153,30 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
                         <span>
 <?php
 				if ($plan->status == TRUE) {
-					?>                           <?php echo LR\Filters::escapeHtmlText($plan->start->type) /* line 69 */ ?>
+					?>                           <?php echo LR\Filters::escapeHtmlText($plan->start->type) /* line 70 */ ?>
 
                            <br>
                            <small>
-                              every <?php echo LR\Filters::escapeHtmlText($plan->start_value) /* line 72 */ ?>
+                              every <?php echo LR\Filters::escapeHtmlText($plan->start_value) /* line 73 */ ?>
 
 <?php
 					if ($plan->start_type == $daily) {
-						?>                                 <?php echo LR\Filters::escapeHtmlText($plan->start_value == 1 ? 'day' : 'days') /* line 74 */ ?>
+						?>                                 <?php echo LR\Filters::escapeHtmlText($plan->start_value == 1 ? 'day' : 'days') /* line 75 */ ?>
 
 <?php
 					}
 					elseif ($plan->start_type == $weekly) {
-						?>                                 <?php echo LR\Filters::escapeHtmlText($plan->start_value == 1 ? 'week' : 'weeks') /* line 76 */ ?>
+						?>                                 <?php echo LR\Filters::escapeHtmlText($plan->start_value == 1 ? 'week' : 'weeks') /* line 77 */ ?>
 
 <?php
 					}
 					elseif ($plan->start_type == $monthly) {
-						?>                                 <?php echo LR\Filters::escapeHtmlText($plan->start_value == 1 ? 'month' : 'months') /* line 78 */ ?>
+						?>                                 <?php echo LR\Filters::escapeHtmlText($plan->start_value == 1 ? 'month' : 'months') /* line 79 */ ?>
 
 <?php
 					}
 					elseif ($plan->start_type == $yearly) {
-						?>                                 <?php echo LR\Filters::escapeHtmlText($plan->start_value == 1 ? 'year' : 'years') /* line 80 */ ?>
+						?>                                 <?php echo LR\Filters::escapeHtmlText($plan->start_value == 1 ? 'year' : 'years') /* line 81 */ ?>
 
 <?php
 					}
@@ -196,21 +197,21 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 <?php
 				if ($plan->status == TRUE) {
 					if ($plan->end_type == $never) {
-						?>                              <?php echo LR\Filters::escapeHtmlText($plan->end->type) /* line 92 */ ?>
+						?>                              <?php echo LR\Filters::escapeHtmlText($plan->end->type) /* line 93 */ ?>
 
 <?php
 					}
 					elseif ($plan->end_type == $occurrence) {
-						?>                              After <strong><?php echo LR\Filters::escapeHtmlText($plan->end_occurrence) /* line 94 */ ?></strong>
+						?>                              After <strong><?php echo LR\Filters::escapeHtmlText($plan->end_occurrence) /* line 95 */ ?></strong>
                               <br>
-                              <small><?php echo LR\Filters::escapeHtmlText($plan->end_occurrence == 1 ? 'occurence' : 'occurences') /* line 96 */ ?></small>
+                              <small><?php echo LR\Filters::escapeHtmlText($plan->end_occurrence == 1 ? 'occurence' : 'occurences') /* line 97 */ ?></small>
 <?php
 					}
 					elseif ($plan->end_type == $date) {
-						?>                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->end_date, 'd.m.Y')) /* line 98 */ ?>
+						?>                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->end_date, 'd.m.Y')) /* line 99 */ ?>
 
                               <br>
-                              <small><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->end_date, 'H:i')) /* line 100 */ ?></small>
+                              <small><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->end_date, 'H:i')) /* line 101 */ ?></small>
 <?php
 					}
 				}
@@ -222,12 +223,12 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 ?>
                         </span>
                      </td>
-                     <td class="color-<?php echo LR\Filters::escapeHtmlAttr($plan->color) /* line 107 */ ?>" data-title="Result color">
-                        <i class="fa fa-image" title="<?php echo LR\Filters::escapeHtmlAttr($plan->color) /* line 108 */ ?>"></i>
+                     <td class="color-<?php echo LR\Filters::escapeHtmlAttr($plan->color) /* line 108 */ ?>" data-title="Result color">
+                        <i class="fa fa-image" title="<?php echo LR\Filters::escapeHtmlAttr($plan->color) /* line 109 */ ?>"></i>
                      </td>
-                     <td data-title="Result background"><?php echo LR\Filters::escapeHtmlText($plan->background) /* line 110 */ ?></td>
-                     <td data-title="Result tolerance"><?php echo LR\Filters::escapeHtmlText($plan->tolerance) /* line 111 */ ?> %</td>
-                     <td data-title="Result difference">&le; <?php echo LR\Filters::escapeHtmlText($plan->difference) /* line 112 */ ?> %</td>
+                     <td data-title="Result background"><?php echo LR\Filters::escapeHtmlText($plan->background) /* line 111 */ ?></td>
+                     <td data-title="Result tolerance"><?php echo LR\Filters::escapeHtmlText($plan->tolerance) /* line 112 */ ?> %</td>
+                     <td data-title="Result difference">&le; <?php echo LR\Filters::escapeHtmlText($plan->difference) /* line 113 */ ?> %</td>
                      <td data-title="Ignore part">
 <?php
 				if ($plan->ignore_top != NULL && $plan->ignore_left != NULL && $plan->ignore_width != NULL && $plan->ignore_height != NULL) {
@@ -243,6 +244,9 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 ?>
                      </td>
                      <td>
+                        <a class="btn btn-primary btn-sm" title="History" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:history", [$plan->id_plan])) ?>">
+                           <i class="fa fa-history"></i>
+                        </a>
                         <a class="btn btn-primary btn-sm" title="Detail" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:detail", [$plan->id_plan])) ?>">
                            <i class="fa fa-edit"></i>
                         </a>

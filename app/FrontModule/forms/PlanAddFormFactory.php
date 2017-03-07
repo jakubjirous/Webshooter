@@ -95,7 +95,7 @@ class PlanAddFormFactory
          ->endCondition();
 
       $form->addCheckbox('status', 'Enable repeat')
-         ->setDefaultValue(TRUE)
+         ->setDefaultValue(FALSE)
          ->addCondition($form::EQUAL, TRUE)
          ->toggle('repeate-options');
 
@@ -135,9 +135,11 @@ class PlanAddFormFactory
       }
       $form->addSelect('startDailyValue', 'Repeat once per:', $repeateDailyValueSelect)
          ->setPrompt('--- Choose days ---')
+         ->addConditionOn($form["status"], $form::EQUAL, TRUE)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[1]->id_repeate)
-         ->setRequired('Please select after how many days a plan to repeat')
+            ->setRequired('Please select after how many days a plan to repeat')
          ->endCondition();
+
 
       $form->addGroup('')
          ->setOption('container', Html::el('div')->id('repeate-weekly'));
@@ -148,6 +150,7 @@ class PlanAddFormFactory
       }
       $form->addSelect('startWeeklyValue', 'Repeat once per:', $repeateWeeklyValueSelect)
          ->setPrompt('--- Choose weeks ---')
+         ->addConditionOn($form["status"], $form::EQUAL, TRUE)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[2]->id_repeate)
          ->setRequired('Please select after how many weeks a plan to repeat')
          ->endCondition();
@@ -161,6 +164,7 @@ class PlanAddFormFactory
       }
       $form->addSelect('startMonthlyValue', 'Repeat once per:', $repeateMonthlyValueSelect)
          ->setPrompt('--- Choose months ---')
+         ->addConditionOn($form["status"], $form::EQUAL, TRUE)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[3]->id_repeate)
          ->setRequired('Please select after how many months a plan to repeat')
          ->endCondition();
@@ -174,6 +178,7 @@ class PlanAddFormFactory
       }
       $form->addSelect('startYearlyValue', 'Repeat once per:', $repeateYearlyValueSelect)
          ->setPrompt('--- Choose years ---')
+         ->addConditionOn($form["status"], $form::EQUAL, TRUE)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[4]->id_repeate)
          ->setRequired('Please select after how many years a plan to repeat')
          ->endCondition();

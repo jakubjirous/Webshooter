@@ -99,6 +99,30 @@ class PlanPresenter extends BasePresenter
    }
 
 
+   public function renderCron()
+   {
+      $this->isLoggedIn();
+      $this->template->isLoggedIn = $this->user->isLoggedIn();
+
+      dump('');
+      dump('');
+      dump('');
+      $plans = $this->pm->getPlanForTerminate(
+         self::REPEATE_START_DAILY,
+         self::REPEATE_START_WEEKLY,
+         self::REPEATE_START_MONTHLY,
+         self::REPEATE_START_YEARLY,
+         self::REPEATE_END_NEVER,
+         self::REPEATE_END_OCCURRENCES,
+         self::REPEATE_END_DATE
+      );
+      foreach ($plans as $plan) {
+         dump($plan);
+      }
+
+   }
+
+
    public function renderAdd($sourceId, $targetId)
    {
       $this->isLoggedIn();
@@ -160,6 +184,16 @@ class PlanPresenter extends BasePresenter
       $this->template->never = self::REPEATE_END_NEVER;
       $this->template->occurrence = self::REPEATE_END_OCCURRENCES;
       $this->template->date = self::REPEATE_END_DATE;
+   }
+
+
+   public function renderHistory($id)
+   {
+      $this->validatePlanId($id);
+      $this->template->plan = $this->pm->getPlanById($id);
+
+      $this->isLoggedIn();
+      $this->template->isLoggedIn = $this->user->isLoggedIn();
    }
 
 

@@ -1,0 +1,36 @@
+{extends '../@index.latte'}
+
+
+
+{block header}
+   <header>
+      <h1 n:block=title>Plan history</h1>
+   </header>
+{/block}
+
+{block breadcrumb}
+   {if $isLoggedIn}
+      <div class="container">
+         <ol class="breadcrumb bg-faded">
+            <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
+            <li class="breadcrumb-item"><a n:href="Plan:settings">Plan settings</a></li>
+            <li class="breadcrumb-item active">Plan history</li>
+         </ol>
+      </div>
+   {/if}
+{/block}
+
+{block content}
+   <div class="container">
+      <div class="plan-history">
+
+         {if true}
+
+         {else}
+            <div class="alert alert-info" role="alert">
+               There is no history yet.
+            </div>
+         {/if}
+      </div>
+   </div>
+{/block}
