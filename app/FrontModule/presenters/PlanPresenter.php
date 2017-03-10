@@ -104,9 +104,6 @@ class PlanPresenter extends BasePresenter
       $this->isLoggedIn();
       $this->template->isLoggedIn = $this->user->isLoggedIn();
 
-      dump('');
-      dump('');
-      dump('');
       $plans = $this->pm->getPlanForTerminate(
          self::REPEATE_START_DAILY,
          self::REPEATE_START_WEEKLY,
@@ -116,8 +113,14 @@ class PlanPresenter extends BasePresenter
          self::REPEATE_END_OCCURRENCES,
          self::REPEATE_END_DATE
       );
+
+
       foreach ($plans as $plan) {
-         dump($plan);
+
+         $source = $this->stm->getShootById($plan->id_source);
+
+
+
       }
 
    }
@@ -220,6 +223,7 @@ class PlanPresenter extends BasePresenter
       $exist = $this->stm->existShootById($id);
       if (!$exist) {
          $this->error();
+         $det = 10;
       }
    }
 

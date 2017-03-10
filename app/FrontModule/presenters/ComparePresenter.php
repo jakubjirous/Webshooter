@@ -399,7 +399,20 @@ class ComparePresenter extends BasePresenter
        */
       $sourcePath = explode('/', $source->path_img);
       $resultPath = '/WS/results/' . $sourcePath[3];
-      $this->rm->addResult($source->id_shoot, $target->id_shoot, $difference, $resultPath);
+      $this->rm->addResult(
+         $source->id_shoot,
+         $target->id_shoot,
+         $this->color,
+         $this->background,
+         $this->tolerance,
+         $difference,
+         $this->ignoreActive,
+         $this->ignore["top"],
+         $this->ignore["left"],
+         $this->ignore["width"],
+         $this->ignore["height"],
+         $resultPath
+      );
 
       imagepng($diffImage, $this->wwwDir . $resultPath);
       imagedestroy($diffImage);
