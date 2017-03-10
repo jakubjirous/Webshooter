@@ -7,7 +7,6 @@
 \usepackage{listings}
 \usepackage{color}
 
-
 \TULtitle
 {Online aplikace pro paralelní vykreslování webových stránek více renderovacími jádry \\a následnou obrazovou analýzou}
 {Online applications for parallel rendering web pages rendering multiple cores \\and subsequent image analysis}
@@ -19,6 +18,9 @@
 
 % Zobrazení Literatury v obsahu
 \usepackage[nottoc]{tocbibind}
+
+% Courier New font
+\usepackage{courier}
 
 \begin{document}
 
@@ -50,32 +52,36 @@
 \lstlistoflistings
 
 % definice barev pro vložení zdrojových kódů
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codegreen}{RGB}{0,255,0}
+\definecolor{codegray}{RGB}{169,183,198}
+\definecolor{codeorange}{RGB}{178,80,39}
+\definecolor{codeyellow}{RGB}{222,122,49}
+\definecolor{codepurple}{RGB}{108,0,255}
+\definecolor{codeblue}{RGB}{0,0,255}
+\definecolor{backcolour}{RGB}{255,255,255}
  
  % definice stylu pro vložení zdrojových kódů
 \lstdefinestyle{codestyle}{
     backgroundcolor=\color{backcolour},   
     commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize,
+    keywordstyle=\color{codeyellow},
+    numberstyle=\tiny\color{black},
+    stringstyle=\color{codegreen},
+    basicstyle=\ttfamily\footnotesize,
     breakatwhitespace=false,         
     breaklines=true,                 
-    captionpos=b,                    
+    captionpos=b,        
+    frame=single,
     keepspaces=true,                 
     numbers=left,                    
-    numbersep=5pt,                  
+    numbersep=10pt,                  
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,                  
-    tabsize=1
+    tabsize=1,
 }
 
-% aplikace stylu
+% aplikace stylu pro vložení zdrojových kódů
 \lstset{style=codestyle}
 
 
@@ -89,6 +95,33 @@
 
 
 \chapter{Testování Latex}
+
+
+% block code
+\begin{lstlisting}[language=php, caption=PHP example]
+public function __construct(FormFactory $factory, SessionManager $sm, UserManager $um, UserRoleManager $rm)
+{
+  $this->factory = $factory;
+  $this->sm = $sm;
+  $this->um = $um;
+  $this->rm = $rm;
+}
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=html, caption=HTML example]
+<div class="alert alert-info" role="alert">
+   There is no history yet.
+</div>
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=sql, caption=SQL example], label
+SELECT * 
+FROM 'shoot' 
+ORDER BY 'date' DESC 
+LIMIT 4
+\end{lstlisting}
 
 
 Řádek před seznamem.
@@ -109,7 +142,7 @@ Může obsahovat několik odstavců.
 \item První otázka.
 \begin{enumerate}
 \item buď
-\item nebo
+\item nebo \href{www.jakubjirous.cz}{odkaz}
 \item anebo jinak
 \end{enumerate}
 

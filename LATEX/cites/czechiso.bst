@@ -241,19 +241,19 @@ FUNCTION {bbl.edby}
 { "editace" }
 
 FUNCTION {bbl.edition}
-{ "vyd�n�" }
+{ "vydání" }
 
 FUNCTION {bbl.volume}
-{ "ro�n�k" }
+{ "ročník" }
 
 FUNCTION {bbl.of}
 { "" }
 
 FUNCTION {bbl.number}
-{ "��slo" }
+{ "číslo" }
 
 FUNCTION {bbl.nr}
-{ "�." }
+{ "č." }
 
 FUNCTION {bbl.in}
 { "in" }
@@ -268,28 +268,28 @@ FUNCTION {bbl.chapter}
 { "kapitola" }
 
 FUNCTION {bbl.techrep}
-{ "Technick� Zpr�va" }
+{ "Technická Zpráva" }
 
 FUNCTION {bbl.mthesis}
-{ "Diplomov� pr�ce" }
+{ "Diplomová práce" }
 
 FUNCTION {bbl.phdthesis}
-{ "Dizerta�n� pr�ce" }
+{ "Dizertační práce" }
 
 FUNCTION {bbl.first}
-{ "Prvn�" }
+{ "První" }
 
 FUNCTION {bbl.second}
-{ "Druh�" }
+{ "Druhé" }
 
 FUNCTION {bbl.third}
-{ "T�et�" }
+{ "Třetí" }
 
 FUNCTION {bbl.fourth}
-{ "�tvrt�" }
+{ "Čtvrté" }
 
 FUNCTION {bbl.fifth}
-{ "P�t�" }
+{ "Páté" }
 
 FUNCTION {bbl.st}
 { "" }
@@ -305,23 +305,23 @@ FUNCTION {bbl.th}
 
 MACRO {jan} {"Leden"}
 
-MACRO {feb} {"�nor"}
+MACRO {feb} {"Únor"}
 
-MACRO {mar} {"B�ezen"}
+MACRO {mar} {"Březen"}
 
 MACRO {apr} {"Duben"}
 
-MACRO {may} {"Kv�ten"}
+MACRO {may} {"Květen"}
 
-MACRO {jun} {"�erven"}
+MACRO {jun} {"Červen"}
 
-MACRO {jul} {"�ervenec"}
+MACRO {jul} {"Červenec"}
 
 MACRO {aug} {"Srpen"}
 
-MACRO {sep} {"Z���"}
+MACRO {sep} {"Září"}
 
-MACRO {oct} {"��jen"}
+MACRO {oct} {"Říjen"}
 
 MACRO {nov} {"Listopad"}
 
@@ -1576,7 +1576,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\url}[1]{\texttt{#1}}"
   write$ newline$
-  "\providecommand{\urlprefix}{URL }"
+  "\providecommand{\urlprefix}{Dostupné z: }"
   write$ newline$
   "\expandafter\ifx\csname urlstyle\endcsname\relax"
   write$ newline$
