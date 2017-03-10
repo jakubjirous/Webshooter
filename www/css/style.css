@@ -7392,13 +7392,13 @@ form .custom-checkbox {
     .compare-list .compare-item .table:first-child {
       margin-bottom: 20px; }
   .compare-list .compare-item.view-md.compare-target {
-    border-left: 2px solid #007fff;
+    border-left: 4px solid #e0e0e3;
     margin-left: -10px;
     padding-left: 20px; }
     .compare-list .compare-item.view-md.compare-target h3 {
       margin-top: 0; }
   .compare-list .compare-item.view-sm.compare-target {
-    border-left: 2px solid #007fff;
+    border-left: 4px solid #e0e0e3;
     margin-left: -10px;
     padding-left: 20px; }
     .compare-list .compare-item.view-sm.compare-target h3 {
@@ -7449,13 +7449,13 @@ form .custom-checkbox {
   .compare-list .compare-item .table {
     width: 100%; }
   .compare-list .compare-item.view-md.compare-target {
-    border-left: 2px solid #007fff;
+    border-left: 4px solid #e0e0e3;
     margin-left: -10px;
     padding-left: 20px; }
     .compare-list .compare-item.view-md.compare-target h3 {
       margin-top: 0; }
   .compare-list .compare-item.view-sm.compare-target {
-    border-left: 2px solid #007fff;
+    border-left: 4px solid #e0e0e3;
     margin-left: -10px;
     padding-left: 20px; }
     .compare-list .compare-item.view-sm.compare-target h3 {
@@ -7465,13 +7465,13 @@ form .custom-checkbox {
 
 @media (min-width: 768px) {
   .compare-list .compare-item.view-md.compare-target {
-    border-left: 2px solid #007fff;
+    border-left: 4px solid #e0e0e3;
     margin-left: -10px;
     padding-left: 20px; }
     .compare-list .compare-item.view-md.compare-target h3 {
       margin-top: 0; }
   .compare-list .compare-item.view-sm.compare-target {
-    border-left: 2px solid #007fff;
+    border-left: 4px solid #e0e0e3;
     margin-left: -10px;
     padding-left: 20px; }
     .compare-list .compare-item.view-sm.compare-target h3 {
@@ -7519,13 +7519,13 @@ form .custom-checkbox {
   .compare-list .compare-item .table {
     width: 100%; }
   .compare-list .compare-item.view-md.compare-target {
-    border-left: 2px solid #007fff;
+    border-left: 4px solid #e0e0e3;
     margin-left: -10px;
     padding-left: 20px; }
     .compare-list .compare-item.view-md.compare-target h3 {
       margin-top: 0; }
   .compare-list .compare-item.view-sm.compare-target {
-    border-left: 2px solid #007fff;
+    border-left: 4px solid #e0e0e3;
     margin-left: -10px;
     padding-left: 20px; }
     .compare-list .compare-item.view-sm.compare-target h3 {

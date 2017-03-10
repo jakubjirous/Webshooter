@@ -55,7 +55,7 @@ class PlanManager
    {
       return $this->db->table(self::TABLE_NAME)
          ->select('*')
-         ->order(self::COLUMN_START_DATE)
+         ->order(self::COLUMN_START_DATE .' DESC')
          ->fetchAll();
    }
 
@@ -75,7 +75,7 @@ class PlanManager
 
 
    /**
-    * Check if user with ID exist
+    * Check if plan with ID exist
     * @param $id
     * @return bool
     */
@@ -100,7 +100,7 @@ class PlanManager
     */
    public function getAllPlansForTerminate($daily, $weekly, $monthly, $yearly, $never, $occurrence, $date)
    {
-      $cronRunTime = 10;   // cron run each 10 minutes
+      $cronRunTime = 30;   // cron run each 10 minutes
 
       $result = [];
       $now = new DateTime();

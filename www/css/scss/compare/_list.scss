@@ -12,10 +12,6 @@
       margin-bottom: 40px;
    }
 
-   .compare-target {
-
-   }
-
    .compare-item {
       h3 {
          @include link($azure, $azure, false);
@@ -204,7 +200,7 @@
 
          &.view-md {
             &.compare-target {
-               border-left: 2px solid $azure;
+               border-left: 4px solid $iron;
                margin-left: -10px;
                padding-left: 20px;
                h3 {
@@ -215,7 +211,7 @@
 
          &.view-sm {
             &.compare-target {
-               border-left: 2px solid $azure;
+               border-left: 4px solid $iron;
                margin-left: -10px;
                padding-left: 20px;
                h3 {
@@ -285,7 +281,7 @@
 
          &.view-md {
             &.compare-target {
-               border-left: 2px solid $azure;
+               border-left: 4px solid $iron;
                margin-left: -10px;
                padding-left: 20px;
                h3 {
@@ -296,7 +292,7 @@
 
          &.view-sm {
             &.compare-target {
-               border-left: 2px solid $azure;
+               border-left: 4px solid $iron;
                margin-left: -10px;
                padding-left: 20px;
                h3 {
@@ -317,7 +313,7 @@
       .compare-item {
          &.view-md {
             &.compare-target {
-               border-left: 2px solid $azure;
+               border-left: 4px solid $iron;
                margin-left: -10px;
                padding-left: 20px;
                h3 {
@@ -328,7 +324,7 @@
 
          &.view-sm {
             &.compare-target {
-               border-left: 2px solid $azure;
+               border-left: 4px solid $iron;
                margin-left: -10px;
                padding-left: 20px;
                h3 {
@@ -400,7 +396,7 @@
 
          &.view-md {
             &.compare-target {
-               border-left: 2px solid $azure;
+               border-left: 4px solid $iron;
                margin-left: -10px;
                padding-left: 20px;
                h3 {
@@ -411,7 +407,7 @@
 
          &.view-sm {
             &.compare-target {
-               border-left: 2px solid $azure;
+               border-left: 4px solid $iron;
                margin-left: -10px;
                padding-left: 20px;
                h3 {

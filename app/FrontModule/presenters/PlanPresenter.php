@@ -97,7 +97,6 @@ class PlanPresenter extends BasePresenter
    private $browserVersion;
 
 
-
    public function __construct(Model\SessionManager $sm, Model\ShootManager $stm, Model\ResultManager $rm, Model\PlanManager $pm, Model\PlanTargetManager $ptm, Model\PlanResultManager $prm)
    {
       $this->sm = $sm;
@@ -190,11 +189,13 @@ class PlanPresenter extends BasePresenter
 
       foreach ($plans as $plan) {
 
-         $source = $this->stm->getShootById($plan->id_source);
+         $sourceShoot = $this->stm->getShootById($plan->id_source);
+         $targetShoot = $this->stm->getShootById($plan->id_target);
 
-         $target = $this->createTargetFromSource($source, $plan);
+         $target = $this->createTargetFromSource($targetShoot, $plan);
 
-         $result = $this->compareSourceWithTargetByPlan($source, $target, $plan);
+         $result = $this->compareSourceWithTargetByPlan($sourceShoot, $target, $plan);
+
          /**
           * create target shoot
           * compare source shoot with target shoot
@@ -202,9 +203,6 @@ class PlanPresenter extends BasePresenter
           * save to plan history
           * if tolerance fail → send email to user
           */
-
-         dump($result);
-
 
       }
 
@@ -472,29 +470,28 @@ class PlanPresenter extends BasePresenter
     */
    public function compareSourceWithTargetByPlan($source, $target, $plan)
    {
-      if($source != FALSE and $target != FALSE) {
+      if ($source != FALSE and $target != FALSE) {
 
          $image1 = $this->imageCreate($source);
          $image2 = $this->imageCreate($target);
 
          $diff = [];
          $diffImage = $image1;
-         $this->compareSize = $this->imageSize($source);
+         $size = $this->imageSize($source);
 
-         $pixelsDiffInPercent = 0;
          $pixelsDiffCount = 0;
-         $pixelsTotalCount = $this->compareSize[0] * $this->compareSize[1];
+         $pixelsTotalCount = $size[0] * $size[1];
 
 
-         for ($x = 0; $x < $this->compareSize[0]; $x++) {
-            for ($y = 0; $y < $this->compareSize[1]; $y++) {
+         for ($x = 0; $x < $size[0]; $x++) {
+            for ($y = 0; $y < $size[1]; $y++) {
                $rgb1 = imagecolorat($image1, $x, $y);
                $rgb2 = imagecolorat($image2, $x, $y);
                $pixels1 = imagecolorsforindex($image1, $rgb1);
                $pixels2 = imagecolorsforindex($image2, $rgb2);
 
 
-               if ($plan->ignore_top != NULL and $plan->ignore_left != NULL and $plan->ignore_width != NULL and $plan->ignore_height != NULL) {
+               if ($plan->ignore_active) {
                   if (
                      $x >= $plan->ignore_left and $x <= $plan->ignore_width and
                      $y >= $plan->ignore_top and $y <= $plan->ignore_height
@@ -680,8 +677,8 @@ class PlanPresenter extends BasePresenter
          }
 
 
-         for ($i = 0; $i < $this->compareSize[0]; ++$i) {
-            for ($j = 0; $j < $this->compareSize[1]; ++$j) {
+         for ($i = 0; $i < $size[0]; ++$i) {
+            for ($j = 0; $j < $size[1]; ++$j) {
                $colorOfPixel = imagecolorallocatealpha($diffImage, $diff[$i][$j]['red'], $diff[$i][$j]['green'], $diff[$i][$j]['blue'], $diff[$i][$j]['alpha']);
                imagesetpixel($diffImage, $i, $j, $colorOfPixel);
             }
@@ -711,7 +708,7 @@ class PlanPresenter extends BasePresenter
             $height = intval(round(($source->device->height_px / $source->device->density), 0));
             $resultPath = $timestamp . '-' . $autority . '-' . Strings::webalize($source->device->device) . '-' . $width . 'x' . $height . '.' . $imgType;
 
-         } elseif($deviceType === self::TYPE_OTHER) {
+         } elseif ($deviceType === self::TYPE_OTHER) {
             $otherWidth = ($source->other_width == null) ? null : $source->other_width;
             $otherHeight = ($source->other_height == null) ? null : $source->other_height;
 
@@ -721,7 +718,7 @@ class PlanPresenter extends BasePresenter
                $resultPath = $timestamp . '-' . $autority . '-other-' . $otherWidth . 'x' . $otherHeight . '.' . $imgType;
             }
 
-         } elseif($deviceType === self::TYPE_CROP) {
+         } elseif ($deviceType === self::TYPE_CROP) {
             $cropWidth = $source->crop_width;
             $cropHeight = $source->crop_height;
             $resultPath = $timestamp . '-' . $autority . '-' . $cropWidth . 'x' . $cropHeight . '-crop.' . $imgType;
@@ -838,6 +835,22 @@ class PlanPresenter extends BasePresenter
 
 
    /**
+    * Result id validator
+    * @param $id
+    */
+   public function validateHistoryId($id)
+   {
+      if (!Validators::isNumericInt($id)) {
+         $this->error();
+      }
+      $exist = $this->prm->existResultById($id);
+      if (!$exist) {
+         $this->error();
+      }
+   }
+
+
+   /**
     * Download source shoot from server
     * @param Integer $id
     */
@@ -879,6 +892,19 @@ class PlanPresenter extends BasePresenter
       $this->pm->deletePlan($id);
 
       $this->flashMessage('Plan was deleted.', self::FLASH_MESSAGE_SUCCESS);
+      $this->redirect('this');
+   }
+
+
+   /**
+    * Delete history plan
+    * @param $resultID
+    */
+   public function handleDeleteHistory($resultID)
+   {
+      $this->prm->deleteHistory($resultID);
+
+      $this->flashMessage('Record from history was deleted.', self::FLASH_MESSAGE_SUCCESS);
       $this->redirect('this');
    }
 

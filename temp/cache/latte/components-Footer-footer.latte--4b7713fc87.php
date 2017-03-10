@@ -14,7 +14,7 @@ class Template4b7713fc87 extends Latte\Runtime\Template
    <div class="row">
       <div class="col-xs-12 col-sm-6 flex-xs-middle text-xs-center float-sm-left text-sm-left">
          <p class="text-muted">
-            ©2016–2017 – Webshooter
+            ©<?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $now, 'Y')) /* line 7 */ ?> – Webshooter
          </p>
       </div>
       <div class="col-xs-12 col-sm-6 flex-xs-middle text-xs-center float-sm-right text-sm-right">

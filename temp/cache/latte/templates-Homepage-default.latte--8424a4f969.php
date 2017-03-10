@@ -44,6 +44,7 @@ class Template8424a4f969 extends Latte\Runtime\Template
 	{
 		extract($this->params);
 		if (isset($this->params['shoot'])) trigger_error('Variable $shoot overwritten in foreach on line 36');
+		if (isset($this->params['result'])) trigger_error('Variable $result overwritten in foreach on line 114');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -165,6 +166,44 @@ class Template8424a4f969 extends Latte\Runtime\Template
                   <h5>CSS3</h5>
                </div>
             </div>
+         </div>
+
+      </div>
+   </section>
+
+
+   <section class="shoot-box">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12">
+               <h2>Latest plan results</h2>
+            </div>
+         </div>
+
+         <div class="row">
+<?php
+		$iterations = 0;
+		foreach ($results as $result) {
+?>
+               <div class="col-xs-12 col-md-6 col-lg-3">
+                  <div class="shoot-item">
+                     <div class="image">
+                        <a href="<?php
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 118 */;
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 118 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
+                           data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($result->source->url_autority) /* line 119 */ ?>">
+                           <img class="img-thumbnail img-responsive" src="<?php
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 120 */;
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 120 */ ?>"
+                                alt="<?php echo LR\Filters::escapeHtmlAttr($result->source->url_autority) /* line 121 */ ?>">
+                        </a>
+                     </div>
+                  </div>
+               </div>
+<?php
+			$iterations++;
+		}
+?>
          </div>
 
       </div>

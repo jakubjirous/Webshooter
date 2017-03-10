@@ -58,6 +58,21 @@ class PlanResultManager
 
 
    /**
+    * Get results limited by count
+    * @param $count
+    * @return array|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getResultBox($count)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->order(self::COLUMN_DATE . ' DESC')
+         ->limit($count)
+         ->fetchAll();
+   }
+
+
+   /**
     * Get result by ID
     * @param $id
     * @return bool|mixed|Nette\Database\Table\IRow
@@ -68,6 +83,19 @@ class PlanResultManager
          ->select('*')
          ->where(self::COLUMN_ID, $id)
          ->fetch();
+   }
+
+
+   /**
+    * Check if result with ID exist
+    * @param $id
+    * @return bool
+    */
+   public function existResultById($id)
+   {
+      $query = $this->getResultByID($id);
+
+      return $query == FALSE ? FALSE : TRUE;
    }
 
 
@@ -159,5 +187,15 @@ class PlanResultManager
             self::COLUMN_PATH_IMG => $path,
             self::COLUMN_DATE => $date,
          ]);
+   }
+
+
+   /**
+    * Delete history
+    * @param $id
+    */
+   public function deleteHistory($id)
+   {
+      $this->db->table(self::TABLE_NAME)->where(self::COLUMN_ID, $id)->delete();
    }
 }

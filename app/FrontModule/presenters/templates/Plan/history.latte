@@ -38,6 +38,7 @@
                         <th>Difference</th>
                         <th>Result difference</th>
                         <th>Ignore part</th>
+                        <th></th>
                      </tr>
                      </thead>
                      <tbody>
@@ -51,8 +52,8 @@
                            </small>
                         </span>
                         </td>
-                        <td class="color-{$plan->color}" data-title="Result color">
-                           <i class="fa fa-image" title="{$plan->color}"></i>
+                        <td class="color-{$result->color}" data-title="Result color">
+                           <i class="fa fa-image" title="{$result->color}"></i>
                         </td>
                         <td data-title="Result background">{$result->background}</td>
                         <td data-title="Tolerance">{$result->tolerance}%</td>
@@ -84,6 +85,12 @@
                            {else}
                               <i class="fa fa-close"></i>
                            {/if}
+                        </td>
+                        <td>
+                           <a n:href="deleteHistory! $result->id_plan_result" class="btn btn-danger btn-sm float-sm-right float-lg-none" title="Delete history"
+                                                              data-confirm="Are you sure to delete this record in plan history?">
+                              <i class="fa fa-trash"></i>
+                           </a>
                         </td>
                      </tr>
                      </tbody>
