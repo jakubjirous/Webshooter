@@ -136,7 +136,6 @@ class ShootPresenter extends BasePresenter
 
       $this->shootAddFactory->setImagePNG(self::IMAGE_PNG);
       $this->shootAddFactory->setImageJPG(self::IMAGE_JPG);
-      $this->shootAddFactory->setImageBMP(self::IMAGE_BMP);
 
       $this->shootAddFactory->setWebkit(self::WEBKIT);
       $this->shootAddFactory->setGecko(self::GECKO);
@@ -147,6 +146,9 @@ class ShootPresenter extends BasePresenter
       $this->shootAddFactory->setTypeDesktop(self::TYPE_DESKTOP);
       $this->shootAddFactory->setTypeOther(self::TYPE_OTHER);
       $this->shootAddFactory->setTypeCrop(self::TYPE_CROP);
+
+      $this->shootAddFactory->setRenderToShoots(self::RENDER_TO_SHOOTS);
+      $this->shootAddFactory->setRenderToPlansTargets(self::RENDER_TO_PLANS_TARGETS);
 
       $this->shootAddFactory->setPath(
          [

@@ -30,6 +30,7 @@ class PlanManager
       COLUMN_BACKGROUND = 'background',
       COLUMN_TOLERANCE = 'tolerance',
       COLUMN_DIFFERENCE = 'difference',
+      COLUMN_IGNORE_ACTIVE = 'ignore_active',
       COLUMN_IGNORE_TOP = 'ignore_top',
       COLUMN_IGNORE_LEFT = 'ignore_left',
       COLUMN_IGNORE_WIDTH = 'ignore_width',
@@ -86,7 +87,18 @@ class PlanManager
    }
 
 
-   public function getPlanForTerminate($daily, $weekly, $monthly, $yearly, $never, $occurrence, $date)
+   /**
+    * Get all plans for terminate by cron
+    * @param $daily
+    * @param $weekly
+    * @param $monthly
+    * @param $yearly
+    * @param $never
+    * @param $occurrence
+    * @param $date
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getAllPlansForTerminate($daily, $weekly, $monthly, $yearly, $never, $occurrence, $date)
    {
       $cronRunTime = 10;   // cron run each 10 minutes
 
@@ -368,10 +380,11 @@ class PlanManager
             self::COLUMN_BACKGROUND => $background,
             self::COLUMN_TOLERANCE => (int)($tolerance),
             self::COLUMN_DIFFERENCE => floatval($difference),
-            self::COLUMN_IGNORE_TOP => ($ignoreActive == TRUE) ? (int)($ignoreTop) : NULL,
-            self::COLUMN_IGNORE_LEFT => ($ignoreActive == TRUE) ? (int)($ignoreLeft) : NULL,
-            self::COLUMN_IGNORE_WIDTH => ($ignoreActive == TRUE) ? (int)($ignoreWidth) : NULL,
-            self::COLUMN_IGNORE_HEIGHT => ($ignoreActive == TRUE) ? (int)($ignoreHeight) : NULL,
+            self::COLUMN_IGNORE_ACTIVE => $ignoreActive,
+            self::COLUMN_IGNORE_TOP => ($ignoreTop == "") ? NULL : $ignoreTop,
+            self::COLUMN_IGNORE_LEFT => ($ignoreLeft == "") ? NULL : $ignoreLeft,
+            self::COLUMN_IGNORE_WIDTH => ($ignoreWidth == "") ? NULL : $ignoreWidth,
+            self::COLUMN_IGNORE_HEIGHT => ($ignoreHeight == "") ? NULL : $ignoreHeight,
          ]);
    }
 
@@ -435,10 +448,11 @@ class PlanManager
             self::COLUMN_BACKGROUND => $background,
             self::COLUMN_TOLERANCE => (int)($tolerance),
             self::COLUMN_DIFFERENCE => floatval($difference),
-            self::COLUMN_IGNORE_TOP => ($ignoreActive == TRUE) ? (int)($ignoreTop) : NULL,
-            self::COLUMN_IGNORE_LEFT => ($ignoreActive == TRUE) ? (int)($ignoreLeft) : NULL,
-            self::COLUMN_IGNORE_WIDTH => ($ignoreActive == TRUE) ? (int)($ignoreWidth) : NULL,
-            self::COLUMN_IGNORE_HEIGHT => ($ignoreActive == TRUE) ? (int)($ignoreHeight) : NULL,
+            self::COLUMN_IGNORE_ACTIVE => $ignoreActive,
+            self::COLUMN_IGNORE_TOP => ($ignoreTop == NULL) ? 0 : $ignoreTop,
+            self::COLUMN_IGNORE_LEFT => ($ignoreLeft == NULL) ? 0 : $ignoreLeft,
+            self::COLUMN_IGNORE_WIDTH => ($ignoreWidth == NULL) ? 0 : $ignoreWidth,
+            self::COLUMN_IGNORE_HEIGHT => ($ignoreHeight == NULL) ? 0 : $ignoreHeight,
          ]);
    }
 

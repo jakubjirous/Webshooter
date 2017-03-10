@@ -24,6 +24,8 @@ services:
 	- App\FrontModule\Model\ShootManager
 	- App\FrontModule\Model\ResultManager
 	- App\FrontModule\Model\PlanManager
+	- App\FrontModule\Model\PlanTargetManager
+	- App\FrontModule\Model\PlanResultManager
 	- App\FrontModule\Model\RepeateStartManager
 	- App\FrontModule\Model\RepeateEndManager
 

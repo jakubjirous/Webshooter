@@ -4,7 +4,7 @@
 
 {block header}
    <header>
-      <h1 n:block=title>Plan history</h1>
+      <h1 n:block=title>Results history</h1>
    </header>
 {/block}
 
@@ -14,7 +14,7 @@
          <ol class="breadcrumb bg-faded">
             <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
             <li class="breadcrumb-item"><a n:href="Plan:settings">Plan settings</a></li>
-            <li class="breadcrumb-item active">Plan history</li>
+            <li class="breadcrumb-item active">Results history</li>
          </ol>
       </div>
    {/if}
@@ -23,12 +23,138 @@
 {block content}
    <div class="container">
       <div class="plan-history">
+         {if $results}
 
-         {if true}
+            {foreach $results as $result}
+               <div class="history-item {if $iterator->counter > 1}hr{/if}">
+                  <table class="table table-striped">
+                     <thead>
+                     <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Result color</th>
+                        <th>Result background</th>
+                        <th>Tolerance</th>
+                        <th>Difference</th>
+                        <th>Result difference</th>
+                        <th>Ignore part</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     <tr>
+                        <td data-title="#">{$iterator->counter}</td>
+                        <td data-title="Date">
+                        <span>
+                           {$result->date|date:'j.n.Y'} <br>
+                           <small>
+                              {$result->date|date:'H:i'}
+                           </small>
+                        </span>
+                        </td>
+                        <td class="color-{$plan->color}" data-title="Result color">
+                           <i class="fa fa-image" title="{$plan->color}"></i>
+                        </td>
+                        <td data-title="Result background">{$result->background}</td>
+                        <td data-title="Tolerance">{$result->tolerance}%</td>
+                        <td data-title="Difference">&le;{$result->difference}%</td>
+                        <td data-title="Result difference">
+                           {if $result->difference_result <= $result->difference}
+                              <i class="tag tag-success">{$result->difference_result}%</i>
+                           {else}
+                              <i class="tag tag-danger">{$result->difference_result}%</i>
+                           {/if}
+                        </td>
+                        <td data-title="Ignore part">
+                           {if $result->ignore_active}
+                              <span>
+                              <small class="float-lg-left">
+                                 Top: {$result->ignore_top}px
+                              </small>
+                              <small class="float-lg-right">
+                                 Left: {$result->ignore_left}px
+                              </small>
+                              <br>
+                              <small class="float-lg-left">
+                                 Width: {$result->ignore_width}px
+                              </small>
+                              <small class="float-lg-right">
+                                 Height: {$result->ignore_height}px
+                              </small>
+                           </span>
+                           {else}
+                              <i class="fa fa-close"></i>
+                           {/if}
+                        </td>
+                     </tr>
+                     </tbody>
+                  </table>
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <div class="compare-result source">
+                           <h5>Plan source</h5>
+                           <div class="image">
+                              <a href="{$basePath}{$result->source->path_img}" class="shoot-thumbnail"
+                                 data-toggle="lightbox"
+                                 data-parent="" data-gallery="#history" data-title="Plan source">
+                                 <img class="img-thumbnail img-responsive" src="{$basePath}{$result->source->path_img}"
+                                      alt="{$result->source->url_autority}">
+                              </a>
+                           </div>
+
+                           <a n:href="download! $result->source->id_shoot"
+                                 class="btn btn-primary btn-outline-primary btn-sm">
+                              <i class="fa fa-download"></i>
+                              Download
+                           </a>
+                        </div>
+                     </div>
+                     <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <div class="compare-result target">
+                           <h5>Plan target</h5>
+                           <div class="image">
+                              <a href="{$basePath}{$result->plan_target->path_img}" class="shoot-thumbnail"
+                                 data-toggle="lightbox"
+                                 data-parent="" data-gallery="#history" data-title="Plan target">
+                                 <img class="img-thumbnail img-responsive"
+                                      src="{$basePath}{$result->plan_target->path_img}"
+                                      alt="{$result->plan_target->url_autority}">
+                              </a>
+                           </div>
+
+                           <a n:href="downloadTarget! $result->plan_target->id_plan_target"
+                                 class="btn btn-primary btn-outline-primary btn-sm">
+                              <i class="fa fa-download"></i>
+                              Download
+                           </a>
+                        </div>
+                     </div>
+
+                     <div class="col-xs-12 col-lg-4">
+                        <div class="compare-result result">
+                           <h5>Plan result</h5>
+                           <div class="image">
+                              <a href="{$basePath}{$result->path_img}" class="shoot-thumbnail"
+                                 data-toggle="lightbox"
+                                 data-parent="" data-gallery="#history" data-title="Plan result">
+                                 <img class="img-thumbnail img-responsive"
+                                      src="{$basePath}{$result->path_img}"
+                                      alt="{$result->plan_target->url_autority}">
+                              </a>
+                           </div>
+                           <a n:href="downloadResult! $result->id_plan_result"
+                                 class="btn btn-primary btn-outline-primary btn-sm">
+                              <i class="fa fa-download"></i>
+                              Download
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            {/foreach}
 
          {else}
             <div class="alert alert-info" role="alert">
-               There is no history yet.
+               There is no results of comparison plan yet.
             </div>
          {/if}
       </div>

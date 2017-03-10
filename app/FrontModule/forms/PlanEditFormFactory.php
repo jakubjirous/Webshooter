@@ -131,7 +131,7 @@ class PlanEditFormFactory
       }
       $form->addSelect('startDailyValue', 'Repeat once per:', $repeateDailyValueSelect)
          ->setPrompt('--- Choose days ---')
-         ->setDefaultValue($plan->start_value)
+         ->setDefaultValue(($plan->status == TRUE) ? $plan->start_value : NULL)
          ->addConditionOn($form["status"], $form::EQUAL, TRUE)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[1]->id_repeate)
             ->setRequired('Please select after how many days a plan to repeat')
@@ -146,7 +146,7 @@ class PlanEditFormFactory
       }
       $form->addSelect('startWeeklyValue', 'Repeat once per:', $repeateWeeklyValueSelect)
          ->setPrompt('--- Choose weeks ---')
-         ->setDefaultValue($plan->start_value)
+         ->setDefaultValue(($plan->status == TRUE) ? $plan->start_value : NULL)
          ->addConditionOn($form["status"], $form::EQUAL, TRUE)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[2]->id_repeate)
             ->setRequired('Please select after how many weeks a plan to repeat')
@@ -161,7 +161,7 @@ class PlanEditFormFactory
       }
       $form->addSelect('startMonthlyValue', 'Repeat once per:', $repeateMonthlyValueSelect)
          ->setPrompt('--- Choose months ---')
-         ->setDefaultValue($plan->start_value)
+         ->setDefaultValue(($plan->status == TRUE) ? $plan->start_value : NULL)
          ->addConditionOn($form["status"], $form::EQUAL, TRUE)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[3]->id_repeate)
             ->setRequired('Please select after how many months a plan to repeat')
@@ -176,7 +176,7 @@ class PlanEditFormFactory
       }
       $form->addSelect('startYearlyValue', 'Repeat once per:', $repeateYearlyValueSelect)
          ->setPrompt('--- Choose years ---')
-         ->setDefaultValue($plan->start_value)
+         ->setDefaultValue(($plan->status == TRUE) ? $plan->start_value : NULL)
          ->addConditionOn($form["status"], $form::EQUAL, TRUE)
          ->addConditionOn($repeateStartType, $form::EQUAL, $repeateStart[4]->id_repeate)
             ->setRequired('Please select after how many years a plan to repeat')
@@ -254,10 +254,8 @@ class PlanEditFormFactory
 
 
       /* IGNORE PART DEFINITION */
-      $ignoreActive = ($plan->ignore_top != NULL and $plan->ignore_left != NULL and $plan->ignore_width != NULL and $plan->ignore_height != NULL) ? TRUE : FALSE;
-
       $form->addCheckbox('ignoreActive', 'Active ignore part')
-         ->setDefaultValue($ignoreActive)
+         ->setDefaultValue($plan->ignore_active)
          ->addCondition($form::EQUAL, TRUE)
          ->toggle('ignore-part-definition');
 

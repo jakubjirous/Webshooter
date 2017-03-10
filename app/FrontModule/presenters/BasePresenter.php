@@ -37,6 +37,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    const DIR_BIN = 'bin';
    const DIR_JS = 'js';
    const DIR_SHOOTS = 'shoots';
+   const DIR_RESULTS = 'results';
+   const DIR_TARGETS = 'targets';
+   const DIR_PLANS = 'plans';
 
 
    // Engines
@@ -54,13 +57,10 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    const IMAGE_TYPES = [
       'png' => 'PNG – image/png',
       'jpg' => 'JPEG – image/jpeg',
-//      'gif' => 'GIF – image/gif',
-//      'bmp' => 'BMP – image/bmp'
    ];
 
    const IMAGE_PNG = 'png';
    const IMAGE_JPG = 'jpg';
-   const IMAGE_BMP = 'bmp';
 
    // Device types by ID
    const TYPE_MOBILE = 1;
@@ -105,6 +105,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    const REPEATE_END_NEVER = 1;
    const REPEATE_END_OCCURRENCES = 2;
    const REPEATE_END_DATE = 3;
+
+
+   // Shoots render types
+   const RENDER_TO_SHOOTS = 'shoots';
+   const RENDER_TO_PLANS_TARGETS = 'plans_targets';
+
+
+   // Webshooter email
+   const EMAIL_WEBSHOOTER = 'info@jakubjirous.cz';
+   const EMAIL_WEBSHOOTER_FULL = 'WEBSHOOTER <info@jakubjirous.cz>';
 
 
    /**

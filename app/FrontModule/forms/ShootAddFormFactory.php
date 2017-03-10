@@ -6,6 +6,7 @@ use App\FrontModule\Model\ShootManager;
 use App\FrontModule\Model\DeviceManager;
 use App\FrontModule\Model\DeviceTypeManager;
 use App\FrontModule\Presenters\UserAgentParser;
+use App\FrontModule\Presenters\ShootAdd;
 use Nette;
 use Nette\Http\Url;
 use Nette\Utils\Html;
@@ -42,7 +43,6 @@ class ShootAddFormFactory
 
    private $imageJPG;
    private $imagePNG;
-   private $imageBMP;
 
    private $webkit;
    private $gecko;
@@ -57,6 +57,9 @@ class ShootAddFormFactory
    private $path;
    private $browserName;
    private $browserVersion;
+
+   private $renderToShoots;
+   private $renderToPlansTargets;
 
 
    public function __construct(FormFactory $factory, DeviceManager $dm, DeviceTypeManager $tm, ShootManager $stm)
@@ -257,7 +260,14 @@ class ShootAddFormFactory
       $form->onSuccess[] = function (Form $form, $values) use ($onSuccess) {
 
          // ShootAdd by PhantomJS and SlimerJS library
-         $this->sa = new ShootAdd($this->getPath(), $this->imageJPG, $this->imagePNG);
+         $this->sa = new ShootAdd(
+            $this->path,
+            $this->imageJPG,
+            $this->imagePNG,
+            $this->renderToShoots,
+            $this->renderToShoots,
+            $this->renderToPlansTargets
+         );
 
          $userId = ($this->getUserID() == null) ? null : $this->getUserID();
 
@@ -771,16 +781,32 @@ class ShootAddFormFactory
    /**
     * @return mixed
     */
-   public function getImageBMP()
+   public function getRenderToShoots()
    {
-      return $this->imageBMP;
+      return $this->renderToShoots;
    }
 
    /**
-    * @param mixed $imageBMP
+    * @param mixed $renderToShoots
     */
-   public function setImageBMP($imageBMP)
+   public function setRenderToShoots($renderToShoots)
    {
-      $this->imageBMP = $imageBMP;
+      $this->renderToShoots = $renderToShoots;
+   }
+
+   /**
+    * @return mixed
+    */
+   public function getRenderToPlansTargets()
+   {
+      return $this->renderToPlansTargets;
+   }
+
+   /**
+    * @param mixed $renderToPlansTargets
+    */
+   public function setRenderToPlansTargets($renderToPlansTargets)
+   {
+      $this->renderToPlansTargets = $renderToPlansTargets;
    }
 }

@@ -80,7 +80,7 @@ class ComparePresenter extends BasePresenter
       $ds = DIRECTORY_SEPARATOR;
       $ds2 = '/';
       $this->wwwDir = $this->context->parameters['wwwDir'] . $ds;
-      $this->resultDir = $this->context->parameters['wwwDir'] . $ds . 'WS' . $ds . 'results' . $ds;
+      $this->resultDir = $this->wwwDir . self::DIR_WS . $ds . self::DIR_RESULTS . $ds;
 
       $sessionColor = $this->sm->getResultColor();
       $this->color = ($sessionColor == FALSE) ? $this->color : $sessionColor;
@@ -150,21 +150,6 @@ class ComparePresenter extends BasePresenter
    }
 
 
-   /**
-    * Create comparison result by settings
-    * @param $x
-    * @param $y
-    * @param $pixels1
-    * @param $pixels2
-    * @param $diff
-    * @param $pixelsDiffCount
-    */
-   public function createResult($x, $y, $pixels1, $pixels2, $diff, $pixelsDiffCount)
-   {
-
-   }
-
-
    public function renderResult($sourceId, $targetId)
    {
       $this->isLoggedIn();
@@ -199,104 +184,104 @@ class ComparePresenter extends BasePresenter
 
             if ($this->ignoreActive) {
                if (
-                  $x >= $this->ignore["left"] and $x <= $this->ignore["width"] and
-                  $y >= $this->ignore["top"] and $y <= $this->ignore["height"]
+                  $x >= $this->ignore['left'] and $x <= $this->ignore['width'] and
+                  $y >= $this->ignore['top'] and $y <= $this->ignore['height']
                ) {
 
                   if ($this->background == self::BACKGROUND_1) {
-                     $diff[$x][$y]["red"] = $pixels1["red"];
-                     $diff[$x][$y]["green"] = $pixels1["green"];
-                     $diff[$x][$y]["blue"] = $pixels1["blue"];
-                     $diff[$x][$y]["alpha"] = $pixels1["alpha"];
+                     $diff[$x][$y]['red'] = $pixels1['red'];
+                     $diff[$x][$y]['green'] = $pixels1['green'];
+                     $diff[$x][$y]['blue'] = $pixels1['blue'];
+                     $diff[$x][$y]['alpha'] = $pixels1['alpha'];
 
                   } elseif ($this->background == self::BACKGROUND_2) {
-                     $diff[$x][$y]["red"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                     $diff[$x][$y]["green"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                     $diff[$x][$y]["blue"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                     $diff[$x][$y]['green'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                     $diff[$x][$y]['blue'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                     $diff[$x][$y]['alpha'] = 1;
 
                   } elseif ($this->background == self::BACKGROUND_3) {
-                     $diff[$x][$y]["red"] = 255;
-                     $diff[$x][$y]["green"] = 255;
-                     $diff[$x][$y]["blue"] = 255;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = 255;
+                     $diff[$x][$y]['green'] = 255;
+                     $diff[$x][$y]['blue'] = 255;
+                     $diff[$x][$y]['alpha'] = 1;
 
                   } elseif ($this->background == self::BACKGROUND_4) {
-                     $diff[$x][$y]["red"] = 0;
-                     $diff[$x][$y]["green"] = 0;
-                     $diff[$x][$y]["blue"] = 0;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = 0;
+                     $diff[$x][$y]['green'] = 0;
+                     $diff[$x][$y]['blue'] = 0;
+                     $diff[$x][$y]['alpha'] = 1;
                   }
 
                } else {
 
                   if (
-                     (abs(($pixels1["red"] - $pixels2["red"])) / 255 * 100) <= $this->tolerance and
-                     (abs(($pixels1["green"] - $pixels2["green"])) / 255 * 100) <= $this->tolerance and
-                     (abs(($pixels1["blue"] - $pixels2["blue"])) / 255 * 100) <= $this->tolerance and
-                     (abs(($pixels1["alpha"] - $pixels2["alpha"])) / 255 * 100) <= $this->tolerance
+                     (abs(($pixels1['red'] - $pixels2['red'])) / 255 * 100) <= $this->tolerance and
+                     (abs(($pixels1['green'] - $pixels2['green'])) / 255 * 100) <= $this->tolerance and
+                     (abs(($pixels1['blue'] - $pixels2['blue'])) / 255 * 100) <= $this->tolerance and
+                     (abs(($pixels1['alpha'] - $pixels2['alpha'])) / 255 * 100) <= $this->tolerance
                   ) {
 
                      if ($this->background == self::BACKGROUND_1) {
-                        $diff[$x][$y]["red"] = $pixels1["red"];
-                        $diff[$x][$y]["green"] = $pixels1["green"];
-                        $diff[$x][$y]["blue"] = $pixels1["blue"];
-                        $diff[$x][$y]["alpha"] = 1;
+                        $diff[$x][$y]['red'] = $pixels1['red'];
+                        $diff[$x][$y]['green'] = $pixels1['green'];
+                        $diff[$x][$y]['blue'] = $pixels1['blue'];
+                        $diff[$x][$y]['alpha'] = 1;
 
                      } elseif ($this->background == self::BACKGROUND_2) {
-                        $diff[$x][$y]["red"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                        $diff[$x][$y]["green"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                        $diff[$x][$y]["blue"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                        $diff[$x][$y]["alpha"] = 1;
+                        $diff[$x][$y]['red'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                        $diff[$x][$y]['green'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                        $diff[$x][$y]['blue'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                        $diff[$x][$y]['alpha'] = 1;
 
                      } elseif ($this->background == self::BACKGROUND_3) {
-                        $diff[$x][$y]["red"] = 255;
-                        $diff[$x][$y]["green"] = 255;
-                        $diff[$x][$y]["blue"] = 255;
-                        $diff[$x][$y]["alpha"] = 1;
+                        $diff[$x][$y]['red'] = 255;
+                        $diff[$x][$y]['green'] = 255;
+                        $diff[$x][$y]['blue'] = 255;
+                        $diff[$x][$y]['alpha'] = 1;
 
                      } elseif ($this->background == self::BACKGROUND_4) {
-                        $diff[$x][$y]["red"] = 0;
-                        $diff[$x][$y]["green"] = 0;
-                        $diff[$x][$y]["blue"] = 0;
-                        $diff[$x][$y]["alpha"] = 1;
+                        $diff[$x][$y]['red'] = 0;
+                        $diff[$x][$y]['green'] = 0;
+                        $diff[$x][$y]['blue'] = 0;
+                        $diff[$x][$y]['alpha'] = 1;
                      }
 
                   } else {
 
                      // red
                      if ($this->color == self::COLOR_1) {
-                        $diff[$x][$y]["red"] = 255;
-                        $diff[$x][$y]["green"] = 0;
-                        $diff[$x][$y]["blue"] = 0;
-                        $diff[$x][$y]["alpha"] = 1;
+                        $diff[$x][$y]['red'] = 255;
+                        $diff[$x][$y]['green'] = 0;
+                        $diff[$x][$y]['blue'] = 0;
+                        $diff[$x][$y]['alpha'] = 1;
 
                         // green
                      } else if ($this->color == self::COLOR_2) {
-                        $diff[$x][$y]["red"] = 0;
-                        $diff[$x][$y]["green"] = 200;
-                        $diff[$x][$y]["blue"] = 0;
-                        $diff[$x][$y]["alpha"] = 1;
+                        $diff[$x][$y]['red'] = 0;
+                        $diff[$x][$y]['green'] = 200;
+                        $diff[$x][$y]['blue'] = 0;
+                        $diff[$x][$y]['alpha'] = 1;
 
                         // blue
                      } elseif ($this->color == self::COLOR_3) {
-                        $diff[$x][$y]["red"] = 0;
-                        $diff[$x][$y]["green"] = 127;
-                        $diff[$x][$y]["blue"] = 255;
-                        $diff[$x][$y]["alpha"] = 1;
+                        $diff[$x][$y]['red'] = 0;
+                        $diff[$x][$y]['green'] = 127;
+                        $diff[$x][$y]['blue'] = 255;
+                        $diff[$x][$y]['alpha'] = 1;
 
                         // yellow
                      } elseif ($this->color == self::COLOR_4) {
-                        $diff[$x][$y]["red"] = 230;
-                        $diff[$x][$y]["green"] = 230;
-                        $diff[$x][$y]["blue"] = 0;
-                        $diff[$x][$y]["alpha"] = 1;
+                        $diff[$x][$y]['red'] = 230;
+                        $diff[$x][$y]['green'] = 230;
+                        $diff[$x][$y]['blue'] = 0;
+                        $diff[$x][$y]['alpha'] = 1;
 
                      } else {
-                        $diff[$x][$y]["red"] = max($pixels1["red"], $pixels2["red"]) - min($pixels1["red"], $pixels2["red"]);
-                        $diff[$x][$y]["green"] = max($pixels1["green"], $pixels2["green"]) - min($pixels1["green"], $pixels2["green"]);
-                        $diff[$x][$y]["blue"] = max($pixels1["blue"], $pixels2["blue"]) - min($pixels1["blue"], $pixels2["blue"]);
-                        $diff[$x][$y]["alpha"] = max($pixels1["alpha"], $pixels2["alpha"]) - min($pixels1["alpha"], $pixels2["alpha"]);
+                        $diff[$x][$y]['red'] = max($pixels1['red'], $pixels2['red']) - min($pixels1['red'], $pixels2['red']);
+                        $diff[$x][$y]['green'] = max($pixels1['green'], $pixels2['green']) - min($pixels1['green'], $pixels2['green']);
+                        $diff[$x][$y]['blue'] = max($pixels1['blue'], $pixels2['blue']) - min($pixels1['blue'], $pixels2['blue']);
+                        $diff[$x][$y]['alpha'] = max($pixels1['alpha'], $pixels2['alpha']) - min($pixels1['alpha'], $pixels2['alpha']);
                      }
 
                      $pixelsDiffCount++;
@@ -308,72 +293,72 @@ class ComparePresenter extends BasePresenter
             } else {
 
                if (
-                  (abs(($pixels1["red"] - $pixels2["red"])) / 255 * 100) <= $this->tolerance and
-                  (abs(($pixels1["green"] - $pixels2["green"])) / 255 * 100) <= $this->tolerance and
-                  (abs(($pixels1["blue"] - $pixels2["blue"])) / 255 * 100) <= $this->tolerance and
-                  (abs(($pixels1["alpha"] - $pixels2["alpha"])) / 255 * 100) <= $this->tolerance
+                  (abs(($pixels1['red'] - $pixels2['red'])) / 255 * 100) <= $this->tolerance and
+                  (abs(($pixels1['green'] - $pixels2['green'])) / 255 * 100) <= $this->tolerance and
+                  (abs(($pixels1['blue'] - $pixels2['blue'])) / 255 * 100) <= $this->tolerance and
+                  (abs(($pixels1['alpha'] - $pixels2['alpha'])) / 255 * 100) <= $this->tolerance
                ) {
 
                   if ($this->background == self::BACKGROUND_1) {
-                     $diff[$x][$y]["red"] = $pixels1["red"];
-                     $diff[$x][$y]["green"] = $pixels1["green"];
-                     $diff[$x][$y]["blue"] = $pixels1["blue"];
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = $pixels1['red'];
+                     $diff[$x][$y]['green'] = $pixels1['green'];
+                     $diff[$x][$y]['blue'] = $pixels1['blue'];
+                     $diff[$x][$y]['alpha'] = 1;
 
                   } elseif ($this->background == self::BACKGROUND_2) {
-                     $diff[$x][$y]["red"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                     $diff[$x][$y]["green"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                     $diff[$x][$y]["blue"] = ($pixels1["red"] + $pixels1["green"] + $pixels1["blue"]) / 3;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                     $diff[$x][$y]['green'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                     $diff[$x][$y]['blue'] = ($pixels1['red'] + $pixels1['green'] + $pixels1['blue']) / 3;
+                     $diff[$x][$y]['alpha'] = 1;
 
                   } elseif ($this->background == self::BACKGROUND_3) {
-                     $diff[$x][$y]["red"] = 255;
-                     $diff[$x][$y]["green"] = 255;
-                     $diff[$x][$y]["blue"] = 255;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = 255;
+                     $diff[$x][$y]['green'] = 255;
+                     $diff[$x][$y]['blue'] = 255;
+                     $diff[$x][$y]['alpha'] = 1;
 
                   } elseif ($this->background == self::BACKGROUND_4) {
-                     $diff[$x][$y]["red"] = 0;
-                     $diff[$x][$y]["green"] = 0;
-                     $diff[$x][$y]["blue"] = 0;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = 0;
+                     $diff[$x][$y]['green'] = 0;
+                     $diff[$x][$y]['blue'] = 0;
+                     $diff[$x][$y]['alpha'] = 1;
                   }
 
                } else {
 
                   // red
                   if ($this->color == self::COLOR_1) {
-                     $diff[$x][$y]["red"] = 255;
-                     $diff[$x][$y]["green"] = 0;
-                     $diff[$x][$y]["blue"] = 0;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = 255;
+                     $diff[$x][$y]['green'] = 0;
+                     $diff[$x][$y]['blue'] = 0;
+                     $diff[$x][$y]['alpha'] = 1;
 
                      // green
                   } else if ($this->color == self::COLOR_2) {
-                     $diff[$x][$y]["red"] = 0;
-                     $diff[$x][$y]["green"] = 200;
-                     $diff[$x][$y]["blue"] = 0;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = 0;
+                     $diff[$x][$y]['green'] = 200;
+                     $diff[$x][$y]['blue'] = 0;
+                     $diff[$x][$y]['alpha'] = 1;
 
                      // blue
                   } elseif ($this->color == self::COLOR_3) {
-                     $diff[$x][$y]["red"] = 0;
-                     $diff[$x][$y]["green"] = 127;
-                     $diff[$x][$y]["blue"] = 255;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = 0;
+                     $diff[$x][$y]['green'] = 127;
+                     $diff[$x][$y]['blue'] = 255;
+                     $diff[$x][$y]['alpha'] = 1;
 
                      // yellow
                   } elseif ($this->color == self::COLOR_4) {
-                     $diff[$x][$y]["red"] = 230;
-                     $diff[$x][$y]["green"] = 230;
-                     $diff[$x][$y]["blue"] = 0;
-                     $diff[$x][$y]["alpha"] = 1;
+                     $diff[$x][$y]['red'] = 230;
+                     $diff[$x][$y]['green'] = 230;
+                     $diff[$x][$y]['blue'] = 0;
+                     $diff[$x][$y]['alpha'] = 1;
 
                   } else {
-                     $diff[$x][$y]["red"] = max($pixels1["red"], $pixels2["red"]) - min($pixels1["red"], $pixels2["red"]);
-                     $diff[$x][$y]["green"] = max($pixels1["green"], $pixels2["green"]) - min($pixels1["green"], $pixels2["green"]);
-                     $diff[$x][$y]["blue"] = max($pixels1["blue"], $pixels2["blue"]) - min($pixels1["blue"], $pixels2["blue"]);
-                     $diff[$x][$y]["alpha"] = max($pixels1["alpha"], $pixels2["alpha"]) - min($pixels1["alpha"], $pixels2["alpha"]);
+                     $diff[$x][$y]['red'] = max($pixels1['red'], $pixels2['red']) - min($pixels1['red'], $pixels2['red']);
+                     $diff[$x][$y]['green'] = max($pixels1['green'], $pixels2['green']) - min($pixels1['green'], $pixels2['green']);
+                     $diff[$x][$y]['blue'] = max($pixels1['blue'], $pixels2['blue']) - min($pixels1['blue'], $pixels2['blue']);
+                     $diff[$x][$y]['alpha'] = max($pixels1['alpha'], $pixels2['alpha']) - min($pixels1['alpha'], $pixels2['alpha']);
                   }
 
                   $pixelsDiffCount++;
@@ -386,7 +371,7 @@ class ComparePresenter extends BasePresenter
 
       for ($i = 0; $i < $this->sourceSize[0]; ++$i) {
          for ($j = 0; $j < $this->sourceSize[1]; ++$j) {
-            $colorOfPixel = imagecolorallocatealpha($diffImage, $diff[$i][$j]["red"], $diff[$i][$j]["green"], $diff[$i][$j]["blue"], $diff[$i][$j]["alpha"]);
+            $colorOfPixel = imagecolorallocatealpha($diffImage, $diff[$i][$j]['red'], $diff[$i][$j]['green'], $diff[$i][$j]['blue'], $diff[$i][$j]['alpha']);
             imagesetpixel($diffImage, $i, $j, $colorOfPixel);
          }
       }
@@ -407,10 +392,10 @@ class ComparePresenter extends BasePresenter
          $this->tolerance,
          $difference,
          $this->ignoreActive,
-         $this->ignore["top"],
-         $this->ignore["left"],
-         $this->ignore["width"],
-         $this->ignore["height"],
+         $this->ignore['top'],
+         $this->ignore['left'],
+         $this->ignore['width'],
+         $this->ignore['height'],
          $resultPath
       );
 

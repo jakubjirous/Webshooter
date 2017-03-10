@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FrontModule\Forms;
+namespace App\FrontModule\Presenters;
 
 use Nette;
 
@@ -14,13 +14,19 @@ class ShootAdd
    private $path;
    private $imageJPG;
    private $imagePNG;
+   private $type;
+   private $typeShoot;
+   private $typePlanTarget;
 
 
-   public function __construct($path, $imageJPG, $imagePNG)
+   public function __construct($path, $imageJPG, $imagePNG, $type, $typeShoot, $typePlanTarget)
    {
       $this->path = $path;
       $this->imageJPG = $imageJPG;
       $this->imagePNG = $imagePNG;
+      $this->type = $type;
+      $this->typeShoot = $typeShoot;
+      $this->typePlanTarget = $typePlanTarget;
    }
 
 
@@ -32,10 +38,23 @@ class ShootAdd
     * @param $height
     * @param $imgType
     */
-   public function devicePhantomJS($absoluteUrl, $filenameShoot, $filenameJS, $width, $height, $imgType)
+   public function devicePhantomJS(
+      $absoluteUrl,
+      $filenameShoot,
+      $filenameJS,
+      $width,
+      $height,
+      $imgType)
    {
       $path = $this->path;
-      $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
+
+      $fullPathShoot = "";
+      if($this->type == $this->typeShoot) {
+         $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
+      } else if($this->type == $this->typePlanTarget) {
+         $fullPathShoot = $path['wwwPlansTargetsDir'] . $filenameShoot;
+      }
+
       $fullPathJS = $path['wwwJsDir'] . $filenameJS;
       $renderTimeout = self::RENDER_TIMEOUT;
 
@@ -120,10 +139,27 @@ class ShootAdd
     * @param $cropHeight
     * @param $imgType
     */
-   public function cropPhantomJS($absoluteUrl, $filenameShoot, $filenameJS, $viewportWidth, $viewportHeight, $cropTop, $cropLeft, $cropWidth, $cropHeight, $imgType)
+   public function cropPhantomJS(
+      $absoluteUrl,
+      $filenameShoot,
+      $filenameJS,
+      $viewportWidth,
+      $viewportHeight,
+      $cropTop,
+      $cropLeft,
+      $cropWidth,
+      $cropHeight,
+      $imgType)
    {
       $path = $this->path;
-      $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
+
+      $fullPathShoot = "";
+      if($this->type == $this->typeShoot) {
+         $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
+      } else if($this->type == $this->typePlanTarget) {
+         $fullPathShoot = $path['wwwPlansTargetsDir'] . $filenameShoot;
+      }
+
       $fullPathJS = $path['wwwJsDir'] . $filenameJS;
       $renderTimeout = self::RENDER_TIMEOUT;
 
@@ -178,10 +214,23 @@ class ShootAdd
     * @param $height
     * @param $imgType
     */
-   public function deviceSlimerJS($absoluteUrl, $filenameShoot, $filenameJS, $width, $height, $imgType)
+   public function deviceSlimerJS(
+      $absoluteUrl,
+      $filenameShoot,
+      $filenameJS,
+      $width,
+      $height,
+      $imgType)
    {
       $path = $this->path;
-      $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
+
+      $fullPathShoot = "";
+      if($this->type == $this->typeShoot) {
+         $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
+      } else if($this->type == $this->typePlanTarget) {
+         $fullPathShoot = $path['wwwPlansTargetsDir'] . $filenameShoot;
+      }
+
       $fullPathJS = $path['wwwJsDir'] . $filenameJS;
       $renderTimeout = self::RENDER_TIMEOUT;
 
@@ -267,10 +316,27 @@ class ShootAdd
     * @param $cropHeight
     * @param $imgType
     */
-   public function cropSlimerJS($absoluteUrl, $filenameShoot, $filenameJS, $viewportWidth, $viewportHeight, $cropTop, $cropLeft, $cropWidth, $cropHeight, $imgType)
+   public function cropSlimerJS(
+      $absoluteUrl,
+      $filenameShoot,
+      $filenameJS,
+      $viewportWidth,
+      $viewportHeight,
+      $cropTop,
+      $cropLeft,
+      $cropWidth,
+      $cropHeight,
+      $imgType)
    {
       $path = $this->path;
-      $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
+
+      $fullPathShoot = "";
+      if($this->type == $this->typeShoot) {
+         $fullPathShoot = $path['wwwShootsDir'] . $filenameShoot;
+      } else if($this->type == $this->typePlanTarget) {
+         $fullPathShoot = $path['wwwPlansTargetsDir'] . $filenameShoot;
+      }
+
       $fullPathJS = $path['wwwJsDir'] . $filenameJS;
       $renderTimeout = self::RENDER_TIMEOUT;
 

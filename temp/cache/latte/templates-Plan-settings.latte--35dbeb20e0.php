@@ -231,7 +231,7 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
                      <td data-title="Result difference">&le; <?php echo LR\Filters::escapeHtmlText($plan->difference) /* line 113 */ ?> %</td>
                      <td data-title="Ignore part">
 <?php
-				if ($plan->ignore_top != NULL && $plan->ignore_left != NULL && $plan->ignore_width != NULL && $plan->ignore_height != NULL) {
+				if ($plan->ignore_active) {
 ?>
                            <i class="fa fa-check"></i>
 <?php
@@ -244,8 +244,10 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 ?>
                      </td>
                      <td>
-                        <a class="btn btn-primary btn-sm" title="History" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:history", [$plan->id_plan])) ?>">
+                        <a class="btn btn-success btn-sm" title="History of plan results" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:history", [$plan->id_plan])) ?>">
                            <i class="fa fa-history"></i>
+                           <?php echo LR\Filters::escapeHtmlText($prm->getResultsCountInPlanByID($plan->id_plan)) /* line 124 */ ?>
+
                         </a>
                         <a class="btn btn-primary btn-sm" title="Detail" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:detail", [$plan->id_plan])) ?>">
                            <i class="fa fa-edit"></i>
@@ -270,7 +272,7 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 		else {
 ?>
             <div class="alert alert-info" role="alert">
-               There is no comparison plan yet.
+               There is no plan yet.
             </div>
 <?php
 		}

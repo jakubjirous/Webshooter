@@ -112,15 +112,16 @@
                      <td data-title="Result tolerance">{$plan->tolerance} %</td>
                      <td data-title="Result difference">&le; {$plan->difference} %</td>
                      <td data-title="Ignore part">
-                        {if $plan->ignore_top != NULL && $plan->ignore_left != NULL && $plan->ignore_width != NULL && $plan->ignore_height != NULL}
+                        {if $plan->ignore_active}
                            <i class="fa fa-check"></i>
                         {else}
                            <i class="fa fa-close"></i>
                         {/if}
                      </td>
                      <td>
-                        <a n:href="Plan:history $plan->id_plan" class="btn btn-primary btn-sm" title="History">
+                        <a n:href="Plan:history $plan->id_plan" class="btn btn-success btn-sm" title="History of plan results">
                            <i class="fa fa-history"></i>
+                           {$prm->getResultsCountInPlanByID($plan->id_plan)}
                         </a>
                         <a n:href="Plan:detail $plan->id_plan" class="btn btn-primary btn-sm" title="Detail">
                            <i class="fa fa-edit"></i>
@@ -136,7 +137,7 @@
             </table>
          {else}
             <div class="alert alert-info" role="alert">
-               There is no comparison plan yet.
+               There is no plan yet.
             </div>
          {/if}
       </div>
