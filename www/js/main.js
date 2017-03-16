@@ -32,39 +32,39 @@ $(function () {
      * Auto hide flash messages
      */
     setTimeout(function () {
-        $("#flash-message").fadeOut('slow');
+        $('#flash-message').fadeOut('slow');
     }, 3000);
 
 
     // radio inputs checked
-    $("#engine-type input[type=radio]").change(function () {
-        $("input[type=radio]:not(:checked)").parent().removeClass('checked');
+    $('#engine-type input[type=radio]').change(function () {
+        $('input[type=radio]:not(:checked)').parent().removeClass('checked');
         $(this).parent().addClass('checked');
     });
 
-    $("#device-type input[type=radio]").change(function () {
-        $("input[type=radio]:not(:checked)").parent().removeClass('checked');
+    $('#device-type input[type=radio]').change(function () {
+        $('input[type=radio]:not(:checked)').parent().removeClass('checked');
         $(this).parent().addClass('checked');
     });
 
 
-    $("#tab-mobile input[type=radio]").change(function () {
-        $("input[type=radio]:not(:checked)").parent().parent().parent().removeClass('choose');
+    $('#tab-mobile input[type=radio]').change(function () {
+        $('input[type=radio]:not(:checked)').parent().parent().parent().removeClass('choose');
         $(this).parent().parent().parent().addClass('choose');
     });
 
-    $("#tab-tablet input[type=radio]").change(function () {
-        $("input[type=radio]:not(:checked)").parent().parent().parent().removeClass('choose');
+    $('#tab-tablet input[type=radio]').change(function () {
+        $('input[type=radio]:not(:checked)').parent().parent().parent().removeClass('choose');
         $(this).parent().parent().parent().addClass('choose');
     });
 
-    $("#tab-laptop input[type=radio]").change(function () {
-        $("input[type=radio]:not(:checked)").parent().parent().parent().removeClass('choose');
+    $('#tab-laptop input[type=radio]').change(function () {
+        $('input[type=radio]:not(:checked)').parent().parent().parent().removeClass('choose');
         $(this).parent().parent().parent().addClass('choose');
     });
 
-    $("#tab-desktop input[type=radio]").change(function () {
-        $("input[type=radio]:not(:checked)").parent().parent().parent().removeClass('choose');
+    $('#tab-desktop input[type=radio]').change(function () {
+        $('input[type=radio]:not(:checked)').parent().parent().parent().removeClass('choose');
         $(this).parent().parent().parent().addClass('choose');
     });
 
@@ -74,4 +74,19 @@ $(function () {
 
 
     // $('#datetimepicker1').datetimepicker();
-});
+
+    $('#typed-element').typed({
+        strings: [
+            'Web page application to creating website screenshots.',
+            'A lot of predefined device resolution.',
+            'Simple screenshots comparison according to user defined criteria.',
+            'Adjustable time schedule for the comparison.',
+            'Saving results to a clear history.',
+            'E-mail notification containing the results.',
+            'User friendly interface.',
+        ],
+        typeSpeed: 0,
+        loop: true,
+        backDelay: 2000
+    });
+ });

@@ -55,6 +55,20 @@ class ResultManager
 
 
    /**
+    * Get all result by source OR target ID
+    * @param $idSourceTarget
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getResultBySourceTargetID($idSourceTarget)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where(self::COLUMN_SOURCE .' = ? OR ' . self::COLUMN_TARGET .' = ?', $idSourceTarget, $idSourceTarget)
+         ->fetchAll();
+   }
+
+
+   /**
     * Add new result
     * @param $source
     * @param $target
@@ -112,5 +126,17 @@ class ResultManager
                self::COLUMN_DATE => new DateTime(),
             ]);
       }
+   }
+
+
+   /**
+    * Delete result
+    * @param $idSourceTarget
+    */
+   public function deleteResult($idSourceTarget)
+   {
+      $this->db->table(self::TABLE_NAME)
+         ->where(self::COLUMN_SOURCE .' = ? OR ' . self::COLUMN_TARGET .' = ?', $idSourceTarget, $idSourceTarget)
+         ->delete();
    }
 }

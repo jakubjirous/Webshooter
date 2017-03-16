@@ -20,20 +20,49 @@ class Templatea10196a76c extends Latte\Runtime\Template
               aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
       <div class="collapse navbar-toggleable-md" id="navbarResponsive">
          <ul class="nav navbar-nav">
-            <li class="nav-item<?php
-		if ($this->global->uiPresenter->isLinkCurrent('Device:')) {
-			?> active<?php
-		}
+<?php
+		if ($isLoggedIn) {
+			?>               <li class="nav-item<?php
+			if ($this->global->uiPresenter->isLinkCurrent('Device:*')) {
+				?> active<?php
+			}
 ?>">
-               <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Device:list")) ?>">Device metrics</a>
-            </li>
-            <li class="nav-item<?php
-		if ($this->global->uiPresenter->isLinkCurrent('Shoot:')) {
-			?> active<?php
-		}
+                  <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Device:settings")) ?>">Device settings</a>
+               </li>
+               <li class="nav-item<?php
+			if ($this->global->uiPresenter->isLinkCurrent('Shoot:*')) {
+				?> active<?php
+			}
 ?>">
-               <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:list")) ?>">Web shoots</a>
-            </li>
+                  <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:settings")) ?>">Shoot settings</a>
+               </li>
+               <li class="nav-item<?php
+			if ($this->global->uiPresenter->isLinkCurrent('Plan:*')) {
+				?> active<?php
+			}
+?>">
+                  <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">Plan settings</a>
+               </li>
+<?php
+		}
+		else {
+			?>               <li class="nav-item<?php
+			if ($this->global->uiPresenter->isLinkCurrent('Device:*')) {
+				?> active<?php
+			}
+?>">
+                  <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Device:list")) ?>">Device metrics</a>
+               </li>
+               <li class="nav-item<?php
+			if ($this->global->uiPresenter->isLinkCurrent('Shoot:*')) {
+				?> active<?php
+			}
+?>">
+                  <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:list")) ?>">Web shoots</a>
+               </li>
+<?php
+		}
+?>
          </ul>
 
          <ul class="nav navbar-nav float-lg-right">
@@ -57,7 +86,7 @@ class Templatea10196a76c extends Latte\Runtime\Template
                      Account
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="responsiveNavbarDropdown">
-                     <h6 class="dropdown-header"><?php echo LR\Filters::escapeHtmlText($identity->username) /* line 34 */ ?></h6>
+                     <h6 class="dropdown-header"><?php echo LR\Filters::escapeHtmlText($identity->username) /* line 46 */ ?></h6>
 <?php
 			if ($roleAdmin) {
 				?>                        <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("User:list")) ?>">

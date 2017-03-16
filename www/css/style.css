@@ -6771,6 +6771,33 @@ form .custom-checkbox {
   form .custom-checkbox .old-ie .checkbox-label:after {
     display: none; }
 
+.typed-cursor {
+  opacity: 1;
+  -webkit-animation: blink 0.7s infinite;
+  -moz-animation: blink 0.7s infinite;
+  animation: blink 0.7s infinite; }
+
+@keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 .shoot-box {
   margin: 40px 0; }
   .shoot-box .shoot-item .image a {
@@ -6797,6 +6824,25 @@ form .custom-checkbox {
 
   @media (min-width: 768px) {
     .shoot-box .shoot-item {
+      margin: 15px 0; } }
+
+.tech-box {
+  margin: 40px 0;
+  padding: 40px 0;
+  background: #f7f7f9; }
+  .tech-box .tech-item {
+    text-align: center; }
+    .tech-box .tech-item img {
+      margin: auto; }
+  @media (max-width: 767px) {
+    .tech-box .tech-item {
+      margin: 10px 0; } }
+@media (min-width: 576px) and (max-width: 1091px) {
+  .tech-box .tech-item {
+    margin: 15px 0; } }
+
+  @media (min-width: 768px) {
+    .tech-box .tech-item {
       margin: 15px 0; } }
 
 .shoot-add .addon-left {

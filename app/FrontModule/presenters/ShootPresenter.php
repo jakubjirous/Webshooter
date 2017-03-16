@@ -21,6 +21,9 @@ class ShootPresenter extends BasePresenter
    /** @var Model\ShootManager */
    private $stm;
 
+   /** @var Model\ResultManager */
+   private $rm;
+
    /** @var Forms\ShootAddFormFactory @inject */
    public $shootAddFactory;
 
@@ -39,11 +42,12 @@ class ShootPresenter extends BasePresenter
    private $view = self::VIEW_MD;
 
 
-   public function __construct(Model\SessionManager $sm, Model\DeviceManager $dm, Model\ShootManager $stm)
+   public function __construct(Model\SessionManager $sm, Model\DeviceManager $dm, Model\ShootManager $stm, Model\ResultManager $rm)
    {
       $this->sm = $sm;
       $this->dm = $dm;
       $this->stm = $stm;
+      $this->rm = $rm;
    }
 
 
@@ -208,12 +212,23 @@ class ShootPresenter extends BasePresenter
       $fullPathShoot = $this->wwwDir . $shoot->path_img;
       $fullPathJS = $this->wwwDir . $shoot->path_js;
 
+      // delete results from server
+      $results = $this->rm->getResultBySourceTargetID($id);
+      foreach($results as $result) {
+         $fullPathResult = $this->wwwDir . $result->path_img;
+         FileSystem::delete($fullPathResult);
+      }
+
       // delete shoot from server
       FileSystem::delete($fullPathShoot);
       FileSystem::delete($fullPathJS);
 
+      // delete result from DB
+      $this->rm->deleteResult($id);
+
       // delete shoot from DB
       $this->stm->deleteShoot($id);
+      $this->flashMessage('Shoot was deleted.', self::FLASH_MESSAGE_SUCCESS);
       $this->redirect('this');
    }
 

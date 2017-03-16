@@ -649,7 +649,10 @@ class Container_544a9605ac extends Nette\DI\Container
 	 */
 	public function createServiceApplication__1()
 	{
-		$service = new App\CliModule\Presenters\CliPresenter;
+		$service = new App\CliModule\Presenters\CliPresenter($this->getService('48_App_FrontModule_Model_SessionManager'),
+			$this->getService('49_App_FrontModule_Model_ShootManager'), $this->getService('47_App_FrontModule_Model_ResultManager'),
+			$this->getService('42_App_FrontModule_Model_PlanManager'), $this->getService('44_App_FrontModule_Model_PlanTargetManager'),
+			$this->getService('43_App_FrontModule_Model_PlanResultManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),
@@ -802,7 +805,8 @@ class Container_544a9605ac extends Nette\DI\Container
 	public function createServiceApplication__8()
 	{
 		$service = new App\FrontModule\Presenters\ShootPresenter($this->getService('48_App_FrontModule_Model_SessionManager'),
-			$this->getService('40_App_FrontModule_Model_DeviceManager'), $this->getService('49_App_FrontModule_Model_ShootManager'));
+			$this->getService('40_App_FrontModule_Model_DeviceManager'), $this->getService('49_App_FrontModule_Model_ShootManager'),
+			$this->getService('47_App_FrontModule_Model_ResultManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),

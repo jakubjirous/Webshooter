@@ -23,6 +23,7 @@
 {block content}
    <div class="container">
       <div class="plan-history">
+
          {if $results}
 
             {foreach $results as $result}
@@ -32,6 +33,7 @@
                      <tr>
                         <th>#</th>
                         <th>Date</th>
+                        <th>E-mail</th>
                         <th>Result color</th>
                         <th>Result background</th>
                         <th>Tolerance</th>
@@ -52,12 +54,24 @@
                            </small>
                         </span>
                         </td>
+                        <td data-title="E-mail">
+                        <span>
+                           <a href="mailto:{$plan->primary_email}" title="Primary e-mail">{$plan->primary_email}</a>
+                           {if $plan->secondary_email != NULL}
+                              <br>
+                              <small>
+                                 <a href="mailto:{$plan->secondary_email}"
+                                    title="Secondary e-mail">{$plan->secondary_email}</a>
+                              </small>
+                           {/if}
+                        </span>
+                        </td>
                         <td class="color-{$result->color}" data-title="Result color">
                            <i class="fa fa-image" title="{$result->color}"></i>
                         </td>
                         <td data-title="Result background">{$result->background}</td>
                         <td data-title="Tolerance">{$result->tolerance}%</td>
-                        <td data-title="Difference">&le;{$result->difference}%</td>
+                        <td data-title="Difference">&le; {$result->difference}%</td>
                         <td data-title="Result difference">
                            {if $result->difference_result <= $result->difference}
                               <i class="tag tag-success">{$result->difference_result}%</i>
@@ -87,10 +101,23 @@
                            {/if}
                         </td>
                         <td>
-                           <a n:href="deleteHistory! $result->id_plan_result" class="btn btn-danger btn-sm float-sm-right float-lg-none" title="Delete history"
-                                                              data-confirm="Are you sure to delete this record in plan history?">
+                           <a n:href="Plan:emailPreview $result->id_plan_result"
+                                 class="btn btn-success btn-sm float-sm-right float-lg-none">
+                              Preview
+                           </a>
+
+                           <a n:href="sendEmail! $result->id_plan_result"
+                                 class="btn btn-success btn-sm float-sm-right float-lg-none"
+                                 title="Send e-mail with result" data-confirm="Are you sure to send this result?">
+                              <i class="fa fa-envelope"></i> Send
+                           </a>
+                           {ifset $roleAdmin}
+                           <a n:href="deleteHistory! $result->id_plan_result"
+                                 class="btn btn-danger btn-sm float-sm-right float-lg-none" title="Delete history"
+                                 data-confirm="Are you sure to delete this record in plan history?">
                               <i class="fa fa-trash"></i>
                            </a>
+                           {/ifset}
                         </td>
                      </tr>
                      </tbody>
@@ -102,7 +129,7 @@
                            <div class="image">
                               <a href="{$basePath}{$result->source->path_img}" class="shoot-thumbnail"
                                  data-toggle="lightbox"
-                                 data-parent="" data-gallery="#history" data-title="Plan source">
+                                 data-parent="" data-gallery="#history-{$iterator->counter}" data-title="Plan source">
                                  <img class="img-thumbnail img-responsive" src="{$basePath}{$result->source->path_img}"
                                       alt="{$result->source->url_autority}">
                               </a>
@@ -121,7 +148,7 @@
                            <div class="image">
                               <a href="{$basePath}{$result->plan_target->path_img}" class="shoot-thumbnail"
                                  data-toggle="lightbox"
-                                 data-parent="" data-gallery="#history" data-title="Plan target">
+                                 data-parent="" data-gallery="#history-{$iterator->counter}" data-title="Plan target">
                                  <img class="img-thumbnail img-responsive"
                                       src="{$basePath}{$result->plan_target->path_img}"
                                       alt="{$result->plan_target->url_autority}">
@@ -142,7 +169,7 @@
                            <div class="image">
                               <a href="{$basePath}{$result->path_img}" class="shoot-thumbnail"
                                  data-toggle="lightbox"
-                                 data-parent="" data-gallery="#history" data-title="Plan result">
+                                 data-parent="" data-gallery="#history-{$iterator->counter}" data-title="Plan result">
                                  <img class="img-thumbnail img-responsive"
                                       src="{$basePath}{$result->path_img}"
                                       alt="{$result->plan_target->url_autority}">

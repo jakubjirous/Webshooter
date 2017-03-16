@@ -19,7 +19,191 @@
          <div class="row">
             <div class="col-xs-12">
 
-               {control deviceEditForm}
+               <form n:name="deviceEditForm">
+                  <fieldset>
+                     <legend>Basic options</legend>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="id_type">Type:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4">
+                           <select n:name="id_type" class="form-control">
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="device">Device:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4">
+                           <input n:name="device" class="form-control">
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="platform">Platform:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4">
+                           <input n:name="platform" class="form-control">
+                        </div>
+                     </div>
+                  </fieldset>
+
+
+                  <fieldset>
+                     <legend>Screen dimensions in centimetres</legend>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="screen_cm">Screen:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="screen_cm" class="form-control">
+                           <span class="input-group-addon">cm</span>
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="screen_width_cm">Screen width:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="screen_width_cm" class="form-control">
+                           <span class="input-group-addon">cm</span>
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="screen_height_cm">Screen height:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="screen_height_cm" class="form-control">
+                           <span class="input-group-addon">cm</span>
+                        </div>
+                     </div>
+                  </fieldset>
+
+
+                  <fieldset>
+                     <legend>Screen dimensions in inches</legend>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="screen_in">Screen:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="screen_in" class="form-control">
+                           <span class="input-group-addon">in</span>
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="screen_width_in">Screen width:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="screen_width_in" class="form-control">
+                           <span class="input-group-addon">in</span>
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="screen_height_in">Screen height:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="screen_height_in" class="form-control">
+                           <span class="input-group-addon">in</span>
+                        </div>
+                     </div>
+                  </fieldset>
+
+
+                  <fieldset>
+                     <legend>Device size in pixels</legend>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="width_px">Width:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="width_px" class="form-control">
+                           <span class="input-group-addon">px</span>
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="height_px">Height:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="height_px" class="form-control">
+                           <span class="input-group-addon">px</span>
+                        </div>
+                     </div>
+                  </fieldset>
+
+
+                  <fieldset>
+                     <legend>Device size in density independent pixels</legend>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="width_dp">Width:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="width_dp" class="form-control">
+                           <span class="input-group-addon">dp</span>
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="height_dp">Height:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="height_dp" class="form-control">
+                           <span class="input-group-addon">dp</span>
+                        </div>
+                     </div>
+                  </fieldset>
+
+
+                  <fieldset>
+                     <legend>Advanced options</legend>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="aspect_ratio">Aspect ratio:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group">
+                           <input n:name="aspect_ratio" class="form-control">
+                           <span class="input-group-addon">X:Y</span>
+                        </div>
+                     </div>
+
+                     <div class="row form-group required">
+                        <div class="col-xs-12 col-md-4 col-lg-4 control-label text-md-right">
+                           <label n:name="density">Density:</label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-4">
+                           <input n:name="density" class="form-control">
+                        </div>
+                     </div>
+                  </fieldset>
+
+                  <div class="row form-group margin-bottom">
+                     <div class="col-xs-12 col-md-6 offset-md-6 col-lg-4 offset-lg-4">
+                        <button type="submit" n:name="save" class="btn btn-primary">
+                           Save
+                        </button>
+                     </div>
+                  </div>
+               </form>
 
             </div>
          </div>

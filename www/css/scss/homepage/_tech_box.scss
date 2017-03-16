@@ -1,0 +1,36 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Tech box
+// ---------------------------------------------------------------------------------------------------------------------
+
+.tech-box {
+   margin: 40px 0;
+   padding: 40px 0;
+   background: $code-bg;
+   .tech-item {
+      text-align: center;
+      img {
+         margin: auto;
+      }
+   }
+
+   //xs
+   @include media-breakpoint-between(xs, sm) {
+      .tech-item {
+         margin: 10px 0;
+      }
+   }
+
+   //sm
+   @include media-breakpoint-between(sm, md) {
+      .tech-item {
+         margin: 15px 0;
+      }
+   }
+
+   //md
+   @include media-breakpoint-up(md) {
+      .tech-item {
+         margin: 15px 0;
+      }
+   }
+}

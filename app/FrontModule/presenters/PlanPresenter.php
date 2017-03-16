@@ -186,26 +186,29 @@ class PlanPresenter extends BasePresenter
          self::REPEATE_END_DATE
       );
 
-
       foreach ($plans as $plan) {
-
-         $sourceShoot = $this->stm->getShootById($plan->id_source);
-         $targetShoot = $this->stm->getShootById($plan->id_target);
-
-         $target = $this->createTargetFromSource($targetShoot, $plan);
-
-         $result = $this->compareSourceWithTargetByPlan($sourceShoot, $target, $plan);
+         $source = $this->stm->getShootById($plan->id_source);
+         $target = $this->stm->getShootById($plan->id_target);
 
          /**
-          * create target shoot
-          * compare source shoot with target shoot
-          * tolerance
-          * save to plan history
-          * if tolerance fail → send email to user
+          * Create new target shoot from source
           */
+         $planTarget = $this->createTargetFromSource($target, $plan);
 
+         /**
+          * Create comparision from source and plan target shoots
+          */
+         $planResult = $this->compareSourceWithTargetByPlan($target, $planTarget, $plan);
+
+         /**
+          * Sending e-mail with results
+          */
+         $planDifference = $plan->difference;
+         $planDifferenceResult = $planResult->difference_result;
+         if($planDifferenceResult > $planDifference) {
+            $this->sendEmail($source, $plan, $planTarget, $planResult);
+         }
       }
-
    }
 
 
@@ -236,7 +239,12 @@ class PlanPresenter extends BasePresenter
 
    public function renderSettings()
    {
+      // admin identity
       $this->isLoggedIn();
+      $identity = $this->user->getIdentity();
+      if ($identity->id_role == self::ROLE_ADMIN) {
+         $this->template->roleAdmin = TRUE;
+      }
       $this->template->isLoggedIn = $this->user->isLoggedIn();
 
       $this->template->plans = $this->pm->getAllPlans();
@@ -276,13 +284,44 @@ class PlanPresenter extends BasePresenter
 
    public function renderHistory($id)
    {
-      $this->validatePlanId($id);
-      $this->template->plan = $this->pm->getPlanById($id);
-
+      // admin identity
       $this->isLoggedIn();
+      $identity = $this->user->getIdentity();
+      if ($identity->id_role == self::ROLE_ADMIN) {
+         $this->template->roleAdmin = TRUE;
+      }
       $this->template->isLoggedIn = $this->user->isLoggedIn();
 
+      $this->validatePlanId($id);
+      $this->template->plan = $this->pm->getPlanById($id);
       $this->template->results = $this->prm->getResultsByPlanID($id);
+   }
+
+
+   public function renderEmailPreview($resultID)
+   {
+      $planResult = $this->prm->getResultByID($resultID);
+      $planTarget = $this->ptm->getTargetByID($planResult->id_plan_target);
+      $plan = $this->pm->getPlanById($planResult->id_plan);
+      $source = $this->stm->getShootById($planResult->id_source);
+
+
+      $this->template->subject = 'Comparison result from '. $planResult->date->format('d.m.Y H:i');
+      $this->template->source = $source;
+      $this->template->plan = $plan;
+      $this->template->target = $planTarget;
+      $this->template->result = $planResult;
+      $this->template->year = new DateTime();
+      $this->template->webURI = $this->getHttpRequest()->url->baseUrl;
+
+      $this->template->daily = self::REPEATE_START_DAILY;
+      $this->template->weekly = self::REPEATE_START_WEEKLY;
+      $this->template->monthly = self::REPEATE_START_MONTHLY;
+      $this->template->yearly = self::REPEATE_START_YEARLY;
+
+      $this->template->never = self::REPEATE_END_NEVER;
+      $this->template->occurrence = self::REPEATE_END_OCCURRENCES;
+      $this->template->date = self::REPEATE_END_DATE;
    }
 
 
@@ -753,12 +792,6 @@ class PlanPresenter extends BasePresenter
    }
 
 
-   public function sendResultWarningNotification()
-   {
-
-   }
-
-
    /**
     * Create image from file
     * @param $shoot
@@ -851,6 +884,35 @@ class PlanPresenter extends BasePresenter
 
 
    /**
+    * Sending email
+    * @param $source
+    * @param $plan
+    * @param $planTarget
+    * @param $planResult
+    */
+   public function sendEmail($source, $plan, $planTarget, $planResult)
+   {
+      $email = new \Email(
+         self::EMAIL_WEBSHOOTER_FULL,
+         $source,
+         $plan,
+         $planTarget,
+         $planResult,
+         $this->getHttpRequest()->url->baseUrl,
+         self::REPEATE_START_DAILY,
+         self::REPEATE_START_WEEKLY,
+         self::REPEATE_START_MONTHLY,
+         self::REPEATE_START_YEARLY,
+         self::REPEATE_END_NEVER,
+         self::REPEATE_END_OCCURRENCES,
+         self::REPEATE_END_DATE
+      );
+
+      $email->send();
+   }
+
+
+   /**
     * Download source shoot from server
     * @param Integer $id
     */
@@ -884,11 +946,44 @@ class PlanPresenter extends BasePresenter
 
 
    /**
+    * Handle to sending e-mail with result history
+    * @param $resultID
+    */
+   public function handleSendEmail($resultID)
+   {
+      $planResult = $this->prm->getResultByID($resultID);
+      $planTarget = $this->ptm->getTargetByID($planResult->id_plan_target);
+      $plan = $this->pm->getPlanById($planResult->id_plan);
+      $source = $this->stm->getShootById($planResult->id_source);
+
+      /**
+       * Sending e-mail
+       */
+      $this->sendEmail($source, $plan, $planTarget, $planResult);
+
+      $this->flashMessage('E-mail was successfully send.', self::FLASH_MESSAGE_SUCCESS);
+      $this->redirect('this');
+   }
+
+
+   /**
     * Delete plan
     * @param $id
     */
    public function handleDelete($id)
    {
+      // delete plan img and js from server
+      $results = $this->prm->getResultsByPlanID($id);
+      foreach($results as $result) {
+         $resultPath = $this->wwwDir . $result->path_img;
+         $targetPath = $this->wwwDir . $result->plan_target->path_img;
+         $targetPathJS = $this->wwwDir . $result->plan_target->path_js;
+         FileSystem::delete($resultPath);
+         FileSystem::delete($targetPath);
+         FileSystem::delete($targetPathJS);
+      }
+
+      // delete plan from DB
       $this->pm->deletePlan($id);
 
       $this->flashMessage('Plan was deleted.', self::FLASH_MESSAGE_SUCCESS);
@@ -902,7 +997,18 @@ class PlanPresenter extends BasePresenter
     */
    public function handleDeleteHistory($resultID)
    {
+      // delete history img and js from server
+      $result = $this->prm->getResultByID($resultID);
+      $resultPath = $this->wwwDir . $result->path_img;
+      $targetPath = $this->wwwDir . $result->plan_target->path_img;
+      $targetPathJS = $this->wwwDir . $result->plan_target->path_js;
+      FileSystem::delete($resultPath);
+      FileSystem::delete($targetPath);
+      FileSystem::delete($targetPathJS);
+
+      // delete history record from DB
       $this->prm->deleteHistory($resultID);
+      $this->ptm->deleteTarget($result->id_plan_target);
 
       $this->flashMessage('Record from history was deleted.', self::FLASH_MESSAGE_SUCCESS);
       $this->redirect('this');

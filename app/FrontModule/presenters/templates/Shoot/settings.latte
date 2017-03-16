@@ -237,7 +237,7 @@
                                        Download
                                     </a>
                                  </td>
-                                 {if $roleAdmin}
+                                 {ifset $roleAdmin}
                                     <td>
                                        <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger"
                                                                             data-confirm="Are you sure to delete this shoot?">
@@ -245,7 +245,7 @@
                                           Delete
                                        </a>
                                     </td>
-                                 {/if}
+                                 {/ifset}
                               </tr>
                               <tr>
                                  <td>
@@ -300,12 +300,12 @@
                                     <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success" title="Comparison">
                                        <i class="fa fa-exchange"></i>
                                     </a>
-                                    {if $roleAdmin}
+                                    {ifset $roleAdmin}
                                        <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger float-xs-right"
                                                                             data-confirm="Are you sure to delete this shoot?" title="Delete">
                                           <i class="fa fa-trash"></i>
                                        </a>
-                                    {/if}
+                                    {/ifset}
                                  </div>
                               </div>
                            </div>
@@ -373,7 +373,7 @@
                                           Download
                                        </a>
                                     </td>
-                                    {if $roleAdmin}
+                                    {ifset $roleAdmin}
                                        <td>
                                           <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger"
                                                                                data-confirm="Are you sure to delete this shoot?">
@@ -381,7 +381,7 @@
                                              Delete
                                           </a>
                                        </td>
-                                    {/if}
+                                    {/ifset}
                                  </tr>
                                  <tr>
                                     <td>
@@ -460,12 +460,12 @@
                                     <i class="fa fa-download"></i>
                                     Download
                                  </a>
-                                 {if $roleAdmin}
+                                 {ifset $roleAdmin}
                                     <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger btn-sm"
                                                                          data-confirm="Are you sure to delete this shoot?" title="Delete">
                                        <i class="fa fa-trash"></i>
                                     </a>
-                                 {/if}
+                                 {/ifset}
                               </td>
                            </tr>
                         {/foreach}

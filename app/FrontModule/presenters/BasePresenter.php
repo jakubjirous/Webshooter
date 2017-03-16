@@ -113,8 +113,8 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 
    // Webshooter email
-   const EMAIL_WEBSHOOTER = 'info@jakubjirous.cz';
-   const EMAIL_WEBSHOOTER_FULL = 'WEBSHOOTER <info@jakubjirous.cz>';
+   const EMAIL_WEBSHOOTER = 'jakub.jirous@tul.cz';
+   const EMAIL_WEBSHOOTER_FULL = 'WEBSHOOTER <jakub.jirous@tul.cz>';
 
 
    /**

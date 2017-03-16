@@ -15,7 +15,6 @@
             <li class="breadcrumb-item"><a n:href="Homepage:default"><i class="fa fa-image"></i></a></li>
             <li class="breadcrumb-item active">Plan settings</li>
          </ol>
-         <a n:href="Plan:cron" class="btn btn-primary btn-lg">Plan cron action</a>
       </div>
    {/if}
 {/block}
@@ -126,10 +125,12 @@
                         <a n:href="Plan:detail $plan->id_plan" class="btn btn-primary btn-sm" title="Detail">
                            <i class="fa fa-edit"></i>
                         </a>
+                        {ifset $roleAdmin}
                         <a n:href="delete! $plan->id_plan" class="btn btn-danger btn-sm float-sm-right float-lg-none" title="Delete plan"
                                                            data-confirm="Are you sure to delete this plan?">
                            <i class="fa fa-trash"></i>
                         </a>
+                        {/ifset}
                      </td>
                   </tr>
                {/foreach}

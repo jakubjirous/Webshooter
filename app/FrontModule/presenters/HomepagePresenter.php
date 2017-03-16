@@ -26,10 +26,10 @@ class HomepagePresenter extends BasePresenter
       $this->prm = $prm;
    }
 
+
    public function renderDefault()
    {
       $this->template->shoots = $this->stm->getShootBox(4);
-
       $this->template->results = $this->prm->getResultBox(4);
    }
 }

@@ -145,4 +145,12 @@ class PlanTargetManager
          ]);
    }
 
+   /**
+    * Delete target
+    * @param $id
+    */
+   public function deleteTarget($id)
+   {
+      $this->db->table(self::TABLE_NAME)->where(self::COLUMN_ID, $id)->delete();
+   }
 }

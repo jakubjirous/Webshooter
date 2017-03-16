@@ -45,7 +45,7 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['result'])) trigger_error('Variable $result overwritten in foreach on line 28');
+		if (isset($this->params['result'])) trigger_error('Variable $result overwritten in foreach on line 29');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -97,6 +97,7 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 ?>
    <div class="container">
       <div class="plan-history">
+
 <?php
 		if ($results) {
 ?>
@@ -114,6 +115,7 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                      <tr>
                         <th>#</th>
                         <th>Date</th>
+                        <th>E-mail</th>
                         <th>Result color</th>
                         <th>Result background</th>
                         <th>Tolerance</th>
@@ -125,30 +127,47 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                      </thead>
                      <tbody>
                      <tr>
-                        <td data-title="#"><?php echo LR\Filters::escapeHtmlText($iterator->counter) /* line 46 */ ?></td>
+                        <td data-title="#"><?php echo LR\Filters::escapeHtmlText($iterator->counter) /* line 48 */ ?></td>
                         <td data-title="Date">
                         <span>
-                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'j.n.Y')) /* line 49 */ ?> <br>
+                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'j.n.Y')) /* line 51 */ ?> <br>
                            <small>
-                              <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'H:i')) /* line 51 */ ?>
+                              <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'H:i')) /* line 53 */ ?>
 
                            </small>
                         </span>
                         </td>
-                        <td class="color-<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 55 */ ?>" data-title="Result color">
-                           <i class="fa fa-image" title="<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 56 */ ?>"></i>
+                        <td data-title="E-mail">
+                        <span>
+                           <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->primary_email)) /* line 59 */ ?>" title="Primary e-mail"><?php
+				echo LR\Filters::escapeHtmlText($plan->primary_email) /* line 59 */ ?></a>
+<?php
+				if ($plan->secondary_email != NULL) {
+?>
+                              <br>
+                              <small>
+                                 <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->secondary_email)) /* line 63 */ ?>"
+                                    title="Secondary e-mail"><?php echo LR\Filters::escapeHtmlText($plan->secondary_email) /* line 64 */ ?></a>
+                              </small>
+<?php
+				}
+?>
+                        </span>
                         </td>
-                        <td data-title="Result background"><?php echo LR\Filters::escapeHtmlText($result->background) /* line 58 */ ?></td>
-                        <td data-title="Tolerance"><?php echo LR\Filters::escapeHtmlText($result->tolerance) /* line 59 */ ?>%</td>
-                        <td data-title="Difference">&le;<?php echo LR\Filters::escapeHtmlText($result->difference) /* line 60 */ ?>%</td>
+                        <td class="color-<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 69 */ ?>" data-title="Result color">
+                           <i class="fa fa-image" title="<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 70 */ ?>"></i>
+                        </td>
+                        <td data-title="Result background"><?php echo LR\Filters::escapeHtmlText($result->background) /* line 72 */ ?></td>
+                        <td data-title="Tolerance"><?php echo LR\Filters::escapeHtmlText($result->tolerance) /* line 73 */ ?>%</td>
+                        <td data-title="Difference">&le; <?php echo LR\Filters::escapeHtmlText($result->difference) /* line 74 */ ?>%</td>
                         <td data-title="Result difference">
 <?php
 				if ($result->difference_result <= $result->difference) {
-					?>                              <i class="tag tag-success"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 63 */ ?>%</i>
+					?>                              <i class="tag tag-success"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 77 */ ?>%</i>
 <?php
 				}
 				else {
-					?>                              <i class="tag tag-danger"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 65 */ ?>%</i>
+					?>                              <i class="tag tag-danger"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 79 */ ?>%</i>
 <?php
 				}
 ?>
@@ -159,17 +178,17 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 ?>
                               <span>
                               <small class="float-lg-left">
-                                 Top: <?php echo LR\Filters::escapeHtmlText($result->ignore_top) /* line 72 */ ?>px
+                                 Top: <?php echo LR\Filters::escapeHtmlText($result->ignore_top) /* line 86 */ ?>px
                               </small>
                               <small class="float-lg-right">
-                                 Left: <?php echo LR\Filters::escapeHtmlText($result->ignore_left) /* line 75 */ ?>px
+                                 Left: <?php echo LR\Filters::escapeHtmlText($result->ignore_left) /* line 89 */ ?>px
                               </small>
                               <br>
                               <small class="float-lg-left">
-                                 Width: <?php echo LR\Filters::escapeHtmlText($result->ignore_width) /* line 79 */ ?>px
+                                 Width: <?php echo LR\Filters::escapeHtmlText($result->ignore_width) /* line 93 */ ?>px
                               </small>
                               <small class="float-lg-right">
-                                 Height: <?php echo LR\Filters::escapeHtmlText($result->ignore_height) /* line 82 */ ?>px
+                                 Height: <?php echo LR\Filters::escapeHtmlText($result->ignore_height) /* line 96 */ ?>px
                               </small>
                            </span>
 <?php
@@ -182,11 +201,30 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 ?>
                         </td>
                         <td>
-                           <a class="btn btn-danger btn-sm float-sm-right float-lg-none" title="Delete history"
-                                                              data-confirm="Are you sure to delete this record in plan history?" href="<?php
-				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("deleteHistory!", [$result->id_plan_result])) ?>">
+                           <a
+                                 class="btn btn-success btn-sm float-sm-right float-lg-none" href="<?php
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:emailPreview", [$result->id_plan_result])) ?>">
+                              Preview
+                           </a>
+
+                           <a
+                                 class="btn btn-success btn-sm float-sm-right float-lg-none"
+                                 title="Send e-mail with result" data-confirm="Are you sure to send this result?" href="<?php
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("sendEmail!", [$result->id_plan_result])) ?>">
+                              <i class="fa fa-envelope"></i> Send
+                           </a>
+<?php
+				if (isset($roleAdmin)) {
+?>
+                           <a
+                                 class="btn btn-danger btn-sm float-sm-right float-lg-none" title="Delete history"
+                                 data-confirm="Are you sure to delete this record in plan history?" href="<?php
+					echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("deleteHistory!", [$result->id_plan_result])) ?>">
                               <i class="fa fa-trash"></i>
                            </a>
+<?php
+				}
+?>
                         </td>
                      </tr>
                      </tbody>
@@ -197,14 +235,14 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                            <h5>Plan source</h5>
                            <div class="image">
                               <a href="<?php
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 103 */;
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->source->path_img)) /* line 103 */ ?>" class="shoot-thumbnail"
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 130 */;
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->source->path_img)) /* line 130 */ ?>" class="shoot-thumbnail"
                                  data-toggle="lightbox"
-                                 data-parent="" data-gallery="#history" data-title="Plan source">
+                                 data-parent="" data-gallery="#history-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 132 */ ?>" data-title="Plan source">
                                  <img class="img-thumbnail img-responsive" src="<?php
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 106 */;
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->source->path_img)) /* line 106 */ ?>"
-                                      alt="<?php echo LR\Filters::escapeHtmlAttr($result->source->url_autority) /* line 107 */ ?>">
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 133 */;
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->source->path_img)) /* line 133 */ ?>"
+                                      alt="<?php echo LR\Filters::escapeHtmlAttr($result->source->url_autority) /* line 134 */ ?>">
                               </a>
                            </div>
 
@@ -220,15 +258,15 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                            <h5>Plan target</h5>
                            <div class="image">
                               <a href="<?php
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 122 */;
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->plan_target->path_img)) /* line 122 */ ?>" class="shoot-thumbnail"
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 149 */;
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->plan_target->path_img)) /* line 149 */ ?>" class="shoot-thumbnail"
                                  data-toggle="lightbox"
-                                 data-parent="" data-gallery="#history" data-title="Plan target">
+                                 data-parent="" data-gallery="#history-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 151 */ ?>" data-title="Plan target">
                                  <img class="img-thumbnail img-responsive"
                                       src="<?php
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 126 */;
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->plan_target->path_img)) /* line 126 */ ?>"
-                                      alt="<?php echo LR\Filters::escapeHtmlAttr($result->plan_target->url_autority) /* line 127 */ ?>">
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 153 */;
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->plan_target->path_img)) /* line 153 */ ?>"
+                                      alt="<?php echo LR\Filters::escapeHtmlAttr($result->plan_target->url_autority) /* line 154 */ ?>">
                               </a>
                            </div>
 
@@ -245,15 +283,15 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                            <h5>Plan result</h5>
                            <div class="image">
                               <a href="<?php
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 143 */;
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 143 */ ?>" class="shoot-thumbnail"
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 170 */;
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 170 */ ?>" class="shoot-thumbnail"
                                  data-toggle="lightbox"
-                                 data-parent="" data-gallery="#history" data-title="Plan result">
+                                 data-parent="" data-gallery="#history-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 172 */ ?>" data-title="Plan result">
                                  <img class="img-thumbnail img-responsive"
                                       src="<?php
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 147 */;
-				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 147 */ ?>"
-                                      alt="<?php echo LR\Filters::escapeHtmlAttr($result->plan_target->url_autority) /* line 148 */ ?>">
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 174 */;
+				echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 174 */ ?>"
+                                      alt="<?php echo LR\Filters::escapeHtmlAttr($result->plan_target->url_autority) /* line 175 */ ?>">
                               </a>
                            </div>
                            <a

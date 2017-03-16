@@ -383,7 +383,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                     </a>
                                  </td>
 <?php
-					if ($roleAdmin) {
+					if (isset($roleAdmin)) {
 ?>
                                     <td>
                                        <a class="btn btn-danger btn-outline-danger"
@@ -476,7 +476,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                        <i class="fa fa-exchange"></i>
                                     </a>
 <?php
-					if ($roleAdmin) {
+					if (isset($roleAdmin)) {
 ?>
                                        <a class="btn btn-danger btn-outline-danger float-xs-right"
                                                                             data-confirm="Are you sure to delete this shoot?" title="Delete" href="<?php
@@ -576,7 +576,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                        </a>
                                     </td>
 <?php
-					if ($roleAdmin) {
+					if (isset($roleAdmin)) {
 ?>
                                        <td>
                                           <a class="btn btn-danger btn-outline-danger"
@@ -694,7 +694,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                     Download
                                  </a>
 <?php
-					if ($roleAdmin) {
+					if (isset($roleAdmin)) {
 ?>
                                     <a class="btn btn-danger btn-outline-danger btn-sm"
                                                                          data-confirm="Are you sure to delete this shoot?" title="Delete" href="<?php

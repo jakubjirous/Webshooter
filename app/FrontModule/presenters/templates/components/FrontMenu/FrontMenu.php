@@ -11,6 +11,7 @@ class FrontMenu extends Nette\Application\UI\Control
    public $roleSuperUser;
    public $roleAdmin;
 
+
    function render()
    {
       $this->template->setFile(__DIR__ . '/frontMenu.latte');
