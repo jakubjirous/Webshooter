@@ -199,7 +199,7 @@
 
          {if $plans}
          {foreach $plans as $plan}
-            <div class="modal fade" id="info-modal-{$iterator->counter}" tabindex="-1" role="dialog"
+            <div class="modal right fade" id="info-modal-{$iterator->counter}" tabindex="-1" role="dialog"
                  aria-labelledby="info-modal-label-{$iterator->counter}" aria-hidden="true">
                <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -376,7 +376,7 @@
                            {/if}
                         {/if}
                      </div>
-                     <div class="modal-footer">
+                     <div class="modal-footer text-xs-left">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                      </div>
                   </div>

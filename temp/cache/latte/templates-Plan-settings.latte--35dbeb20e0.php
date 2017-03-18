@@ -378,7 +378,7 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 		if ($plans) {
 			$iterations = 0;
 			foreach ($iterator = $this->global->its[] = new LR\CachingIterator($plans) as $plan) {
-				?>            <div class="modal fade" id="info-modal-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 202 */ ?>" tabindex="-1" role="dialog"
+				?>            <div class="modal right fade" id="info-modal-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 202 */ ?>" tabindex="-1" role="dialog"
                  aria-labelledby="info-modal-label-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 203 */ ?>" aria-hidden="true">
                <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -392,7 +392,7 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
                         </button>
                      </div>
                      <div class="modal-body">
-                        <h5>Source shoot</h5>
+                        <h5>Plan source</h5>
 
                         <div class="image">
                            <div>
@@ -588,7 +588,7 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
 				}
 ?>
                      </div>
-                     <div class="modal-footer">
+                     <div class="modal-footer text-xs-left">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                      </div>
                   </div>

@@ -5,6 +5,12 @@
 .plan-history {
    .history-item {
       margin-bottom: 50px;
+
+      .image {
+         a {
+            height: 300px;
+         }
+      }
    }
 
    table {

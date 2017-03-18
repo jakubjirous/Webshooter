@@ -8330,6 +8330,8 @@ form .custom-checkbox {
 
 .plan-history .history-item {
   margin-bottom: 50px; }
+  .plan-history .history-item .image a {
+    height: 300px; }
 .plan-history table thead tr th, .plan-history table thead tr td, .plan-history table tbody tr th, .plan-history table tbody tr td {
   vertical-align: middle; }
   .plan-history table thead tr th.color-red i, .plan-history table thead tr td.color-red i, .plan-history table tbody tr th.color-red i, .plan-history table tbody tr td.color-red i {
@@ -8460,10 +8462,66 @@ form .custom-checkbox {
   display: block;
   position: relative;
   overflow: hidden;
-  height: 400px;
+  height: 200px;
   border: 1px solid #ddd;
   border-radius: 0.25rem; }
   .modal-body .image > div .img-thumbnail {
     border: none; }
+
+@media (min-width: 576px) {
+  .modal.left .modal-dialog,
+  .modal.right .modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: 420px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0); }
+
+  .modal.left .modal-content,
+  .modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto; }
+
+  .modal.left .modal-body,
+  .modal.right .modal-body {
+    padding: 15px 15px 80px; }
+
+  /*Left*/
+  .modal.left.fade .modal-dialog {
+    left: -420px;
+    -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+    transition: opacity 0.3s linear, left 0.3s ease-out; }
+
+  .modal.left.fade.in .modal-dialog {
+    left: 0; }
+
+  /*Right*/
+  .modal.right.fade .modal-dialog {
+    right: -420px;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out; }
+
+  .modal.right.fade.in .modal-dialog {
+    right: 0; } }
+@media (min-width: 768px) {
+  .modal.left .modal-dialog,
+  .modal.right .modal-dialog {
+    width: 520px; }
+
+  .modal.left.fade .modal-dialog {
+    left: -520px; }
+
+  .modal.right.fade .modal-dialog {
+    right: -520px; }
+
+  .modal-body .image > div {
+    height: 300px; } }
 
 /*# sourceMappingURL=style.css.map */
