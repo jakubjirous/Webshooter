@@ -110,13 +110,14 @@ class Template83d0e5f225 extends Latte\Runtime\Template
 		$_input = end($this->global->formsStack)["startDate"];
 		echo $_input->getLabelPart()->attributes() ?>>Start date & time:</label>
                         </div>
-                        <div class="col-xs-12 col-md-6 col-lg-4 input-group date" id="datetimepicker1">
-                           <input class="form-control"<?php
+                        <div class="col-xs-12 col-md-6 col-lg-4 input-group date">
+                           <input class="form-control" data-datetime-picker-start<?php
 		$_input = end($this->global->formsStack)["startDate"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'class' => NULL,
+		'data-datetime-picker-start' => NULL,
 		))->attributes() ?>>
-                           <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                           <span class="input-group-addon" data-datetime-picker-start-snow><i class="fa fa-calendar"></i></span>
                         </div>
                      </div>
 
@@ -376,13 +377,14 @@ class Template83d0e5f225 extends Latte\Runtime\Template
 		$_input = end($this->global->formsStack)["endDate"];
 		echo $_input->getLabelPart()->attributes() ?>>End date & time:</label>
                               </div>
-                              <div class="col-xs-12 col-md-6 col-lg-4 input-group date" id="datetimepicker2">
-                                 <input class="form-control"<?php
+                              <div class="col-xs-12 col-md-6 col-lg-4 input-group date">
+                                 <input class="form-control" data-datetime-picker-end<?php
 		$_input = end($this->global->formsStack)["endDate"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'class' => NULL,
+		'data-datetime-picker-end' => NULL,
 		))->attributes() ?>>
-                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                 <span class="input-group-addon" data-datetime-picker-end-snow><i class="fa fa-calendar"></i></span>
                               </div>
                            </div>
                         </div>

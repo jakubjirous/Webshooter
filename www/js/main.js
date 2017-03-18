@@ -73,8 +73,9 @@ $(function () {
     });
 
 
-    // $('#datetimepicker1').datetimepicker();
-
+    /**
+     * Typed text on homepage
+     */
     $('#typed-element').typed({
         strings: [
             'Web page application to creating website screenshots.',
@@ -89,4 +90,28 @@ $(function () {
         loop: true,
         backDelay: 2000
     });
+
+
+    /**
+     * Jquery Datetime Picker
+     */
+    $('[data-datetime-picker-start]').datetimepicker({
+        format: 'd.m.Y H:i',
+        step: 5
+    });
+    $('[data-datetime-picker-start-snow]').on('click', function() {
+        $('[data-datetime-picker-start]').datetimepicker('show');
+    });
+
+
+    $('[data-datetime-picker-end]').datetimepicker({
+        format: 'd.m.Y H:i',
+        step: 5,
+        minDate: $.now(),
+        minTime: $.now()
+    });
+    $('[data-datetime-picker-end-snow]').on('click', function() {
+        $('[data-datetime-picker-end]').datetimepicker('show');
+    });
+
  });

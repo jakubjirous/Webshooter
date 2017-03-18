@@ -78,7 +78,6 @@ class PlanAddFormFactory
       /* DATETIME, EMAIL */
       $form->addGroup('');
       $form->addText('startDate', 'Start date & time:')
-         ->setType('datetime-local')
          ->setAttribute('min', $startDateDefault)
          ->setDefaultValue($startDateDefault)
          ->setRequired('Please set start date and time for comparison plan');
@@ -215,7 +214,6 @@ class PlanAddFormFactory
          ->setOption('container', Html::el('div')->id('end-date'));
 
       $form->addText('endDate', 'End date & time:')
-         ->setType('datetime-local')
          ->addConditionOn($repeateEndType, $form::EQUAL, $repeateEnd[3]->id_repeate)
          ->setRequired('Please select the date of plan termination')
          ->endCondition();

@@ -84,3 +84,10 @@
 [2017-03-16 13-51-00] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 9868): index.php 
 [2017-03-16 14-06-01] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 13236): index.php 
 [2017-03-18 11-51-02] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 16524): index.php 
+[2017-03-18 12-06-00] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 8936): index.php 
+[2017-03-18 12-21-00] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 9876): index.php 
+[2017-03-18 12-36-00] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 5428): index.php 
+[2017-03-18 12-51-00] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 1476): index.php 
+[2017-03-18 13-06-00] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 11304): index.php 
+[2017-03-18 13-21-00] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 8124): index.php 
+[2017-03-18 13-36-00] PHP Notice: Undefined index: HTTP_USER_AGENT in C:\Users\WPJ3Station\DiskGoogle\James\LOCALHOST\DP\Webshooter\app\FrontModule\presenters\UserAgentParser.php:21  @  CLI (PID: 12108): index.php 

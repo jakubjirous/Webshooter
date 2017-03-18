@@ -72,11 +72,10 @@ class PlanEditFormFactory
       $form->addHidden('planID', $plan->id_plan);
 
       /* DATETIME, EMAIL */
-      $defaultStartDate = $plan->start_date->format('Y-m-d') . 'T' . $plan->start_date->format('H:i');
+
       $form->addGroup('');
       $form->addText('startDate', 'Start date & time:')
-         ->setType('datetime-local')
-         ->setDefaultValue($defaultStartDate)
+         ->setDefaultValue($plan->start_date->format('d.m.Y H:i'))
          ->setRequired('Please set start date and time for comparison plan');
 
       $form->addEmail('primaryEmail', 'Primary e-mail:')
@@ -215,8 +214,7 @@ class PlanEditFormFactory
          ->setOption('container', Html::el('div')->id('end-date'));
 
       $form->addText('endDate', 'End date & time:')
-         ->setType('datetime-local')
-         ->setDefaultValue(($plan->end_date != NULL) ? $plan->end_date->format('Y-m-d') . 'T' . $plan->end_date->format('H:i') : '')
+         ->setDefaultValue(($plan->end_date != NULL) ?  $plan->end_date->format('d.m.Y H:i') : '')
          ->addConditionOn($repeateEndType, $form::EQUAL, $repeateEnd[3]->id_repeate)
          ->setRequired('Please select the date of plan termination')
          ->endCondition();
