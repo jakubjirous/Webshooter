@@ -29,6 +29,8 @@ class Template1d51b9dadf extends Latte\Runtime\Template
 		extract($this->params);
 ?>
 
+
+
 <?php
 		if ($this->getParentName()) return get_defined_vars();
 		$this->renderBlock('header', get_defined_vars());
@@ -51,7 +53,7 @@ class Template1d51b9dadf extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['device'])) trigger_error('Variable $device overwritten in foreach on line 234');
+		if (isset($this->params['device'])) trigger_error('Variable $device overwritten in foreach on line 248');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -95,20 +97,32 @@ class Template1d51b9dadf extends Latte\Runtime\Template
          <div class="row">
             <div class="col-xs-12">
 
-               <div class="device-new text-xs-center text-sm-left">
-                  <a class="btn btn-success" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Device:add")) ?>">
-                     <i class="fa fa-plus"></i>
-                     Add new device
-                  </a>
-               </div>
+<?php
+		if (isset($roleAdmin)) {
+?>
+                  <div class="device-new text-xs-center text-sm-left">
+                     <a class="btn btn-success" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Device:add")) ?>">
+                        <i class="fa fa-plus"></i>
+                        Add new device
+                     </a>
+                  </div>
+<?php
+		}
+?>
 
 <div id="<?php echo htmlSpecialChars($this->global->snippetDriver->getHtmlId('deviceList')) ?>"><?php $this->renderBlock('_deviceList', $this->params) ?></div>
-               <div class="device-new text-xs-center text-sm-left">
-                  <a class="btn btn-success" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Device:add")) ?>">
-                     <i class="fa fa-plus"></i>
-                     Add new device
-                  </a>
-               </div>
+<?php
+		if (isset($roleAdmin)) {
+?>
+                  <div class="device-new text-xs-center text-sm-left">
+                     <a class="btn btn-success" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Device:add")) ?>">
+                        <i class="fa fa-plus"></i>
+                        Add new device
+                     </a>
+                  </div>
+<?php
+		}
+?>
             </div>
          </div>
       </div>
@@ -311,21 +325,27 @@ class Template1d51b9dadf extends Latte\Runtime\Template
 			if ($sortColumn == 'width_px' and $sortOrder == 'asc') {
 				?>                                 <a class="ajax active" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("sort!", ['width_px', 'desc'])) ?>">
                                     <i class="fa fa-long-arrow-down"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
 <?php
 			}
 			elseif ($sortColumn == 'width_px' and $sortOrder == 'desc') {
 				?>                                 <a class="ajax active" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("sort!", ['width_px', 'asc'])) ?>">
                                     <i class="fa fa-long-arrow-up"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
 <?php
 			}
 			else {
 				?>                                 <a class="ajax" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("sort!", ['width_px', 'asc'])) ?>">
                                     <i class="fa fa-long-arrow-down"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
 <?php
 			}
@@ -334,21 +354,27 @@ class Template1d51b9dadf extends Latte\Runtime\Template
 			if ($sortColumn == 'width_dp' and $sortOrder == 'asc') {
 				?>                                 <a class="ajax active" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("sort!", ['width_dp', 'desc'])) ?>">
                                     <i class="fa fa-long-arrow-down"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
 <?php
 			}
 			elseif ($sortColumn == 'width_dp' and $sortOrder == 'desc') {
 				?>                                 <a class="ajax active" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("sort!", ['width_dp', 'asc'])) ?>">
                                     <i class="fa fa-long-arrow-up"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
 <?php
 			}
 			else {
 				?>                                 <a class="ajax" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("sort!", ['width_dp', 'asc'])) ?>">
                                     <i class="fa fa-long-arrow-down"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
 <?php
 			}
@@ -426,23 +452,31 @@ class Template1d51b9dadf extends Latte\Runtime\Template
 ?>
                         <tr>
                            <td data-title="Type">
-                              <i class="fa fa-<?php echo LR\Filters::escapeHtmlAttr(call_user_func($this->filters->lower, $device->type->type)) /* line 237 */ ?>" title="<?php
-			echo LR\Filters::escapeHtmlAttr($device->type->type) /* line 237 */ ?>"></i>
+                              <i class="fa fa-<?php echo LR\Filters::escapeHtmlAttr(call_user_func($this->filters->lower, $device->type->type)) /* line 251 */ ?>" title="<?php
+			echo LR\Filters::escapeHtmlAttr($device->type->type) /* line 251 */ ?>"></i>
                            </td>
-                           <td data-title="Device"><?php echo LR\Filters::escapeHtmlText($device->device) /* line 239 */ ?></td>
-                           <td data-title="Platform"><?php echo LR\Filters::escapeHtmlText($device->platform) /* line 240 */ ?></td>
+                           <td data-title="Device"><?php echo LR\Filters::escapeHtmlText($device->device) /* line 253 */ ?></td>
+                           <td data-title="Platform"><?php echo LR\Filters::escapeHtmlText($device->platform) /* line 254 */ ?></td>
                            <td data-title="Screen dimensions">
 <?php
 			if ($unitDimension == 'in') {
-				?>                                 <?php echo LR\Filters::escapeHtmlText($device->screen_in) /* line 243 */ ?> <small>in</small>
-                                 <?php echo LR\Filters::escapeHtmlText($device->screen_width_in) /* line 244 */ ?><small>×</small><?php
-				echo LR\Filters::escapeHtmlText($device->screen_height_in) /* line 244 */ ?> <small>in</small>
+				?>                                 <?php echo LR\Filters::escapeHtmlText($device->screen_in) /* line 257 */ ?>
+
+                                 <small>in</small>
+                              <?php echo LR\Filters::escapeHtmlText($device->screen_width_in) /* line 259 */ ?><small>×</small><?php
+				echo LR\Filters::escapeHtmlText($device->screen_height_in) /* line 259 */ ?>
+
+                                 <small>in</small>
 <?php
 			}
 			if ($unitDimension == 'cm') {
-				?>                                 <?php echo LR\Filters::escapeHtmlText($device->screen_cm) /* line 247 */ ?> <small>cm</small>
-                                 <?php echo LR\Filters::escapeHtmlText($device->screen_width_cm) /* line 248 */ ?><small>×</small><?php
-				echo LR\Filters::escapeHtmlText($device->screen_height_cm) /* line 248 */ ?> <small>cm</small>
+				?>                                 <?php echo LR\Filters::escapeHtmlText($device->screen_cm) /* line 263 */ ?>
+
+                                 <small>cm</small>
+                              <?php echo LR\Filters::escapeHtmlText($device->screen_width_cm) /* line 265 */ ?><small>×</small><?php
+				echo LR\Filters::escapeHtmlText($device->screen_height_cm) /* line 265 */ ?>
+
+                                 <small>cm</small>
 <?php
 			}
 ?>
@@ -450,27 +484,30 @@ class Template1d51b9dadf extends Latte\Runtime\Template
                            <td data-title="Width × Height">
 <?php
 			if ($unitSize == 'dp') {
-				?>                                 <?php echo LR\Filters::escapeHtmlText($device->width_dp) /* line 253 */ ?><small>×</small><?php
-				echo LR\Filters::escapeHtmlText($device->height_dp) /* line 253 */ ?> <small>dp</small>
+				?>                                 <?php echo LR\Filters::escapeHtmlText($device->width_dp) /* line 271 */ ?><small>×</small><?php
+				echo LR\Filters::escapeHtmlText($device->height_dp) /* line 271 */ ?>
+
+                                 <small>dp</small>
 <?php
 			}
 			if ($unitSize == 'px') {
-				?>                                 <?php echo LR\Filters::escapeHtmlText($device->width_px) /* line 256 */ ?><small>×</small><?php
-				echo LR\Filters::escapeHtmlText($device->height_px) /* line 256 */ ?> <small>px</small>
+				?>                                 <?php echo LR\Filters::escapeHtmlText($device->width_px) /* line 275 */ ?><small>×</small><?php
+				echo LR\Filters::escapeHtmlText($device->height_px) /* line 275 */ ?>
+
+                                 <small>px</small>
 <?php
 			}
 ?>
                            </td>
-                           <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($device->aspect_ratio) /* line 259 */ ?></td>
-                           <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $device->density, 1)) /* line 260 */ ?></td>
+                           <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($device->aspect_ratio) /* line 279 */ ?></td>
+                           <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $device->density, 1)) /* line 280 */ ?></td>
                            <td>
-                              <a class="btn btn-primary btn-sm" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Device:detail", [$device->id_device])) ?>">
-                                 <i class="fa fa-edit"></i>
-                                 Detail
-                              </a>
 <?php
 			if (isset($roleAdmin)) {
-?>
+				?>                                 <a class="btn btn-primary btn-sm" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Device:detail", [$device->id_device])) ?>">
+                                    <i class="fa fa-edit"></i>
+                                    Detail
+                                 </a>
                                  <a
                                        class="btn btn-danger btn-sm float-sm-right float-lg-none"
                                        data-confirm="Are you sure to delete this device?" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("delete!", [$device->id_device])) ?>">
@@ -496,7 +533,7 @@ class Template1d51b9dadf extends Latte\Runtime\Template
 	function blockFooter($_args)
 	{
 		extract($_args);
-		/* line 293 */ $_tmp = $this->global->uiControl->getComponent("footer");
+		/* line 315 */ $_tmp = $this->global->uiControl->getComponent("footer");
 		if ($_tmp instanceof Nette\Application\UI\IRenderable) $_tmp->redrawControl(NULL, FALSE);
 		$_tmp->render();
 		

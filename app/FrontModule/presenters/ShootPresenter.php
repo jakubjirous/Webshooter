@@ -7,6 +7,7 @@ use App\FrontModule\Model;
 use App\FrontModule\Forms;
 use Nette\Application\Responses\FileResponse;
 use Nette\Utils\FileSystem;
+use Nette\Utils\Paginator;
 
 
 class ShootPresenter extends BasePresenter
@@ -40,6 +41,7 @@ class ShootPresenter extends BasePresenter
     * LG, MD, SM, XS
     */
    private $view = self::VIEW_MD;
+   private $page;
 
 
    public function __construct(Model\SessionManager $sm, Model\DeviceManager $dm, Model\ShootManager $stm, Model\ResultManager $rm)
@@ -81,7 +83,14 @@ class ShootPresenter extends BasePresenter
 
    public function renderList()
    {
-      $this->template->shoots = $this->stm->getAllShoot();
+      $shootsCount = $this->stm->getAllShootsCount();
+
+      $paginator = new Paginator();
+      $paginator->setItemCount($shootsCount);
+      $paginator->setItemsPerPage(self::PAGINATION_SHOOTS);
+      $paginator->setPage($this->page === NULL ? 1 : $this->page);
+      $this->template->shoots = $this->stm->getAllShootLimit($paginator);
+      $this->template->paginator = $paginator;
 
       $sessionView = $this->sm->getShootView();
       $this->template->view = ($sessionView == FALSE) ? $this->view : $sessionView;
@@ -95,7 +104,34 @@ class ShootPresenter extends BasePresenter
 
    public function renderSettings()
    {
-      $this->template->shoots = $this->stm->getAllShoot();
+      $this->isLoggedIn();
+      $identity = $this->user->getIdentity();
+      $roleID = $identity->id_role;
+
+      if ($roleID == self::ROLE_ADMIN) {
+         $this->template->roleAdmin = TRUE;
+         $this->template->shoots = $this->stm->getAllShoot();
+      }
+      $this->template->isLoggedIn = $this->user->isLoggedIn();
+
+
+      $paginator = new Paginator();
+      if($roleID == self::ROLE_ADMIN or $roleID == self::ROLE_SUPER_USER) {
+         $shootsCount = $this->stm->getAllShootsCount();
+         $paginator->setItemCount($shootsCount);
+         $paginator->setItemsPerPage(self::PAGINATION_SHOOTS);
+         $paginator->setPage($this->page === NULL ? 1 : $this->page);
+         $shoots = $this->stm->getAllShootLimit($paginator);
+      } else {
+         $shootsCount = $this->stm->getAllShootsCountByUserID($identity->getId());
+         $paginator->setItemCount($shootsCount);
+         $paginator->setItemsPerPage(self::PAGINATION_SHOOTS);
+         $paginator->setPage($this->page === NULL ? 1 : $this->page);
+         $shoots = $this->stm->getAllShootLimitByUserID($paginator, $identity->getId());
+      }
+      $this->template->shoots = $shoots;
+      $this->template->paginator = $paginator;
+
 
       $sessionView = $this->sm->getShootView();
       $this->template->view = ($sessionView == FALSE) ? $this->view : $sessionView;
@@ -104,13 +140,6 @@ class ShootPresenter extends BasePresenter
       $this->template->viewMD = self::VIEW_MD;
       $this->template->viewSM = self::VIEW_SM;
       $this->template->viewXS = self::VIEW_XS;
-
-      // admin identity
-      $identity = $this->user->getIdentity();
-      if ($identity->id_role == self::ROLE_ADMIN) {
-         $this->template->roleAdmin = TRUE;
-      }
-      $this->template->isLoggedIn = $this->user->isLoggedIn();
    }
 
 
@@ -177,13 +206,34 @@ class ShootPresenter extends BasePresenter
    /**
     * Switching between shoots view
     * @param $view
+    * @param $page
     */
-   public function handleChangeView($view)
+   public function handleChangeView($view, $page)
    {
       $this->view = $view;
       $this->sm->setShootView($view);
+      $this->page = $page;
 
       if ($this->isAjax()) {
+         $this->redrawControl('changeView');
+      } else {
+         $this->redirect('this');
+      }
+   }
+
+
+   /**
+    * Pagination
+    * @param $view
+    * @param $page
+    */
+   public function handlePaginator($view, $page)
+   {
+      $this->view = $view;
+      $this->sm->setShootView($view);
+      $this->page = $page;
+
+      if($this->isAjax()) {
          $this->redrawControl('changeView');
       } else {
          $this->redirect('this');

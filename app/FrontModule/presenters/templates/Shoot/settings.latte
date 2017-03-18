@@ -38,24 +38,68 @@
             {* CHANGE VIEW *}
             <div class="change-view">
                <div class="btn-group" role="group" aria-label="Shoots change view">
-                  <a n:href="changeView! $viewLG" type="button"
+                  <a n:href="changeView! $viewLG, $paginator->getPage()" type="button"
                                                   class="ajax btn btn-secondary {if $view == $viewLG}active{/if}">
                      <i class="fa fa-th-list"></i>
                   </a>
-                  <a n:href="changeView! $viewMD" type="button"
+                  <a n:href="changeView! $viewMD, $paginator->getPage()" type="button"
                                                   class="ajax btn btn-secondary {if $view == $viewMD}active{/if}">
                      <i class="fa fa-th-large"></i>
                   </a>
-                  <a n:href="changeView! $viewSM" type="button"
+                  <a n:href="changeView! $viewSM, $paginator->getPage()" type="button"
                                                   class="ajax btn btn-secondary {if $view == $viewSM}active{/if}">
                      <i class="fa fa-th"></i>
                   </a>
-                  <a n:href="changeView! $viewXS" type="button"
+                  <a n:href="changeView! $viewXS, $paginator->getPage()" type="button"
                                                   class="ajax btn btn-secondary {if $view == $viewXS}active{/if}">
                      <i class="fa fa-list"></i>
                   </a>
                </div>
             </div>
+
+
+            {* PAGINATION TOP *}
+            {if $paginator->getPageCount() > 1}
+            <nav aria-label="Shoots pagination" class="text-xs-center">
+               <ul class="pagination pagination-sm justify-content-center">
+                  {if $paginator->first}
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                  {else}
+                     <li class="page-item">
+                        <a n:href="paginator! $view, $paginator->getPage() - 1" class="page-link ajax" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                  {/if}
+                  {for $page = 1; $page < $paginator->getPageCount() + 1; $page++}
+                     <li class="page-item{if $page == $paginator->getPage()} active{/if}">
+                        <a n:href="paginator! $view, $page" class="page-link ajax">{$page}</a>
+                     </li>
+                  {/for}
+                  {if $paginator->last}
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  {else}
+                     <li class="page-item">
+                        <a n:href="paginator! $view, $paginator->getPage() + 1" class="page-link ajax" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  {/if}
+               </ul>
+            </nav>
+         {/if}
 
 
             {* VIEW LG *}
@@ -267,7 +311,7 @@
                {/foreach}
             {else}
                <div class="alert alert-info" role="alert">
-                  There is now shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
+                  There is no shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
                </div>
             {/if}
 
@@ -479,8 +523,59 @@
                   There is no shoots yet. <strong><a n:href="Shoot:add">Make new here</a></strong>
                </div>
             {/if}
-
          {/if}
+
+
+         {* PAGINATION BOTTOM *}
+         {if $paginator->getPageCount() > 1}
+            <nav aria-label="Shoots pagination" class="text-xs-center">
+               <ul class="pagination justify-content-center">
+                  {if $paginator->first}
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                  {else}
+                     <li class="page-item">
+                        <a n:href="paginator! $view, $paginator->getPage() - 1" class="page-link ajax" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                  {/if}
+                  {for $page = 1; $page < $paginator->getPageCount() + 1; $page++}
+                     <li class="page-item{if $page == $paginator->getPage()} active{/if}">
+                        <a n:href="paginator! $view, $page" class="page-link ajax">{$page}</a>
+                     </li>
+                  {/for}
+                  {if $paginator->last}
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  {else}
+                     <li class="page-item">
+                        <a n:href="paginator! $view, $paginator->getPage() + 1" class="page-link ajax" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  {/if}
+               </ul>
+            </nav>
+         {/if}
+
+         <script>
+            $('.page-link').on('click', function() {
+               $('html, body').animate({ scrollTop: 0 }, 'slow');
+               return false;
+            });
+         </script>
+
          {/snippet}
       </div>
    </div>

@@ -1,6 +1,6 @@
 {extends '../@index.latte'}
 
-{* Device:list *}
+
 
 {block header}
    <header>
@@ -18,12 +18,14 @@
          <div class="row">
             <div class="col-xs-12">
 
-               <div class="device-new text-xs-center text-sm-left">
-                  <a n:href="Device:add" class="btn btn-success">
-                     <i class="fa fa-plus"></i>
-                     Add new device
-                  </a>
-               </div>
+               {ifset $roleAdmin}
+                  <div class="device-new text-xs-center text-sm-left">
+                     <a n:href="Device:add" class="btn btn-success">
+                        <i class="fa fa-plus"></i>
+                        Add new device
+                     </a>
+                  </div>
+               {/ifset}
 
                {snippet deviceList}
                   <div class="row hidden-lg-up unit-switch">
@@ -156,34 +158,46 @@
                               {if $sortColumn == 'width_px' and $sortOrder == 'asc'}
                                  <a n:href="sort! 'width_px', 'desc'" class="ajax active">
                                     <i class="fa fa-long-arrow-down"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
                               {elseif $sortColumn == 'width_px' and $sortOrder == 'desc'}
                                  <a n:href="sort! 'width_px', 'asc'" class="ajax active">
                                     <i class="fa fa-long-arrow-up"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
                               {else}
                                  <a n:href="sort! 'width_px', 'asc'" class="ajax">
                                     <i class="fa fa-long-arrow-down"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
                               {/if}
                            {elseif $unitSize == 'dp'}
                               {if $sortColumn == 'width_dp' and $sortOrder == 'asc'}
                                  <a n:href="sort! 'width_dp', 'desc'" class="ajax active">
                                     <i class="fa fa-long-arrow-down"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
                               {elseif $sortColumn == 'width_dp' and $sortOrder == 'desc'}
                                  <a n:href="sort! 'width_dp', 'asc'" class="ajax active">
                                     <i class="fa fa-long-arrow-up"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
                               {else}
                                  <a n:href="sort! 'width_dp', 'asc'" class="ajax">
                                     <i class="fa fa-long-arrow-down"></i>
-                                    Width <small>×</small> Height
+                                    Width
+                                    <small>×</small>
+                                    Height
                                  </a>
                               {/if}
                            {/if}
@@ -240,30 +254,36 @@
                            <td data-title="Platform">{$device->platform}</td>
                            <td data-title="Screen dimensions">
                               {if $unitDimension == 'in'}
-                                 {$device->screen_in} <small>in</small>
-                                 {$device->screen_width_in}<small>×</small>{$device->screen_height_in} <small>in</small>
+                                 {$device->screen_in}
+                                 <small>in</small>
+                              {$device->screen_width_in}<small>×</small>{$device->screen_height_in}
+                                 <small>in</small>
                               {/if}
                               {if $unitDimension == 'cm'}
-                                 {$device->screen_cm} <small>cm</small>
-                                 {$device->screen_width_cm}<small>×</small>{$device->screen_height_cm} <small>cm</small>
+                                 {$device->screen_cm}
+                                 <small>cm</small>
+                              {$device->screen_width_cm}<small>×</small>{$device->screen_height_cm}
+                                 <small>cm</small>
                               {/if}
                            </td>
                            <td data-title="Width × Height">
                               {if $unitSize == 'dp'}
-                                 {$device->width_dp}<small>×</small>{$device->height_dp} <small>dp</small>
+                                 {$device->width_dp}<small>×</small>{$device->height_dp}
+                                 <small>dp</small>
                               {/if}
                               {if $unitSize == 'px'}
-                                 {$device->width_px}<small>×</small>{$device->height_px} <small>px</small>
+                                 {$device->width_px}<small>×</small>{$device->height_px}
+                                 <small>px</small>
                               {/if}
                            </td>
                            <td data-title="Aspect ratio">{$device->aspect_ratio}</td>
                            <td data-title="Density">{$device->density|number:1}</td>
                            <td>
-                              <a n:href="Device:detail $device->id_device" class="btn btn-primary btn-sm">
-                                 <i class="fa fa-edit"></i>
-                                 Detail
-                              </a>
                               {ifset $roleAdmin}
+                                 <a n:href="Device:detail $device->id_device" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                    Detail
+                                 </a>
                                  <a n:href="delete! $device->id_device"
                                        class="btn btn-danger btn-sm float-sm-right float-lg-none"
                                        data-confirm="Are you sure to delete this device?">
@@ -277,12 +297,14 @@
                   </table>
                {/snippet}
 
-               <div class="device-new text-xs-center text-sm-left">
-                  <a n:href="Device:add" class="btn btn-success">
-                     <i class="fa fa-plus"></i>
-                     Add new device
-                  </a>
-               </div>
+               {ifset $roleAdmin}
+                  <div class="device-new text-xs-center text-sm-left">
+                     <a n:href="Device:add" class="btn btn-success">
+                        <i class="fa fa-plus"></i>
+                        Add new device
+                     </a>
+                  </div>
+               {/ifset}
             </div>
          </div>
       </div>

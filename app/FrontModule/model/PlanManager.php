@@ -61,6 +61,75 @@ class PlanManager
 
 
    /**
+    * Get all comparison plans by user ID
+    * @param $userID
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getAllPlansByUserID($userID)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where(self::COLUMN_USER, $userID)
+         ->order(self::COLUMN_START_DATE .' DESC')
+         ->fetchAll();
+   }
+
+
+   /**
+    * Get all plans with pagination
+    * @param $paginator
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getAllPlansLimit($paginator)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->order(self::COLUMN_START_DATE . ' DESC')
+         ->limit($paginator->getLength(), $paginator->getOffset())
+         ->fetchAll();
+   }
+
+
+   /**
+    * Get all plans with pagination by user ID
+    * @param $paginator
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getAllPlansLimitByUserID($paginator, $userID)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where(self::COLUMN_USER, $userID)
+         ->order(self::COLUMN_START_DATE . ' DESC')
+         ->limit($paginator->getLength(), $paginator->getOffset())
+         ->fetchAll();
+   }
+
+
+   /**
+    * Get all plans count
+    * @return int|mixed
+    */
+   public function getAllPlansCount()
+   {
+      return $this->db->table(self::TABLE_NAME)->count();
+   }
+
+
+   /**
+    * Get all plans count by user ID
+    * @param $userID
+    * @return int|mixed
+    */
+   public function getAllPlansCountByUserID($userID)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->where(self::COLUMN_USER, $userID)
+         ->count();
+   }
+
+
+   /**
     * Get plan by ID
     * @param $id
     * @return array|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection

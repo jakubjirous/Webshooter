@@ -23,6 +23,52 @@
    <div class="container">
       <div class="plan-settings">
 
+         {snippet pagination}
+
+
+         {if $paginator->getPageCount() > 1}
+            <nav aria-label="Shoots pagination" class="text-xs-center">
+               <ul class="pagination pagination-sm justify-content-center">
+                  {if $paginator->first}
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                  {else}
+                     <li class="page-item">
+                        <a n:href="paginator! $paginator->getPage() - 1" class="page-link ajax" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                  {/if}
+                  {for $page = 1; $page < $paginator->getPageCount() + 1; $page++}
+                     <li class="page-item{if $page == $paginator->getPage()} active{/if}">
+                        <a n:href="paginator! $page" class="page-link ajax">{$page}</a>
+                     </li>
+                  {/for}
+                  {if $paginator->last}
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  {else}
+                     <li class="page-item">
+                        <a n:href="paginator! $paginator->getPage() + 1" class="page-link ajax" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  {/if}
+               </ul>
+            </nav>
+         {/if}
+
+
          {if $plans}
             <table class="table table-striped">
                <thead>
@@ -47,62 +93,63 @@
                      <td data-title="#">{$iterator->counter}</td>
                      <td data-title="User">{$plan->user->username}</td>
                      <td data-title="Start date">
-                        <span>
-                           {$plan->start_date|date:'d.m.Y'} <br>
-                           <small>{$plan->start_date|date:'H:i'}</small>
-                        </span>
+                           <span>
+                              {$plan->start_date|date:'d.m.Y'} <br>
+                              <small>{$plan->start_date|date:'H:i'}</small>
+                           </span>
                      </td>
                      <td data-title="E-mail">
-                        <span>
-                           <a href="mailto:{$plan->primary_email}" title="Primary e-mail">{$plan->primary_email}</a>
-                           {if $plan->secondary_email != NULL}
-                              <br>
-                              <small>
-                                 <a href="mailto:{$plan->secondary_email}" title="Secondary e-mail">{$plan->secondary_email}</a>
-                              </small>
-                           {/if}
-                        </span>
+                           <span>
+                              <a href="mailto:{$plan->primary_email}" title="Primary e-mail">{$plan->primary_email}</a>
+                              {if $plan->secondary_email != NULL}
+                                 <br>
+                                 <small>
+                                    <a href="mailto:{$plan->secondary_email}"
+                                       title="Secondary e-mail">{$plan->secondary_email}</a>
+                                 </small>
+                              {/if}
+                           </span>
                      </td>
                      <td data-title="Start options">
-                        <span>
-                        {if $plan->status == TRUE}
-                           {$plan->start->type}
-                           <br>
-                           <small>
-                              every {$plan->start_value}
-                              {if $plan->start_type == $daily}
-                                 {$plan->start_value == 1 ? 'day' : 'days'}
-                              {elseif $plan->start_type == $weekly}
-                                 {$plan->start_value == 1 ? 'week' : 'weeks'}
-                              {elseif $plan->start_type == $monthly}
-                                 {$plan->start_value == 1 ? 'month' : 'months'}
-                              {elseif $plan->start_type == $yearly}
-                                 {$plan->start_value == 1 ? 'year' : 'years'}
-                              {/if}
-                           </small>
-                        {else}
-                           <i class="fa fa-close"></i>
-                        {/if}
-                        </span>
+                           <span>
+                           {if $plan->status == TRUE}
+                              {$plan->start->type}
+                              <br>
+                              <small>
+                                 every {$plan->start_value}
+                                 {if $plan->start_type == $daily}
+                                    {$plan->start_value == 1 ? 'day' : 'days'}
+                                 {elseif $plan->start_type == $weekly}
+                                    {$plan->start_value == 1 ? 'week' : 'weeks'}
+                                 {elseif $plan->start_type == $monthly}
+                                    {$plan->start_value == 1 ? 'month' : 'months'}
+                                 {elseif $plan->start_type == $yearly}
+                                    {$plan->start_value == 1 ? 'year' : 'years'}
+                                 {/if}
+                              </small>
+                           {else}
+                              <i class="fa fa-close"></i>
+                           {/if}
+                           </span>
                      </td>
                      <td data-title="End options">
-                        <span>
-                        {if $plan->status == TRUE}
-                           {if $plan->end_type == $never}
-                              {$plan->end->type}
-                           {elseif $plan->end_type == $occurrence}
-                              After <strong>{$plan->end_occurrence}</strong>
-                              <br>
-                              <small>{$plan->end_occurrence == 1 ? 'occurence' : 'occurences'}</small>
-                           {elseif $plan->end_type == $date}
-                           {$plan->end_date|date:'d.m.Y'}
-                              <br>
-                              <small>{$plan->end_date|date:'H:i'}</small>
+                           <span>
+                           {if $plan->status == TRUE}
+                              {if $plan->end_type == $never}
+                                 {$plan->end->type}
+                              {elseif $plan->end_type == $occurrence}
+                                 After <strong>{$plan->end_occurrence}</strong>
+                                 <br>
+                                 <small>{$plan->end_occurrence == 1 ? 'occurence' : 'occurences'}</small>
+                              {elseif $plan->end_type == $date}
+                              {$plan->end_date|date:'d.m.Y'}
+                                 <br>
+                                 <small>{$plan->end_date|date:'H:i'}</small>
+                              {/if}
+                           {else}
+                              <i class="fa fa-close"></i>
                            {/if}
-                        {else}
-                           <i class="fa fa-close"></i>
-                        {/if}
-                        </span>
+                           </span>
                      </td>
                      <td class="color-{$plan->color}" data-title="Result color">
                         <i class="fa fa-image" title="{$plan->color}"></i>
@@ -118,7 +165,12 @@
                         {/if}
                      </td>
                      <td>
-                        <a n:href="Plan:history $plan->id_plan" class="btn btn-success btn-sm" title="History of plan results">
+                        <button class="btn btn-warning btn-sm" title="Detail plan information" data-toggle="modal"
+                                data-target="#info-modal-{$iterator->counter}">
+                           <i class="fa fa-info-circle"></i>
+                        </button>
+                        <a n:href="Plan:history $plan->id_plan" class="btn btn-success btn-sm"
+                                                                title="History of plan results">
                            <i class="fa fa-history"></i>
                            {$prm->getResultsCountInPlanByID($plan->id_plan)}
                         </a>
@@ -126,10 +178,11 @@
                            <i class="fa fa-edit"></i>
                         </a>
                         {ifset $roleAdmin}
-                        <a n:href="delete! $plan->id_plan" class="btn btn-danger btn-sm float-sm-right float-lg-none" title="Delete plan"
-                                                           data-confirm="Are you sure to delete this plan?">
-                           <i class="fa fa-trash"></i>
-                        </a>
+                           <a n:href="delete! $plan->id_plan" class="btn btn-danger btn-sm float-sm-right float-lg-none"
+                                                              title="Delete plan"
+                                                              data-confirm="Are you sure to delete this plan?">
+                              <i class="fa fa-trash"></i>
+                           </a>
                         {/ifset}
                      </td>
                   </tr>
@@ -141,6 +194,250 @@
                There is no plan yet.
             </div>
          {/if}
+
+
+
+         {if $plans}
+         {foreach $plans as $plan}
+            <div class="modal fade" id="info-modal-{$iterator->counter}" tabindex="-1" role="dialog"
+                 aria-labelledby="info-modal-label-{$iterator->counter}" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="info-modal-label-{$iterator->counter}">
+                           Plan information <br>
+                           <small>{$plan->start_date|date:'d.m.Y H:i'}</small>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                     <div class="modal-body">
+                        <h5>Plan source</h5>
+
+                        <div class="image">
+                           <div>
+                              <img class="img-thumbnail img-responsive" src="{$basePath}{$plan->source->path_img}"
+                                   alt="{$plan->source->url_autority}">
+                           </div>
+                        </div>
+
+                        <table class="table">
+                           <tr>
+                              <td>URL</td>
+                              <td><strong><a href="{$plan->source->url}" target="_blank">{$plan->source->url_autority}</a></strong>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>Engine</td>
+                              <td><strong>{$plan->source->engine|firstUpper}</strong></td>
+                           </tr>
+                           <tr>
+                              <td>Browser</td>
+                              <td><strong>{$plan->source->browser_name|firstUpper} {$plan->source->browser_version}</strong></td>
+                           </tr>
+                           <tr>
+                              <td>Image type</td>
+                              <td><strong>{$plan->source->img_type|upper}</strong></td>
+                           </tr>
+                           <tr>
+                              <td>Created</td>
+                              <td><strong>{$plan->source->date|date:'d.n.Y H:i:s'}</strong></td>
+                           </tr>
+                        </table>
+
+                        <h5>Type definition</h5>
+
+                        {if $plan->source->device != null}
+                           <table class="table">
+                              <tr>
+                                 <td>Device type</td>
+                                 <td>
+                                    <strong title="{$plan->source->device->type->type}">
+                                       <i class="fa fa-{$plan->source->device->type->type|lower}"></i>
+                                    </strong>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>Device</td>
+                                 <td><strong>{$plan->source->device->device}</strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Platform</td>
+                                 <td><strong>{$plan->source->device->platform}</strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Screen dimensions</td>
+                                 <td>
+                                    <strong>
+                                       {$plan->source->device->screen_in}
+                                       <small>in</small> {$plan->source->device->screen_width_in}<small>×</small>{$plan->source->device->screen_height_in}
+                                       <small>in</small>
+                                       <br>
+                                       {$plan->source->device->screen_cm}
+                                       <small>cm</small>
+                                       {$plan->source->device->screen_width_cm}<small>×</small>{$plan->source->device->screen_height_cm}
+                                       <small>cm</small>
+                                    </strong>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>Width
+                                    <small>×</small>
+                                    Height
+                                 </td>
+                                 <td>
+                                    <strong>
+                                       {$plan->source->device->width_px}<small>×</small>{$plan->source->device->height_px}
+                                       <small>px</small>
+                                       <br>
+                                       {$plan->source->device->width_dp}<small>×</small>{$plan->source->device->height_dp}
+                                       <small>dp</small>
+                                    </strong>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>Aspect ratio</td>
+                                 <td><strong>{$plan->source->device->aspect_ratio}</strong></td>
+                              </tr>
+                              <tr>
+                                 <td>Density</td>
+                                 <td><strong>{$plan->source->device->density|number:1}</strong></td>
+                              </tr>
+                           </table>
+                        {else}
+                           {if $plan->source->other_width != null}
+                              <table class="table">
+                                 <tr>
+                                    <td>Type</td>
+                                    <td><strong title="Custom"><i class="fa fa-cogs"></i></strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Custom width</td>
+                                    <td><strong>{$plan->source->other_width}
+                                          <small>px</small>
+                                       </strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Custom height</td>
+                                    <td>
+                                       <strong>{$plan->source->other_height == null ? 'MAX' : $plan->source->other_height}
+                                          <small>px</small>
+                                       </strong></td>
+                                 </tr>
+                              </table>
+                           {/if}
+
+                           {if $plan->source->crop_viewport_width != null and $plan->source->crop_viewport_height != null}
+                              <table class="table">
+                                 <tr>
+                                    <td>Type</td>
+                                    <td><strong title="Crop"><i class="fa fa-crop"></i></strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Viewport width</td>
+                                    <td>
+                                       <strong>{$plan->source->crop_viewport_width == null ? 0 : $plan->source->crop_viewport_width}
+                                          <small>px</small>
+                                       </strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Viewport height</td>
+                                    <td>
+                                       <strong>{$plan->source->crop_viewport_height == null ? 0 : $plan->source->crop_viewport_height}
+                                          <small>px</small>
+                                       </strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Top</td>
+                                    <td><strong>{$plan->source->crop_top == null ? 0 : $plan->source->crop_top}
+                                          <small>px</small>
+                                       </strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Left</td>
+                                    <td><strong>{$plan->source->crop_left == null ? 0 : $plan->source->crop_left}
+                                          <small>px</small>
+                                       </strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Crop width</td>
+                                    <td><strong>{$plan->source->crop_width == null ? 0 : $plan->source->crop_width}
+                                          <small>px</small>
+                                       </strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td>Crop height</td>
+                                    <td><strong>{$plan->source->crop_height == null ? 0 : $plan->source->crop_height}
+                                          <small>px</small>
+                                       </strong></td>
+                                 </tr>
+                              </table>
+                           {/if}
+                        {/if}
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         {/foreach}
+         {/if}
+
+
+         {if $paginator->getPageCount() > 1}
+            <nav aria-label="Shoots pagination" class="text-xs-center">
+               <ul class="pagination justify-content-center">
+                  {if $paginator->first}
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                  {else}
+                     <li class="page-item">
+                        <a n:href="paginator! $paginator->getPage() - 1" class="page-link ajax" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+                  {/if}
+                  {for $page = 1; $page < $paginator->getPageCount() + 1; $page++}
+                     <li class="page-item{if $page == $paginator->getPage()} active{/if}">
+                        <a n:href="paginator! $page" class="page-link ajax">{$page}</a>
+                     </li>
+                  {/for}
+                  {if $paginator->last}
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  {else}
+                     <li class="page-item">
+                        <a n:href="paginator! $paginator->getPage() + 1" class="page-link ajax" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+                  {/if}
+               </ul>
+            </nav>
+         {/if}
+
+            <script>
+               $('.page-link').on('click', function () {
+                  $('html, body').animate({
+                     scrollTop: 0
+                  }, 'slow');
+                  return false;
+               });
+            </script>
+
+         {/snippet}
       </div>
    </div>
 {/block}

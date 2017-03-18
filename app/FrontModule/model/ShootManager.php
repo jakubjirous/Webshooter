@@ -59,6 +59,75 @@ class ShootManager
 
 
    /**
+    * Get all shoots with pagination
+    * @param $paginator
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getAllShootLimit($paginator)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->order(self::COLUMN_DATE . ' DESC')
+         ->limit($paginator->getLength(), $paginator->getOffset())
+         ->fetchAll();
+   }
+
+
+   /**
+    * Get all shoots with pagination by user ID
+    * @param $paginator
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getAllShootLimitByUserID($paginator, $userID)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where(self::COLUMN_USER, $userID)
+         ->order(self::COLUMN_DATE . ' DESC')
+         ->limit($paginator->getLength(), $paginator->getOffset())
+         ->fetchAll();
+   }
+
+
+   /**
+    * Get all shoots count
+    * @return int|mixed
+    */
+   public function getAllShootsCount()
+   {
+      return $this->db->table(self::TABLE_NAME)->count();
+   }
+
+
+   /**
+    * Get all shoots count by user ID
+    * @param $userID
+    * @return int|mixed
+    */
+   public function getAllShootsCountByUserID($userID)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->where(self::COLUMN_USER, $userID)
+         ->count();
+   }
+
+
+   /**
+    * Get all shoots by user ID
+    * @param $userID
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getAllShootByUserID($userID)
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->where(self::COLUMN_USER, $userID)
+         ->order(self::COLUMN_DATE . ' DESC')
+         ->fetchAll();
+   }
+
+
+   /**
     * Get shoots limited by count
     * @param $count
     * @return array|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection

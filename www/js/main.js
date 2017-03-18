@@ -113,5 +113,4 @@ $(function () {
     $('[data-datetime-picker-end-snow]').on('click', function() {
         $('[data-datetime-picker-end]').datetimepicker('show');
     });
-
  });

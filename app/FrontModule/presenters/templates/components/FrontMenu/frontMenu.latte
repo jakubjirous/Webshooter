@@ -10,7 +10,7 @@
               aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
       <div class="collapse navbar-toggleable-md" id="navbarResponsive">
          <ul class="nav navbar-nav">
-            {if $isLoggedIn}
+            {ifset $isLoggedIn}
                <li class="nav-item{ifCurrent 'Device:*'} active{/ifCurrent}">
                   <a class="nav-link" href="{plink Device:settings}">Device settings</a>
                </li>
@@ -27,15 +27,11 @@
                <li class="nav-item{ifCurrent 'Shoot:*'} active{/ifCurrent}">
                   <a class="nav-link" href="{plink Shoot:list}">Web shoots</a>
                </li>
-            {/if}
+            {/ifset}
          </ul>
 
          <ul class="nav navbar-nav float-lg-right">
-            {if !$isLoggedIn}
-               <li class="nav-item{ifCurrent 'Sign:in'} active{/ifCurrent}">
-                  <a class="nav-link" href="{plink Sign:in}"><i class="fa fa-sign-in"></i> Sign in</a>
-               </li>
-            {else}
+            {ifset $isLoggedIn}
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="responsiveNavbarDropdown"
                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +40,8 @@
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="responsiveNavbarDropdown">
                      <h6 class="dropdown-header">{$identity->username}</h6>
-                     {if $roleAdmin}
+
+                     {if $role == $roleAdmin}
                         <a class="dropdown-item" href="{plink User:list}">
                            <i class="fa fa-users"></i>
                            User settings
@@ -62,6 +59,22 @@
                            Plan settings
                         </a>
                      {/if}
+
+                     {if $role == $roleUser || $role == $roleSuperUser}
+                        <a class="dropdown-item" href="{plink Device:settings}">
+                           <i class="fa fa-desktop"></i>
+                           Device settings
+                        </a>
+                        <a class="dropdown-item" href="{plink Shoot:settings}">
+                           <i class="fa fa-bullseye"></i>
+                           Shoots settings
+                        </a>
+                        <a class="dropdown-item" href="{plink Plan:settings}">
+                           <i class="fa fa-calendar-o"></i>
+                           Plan settings
+                        </a>
+                     {/if}
+
                      <div class="dropdown-divider"></div>
                      <a class="dropdown-item" href="{plink Sign:out}">
                         <i class="fa fa-sign-out"></i>
@@ -69,7 +82,11 @@
                      </a>
                   </div>
                </li>
-            {/if}
+            {else}
+               <li class="nav-item{ifCurrent 'Sign:in'} active{/ifCurrent}">
+                  <a class="nav-link" href="{plink Sign:in}"><i class="fa fa-sign-in"></i> Sign in</a>
+               </li>
+            {/ifset}
          </ul>
       </div>
    </div>

@@ -11,6 +11,7 @@ use Nette\Application\Responses\FileResponse;
 use Nette\Utils\FileSystem;
 use Nette\Utils\Strings;
 use Nette\Utils\DateTime;
+use Nette\Utils\Paginator;
 
 
 class PlanPresenter extends BasePresenter
@@ -95,6 +96,8 @@ class PlanPresenter extends BasePresenter
    private $path;
    private $browserName;
    private $browserVersion;
+
+   private $page;
 
 
    public function __construct(Model\SessionManager $sm, Model\ShootManager $stm, Model\ResultManager $rm, Model\PlanManager $pm, Model\PlanTargetManager $ptm, Model\PlanResultManager $prm)
@@ -239,15 +242,35 @@ class PlanPresenter extends BasePresenter
 
    public function renderSettings()
    {
-      // admin identity
+      // user roles
       $this->isLoggedIn();
       $identity = $this->user->getIdentity();
-      if ($identity->id_role == self::ROLE_ADMIN) {
+      $roleID = $identity->id_role;
+
+      if ($roleID == self::ROLE_ADMIN) {
          $this->template->roleAdmin = TRUE;
       }
       $this->template->isLoggedIn = $this->user->isLoggedIn();
 
-      $this->template->plans = $this->pm->getAllPlans();
+
+      $paginator = new Paginator();
+      if($roleID == self::ROLE_ADMIN or $roleID == self::ROLE_SUPER_USER) {
+         $plansCount = $this->pm->getAllPlansCount();
+         $paginator->setItemCount($plansCount);
+         $paginator->setItemsPerPage(self::PAGINATION_PLANS);
+         $paginator->setPage($this->page === NULL ? 1 : $this->page);
+         $plans = $this->pm->getAllPlansLimit($paginator);
+      } else {
+         $plansCount = $this->pm->getAllPlansCountByUserID($identity->getId());
+         $paginator->setItemCount($plansCount);
+         $paginator->setItemsPerPage(self::PAGINATION_PLANS);
+         $paginator->setPage($this->page === NULL ? 1 : $this->page);
+         $plans = $this->pm->getAllPlansLimitByUserID($paginator, $identity->getId());
+      }
+      $this->template->plans = $plans;
+      $this->template->paginator = $paginator;
+
+
       $this->template->prm = $this->prm;
 
       $this->template->daily = self::REPEATE_START_DAILY;
@@ -909,6 +932,22 @@ class PlanPresenter extends BasePresenter
       );
 
       $email->send();
+   }
+
+
+   /**
+    * Pagination
+    * @param $page
+    */
+   public function handlePaginator($page)
+   {
+      $this->page = $page;
+
+      if($this->isAjax()) {
+         $this->redrawControl('pagination');
+      } else {
+         $this->redirect('this');
+      }
    }
 
 

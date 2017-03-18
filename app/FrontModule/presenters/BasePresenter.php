@@ -71,9 +71,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    const TYPE_CROP = 6;
 
 
-   // Pagination
-   const SHOOTS_PER_PAGE = 9;
-
    // Shoots view switching
    const VIEW_LG = "lg";
    const VIEW_MD = "md";
@@ -117,17 +114,24 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    const EMAIL_WEBSHOOTER_FULL = 'WEBSHOOTER <jakub.jirous@tul.cz>';
 
 
+   // Pagination
+   const PAGINATION_SHOOTS = 27;
+   const PAGINATION_PLANS = 18;
+
+
    /**
     * Front menu component
     * @return \FrontMenu
     */
    public function createComponentFrontMenu()
    {
-      $frontMenu = new \FrontMenu();
-      $frontMenu->setUser($this->getUser());
-      $frontMenu->setRoleUser(self::ROLE_USER);
-      $frontMenu->setRoleSuperUser(self::ROLE_SUPER_USER);
-      $frontMenu->setRoleAdmin(self::ROLE_ADMIN);
+      $frontMenu = new \FrontMenu(
+         $this->getUser()->getIdentity(),
+         $this->getUser()->isLoggedIn(),
+         self::ROLE_USER,
+         self::ROLE_SUPER_USER,
+         self::ROLE_ADMIN
+      );
       return $frontMenu;
    }
 

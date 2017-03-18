@@ -46,9 +46,9 @@ class Template84cea174ae extends Latte\Runtime\Template
 	{
 		extract($this->params);
 		if (isset($this->params['mobile'])) trigger_error('Variable $mobile overwritten in foreach on line 143');
-		if (isset($this->params['tablet'])) trigger_error('Variable $tablet overwritten in foreach on line 196');
-		if (isset($this->params['laptop'])) trigger_error('Variable $laptop overwritten in foreach on line 247');
-		if (isset($this->params['desktop'])) trigger_error('Variable $desktop overwritten in foreach on line 298');
+		if (isset($this->params['tablet'])) trigger_error('Variable $tablet overwritten in foreach on line 194');
+		if (isset($this->params['laptop'])) trigger_error('Variable $laptop overwritten in foreach on line 245');
+		if (isset($this->params['desktop'])) trigger_error('Variable $desktop overwritten in foreach on line 296');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -270,26 +270,24 @@ class Template84cea174ae extends Latte\Runtime\Template
                                  <?php echo LR\Filters::escapeHtmlText($mobile->screen_cm) /* line 160 */ ?>
 
                                  <small>cm</small>
-                                 <?php echo LR\Filters::escapeHtmlText($mobile->screen_width_cm) /* line 162 */ ?>
-
-                                 <small>×</small><?php echo LR\Filters::escapeHtmlText($mobile->screen_height_cm) /* line 163 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($mobile->screen_width_cm) /* line 162 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($mobile->screen_height_cm) /* line 162 */ ?>
 
                                  <small>cm</small>
                               </td>
                               <td data-title="Width × Height">
-                                 <?php echo LR\Filters::escapeHtmlText($mobile->width_dp) /* line 167 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($mobile->height_dp) /* line 167 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($mobile->width_dp) /* line 166 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($mobile->height_dp) /* line 166 */ ?>
 
                                  <small>dp</small>
                                  <br>
-                                 <?php echo LR\Filters::escapeHtmlText($mobile->width_px) /* line 170 */ ?>
-
-                                 <small>×</small><?php echo LR\Filters::escapeHtmlText($mobile->height_px) /* line 171 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($mobile->width_px) /* line 169 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($mobile->height_px) /* line 169 */ ?>
 
                                  <small>px</small>
                               </td>
-                              <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($mobile->aspect_ratio) /* line 174 */ ?></td>
-                              <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $mobile->density, 1)) /* line 175 */ ?></td>
+                              <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($mobile->aspect_ratio) /* line 172 */ ?></td>
+                              <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $mobile->density, 1)) /* line 173 */ ?></td>
                            </tr>
 <?php
 			$iterations++;
@@ -331,43 +329,43 @@ class Template84cea174ae extends Latte\Runtime\Template
 			}
 ?>
 
-                                           value="<?php echo LR\Filters::escapeHtmlAttr($tablet->id_device) /* line 201 */ ?>">
+                                           value="<?php echo LR\Filters::escapeHtmlAttr($tablet->id_device) /* line 199 */ ?>">
                                     <span></span>
-                                    <?php echo LR\Filters::escapeHtmlText($tablet->device) /* line 203 */ ?>
+                                    <?php echo LR\Filters::escapeHtmlText($tablet->device) /* line 201 */ ?>
 
                                  </label>
                               </td>
-                              <td data-title="Platform"><?php echo LR\Filters::escapeHtmlText($tablet->platform) /* line 206 */ ?></td>
+                              <td data-title="Platform"><?php echo LR\Filters::escapeHtmlText($tablet->platform) /* line 204 */ ?></td>
                               <td data-title="Screen dimensions">
-                                 <?php echo LR\Filters::escapeHtmlText($tablet->screen_in) /* line 208 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($tablet->screen_in) /* line 206 */ ?>
 
                                  <small>in</small>
-                                 <?php echo LR\Filters::escapeHtmlText($tablet->screen_width_in) /* line 210 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($tablet->screen_height_in) /* line 210 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($tablet->screen_width_in) /* line 208 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($tablet->screen_height_in) /* line 208 */ ?>
 
                                  <small>in</small>
                                  <br>
-                                 <?php echo LR\Filters::escapeHtmlText($tablet->screen_cm) /* line 213 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($tablet->screen_cm) /* line 211 */ ?>
 
                                  <small>cm</small>
-                                 <?php echo LR\Filters::escapeHtmlText($tablet->screen_width_cm) /* line 215 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($tablet->screen_height_cm) /* line 215 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($tablet->screen_width_cm) /* line 213 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($tablet->screen_height_cm) /* line 213 */ ?>
 
                                  <small>cm</small>
                               </td>
                               <td data-title="Width × Height">
-                                 <?php echo LR\Filters::escapeHtmlText($tablet->width_dp) /* line 219 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($tablet->height_dp) /* line 219 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($tablet->width_dp) /* line 217 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($tablet->height_dp) /* line 217 */ ?>
 
                                  <small>dp</small>
                                  <br>
-                                 <?php echo LR\Filters::escapeHtmlText($tablet->width_px) /* line 222 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($tablet->height_px) /* line 222 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($tablet->width_px) /* line 220 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($tablet->height_px) /* line 220 */ ?>
 
                                  <small>px</small>
                               </td>
-                              <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($tablet->aspect_ratio) /* line 225 */ ?></td>
-                              <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $tablet->density, 1)) /* line 226 */ ?></td>
+                              <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($tablet->aspect_ratio) /* line 223 */ ?></td>
+                              <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $tablet->density, 1)) /* line 224 */ ?></td>
                            </tr>
 <?php
 			$iterations++;
@@ -409,43 +407,43 @@ class Template84cea174ae extends Latte\Runtime\Template
 			}
 ?>
 
-                                           value="<?php echo LR\Filters::escapeHtmlAttr($laptop->id_device) /* line 252 */ ?>">
+                                           value="<?php echo LR\Filters::escapeHtmlAttr($laptop->id_device) /* line 250 */ ?>">
                                     <span></span>
-                                    <?php echo LR\Filters::escapeHtmlText($laptop->device) /* line 254 */ ?>
+                                    <?php echo LR\Filters::escapeHtmlText($laptop->device) /* line 252 */ ?>
 
                                  </label>
                               </td>
-                              <td data-title="Platform"><?php echo LR\Filters::escapeHtmlText($laptop->platform) /* line 257 */ ?></td>
+                              <td data-title="Platform"><?php echo LR\Filters::escapeHtmlText($laptop->platform) /* line 255 */ ?></td>
                               <td data-title="Screen dimensions">
-                                 <?php echo LR\Filters::escapeHtmlText($laptop->screen_in) /* line 259 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($laptop->screen_in) /* line 257 */ ?>
 
                                  <small>in</small>
-                                 <?php echo LR\Filters::escapeHtmlText($laptop->screen_width_in) /* line 261 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($laptop->screen_height_in) /* line 261 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($laptop->screen_width_in) /* line 259 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($laptop->screen_height_in) /* line 259 */ ?>
 
                                  <small>in</small>
                                  <br>
-                                 <?php echo LR\Filters::escapeHtmlText($laptop->screen_cm) /* line 264 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($laptop->screen_cm) /* line 262 */ ?>
 
                                  <small>cm</small>
-                                 <?php echo LR\Filters::escapeHtmlText($laptop->screen_width_cm) /* line 266 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($laptop->screen_height_cm) /* line 266 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($laptop->screen_width_cm) /* line 264 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($laptop->screen_height_cm) /* line 264 */ ?>
 
                                  <small>cm</small>
                               </td>
                               <td data-title="Width × Height">
-                                 <?php echo LR\Filters::escapeHtmlText($laptop->width_dp) /* line 270 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($laptop->height_dp) /* line 270 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($laptop->width_dp) /* line 268 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($laptop->height_dp) /* line 268 */ ?>
 
                                  <small>dp</small>
                                  <br>
-                                 <?php echo LR\Filters::escapeHtmlText($laptop->width_px) /* line 273 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($laptop->height_px) /* line 273 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($laptop->width_px) /* line 271 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($laptop->height_px) /* line 271 */ ?>
 
                                  <small>px</small>
                               </td>
-                              <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($laptop->aspect_ratio) /* line 276 */ ?></td>
-                              <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $laptop->density, 1)) /* line 277 */ ?></td>
+                              <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($laptop->aspect_ratio) /* line 274 */ ?></td>
+                              <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $laptop->density, 1)) /* line 275 */ ?></td>
                            </tr>
 <?php
 			$iterations++;
@@ -487,43 +485,43 @@ class Template84cea174ae extends Latte\Runtime\Template
 			}
 ?>
 
-                                           value="<?php echo LR\Filters::escapeHtmlAttr($desktop->id_device) /* line 303 */ ?>">
+                                           value="<?php echo LR\Filters::escapeHtmlAttr($desktop->id_device) /* line 301 */ ?>">
                                     <span></span>
-                                    <?php echo LR\Filters::escapeHtmlText($desktop->device) /* line 305 */ ?>
+                                    <?php echo LR\Filters::escapeHtmlText($desktop->device) /* line 303 */ ?>
 
                                  </label>
                               </td>
-                              <td data-title="Platform"><?php echo LR\Filters::escapeHtmlText($desktop->platform) /* line 308 */ ?></td>
+                              <td data-title="Platform"><?php echo LR\Filters::escapeHtmlText($desktop->platform) /* line 306 */ ?></td>
                               <td data-title="Screen dimensions">
-                                 <?php echo LR\Filters::escapeHtmlText($desktop->screen_in) /* line 310 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($desktop->screen_in) /* line 308 */ ?>
 
                                  <small>in</small>
-                                 <?php echo LR\Filters::escapeHtmlText($desktop->screen_width_in) /* line 312 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($desktop->screen_height_in) /* line 312 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($desktop->screen_width_in) /* line 310 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($desktop->screen_height_in) /* line 310 */ ?>
 
                                  <small>in</small>
                                  <br>
-                                 <?php echo LR\Filters::escapeHtmlText($desktop->screen_cm) /* line 315 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($desktop->screen_cm) /* line 313 */ ?>
 
                                  <small>cm</small>
-                                 <?php echo LR\Filters::escapeHtmlText($desktop->screen_width_cm) /* line 317 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($desktop->screen_height_cm) /* line 317 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($desktop->screen_width_cm) /* line 315 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($desktop->screen_height_cm) /* line 315 */ ?>
 
                                  <small>cm</small>
                               </td>
                               <td data-title="Width × Height">
-                                 <?php echo LR\Filters::escapeHtmlText($desktop->width_dp) /* line 321 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($desktop->height_dp) /* line 321 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($desktop->width_dp) /* line 319 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($desktop->height_dp) /* line 319 */ ?>
 
                                  <small>dp</small>
                                  <br>
-                                 <?php echo LR\Filters::escapeHtmlText($desktop->width_px) /* line 324 */ ?><small>×</small><?php
-			echo LR\Filters::escapeHtmlText($desktop->height_px) /* line 324 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText($desktop->width_px) /* line 322 */ ?><small>×</small><?php
+			echo LR\Filters::escapeHtmlText($desktop->height_px) /* line 322 */ ?>
 
                                  <small>px</small>
                               </td>
-                              <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($desktop->aspect_ratio) /* line 327 */ ?></td>
-                              <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $desktop->density, 1)) /* line 328 */ ?></td>
+                              <td data-title="Aspect ratio"><?php echo LR\Filters::escapeHtmlText($desktop->aspect_ratio) /* line 325 */ ?></td>
+                              <td data-title="Density"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $desktop->density, 1)) /* line 326 */ ?></td>
                            </tr>
 <?php
 			$iterations++;

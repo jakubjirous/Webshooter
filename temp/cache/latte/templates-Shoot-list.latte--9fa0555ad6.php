@@ -47,7 +47,7 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['shoot'])) trigger_error('Variable $shoot overwritten in foreach on line 46, 242, 280, 364');
+		if (isset($this->params['shoot'])) trigger_error('Variable $shoot overwritten in foreach on line 88, 288, 328, 414');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -88,8 +88,7 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
    <div class="container">
       <div class="shoot-list">
 
-<div id="<?php echo htmlSpecialChars($this->global->snippetDriver->getHtmlId('changeView')) ?>"><?php $this->renderBlock('_changeView', $this->params) ?></div>
-      </div>
+<div id="<?php echo htmlSpecialChars($this->global->snippetDriver->getHtmlId('changeView')) ?>"><?php $this->renderBlock('_changeView', $this->params) ?></div>      </div>
    </div>
 <?php
 	}
@@ -100,8 +99,6 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 		extract($_args);
 		$this->global->snippetDriver->enter("changeView", "static");
 ?>
-
-
             <div class="change-view">
                <div class="btn-group" role="group" aria-label="Shoots change view">
                   <a type="button"
@@ -109,7 +106,7 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 		if ($view == $viewLG) {
 			?>active<?php
 		}
-		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeView!", [$viewLG])) ?>">
+		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeView!", [$viewLG, $paginator->getPage()])) ?>">
                      <i class="fa fa-th-list"></i>
                   </a>
                   <a type="button"
@@ -117,7 +114,7 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 		if ($view == $viewMD) {
 			?>active<?php
 		}
-		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeView!", [$viewMD])) ?>">
+		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeView!", [$viewMD, $paginator->getPage()])) ?>">
                      <i class="fa fa-th-large"></i>
                   </a>
                   <a type="button"
@@ -125,7 +122,7 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 		if ($view == $viewSM) {
 			?>active<?php
 		}
-		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeView!", [$viewSM])) ?>">
+		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeView!", [$viewSM, $paginator->getPage()])) ?>">
                      <i class="fa fa-th"></i>
                   </a>
                   <a type="button"
@@ -133,11 +130,78 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 		if ($view == $viewXS) {
 			?>active<?php
 		}
-		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeView!", [$viewXS])) ?>">
+		?>" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("changeView!", [$viewXS, $paginator->getPage()])) ?>">
                      <i class="fa fa-list"></i>
                   </a>
                </div>
             </div>
+
+
+<?php
+		if ($paginator->getPageCount() > 1) {
+?>
+            <nav aria-label="Shoots pagination" class="text-xs-center">
+               <ul class="pagination pagination-sm justify-content-center">
+<?php
+			if ($paginator->first) {
+?>
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+<?php
+			}
+			else {
+?>
+                     <li class="page-item">
+                        <a class="page-link ajax" aria-label="Previous" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("paginator!", [$view, $paginator->getPage() - 1])) ?>">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+<?php
+			}
+			for ($page = 1;
+			$page < $paginator->getPageCount() + 1;
+			$page++) {
+				?>                     <li class="page-item<?php
+				if ($page == $paginator->getPage()) {
+					?> active<?php
+				}
+?>">
+                        <a class="page-link ajax" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("paginator!", [$view, $page])) ?>"><?php
+				echo LR\Filters::escapeHtmlText($page) /* line 61 */ ?></a>
+                     </li>
+<?php
+			}
+			if ($paginator->last) {
+?>
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+<?php
+			}
+			else {
+?>
+                     <li class="page-item">
+                        <a class="page-link ajax" aria-label="Next" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("paginator!", [$view, $paginator->getPage() + 1])) ?>">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+<?php
+			}
+?>
+               </ul>
+            </nav>
+<?php
+		}
+?>
 
 
 <?php
@@ -153,20 +217,20 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                      <div class="row">
                         <div class="col-xs-12">
                            <h3>
-                              <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 51 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 51 */ ?></a>
+                              <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 93 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 93 */ ?></a>
                            </h3>
                         </div>
                         <div class="col-xs-12 col-lg-4">
                            <div class="image">
                               <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 56 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 56 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
-                                 data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 57 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 98 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 98 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
+                                 data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 99 */ ?>">
                                  <img class="img-thumbnail img-responsive" src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 58 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 58 */ ?>"
-                                      alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 59 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 100 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 100 */ ?>"
+                                      alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 101 */ ?>">
                               </a>
                            </div>
                         </div>
@@ -178,35 +242,37 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                                  <tr>
                                     <td>Device type</td>
                                     <td>
-                                       <strong title="<?php echo LR\Filters::escapeHtmlAttr($shoot->device->type->type) /* line 69 */ ?>">
-                                          <i class="fa fa-<?php echo LR\Filters::escapeHtmlAttr(call_user_func($this->filters->lower, $shoot->device->type->type)) /* line 70 */ ?>"></i>
+                                       <strong title="<?php echo LR\Filters::escapeHtmlAttr($shoot->device->type->type) /* line 111 */ ?>">
+                                          <i class="fa fa-<?php echo LR\Filters::escapeHtmlAttr(call_user_func($this->filters->lower, $shoot->device->type->type)) /* line 112 */ ?>"></i>
                                        </strong>
                                     </td>
                                  </tr>
                                  <tr>
                                     <td>Device</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->device->device) /* line 76 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->device->device) /* line 118 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Platform</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->device->platform) /* line 80 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->device->platform) /* line 122 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Screen dimensions</td>
                                     <td>
                                        <strong>
-                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->screen_in) /* line 86 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->screen_in) /* line 128 */ ?>
 
-                                          <small>in</small> <?php echo LR\Filters::escapeHtmlText($shoot->device->screen_width_in) /* line 87 */ ?><small>×</small><?php
-						echo LR\Filters::escapeHtmlText($shoot->device->screen_height_in) /* line 87 */ ?>
+                                          <small>in</small> <?php echo LR\Filters::escapeHtmlText($shoot->device->screen_width_in) /* line 129 */ ?>
+
+                                          <small>×</small><?php echo LR\Filters::escapeHtmlText($shoot->device->screen_height_in) /* line 130 */ ?>
 
                                           <small>in</small>
                                           <br>
-                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->screen_cm) /* line 90 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->screen_cm) /* line 133 */ ?>
 
                                           <small>cm</small>
-                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->screen_width_cm) /* line 92 */ ?><small>×</small><?php
-						echo LR\Filters::escapeHtmlText($shoot->device->screen_height_cm) /* line 92 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->screen_width_cm) /* line 135 */ ?>
+
+                                          <small>×</small><?php echo LR\Filters::escapeHtmlText($shoot->device->screen_height_cm) /* line 136 */ ?>
 
                                           <small>cm</small>
                                        </strong>
@@ -219,13 +285,15 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                                     </td>
                                     <td>
                                        <strong>
-                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->width_px) /* line 104 */ ?><small>×</small><?php
-						echo LR\Filters::escapeHtmlText($shoot->device->height_px) /* line 104 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->width_px) /* line 148 */ ?>
+
+                                          <small>×</small><?php echo LR\Filters::escapeHtmlText($shoot->device->height_px) /* line 149 */ ?>
 
                                           <small>px</small>
                                           <br>
-                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->width_dp) /* line 107 */ ?><small>×</small><?php
-						echo LR\Filters::escapeHtmlText($shoot->device->height_dp) /* line 107 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($shoot->device->width_dp) /* line 152 */ ?>
+
+                                          <small>×</small><?php echo LR\Filters::escapeHtmlText($shoot->device->height_dp) /* line 153 */ ?>
 
                                           <small>dp</small>
                                        </strong>
@@ -233,11 +301,11 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                                  </tr>
                                  <tr>
                                     <td>Aspect ratio</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->device->aspect_ratio) /* line 114 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->device->aspect_ratio) /* line 160 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Density</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $shoot->device->density, 1)) /* line 118 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $shoot->device->density, 1)) /* line 164 */ ?></strong></td>
                                  </tr>
                               </table>
 <?php
@@ -252,14 +320,14 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                                     </tr>
                                     <tr>
                                        <td>Custom width</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->other_width) /* line 130 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->other_width) /* line 176 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Custom height</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->other_height == null ? 'MAX' : $shoot->other_height) /* line 136 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->other_height == null ? 'MAX' : $shoot->other_height) /* line 182 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
@@ -280,7 +348,7 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                                     <tr>
                                        <td>Viewport width</td>
                                        <td>
-                                          <strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_viewport_width == null ? 0 : $shoot->crop_viewport_width) /* line 152 */ ?>
+                                          <strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_viewport_width == null ? 0 : $shoot->crop_viewport_width) /* line 198 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
@@ -288,35 +356,35 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                                     <tr>
                                        <td>Viewport height</td>
                                        <td>
-                                          <strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_viewport_height == null ? 0 : $shoot->crop_viewport_height) /* line 159 */ ?>
+                                          <strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_viewport_height == null ? 0 : $shoot->crop_viewport_height) /* line 205 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Top</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_top == null ? 0 : $shoot->crop_top) /* line 165 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_top == null ? 0 : $shoot->crop_top) /* line 211 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Left</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_left == null ? 0 : $shoot->crop_left) /* line 171 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_left == null ? 0 : $shoot->crop_left) /* line 217 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Crop width</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_width == null ? 0 : $shoot->crop_width) /* line 177 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_width == null ? 0 : $shoot->crop_width) /* line 223 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Crop height</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_height == null ? 0 : $shoot->crop_height) /* line 183 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->crop_height == null ? 0 : $shoot->crop_height) /* line 229 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
@@ -331,26 +399,26 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                            <table class="table">
                               <tr>
                                  <td>URL</td>
-                                 <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 195 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 195 */ ?></a></strong>
+                                 <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 241 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 241 */ ?></a></strong>
                                  </td>
                               </tr>
                               <tr>
                                  <td>Engine</td>
-                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 200 */ ?></strong></td>
+                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 246 */ ?></strong></td>
                               </tr>
                               <tr>
                                  <td>Browser</td>
-                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 204 */ ?> <?php
-					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 204 */ ?></strong></td>
+                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 250 */ ?> <?php
+					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 250 */ ?></strong></td>
                               </tr>
                               <tr>
                                  <td>Image type</td>
-                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 208 */ ?></strong></td>
+                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 254 */ ?></strong></td>
                               </tr>
                               <tr>
                                  <td>Created</td>
-                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 212 */ ?></strong></td>
+                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 258 */ ?></strong></td>
                               </tr>
                               <tr>
                                  <td></td>
@@ -394,47 +462,48 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 <?php
 			if ($shoots) {
 ?>
-            <div class="row">
+               <div class="row">
 <?php
 				$iterations = 0;
 				foreach ($shoots as $shoot) {
 ?>
-                  <div class="col-xs-12 col-sm-6 col-lg-4">
-                     <div class="shoot-item view-md">
-                        <div class="row">
-                           <div class="col-xs-12">
-                              <h3>
-                                 <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 248 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 248 */ ?></a>
-                              </h3>
-                           </div>
-                           <div class="col-xs-12">
-                              <div class="image">
-                                 <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 253 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 253 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
-                                    data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 254 */ ?>">
-                                    <img class="img-thumbnail img-responsive" src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 255 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 255 */ ?>"
-                                         alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 256 */ ?>">
-                                 </a>
+                     <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <div class="shoot-item view-md">
+                           <div class="row">
+                              <div class="col-xs-12">
+                                 <h3>
+                                    <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 294 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 294 */ ?></a>
+                                 </h3>
                               </div>
-                              <div class="action">
-                                 <a class="btn btn-primary btn-outline-primary" title="Download" href="<?php
-					echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
-                                    <i class="fa fa-download"></i>
-                                 </a>
+                              <div class="col-xs-12">
+                                 <div class="image">
+                                    <a href="<?php
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 299 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 299 */ ?>" class="shoot-thumbnail"
+                                       data-toggle="lightbox"
+                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 301 */ ?>">
+                                       <img class="img-thumbnail img-responsive" src="<?php
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 302 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 302 */ ?>"
+                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 303 */ ?>">
+                                    </a>
+                                 </div>
+                                 <div class="action">
+                                    <a class="btn btn-primary btn-outline-primary"
+                                                                           title="Download" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
+                                       <i class="fa fa-download"></i>
+                                    </a>
+                                 </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                  </div>
 <?php
 					$iterations++;
 				}
 ?>
-            </div>
+               </div>
 <?php
 			}
 			else {
@@ -454,78 +523,80 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 <?php
 			if ($shoots) {
 ?>
-            <div class="row">
+               <div class="row">
 <?php
 				$iterations = 0;
 				foreach ($shoots as $shoot) {
 ?>
-                  <div class="col-xs-12 col-sm-6 col-lg-4">
-                     <div class="shoot-item view-sm">
-                        <div class="row">
-                           <div class="col-xs-12">
-                              <h3>
-                                 <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 286 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 286 */ ?></a>
-                              </h3>
-                           </div>
-                           <div class="col-xs-12">
-                              <div class="image">
-                                 <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 291 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 291 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
-                                    data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 292 */ ?>">
-                                    <img class="img-thumbnail img-responsive" src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 293 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 293 */ ?>"
-                                         alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 294 */ ?>">
-                                 </a>
+                     <div class="col-xs-12 col-sm-6 col-lg-4">
+                        <div class="shoot-item view-sm">
+                           <div class="row">
+                              <div class="col-xs-12">
+                                 <h3>
+                                    <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 334 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 334 */ ?></a>
+                                 </h3>
                               </div>
-                           </div>
-                           <div class="col-xs-12">
-                              <table class="table">
-                                 <tr>
-                                    <td>URL</td>
-                                    <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 302 */ ?>"
-                                                   target="_blank"><?php echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 303 */ ?></a></strong>
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td>Engine</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 308 */ ?></strong></td>
-                                 </tr>
-                                 <tr>
-                                    <td>Browser</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 312 */ ?> <?php
-					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 312 */ ?></strong></td>
-                                 </tr>
-                                 <tr>
-                                    <td>Image type</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 316 */ ?></strong></td>
-                                 </tr>
-                                 <tr>
-                                    <td>Created</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 320 */ ?></strong></td>
-                                 </tr>
-                                 <tr>
-                                    <td></td>
-                                    <td>
-                                       <a
-                                             class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
-                                          <i class="fa fa-download"></i>
-                                          Download
-                                       </a>
-                                    </td>
-                                 </tr>
-                              </table>
+                              <div class="col-xs-12">
+                                 <div class="image">
+                                    <a href="<?php
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 339 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 339 */ ?>" class="shoot-thumbnail"
+                                       data-toggle="lightbox"
+                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 341 */ ?>">
+                                       <img class="img-thumbnail img-responsive" src="<?php
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 342 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 342 */ ?>"
+                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 343 */ ?>">
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-xs-12">
+                                 <table class="table">
+                                    <tr>
+                                       <td>URL</td>
+                                       <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 351 */ ?>"
+                                                      target="_blank"><?php echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 352 */ ?></a></strong>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>Engine</td>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 357 */ ?></strong></td>
+                                    </tr>
+                                    <tr>
+                                       <td>Browser</td>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 361 */ ?> <?php
+					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 361 */ ?></strong>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>Image type</td>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 366 */ ?></strong></td>
+                                    </tr>
+                                    <tr>
+                                       <td>Created</td>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 370 */ ?></strong></td>
+                                    </tr>
+                                    <tr>
+                                       <td></td>
+                                       <td>
+                                          <a
+                                                class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
+                                             <i class="fa fa-download"></i>
+                                             Download
+                                          </a>
+                                       </td>
+                                    </tr>
+                                 </table>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
 <?php
 					$iterations++;
 				}
 ?>
-            </div>
+               </div>
 <?php
 			}
 			else {
@@ -545,78 +616,80 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
 <?php
 			if ($shoots) {
 ?>
-            <div class="row">
-               <div class="col-xs-12">
-                  <div class="shoot-item view-xs">
-                     <table class="table table-striped">
-                        <thead>
-                        <tr>
-                           <th>Shoot</th>
-                           <th>URL</th>
-                           <th>Engine</th>
-                           <th>Browser</th>
-                           <th>Image type</th>
-                           <th>Created</th>
-                           <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
+               <div class="row">
+                  <div class="col-xs-12">
+                     <div class="shoot-item view-xs">
+                        <table class="table table-striped">
+                           <thead>
+                           <tr>
+                              <th>Shoot</th>
+                              <th>URL</th>
+                              <th>Engine</th>
+                              <th>Browser</th>
+                              <th>Image type</th>
+                              <th>Created</th>
+                              <th></th>
+                           </tr>
+                           </thead>
+                           <tbody>
 <?php
 				$iterations = 0;
 				foreach ($shoots as $shoot) {
 ?>
-                           <tr>
-                              <td data-title="Shoot" data-shoot>
-                                 <div class="image">
-                                    <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 368 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 368 */ ?>" class="shoot-thumbnail"
-                                       data-toggle="lightbox"
-                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 370 */ ?>">
-                                       <img class="img-thumbnail img-responsive" src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 371 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 371 */ ?>"
-                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 372 */ ?>">
+                              <tr>
+                                 <td data-title="Shoot" data-shoot>
+                                    <div class="image">
+                                       <a href="<?php
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 418 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 418 */ ?>" class="shoot-thumbnail"
+                                          data-toggle="lightbox"
+                                          data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 420 */ ?>">
+                                          <img class="img-thumbnail img-responsive" src="<?php
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 421 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 421 */ ?>"
+                                               alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 422 */ ?>">
+                                       </a>
+                                    </div>
+                                 </td>
+                                 <td data-title="URL" data-url>
+                                    <strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 427 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 427 */ ?></a></strong>
+                                 </td>
+                                 <td data-title="Engine">
+                                    <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 430 */ ?>
+
+                                 </td>
+                                 <td data-title="Browser">
+                                    <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 433 */ ?> <?php
+					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 433 */ ?>
+
+                                 </td>
+                                 <td data-title="Image type">
+                                    <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 436 */ ?>
+
+                                 </td>
+                                 <td data-title="Created">
+                                    <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 439 */ ?>
+
+                                 </td>
+                                 <td data-title="Action">
+                                    <a
+                                          class="btn btn-primary btn-outline-primary btn-sm" href="<?php
+					echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
+                                       <i class="fa fa-download"></i>
+                                       Download
                                     </a>
-                                 </div>
-                              </td>
-                              <td data-title="URL" data-url>
-                                 <strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 377 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 377 */ ?></a></strong>
-                              </td>
-                              <td data-title="Engine">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 380 */ ?>
-
-                              </td>
-                              <td data-title="Browser">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 383 */ ?> <?php
-					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 383 */ ?>
-
-                              </td>
-                              <td data-title="Image type">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 386 */ ?>
-
-                              </td>
-                              <td data-title="Created">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 389 */ ?>
-
-                              </td>
-                              <td data-title="Action">
-                                 <a class="btn btn-primary btn-outline-primary btn-sm" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
-                                    <i class="fa fa-download"></i>
-                                    Download
-                                 </a>
-                              </td>
-                           </tr>
+                                 </td>
+                              </tr>
 <?php
 					$iterations++;
 				}
 ?>
-                        </tbody>
-                     </table>
+                           </tbody>
+                        </table>
+                     </div>
                   </div>
                </div>
-            </div>
 <?php
 			}
 			else {
@@ -626,10 +699,84 @@ class Template9fa0555ad6 extends Latte\Runtime\Template
                </div>
 <?php
 			}
+		}
 ?>
 
+
+<?php
+		if ($paginator->getPageCount() > 1) {
+?>
+            <nav aria-label="Shoots pagination" class="text-xs-center">
+               <ul class="pagination justify-content-center">
+<?php
+			if ($paginator->first) {
+?>
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Previous">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+<?php
+			}
+			else {
+?>
+                     <li class="page-item">
+                        <a class="page-link ajax" aria-label="Previous" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("paginator!", [$view, $paginator->getPage() - 1])) ?>">
+                           <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                           <span class="sr-only">Previous</span>
+                        </a>
+                     </li>
+<?php
+			}
+			for ($page = 1;
+			$page < $paginator->getPageCount() + 1;
+			$page++) {
+				?>                     <li class="page-item<?php
+				if ($page == $paginator->getPage()) {
+					?> active<?php
+				}
+?>">
+                        <a class="page-link ajax" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("paginator!", [$view, $page])) ?>"><?php
+				echo LR\Filters::escapeHtmlText($page) /* line 483 */ ?></a>
+                     </li>
+<?php
+			}
+			if ($paginator->last) {
+?>
+                     <li class="page-item disabled">
+                        <a href="#" class="page-link" aria-label="Next">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+<?php
+			}
+			else {
+?>
+                     <li class="page-item">
+                        <a class="page-link ajax" aria-label="Next" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("paginator!", [$view, $paginator->getPage() + 1])) ?>">
+                           <span aria-hidden="true"><i class="fa fa-chevron-right"></i></span>
+                           <span class="sr-only">Next</span>
+                        </a>
+                     </li>
+<?php
+			}
+?>
+               </ul>
+            </nav>
 <?php
 		}
+?>
+
+         <script>
+            $('.page-link').on('click', function() {
+               $('html, body').animate({ scrollTop: 0 }, 'slow');
+               return false;
+            });
+         </script>
+
+<?php
 		$this->global->snippetDriver->leave();
 		
 	}
