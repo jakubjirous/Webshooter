@@ -110,11 +110,11 @@ class PlanManager
       /**
        * Plans with: start_date == today_date, status = FALSE
        */
-      $result += $this->db->table(self::TABLE_NAME)
-         ->select('*')
-         ->where(self::COLUMN_STATUS, FALSE)
-         ->where(self::COLUMN_START_DATE .' BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $cronRunTime, $now)
-         ->fetchAll();
+//      $result += $this->db->table(self::TABLE_NAME)
+//         ->select('*')
+//         ->where(self::COLUMN_STATUS, FALSE)
+//         ->where(self::COLUMN_START_DATE .' BETWEEN DATE_SUB(?, INTERVAL ? MINUTE) AND ?', $now, $cronRunTime, $now)
+//         ->fetchAll();
 
 
 

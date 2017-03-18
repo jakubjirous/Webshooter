@@ -291,7 +291,7 @@ class ShootAdd
       file_put_contents($fullPathJS, $content);
 
       // escape shell command
-      $commandSlimerJS = escapeshellcmd($path['wwwBinDir'] . 'slimerjs ' . $fullPathJS);
+      $commandSlimerJS = escapeshellcmd($path['wwwBinDir'] . '/slimerjs0.10.3/slimerjs ' . $fullPathJS);
 
       // server JS execute
       exec($commandSlimerJS);
@@ -371,7 +371,7 @@ class ShootAdd
       file_put_contents($fullPathJS, $content);
 
       // escape shell command
-      $commandSlimerJS = escapeshellcmd($path['wwwBinDir'] . 'slimerjs ' . $fullPathJS);
+      $commandSlimerJS = escapeshellcmd($path['wwwBinDir'] . '/slimerjs0.10.3/slimerjs ' . $fullPathJS);
 
       // server JS execute
       exec($commandSlimerJS);
