@@ -258,6 +258,10 @@
                                  <td><strong>{$shoot->date|date:'d.n.Y H:i:s'}</strong></td>
                               </tr>
                               <tr>
+                                 <td>User</td>
+                                 <td><strong>{$shoot->user->username}</strong></td>
+                              </tr>
+                              <tr>
                                  <td></td>
                                  <td>
                                     <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary">
@@ -370,6 +374,10 @@
                                        <td><strong>{$shoot->date|date:'d.n.Y H:i:s'}</strong></td>
                                     </tr>
                                     <tr>
+                                       <td>User</td>
+                                       <td><strong>{$shoot->user->username}</strong></td>
+                                    </tr>
+                                    <tr>
                                        <td></td>
                                        <td>
                                           <a n:href="download! $shoot->id_shoot"
@@ -407,6 +415,7 @@
                               <th>Browser</th>
                               <th>Image type</th>
                               <th>Created</th>
+                              <th>User</th>
                               <th></th>
                            </tr>
                            </thead>
@@ -437,6 +446,9 @@
                                  </td>
                                  <td data-title="Created">
                                     {$shoot->date|date:'d.n.Y H:i:s'}
+                                 </td>
+                                 <td data-title="User">
+                                    {$shoot->user->username}
                                  </td>
                                  <td data-title="Action">
                                     <a n:href="download! $shoot->id_shoot"

@@ -79,16 +79,18 @@ $(function () {
     $('#typed-element').typed({
         strings: [
             'Web page application to creating website screenshots.',
-            'A lot of predefined device resolution.',
+            'A lot of predefined device resolutions.',
             'Simple screenshots comparison according to user defined criteria.',
+            'Visual comparision results analysis.',
             'Adjustable time schedule for the comparison.',
             'Saving results to a clear history.',
             'E-mail notification containing the results.',
-            'User friendly interface.',
+            'User friendly interface.'
         ],
         typeSpeed: 0,
+        backSpeed: -500,
         loop: true,
-        backDelay: 2000
+        backDelay: 3500
     });
 
 

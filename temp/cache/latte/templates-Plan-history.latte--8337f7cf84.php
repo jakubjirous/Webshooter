@@ -105,7 +105,12 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 <?php
 			$iterations = 0;
 			foreach ($iterator = $this->global->its[] = new LR\CachingIterator($results) as $result) {
-				?>               <div class="history-item <?php
+?>
+               <a
+                     class="btn btn-primary btn-sm float-xs-right" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:emailPreview", [$result->id_plan_result])) ?>">
+                  E-mail preview
+               </a>
+               <div class="history-item <?php
 				if ($iterator->counter > 1) {
 					?>hr<?php
 				}
@@ -127,47 +132,47 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                      </thead>
                      <tbody>
                      <tr>
-                        <td data-title="#"><?php echo LR\Filters::escapeHtmlText($iterator->counter) /* line 48 */ ?></td>
+                        <td data-title="#"><?php echo LR\Filters::escapeHtmlText($iterator->counter) /* line 52 */ ?></td>
                         <td data-title="Date">
                         <span>
-                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'j.n.Y')) /* line 51 */ ?> <br>
+                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'j.n.Y')) /* line 55 */ ?> <br>
                            <small>
-                              <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'H:i')) /* line 53 */ ?>
+                              <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'H:i')) /* line 57 */ ?>
 
                            </small>
                         </span>
                         </td>
                         <td data-title="E-mail">
                         <span>
-                           <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->primary_email)) /* line 59 */ ?>" title="Primary e-mail"><?php
-				echo LR\Filters::escapeHtmlText($plan->primary_email) /* line 59 */ ?></a>
+                           <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->primary_email)) /* line 63 */ ?>" title="Primary e-mail"><?php
+				echo LR\Filters::escapeHtmlText($plan->primary_email) /* line 63 */ ?></a>
 <?php
 				if ($plan->secondary_email != NULL) {
 ?>
                               <br>
                               <small>
-                                 <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->secondary_email)) /* line 63 */ ?>"
-                                    title="Secondary e-mail"><?php echo LR\Filters::escapeHtmlText($plan->secondary_email) /* line 64 */ ?></a>
+                                 <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->secondary_email)) /* line 67 */ ?>"
+                                    title="Secondary e-mail"><?php echo LR\Filters::escapeHtmlText($plan->secondary_email) /* line 68 */ ?></a>
                               </small>
 <?php
 				}
 ?>
                         </span>
                         </td>
-                        <td class="color-<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 69 */ ?>" data-title="Result color">
-                           <i class="fa fa-image" title="<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 70 */ ?>"></i>
+                        <td class="color-<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 73 */ ?>" data-title="Result color">
+                           <i class="fa fa-image" title="<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 74 */ ?>"></i>
                         </td>
-                        <td data-title="Result background"><?php echo LR\Filters::escapeHtmlText($result->background) /* line 72 */ ?></td>
-                        <td data-title="Tolerance"><?php echo LR\Filters::escapeHtmlText($result->tolerance) /* line 73 */ ?>%</td>
-                        <td data-title="Difference">&le; <?php echo LR\Filters::escapeHtmlText($result->difference) /* line 74 */ ?>%</td>
+                        <td data-title="Result background"><?php echo LR\Filters::escapeHtmlText($result->background) /* line 76 */ ?></td>
+                        <td data-title="Tolerance"><?php echo LR\Filters::escapeHtmlText($result->tolerance) /* line 77 */ ?>%</td>
+                        <td data-title="Difference">&le; <?php echo LR\Filters::escapeHtmlText($result->difference) /* line 78 */ ?>%</td>
                         <td data-title="Result difference">
 <?php
 				if ($result->difference_result <= $result->difference) {
-					?>                              <i class="tag tag-success"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 77 */ ?>%</i>
+					?>                              <i class="tag tag-success"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 81 */ ?>%</i>
 <?php
 				}
 				else {
-					?>                              <i class="tag tag-danger"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 79 */ ?>%</i>
+					?>                              <i class="tag tag-danger"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 83 */ ?>%</i>
 <?php
 				}
 ?>
@@ -177,18 +182,18 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 				if ($result->ignore_active) {
 ?>
                               <span>
-                              <small class="float-lg-left">
-                                 Top: <?php echo LR\Filters::escapeHtmlText($result->ignore_top) /* line 86 */ ?>px
+                              <small class="float-xl-left">
+                                 Top: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_top) /* line 90 */ ?></strong> px
                               </small>
-                              <small class="float-lg-right">
-                                 Left: <?php echo LR\Filters::escapeHtmlText($result->ignore_left) /* line 89 */ ?>px
+                              <small class="float-xl-right">
+                                 Left: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_left) /* line 93 */ ?></strong> px
                               </small>
                               <br>
-                              <small class="float-lg-left">
-                                 Width: <?php echo LR\Filters::escapeHtmlText($result->ignore_width) /* line 93 */ ?>px
+                              <small class="float-xl-left">
+                                 Width: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_width) /* line 97 */ ?></strong> px
                               </small>
-                              <small class="float-lg-right">
-                                 Height: <?php echo LR\Filters::escapeHtmlText($result->ignore_height) /* line 96 */ ?>px
+                              <small class="float-xl-right">
+                                 Height: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_height) /* line 100 */ ?></strong> px
                               </small>
                            </span>
 <?php
@@ -202,16 +207,11 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                         </td>
                         <td>
                            <button class="btn btn-warning btn-sm" title="History information" data-toggle="modal"
-                                   data-target="#info-modal-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 105 */ ?>">
+                                   data-target="#info-modal-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 109 */ ?>">
                               <i class="fa fa-info-circle"></i>
                            </button>
                            <a
-                                 class="btn btn-success btn-sm float-sm-right float-lg-none" href="<?php
-				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:emailPreview", [$result->id_plan_result])) ?>">
-                              Preview
-                           </a>
-                           <a
-                                 class="btn btn-success btn-sm float-sm-right float-lg-none"
+                                 class="btn btn-success btn-sm"
                                  title="Send e-mail with result" data-confirm="Are you sure to send this result?" href="<?php
 				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("sendEmail!", [$result->id_plan_result])) ?>">
                               <i class="fa fa-envelope"></i> Send
@@ -367,6 +367,10 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                                  <td>Created</td>
                                  <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->source->date, 'd.n.Y H:i:s')) /* line 235 */ ?></strong></td>
                               </tr>
+                              <tr>
+                                 <td>User</td>
+                                 <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->user->username) /* line 239 */ ?></strong></td>
+                              </tr>
                            </table>
 
                            <h5>Type definition</h5>
@@ -378,35 +382,35 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                                  <tr>
                                     <td>Device type</td>
                                     <td>
-                                       <strong title="<?php echo LR\Filters::escapeHtmlAttr($result->source->device->type->type) /* line 246 */ ?>">
-                                          <i class="fa fa-<?php echo LR\Filters::escapeHtmlAttr(call_user_func($this->filters->lower, $result->source->device->type->type)) /* line 247 */ ?>"></i>
+                                       <strong title="<?php echo LR\Filters::escapeHtmlAttr($result->source->device->type->type) /* line 250 */ ?>">
+                                          <i class="fa fa-<?php echo LR\Filters::escapeHtmlAttr(call_user_func($this->filters->lower, $result->source->device->type->type)) /* line 251 */ ?>"></i>
                                        </strong>
                                     </td>
                                  </tr>
                                  <tr>
                                     <td>Device</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->device->device) /* line 253 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->device->device) /* line 257 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Platform</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->device->platform) /* line 257 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->device->platform) /* line 261 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Screen dimensions</td>
                                     <td>
                                        <strong>
-                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->screen_in) /* line 263 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->screen_in) /* line 267 */ ?>
 
-                                          <small>in</small> <?php echo LR\Filters::escapeHtmlText($result->source->device->screen_width_in) /* line 264 */ ?><small>×</small><?php
-					echo LR\Filters::escapeHtmlText($result->source->device->screen_height_in) /* line 264 */ ?>
+                                          <small>in</small> <?php echo LR\Filters::escapeHtmlText($result->source->device->screen_width_in) /* line 268 */ ?><small>×</small><?php
+					echo LR\Filters::escapeHtmlText($result->source->device->screen_height_in) /* line 268 */ ?>
 
                                           <small>in</small>
                                           <br>
-                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->screen_cm) /* line 267 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->screen_cm) /* line 271 */ ?>
 
                                           <small>cm</small>
-                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->screen_width_cm) /* line 269 */ ?><small>×</small><?php
-					echo LR\Filters::escapeHtmlText($result->source->device->screen_height_cm) /* line 269 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->screen_width_cm) /* line 273 */ ?><small>×</small><?php
+					echo LR\Filters::escapeHtmlText($result->source->device->screen_height_cm) /* line 273 */ ?>
 
                                           <small>cm</small>
                                        </strong>
@@ -419,13 +423,13 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                                     </td>
                                     <td>
                                        <strong>
-                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->width_px) /* line 281 */ ?><small>×</small><?php
-					echo LR\Filters::escapeHtmlText($result->source->device->height_px) /* line 281 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->width_px) /* line 285 */ ?><small>×</small><?php
+					echo LR\Filters::escapeHtmlText($result->source->device->height_px) /* line 285 */ ?>
 
                                           <small>px</small>
                                           <br>
-                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->width_dp) /* line 284 */ ?><small>×</small><?php
-					echo LR\Filters::escapeHtmlText($result->source->device->height_dp) /* line 284 */ ?>
+                                          <?php echo LR\Filters::escapeHtmlText($result->source->device->width_dp) /* line 288 */ ?><small>×</small><?php
+					echo LR\Filters::escapeHtmlText($result->source->device->height_dp) /* line 288 */ ?>
 
                                           <small>dp</small>
                                        </strong>
@@ -433,11 +437,11 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                                  </tr>
                                  <tr>
                                     <td>Aspect ratio</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->device->aspect_ratio) /* line 291 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->device->aspect_ratio) /* line 295 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Density</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $result->source->device->density, 1)) /* line 295 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $result->source->device->density, 1)) /* line 299 */ ?></strong></td>
                                  </tr>
                               </table>
 <?php
@@ -452,7 +456,7 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                                     </tr>
                                     <tr>
                                        <td>Custom width</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->other_width) /* line 307 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->other_width) /* line 311 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
@@ -460,7 +464,7 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                                     <tr>
                                        <td>Custom height</td>
                                        <td>
-                                          <strong><?php echo LR\Filters::escapeHtmlText($result->source->other_height == null ? 'MAX' : $result->source->other_height) /* line 314 */ ?>
+                                          <strong><?php echo LR\Filters::escapeHtmlText($result->source->other_height == null ? 'MAX' : $result->source->other_height) /* line 318 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
@@ -481,7 +485,7 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                                     <tr>
                                        <td>Viewport width</td>
                                        <td>
-                                          <strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_viewport_width == null ? 0 : $result->source->crop_viewport_width) /* line 330 */ ?>
+                                          <strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_viewport_width == null ? 0 : $result->source->crop_viewport_width) /* line 334 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
@@ -489,35 +493,35 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                                     <tr>
                                        <td>Viewport height</td>
                                        <td>
-                                          <strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_viewport_height == null ? 0 : $result->source->crop_viewport_height) /* line 337 */ ?>
+                                          <strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_viewport_height == null ? 0 : $result->source->crop_viewport_height) /* line 341 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Top</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_top == null ? 0 : $result->source->crop_top) /* line 343 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_top == null ? 0 : $result->source->crop_top) /* line 347 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Left</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_left == null ? 0 : $result->source->crop_left) /* line 349 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_left == null ? 0 : $result->source->crop_left) /* line 353 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Crop width</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_width == null ? 0 : $result->source->crop_width) /* line 355 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_width == null ? 0 : $result->source->crop_width) /* line 359 */ ?>
 
                                              <small>px</small>
                                           </strong></td>
                                     </tr>
                                     <tr>
                                        <td>Crop height</td>
-                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_height == null ? 0 : $result->source->crop_height) /* line 361 */ ?>
+                                       <td><strong><?php echo LR\Filters::escapeHtmlText($result->source->crop_height == null ? 0 : $result->source->crop_height) /* line 365 */ ?>
 
                                              <small>px</small>
                                           </strong></td>

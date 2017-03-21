@@ -275,21 +275,8 @@
                                  <td><strong>{$shoot->date|date:'d.n.Y H:i:s'}</strong></td>
                               </tr>
                               <tr>
-                                 <td>
-                                    <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary">
-                                       <i class="fa fa-download"></i>
-                                       Download
-                                    </a>
-                                 </td>
-                                 {ifset $roleAdmin}
-                                    <td>
-                                       <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger"
-                                                                            data-confirm="Are you sure to delete this shoot?">
-                                          <i class="fa fa-trash"></i>
-                                          Delete
-                                       </a>
-                                    </td>
-                                 {/ifset}
+                                 <td>User</td>
+                                 <td><strong>{$shoot->user->username}</strong></td>
                               </tr>
                               <tr>
                                  <td>
@@ -298,8 +285,25 @@
                                        Comparison
                                     </a>
                                  </td>
-                                 <td></td>
+                                 <td>
+                                    <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary">
+                                       <i class="fa fa-download"></i>
+                                       Download
+                                    </a>
+                                 </td>
                               </tr>
+                              {ifset $roleAdmin}
+                                 <tr>
+                                    <td>
+                                       <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger"
+                                                                            data-confirm="Are you sure to delete this shoot?">
+                                          <i class="fa fa-trash"></i>
+                                          Delete
+                                       </a>
+                                    </td>
+                                    <td></td>
+                                 </tr>
+                              {/ifset}
                            </table>
                         </div>
                      </div>
@@ -338,11 +342,11 @@
                                     </a>
                                  </div>
                                  <div class="action">
-                                    <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary" title="Download">
-                                       <i class="fa fa-download"></i>
-                                    </a>
                                     <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success" title="Comparison">
                                        <i class="fa fa-exchange"></i>
+                                    </a>
+                                    <a n:href="download! $shoot->id_shoot" class="btn btn-primary btn-outline-primary" title="Download">
+                                       <i class="fa fa-download"></i>
                                     </a>
                                     {ifset $roleAdmin}
                                        <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger float-xs-right"
@@ -410,22 +414,8 @@
                                     <td><strong>{$shoot->date|date:'d.n.Y H:i:s'}</strong></td>
                                  </tr>
                                  <tr>
-                                    <td>
-                                       <a n:href="download! $shoot->id_shoot"
-                                             class="btn btn-primary btn-outline-primary">
-                                          <i class="fa fa-download"></i>
-                                          Download
-                                       </a>
-                                    </td>
-                                    {ifset $roleAdmin}
-                                       <td>
-                                          <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger"
-                                                                               data-confirm="Are you sure to delete this shoot?">
-                                             <i class="fa fa-trash"></i>
-                                             Delete
-                                          </a>
-                                       </td>
-                                    {/ifset}
+                                    <td>User</td>
+                                    <td><strong>{$shoot->user->username}</strong></td>
                                  </tr>
                                  <tr>
                                     <td>
@@ -434,8 +424,26 @@
                                           Comparison
                                        </a>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                       <a n:href="download! $shoot->id_shoot"
+                                             class="btn btn-primary btn-outline-primary">
+                                          <i class="fa fa-download"></i>
+                                          Download
+                                       </a>
+                                    </td>
                                  </tr>
+                                 {ifset $roleAdmin}
+                                    <tr>
+                                       <td>
+                                          <a n:href="delete! $shoot->id_shoot" class="btn btn-danger btn-outline-danger"
+                                                                               data-confirm="Are you sure to delete this shoot?">
+                                             <i class="fa fa-trash"></i>
+                                             Delete
+                                          </a>
+                                       </td>
+                                       <td></td>
+                                    </tr>
+                                 {/ifset}
                               </table>
                            </div>
                         </div>
@@ -464,6 +472,7 @@
                            <th>Browser</th>
                            <th>Image type</th>
                            <th>Created</th>
+                           <th>User</th>
                            <th></th>
                         </tr>
                         </thead>
@@ -494,6 +503,9 @@
                               </td>
                               <td data-title="Created">
                                  {$shoot->date|date:'d.n.Y H:i:s'}
+                              </td>
+                              <td data-title="User">
+                                 {$shoot->user->username}
                               </td>
                               <td data-title="Action">
                                  <a n:href="Compare:list $shoot->id_shoot" class="btn btn-success btn-outline-success btn-sm">

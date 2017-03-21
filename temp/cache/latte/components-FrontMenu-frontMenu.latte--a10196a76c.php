@@ -22,27 +22,78 @@ class Templatea10196a76c extends Latte\Runtime\Template
          <ul class="nav navbar-nav">
 <?php
 		if (isset($isLoggedIn)) {
-			?>               <li class="nav-item<?php
-			if ($this->global->uiPresenter->isLinkCurrent('Device:*')) {
-				?> active<?php
-			}
+			if ($role == $roleAdmin or $role == $roleSuperUser) {
+				?>                  <li class="nav-item<?php
+				if ($this->global->uiPresenter->isLinkCurrent('Device:*')) {
+					?> active<?php
+				}
 ?>">
-                  <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Device:settings")) ?>">Device settings</a>
-               </li>
-               <li class="nav-item<?php
-			if ($this->global->uiPresenter->isLinkCurrent('Shoot:*')) {
-				?> active<?php
-			}
+                     <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Device:settings")) ?>">Device settings</a>
+                  </li>
+                  <li class="nav-item<?php
+				if ($this->global->uiPresenter->isLinkCurrent('Shoot:add')) {
+					?> active<?php
+				}
+				if ($this->global->uiPresenter->isLinkCurrent('Shoot:list')) {
+					?> active<?php
+				}
+				if ($this->global->uiPresenter->isLinkCurrent('Shoot:settings')) {
+					?> active<?php
+				}
 ?>">
-                  <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:settings")) ?>">Shoot settings</a>
-               </li>
-               <li class="nav-item<?php
-			if ($this->global->uiPresenter->isLinkCurrent('Plan:*')) {
-				?> active<?php
-			}
+                     <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:settings")) ?>">Shoot settings</a>
+                  </li>
+                  <li class="nav-item<?php
+				if ($this->global->uiPresenter->isLinkCurrent('Shoot:user')) {
+					?> active<?php
+				}
 ?>">
-                  <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">Plan settings</a>
-               </li>
+                     <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:user")) ?>">User shoots</a>
+                  </li>
+                  <li class="nav-item<?php
+				if ($this->global->uiPresenter->isLinkCurrent('Plan:*')) {
+					?> active<?php
+				}
+?>">
+                     <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">Plan settings</a>
+                  </li>
+<?php
+			}
+?>
+
+<?php
+			if ($role == $roleUser) {
+				?>                  <li class="nav-item<?php
+				if ($this->global->uiPresenter->isLinkCurrent('Device:*')) {
+					?> active<?php
+				}
+?>">
+                     <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Device:settings")) ?>">Device settings</a>
+                  </li>
+                  <li class="nav-item<?php
+				if ($this->global->uiPresenter->isLinkCurrent('Shoot:add')) {
+					?> active<?php
+				}
+				if ($this->global->uiPresenter->isLinkCurrent('Shoot:list')) {
+					?> active<?php
+				}
+				if ($this->global->uiPresenter->isLinkCurrent('Shoot:settings')) {
+					?> active<?php
+				}
+?>">
+                     <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:settings")) ?>">Shoot settings</a>
+                  </li>
+                  <li class="nav-item<?php
+				if ($this->global->uiPresenter->isLinkCurrent('Plan:*')) {
+					?> active<?php
+				}
+?>">
+                     <a class="nav-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">Plan settings</a>
+                  </li>
+<?php
+			}
+?>
+
 <?php
 		}
 		else {
@@ -72,11 +123,18 @@ class Templatea10196a76c extends Latte\Runtime\Template
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="responsiveNavbarDropdown"
                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <i class="fa fa-user"></i>
-                     Account
+                     <i class="fa fa-cogs"></i>
+                     Settings
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="responsiveNavbarDropdown">
-                     <h6 class="dropdown-header"><?php echo LR\Filters::escapeHtmlText($identity->username) /* line 42 */ ?></h6>
+                     <h6 class="dropdown-header"><?php echo LR\Filters::escapeHtmlText($identity->username) /* line 60 */ ?></h6>
+
+                     <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("User:account", [$userID])) ?>">
+                        <i class="fa fa-user"></i>
+                        My account
+                     </a>
+
+                     <div class="dropdown-divider"></div>
 
 <?php
 			if ($role == $roleAdmin) {
@@ -92,6 +150,10 @@ class Templatea10196a76c extends Latte\Runtime\Template
                            <i class="fa fa-bullseye"></i>
                            Shoots settings
                         </a>
+                        <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:user")) ?>">
+                           <i class="fa fa-bullseye"></i>
+                           User shoots
+                        </a>
                         <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">
                            <i class="fa fa-calendar-o"></i>
                            Plan settings
@@ -101,7 +163,29 @@ class Templatea10196a76c extends Latte\Runtime\Template
 ?>
 
 <?php
-			if ($role == $roleUser || $role == $roleSuperUser) {
+			if ($role == $roleSuperUser) {
+				?>                        <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Device:settings")) ?>">
+                           <i class="fa fa-desktop"></i>
+                           Device settings
+                        </a>
+                        <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:settings")) ?>">
+                           <i class="fa fa-bullseye"></i>
+                           Shoots settings
+                        </a>
+                        <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:user")) ?>">
+                           <i class="fa fa-bullseye"></i>
+                           User shoots
+                        </a>
+                        <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">
+                           <i class="fa fa-calendar-o"></i>
+                           Plan settings
+                        </a>
+<?php
+			}
+?>
+
+<?php
+			if ($role == $roleUser) {
 				?>                        <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Device:settings")) ?>">
                            <i class="fa fa-desktop"></i>
                            Device settings
@@ -119,9 +203,10 @@ class Templatea10196a76c extends Latte\Runtime\Template
 ?>
 
                      <div class="dropdown-divider"></div>
+
                      <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Sign:out")) ?>">
                         <i class="fa fa-sign-out"></i>
-                        Logout
+                        Sign out
                      </a>
                   </div>
                </li>

@@ -28,6 +28,10 @@ class ShootPresenter extends BasePresenter
    /** @var Forms\ShootAddFormFactory @inject */
    public $shootAddFactory;
 
+   /** @var Forms\ShootUserFormFactory @inject */
+   public $shootUserFactory;
+
+
    private $wwwDir;
    private $wwwBinDir;
    private $wwwJsDir;
@@ -90,6 +94,49 @@ class ShootPresenter extends BasePresenter
       $paginator->setItemsPerPage(self::PAGINATION_SHOOTS);
       $paginator->setPage($this->page === NULL ? 1 : $this->page);
       $this->template->shoots = $this->stm->getAllShootLimit($paginator);
+      $this->template->paginator = $paginator;
+
+      $sessionView = $this->sm->getShootView();
+      $this->template->view = ($sessionView == FALSE) ? $this->view : $sessionView;
+
+      $this->template->viewLG = self::VIEW_LG;
+      $this->template->viewMD = self::VIEW_MD;
+      $this->template->viewSM = self::VIEW_SM;
+      $this->template->viewXS = self::VIEW_XS;
+   }
+
+
+   public function renderUser()
+   {
+      $this->isLoggedIn();
+      $identity = $this->user->getIdentity();
+      $roleID = $identity->id_role;
+      $this->template->isLoggedIn = $this->user->isLoggedIn();
+
+      $shootsCount = $this->stm->getAllShootsCount();
+
+      $paginator = new Paginator();
+      if($roleID == self::ROLE_ADMIN or $roleID == self::ROLE_SUPER_USER) {
+         $shootUserID = $this->sm->getShootUserID();
+         if($shootUserID and $shootUserID != -1) {
+            $shootsCount = $this->stm->getAllShootsCountByUserID($shootUserID);
+            $paginator->setItemCount($shootsCount);
+            $paginator->setItemsPerPage(self::PAGINATION_SHOOTS);
+            $paginator->setPage($this->page === NULL ? 1 : $this->page);
+            $shoots = $this->stm->getAllShootLimitByUserID($paginator, $shootUserID);
+            $this->template->shoots = $shoots;
+
+         } else {
+            $shootsCount = $this->stm->getAllShootsCount();
+            $paginator->setItemCount($shootsCount);
+            $paginator->setItemsPerPage(self::PAGINATION_SHOOTS);
+            $paginator->setPage($this->page === NULL ? 1 : $this->page);
+            $shoots = $this->stm->getAllShootLimit($paginator);
+            $this->template->shoots = $shoots;
+         }
+      } else {
+         $this->error();
+      }
       $this->template->paginator = $paginator;
 
       $sessionView = $this->sm->getShootView();
@@ -199,6 +246,19 @@ class ShootPresenter extends BasePresenter
       return $this->shootAddFactory->create(function () {
          $this->flashMessage('New web shoot was added.', self::FLASH_MESSAGE_SUCCESS);
          $this->redirect('Shoot:settings');
+      });
+   }
+
+
+   /**
+    * User shoot select form factory.
+    * @return mixed
+    */
+   protected function createComponentShootUserForm()
+   {
+      return $this->shootUserFactory->create(function () {
+         $this->flashMessage('User shoot by current select.', self::FLASH_MESSAGE_SUCCESS);
+         $this->redirect('this');
       });
    }
 

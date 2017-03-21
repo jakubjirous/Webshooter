@@ -163,6 +163,10 @@
          <td style="width: 200px;">Created:</td>
          <td style="font-weight: bold;">{$source->date|date:'d.m.Y H:i'}</td>
       </tr>
+      <tr>
+         <td style="width: 200px;">User:</td>
+         <td style="font-weight: bold;">{$source->user->username}</td>
+      </tr>
    </table>
 
 
@@ -238,6 +242,21 @@
                   %</i>
             {/if}
          </td>
+      </tr>
+      <tr>
+         <td style="width: 200px; vertical-align: top;">Ignore part:</td>
+         {if $result->ignore_active}
+            <td style="font-weight: bold;">
+               Top: <span style="font-weight: bold;">{$result->ignore_top == null ? 0 : $result->ignore_top}</span> <small>px</small><br>
+               Left: <span style="font-weight: bold;">{$result->ignore_left == null ? 0 : $result->ignore_left}</span> <small>px</small><br>
+               Width: <span style="font-weight: bold;">{$result->ignore_width == null ? 0 : $result->ignore_width}</span> <small>px</small><br>
+               Height: <span style="font-weight: bold;">{$result->ignore_height == null ? 0 : $result->ignore_height}</span> <small>px</small>
+            </td>
+         {else}
+            <td style="font-weight: bold;">
+               <img src="{$webURI}/images/fa-close.png" alt="No">
+            </td>
+         {/if}
       </tr>
    </table>
 {/block}

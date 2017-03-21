@@ -8,6 +8,7 @@ class FrontMenu extends Nette\Application\UI\Control
    public $user;
 
    public $identity;
+   public $userID;
    public $isLoggedIn;
 
    public $roleUser;
@@ -17,9 +18,10 @@ class FrontMenu extends Nette\Application\UI\Control
    /**
     * FrontMenu constructor.
     */
-   public function __construct($identity, $isLoggedIn, $roleUser, $roleSuperUser, $roleAdmin)
+   public function __construct($identity, $userID, $isLoggedIn, $roleUser, $roleSuperUser, $roleAdmin)
    {
       $this->identity = $identity;
+      $this->userID = $userID;
       $this->isLoggedIn = $isLoggedIn;
       $this->roleUser = $roleUser;
       $this->roleSuperUser = $roleSuperUser;
@@ -34,6 +36,7 @@ class FrontMenu extends Nette\Application\UI\Control
       $this->template->identity = $this->identity;
       if($this->isLoggedIn) {
          $this->template->role = $this->identity->id_role;
+         $this->template->userID = $this->userID;
          $this->template->isLoggedIn = $this->isLoggedIn;
       }
 

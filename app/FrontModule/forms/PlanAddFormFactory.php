@@ -73,7 +73,7 @@ class PlanAddFormFactory
       $form->addHidden('targetID', $this->getTargetID());
 
       $today = new DateTime();
-      $startDateDefault = $today->format('Y-m-d') . 'T' . $today->format('H:i');
+      $startDateDefault = $today->format('d.m.Y H:i');
 
       /* DATETIME, EMAIL */
       $form->addGroup('');

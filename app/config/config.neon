@@ -34,9 +34,12 @@ services:
 	- App\FrontModule\Forms\SignUpFormFactory
 	- App\FrontModule\Forms\UserEditFormFactory
 	- App\FrontModule\Forms\UserAddFormFactory
+	- App\FrontModule\Forms\ChangeAccountFormFactory
+	- App\FrontModule\Forms\ChangePasswordFormFactory
 	- App\FrontModule\Forms\DeviceAddFormFactory
 	- App\FrontModule\Forms\DeviceEditFormFactory
 	- App\FrontModule\Forms\ShootAddFormFactory
+	- App\FrontModule\Forms\ShootUserFormFactory
 	- App\FrontModule\Forms\ResultToleranceFormFactory
 	- App\FrontModule\Forms\ResultIgnoreFormFactory
 	- App\FrontModule\Forms\PlanAddFormFactory

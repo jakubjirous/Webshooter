@@ -1,0 +1,39 @@
+{extends '../@index.latte'}
+
+{* User:account *}
+
+{block header}
+   <header>
+      <h1 n:block=title>{$person->username|capitalize}</h1>
+   </header>
+{/block}
+
+{block breadcrumbContent}
+   <li class="breadcrumb-item active">My account</li>
+{/block}
+
+{block content}
+   <div class="container">
+      <div class="device-detail">
+         <div class="row">
+            <div class="col-xs-12">
+
+               {control changeAccountForm}
+
+               {control changePasswordForm}
+
+            </div>
+         </div>
+
+         <div class="row margin-top margin-bottom">
+            <div class="col-xs-12 text-xs-center">
+               <a n:href="Sign:out" class="btn btn-danger">
+                  <i class="fa fa-sign-out"></i>
+                  Sign out
+               </a>
+            </div>
+         </div>
+
+      </div>
+   </div>
+{/block}

@@ -22,6 +22,13 @@ class UserPresenter extends BasePresenter
    /** @var Forms\UserAddFormFactory @inject */
    public $userAddFactory;
 
+   /** @var Forms\ChangeAccountFormFactory @inject */
+   public $changeAccountFactory;
+
+   /** @var Forms\ChangePasswordFormFactory @inject */
+   public $changePasswordFactory;
+
+
    private $sortColumn = "username";
    private $sortOrder = "asc";
 
@@ -76,6 +83,18 @@ class UserPresenter extends BasePresenter
    }
 
 
+   public function renderAccount($id)
+   {
+      if($this->um->existUserById($id)) {
+         $this->template->person = $this->um->getUserById($id);
+         // save user ID to session
+         $this->sm->setUserAccountID($id);
+      } else {
+         $this->error(self::ERROR_404_MESSAGE);
+      }
+   }
+
+
    /**
     * Edit user form factory
     * @return mixed
@@ -98,6 +117,34 @@ class UserPresenter extends BasePresenter
       return $this->userAddFactory->create(function () {
          $this->flashMessage('New user was created.', self::FLASH_MESSAGE_SUCCESS);
          $this->redirect('User:list');
+      });
+   }
+
+
+   /**
+    * Change account form factory
+    * @return mixed
+    */
+   protected function createComponentChangeAccountForm()
+   {
+      $this->changeAccountFactory->setIdentity($this->getUser()->getIdentity());
+
+      return $this->changeAccountFactory->create(function () {
+         $this->flashMessage('Your account was changed.', self::FLASH_MESSAGE_SUCCESS);
+         $this->redirect('this');
+      });
+   }
+
+
+   /**
+    * Change password form factory
+    * @return mixed
+    */
+   protected function createComponentChangePasswordForm()
+   {
+      return $this->changePasswordFactory->create(function () {
+         $this->flashMessage('Your password was changed.', self::FLASH_MESSAGE_SUCCESS);
+         $this->redirect('this');
       });
    }
 

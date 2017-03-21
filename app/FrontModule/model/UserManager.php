@@ -81,6 +81,19 @@ class UserManager implements Nette\Security\IAuthenticator
 
 
    /**
+    * Get all users
+    * @return array|Nette\Database\IRow[]|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
+    */
+   public function getAllUsers()
+   {
+      return $this->db->table(self::TABLE_NAME)
+         ->select('*')
+         ->order(self::COLUMN_USERNAME)
+         ->fetchAll();
+   }
+
+
+   /**
     * Get user by ID
     * @param $id
     * @return array|Nette\Database\Table\IRow[]|Nette\Database\Table\Selection
@@ -145,7 +158,39 @@ class UserManager implements Nette\Security\IAuthenticator
          ->update([
             self::COLUMN_ROLE => $role,
             self::COLUMN_USERNAME => $username,
-            self:: COLUMN_EMAIL => $email
+            self::COLUMN_EMAIL => $email
+         ]);
+   }
+
+
+   /**
+    * Change user account
+    * @param $id
+    * @param $username
+    * @param $email
+    */
+   public function changeAccount($id, $username, $email)
+   {
+      $this->db->table(self::TABLE_NAME)
+         ->where(self::COLUMN_ID, $id)
+         ->update([
+            self::COLUMN_USERNAME => $username,
+            self::COLUMN_EMAIL => $email
+         ]);
+   }
+
+
+   /**
+    * Change user password
+    * @param $id
+    * @param $password
+    */
+   public function changePassword($id, $password)
+   {
+      $this->db->table(self::TABLE_NAME)
+         ->where(self::COLUMN_ID, $id)
+         ->update([
+            self::COLUMN_PASSWORD_HASH => Passwords::hash($password)
          ]);
    }
 

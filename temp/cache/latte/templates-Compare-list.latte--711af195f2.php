@@ -47,7 +47,7 @@ class Template711af195f2 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['similar'])) trigger_error('Variable $similar overwritten in foreach on line 252, 500, 604, 754');
+		if (isset($this->params['similar'])) trigger_error('Variable $similar overwritten in foreach on line 257, 509, 617, 776');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -364,6 +364,11 @@ class Template711af195f2 extends Latte\Runtime\Template
                                     <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 225 */ ?></strong></td>
                                  </tr>
                                  <tr>
+                                    <td>User</td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->user->username) /* line 229 */ ?></strong></td>
+                                 </tr>
+                                 <tr>
+                                    <td></td>
                                     <td>
                                        <a
                                              class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
@@ -397,22 +402,22 @@ class Template711af195f2 extends Latte\Runtime\Template
                               <div class="row">
                                  <div class="col-xs-12">
                                     <h3>
-                                       <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 256 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 256 */ ?></a>
+                                       <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 261 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 261 */ ?></a>
                                     </h3>
                                  </div>
                                  <div class="col-xs-12 col-lg-4">
                                     <div class="image">
                                        <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 261 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 261 */ ?>" class="shoot-thumbnail"
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 266 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 266 */ ?>" class="shoot-thumbnail"
                                           data-toggle="lightbox"
-                                          data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 263 */ ?>">
+                                          data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 268 */ ?>">
                                           <img class="img-thumbnail img-responsive"
                                                src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 265 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 265 */ ?>"
-                                               alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 266 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 270 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 270 */ ?>"
+                                               alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 271 */ ?>">
                                        </a>
                                     </div>
                                  </div>
@@ -424,37 +429,37 @@ class Template711af195f2 extends Latte\Runtime\Template
                                           <tr>
                                              <td>Device type</td>
                                              <td>
-                                                <strong title="<?php echo LR\Filters::escapeHtmlAttr($similar->device->type->type) /* line 276 */ ?>">
-                                                   <i class="fa fa-<?php echo LR\Filters::escapeHtmlAttr(call_user_func($this->filters->lower, $similar->device->type->type)) /* line 277 */ ?>"></i>
+                                                <strong title="<?php echo LR\Filters::escapeHtmlAttr($similar->device->type->type) /* line 281 */ ?>">
+                                                   <i class="fa fa-<?php echo LR\Filters::escapeHtmlAttr(call_user_func($this->filters->lower, $similar->device->type->type)) /* line 282 */ ?>"></i>
                                                 </strong>
                                              </td>
                                           </tr>
                                           <tr>
                                              <td>Device</td>
-                                             <td><strong><?php echo LR\Filters::escapeHtmlText($similar->device->device) /* line 283 */ ?></strong></td>
+                                             <td><strong><?php echo LR\Filters::escapeHtmlText($similar->device->device) /* line 288 */ ?></strong></td>
                                           </tr>
                                           <tr>
                                              <td>Platform</td>
-                                             <td><strong><?php echo LR\Filters::escapeHtmlText($similar->device->platform) /* line 287 */ ?></strong></td>
+                                             <td><strong><?php echo LR\Filters::escapeHtmlText($similar->device->platform) /* line 292 */ ?></strong></td>
                                           </tr>
                                           <tr>
                                              <td>Screen dimensions</td>
                                              <td>
                                                 <strong>
-                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->screen_in) /* line 293 */ ?>
+                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->screen_in) /* line 298 */ ?>
 
-                                                   <small>in</small> <?php echo LR\Filters::escapeHtmlText($similar->device->screen_width_in) /* line 294 */ ?>
+                                                   <small>in</small> <?php echo LR\Filters::escapeHtmlText($similar->device->screen_width_in) /* line 299 */ ?>
 
-                                                   <small>×</small><?php echo LR\Filters::escapeHtmlText($similar->device->screen_height_in) /* line 295 */ ?>
+                                                   <small>×</small><?php echo LR\Filters::escapeHtmlText($similar->device->screen_height_in) /* line 300 */ ?>
 
                                                    <small>in</small>
                                                    <br>
-                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->screen_cm) /* line 298 */ ?>
+                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->screen_cm) /* line 303 */ ?>
 
                                                    <small>cm</small>
-                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->screen_width_cm) /* line 300 */ ?>
+                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->screen_width_cm) /* line 305 */ ?>
 
-                                                   <small>×</small><?php echo LR\Filters::escapeHtmlText($similar->device->screen_height_cm) /* line 301 */ ?>
+                                                   <small>×</small><?php echo LR\Filters::escapeHtmlText($similar->device->screen_height_cm) /* line 306 */ ?>
 
                                                    <small>cm</small>
                                                 </strong>
@@ -467,15 +472,15 @@ class Template711af195f2 extends Latte\Runtime\Template
                                              </td>
                                              <td>
                                                 <strong>
-                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->width_px) /* line 313 */ ?>
+                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->width_px) /* line 318 */ ?>
 
-                                                   <small>×</small><?php echo LR\Filters::escapeHtmlText($similar->device->height_px) /* line 314 */ ?>
+                                                   <small>×</small><?php echo LR\Filters::escapeHtmlText($similar->device->height_px) /* line 319 */ ?>
 
                                                    <small>px</small>
                                                    <br>
-                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->width_dp) /* line 317 */ ?>
+                                                   <?php echo LR\Filters::escapeHtmlText($similar->device->width_dp) /* line 322 */ ?>
 
-                                                   <small>×</small><?php echo LR\Filters::escapeHtmlText($similar->device->height_dp) /* line 318 */ ?>
+                                                   <small>×</small><?php echo LR\Filters::escapeHtmlText($similar->device->height_dp) /* line 323 */ ?>
 
                                                    <small>dp</small>
                                                 </strong>
@@ -483,11 +488,11 @@ class Template711af195f2 extends Latte\Runtime\Template
                                           </tr>
                                           <tr>
                                              <td>Aspect ratio</td>
-                                             <td><strong><?php echo LR\Filters::escapeHtmlText($similar->device->aspect_ratio) /* line 325 */ ?></strong></td>
+                                             <td><strong><?php echo LR\Filters::escapeHtmlText($similar->device->aspect_ratio) /* line 330 */ ?></strong></td>
                                           </tr>
                                           <tr>
                                              <td>Density</td>
-                                             <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $similar->device->density, 1)) /* line 329 */ ?></strong></td>
+                                             <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->number, $similar->device->density, 1)) /* line 334 */ ?></strong></td>
                                           </tr>
                                        </table>
 <?php
@@ -502,7 +507,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                                              </tr>
                                              <tr>
                                                 <td>Custom width</td>
-                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->other_width) /* line 341 */ ?>
+                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->other_width) /* line 346 */ ?>
 
                                                       <small>px</small>
                                                    </strong></td>
@@ -510,7 +515,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                                              <tr>
                                                 <td>Custom height</td>
                                                 <td>
-                                                   <strong><?php echo LR\Filters::escapeHtmlText($similar->other_height == null ? 'MAX' : $similar->other_height) /* line 348 */ ?>
+                                                   <strong><?php echo LR\Filters::escapeHtmlText($similar->other_height == null ? 'MAX' : $similar->other_height) /* line 353 */ ?>
 
                                                       <small>px</small>
                                                    </strong></td>
@@ -531,7 +536,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                                              <tr>
                                                 <td>Viewport width</td>
                                                 <td>
-                                                   <strong><?php echo LR\Filters::escapeHtmlText($similar->crop_viewport_width == null ? 0 : $similar->crop_viewport_width) /* line 364 */ ?>
+                                                   <strong><?php echo LR\Filters::escapeHtmlText($similar->crop_viewport_width == null ? 0 : $similar->crop_viewport_width) /* line 369 */ ?>
 
                                                       <small>px</small>
                                                    </strong></td>
@@ -539,35 +544,35 @@ class Template711af195f2 extends Latte\Runtime\Template
                                              <tr>
                                                 <td>Viewport height</td>
                                                 <td>
-                                                   <strong><?php echo LR\Filters::escapeHtmlText($similar->crop_viewport_height == null ? 0 : $similar->crop_viewport_height) /* line 371 */ ?>
+                                                   <strong><?php echo LR\Filters::escapeHtmlText($similar->crop_viewport_height == null ? 0 : $similar->crop_viewport_height) /* line 376 */ ?>
 
                                                       <small>px</small>
                                                    </strong></td>
                                              </tr>
                                              <tr>
                                                 <td>Top</td>
-                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->crop_top == null ? 0 : $similar->crop_top) /* line 377 */ ?>
+                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->crop_top == null ? 0 : $similar->crop_top) /* line 382 */ ?>
 
                                                       <small>px</small>
                                                    </strong></td>
                                              </tr>
                                              <tr>
                                                 <td>Left</td>
-                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->crop_left == null ? 0 : $similar->crop_left) /* line 383 */ ?>
+                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->crop_left == null ? 0 : $similar->crop_left) /* line 388 */ ?>
 
                                                       <small>px</small>
                                                    </strong></td>
                                              </tr>
                                              <tr>
                                                 <td>Crop width</td>
-                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->crop_width == null ? 0 : $similar->crop_width) /* line 389 */ ?>
+                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->crop_width == null ? 0 : $similar->crop_width) /* line 394 */ ?>
 
                                                       <small>px</small>
                                                    </strong></td>
                                              </tr>
                                              <tr>
                                                 <td>Crop height</td>
-                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->crop_height == null ? 0 : $similar->crop_height) /* line 395 */ ?>
+                                                <td><strong><?php echo LR\Filters::escapeHtmlText($similar->crop_height == null ? 0 : $similar->crop_height) /* line 400 */ ?>
 
                                                       <small>px</small>
                                                    </strong></td>
@@ -582,28 +587,32 @@ class Template711af195f2 extends Latte\Runtime\Template
                                     <table class="table">
                                        <tr>
                                           <td>URL</td>
-                                          <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 407 */ ?>"
-                                                         target="_blank"><?php echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 408 */ ?></a></strong>
+                                          <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 412 */ ?>"
+                                                         target="_blank"><?php echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 413 */ ?></a></strong>
                                           </td>
                                        </tr>
                                        <tr>
                                           <td>Engine</td>
-                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->engine)) /* line 413 */ ?></strong></td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->engine)) /* line 418 */ ?></strong></td>
                                        </tr>
                                        <tr>
                                           <td>Browser</td>
                                           <td>
-                                             <strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->browser_name)) /* line 418 */ ?> <?php
-					echo LR\Filters::escapeHtmlText($similar->browser_version) /* line 418 */ ?></strong>
+                                             <strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->browser_name)) /* line 423 */ ?> <?php
+					echo LR\Filters::escapeHtmlText($similar->browser_version) /* line 423 */ ?></strong>
                                           </td>
                                        </tr>
                                        <tr>
                                           <td>Image type</td>
-                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $similar->img_type)) /* line 423 */ ?></strong></td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $similar->img_type)) /* line 428 */ ?></strong></td>
                                        </tr>
                                        <tr>
                                           <td>Created</td>
-                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 427 */ ?></strong></td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 432 */ ?></strong></td>
+                                       </tr>
+                                       <tr>
+                                          <td>User</td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText($similar->user->username) /* line 436 */ ?></strong></td>
                                        </tr>
                                        <tr>
                                           <td>
@@ -661,19 +670,19 @@ class Template711af195f2 extends Latte\Runtime\Template
                         <h4>Source shoot</h4>
 
                         <h3>
-                           <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 470 */ ?>" target="_blank"><?php
-			echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 470 */ ?></a>
+                           <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 479 */ ?>" target="_blank"><?php
+			echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 479 */ ?></a>
                         </h3>
 
                         <div class="image">
                            <a href="<?php
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 474 */;
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 474 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
-                              data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 475 */ ?>">
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 483 */;
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 483 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
+                              data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 484 */ ?>">
                               <img class="img-thumbnail img-responsive" src="<?php
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 476 */;
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 476 */ ?>"
-                                   alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 477 */ ?>">
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 485 */;
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 485 */ ?>"
+                                   alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 486 */ ?>">
                            </a>
                         </div>
 
@@ -704,21 +713,21 @@ class Template711af195f2 extends Latte\Runtime\Template
 ?>
                                  <div class="col-xs-12 col-lg-6">
                                     <h3>
-                                       <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 503 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 503 */ ?></a>
+                                       <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 512 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 512 */ ?></a>
                                     </h3>
 
                                     <div class="image">
                                        <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 507 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 507 */ ?>" class="shoot-thumbnail"
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 516 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 516 */ ?>" class="shoot-thumbnail"
                                           data-toggle="lightbox"
-                                          data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 509 */ ?>">
+                                          data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 518 */ ?>">
                                           <img class="img-thumbnail img-responsive"
                                                src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 511 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 511 */ ?>"
-                                               alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 512 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 520 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 520 */ ?>"
+                                               alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 521 */ ?>">
                                        </a>
                                     </div>
 
@@ -765,45 +774,49 @@ class Template711af195f2 extends Latte\Runtime\Template
                         <h4>Source shoot</h4>
 
                         <h3>
-                           <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 546 */ ?>" target="_blank"><?php
-			echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 546 */ ?></a>
+                           <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 555 */ ?>" target="_blank"><?php
+			echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 555 */ ?></a>
                         </h3>
 
                         <div class="image">
                            <a href="<?php
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 550 */;
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 550 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
-                              data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 551 */ ?>">
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 559 */;
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 559 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
+                              data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 560 */ ?>">
                               <img class="img-thumbnail img-responsive" src="<?php
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 552 */;
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 552 */ ?>"
-                                   alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 553 */ ?>">
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 561 */;
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 561 */ ?>"
+                                   alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 562 */ ?>">
                            </a>
                         </div>
 
                         <table class="table">
                            <tr>
                               <td>URL</td>
-                              <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 560 */ ?>"
-                                             target="_blank"><?php echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 561 */ ?></a></strong>
+                              <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 569 */ ?>"
+                                             target="_blank"><?php echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 570 */ ?></a></strong>
                               </td>
                            </tr>
                            <tr>
                               <td>Engine</td>
-                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 566 */ ?></strong></td>
+                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 575 */ ?></strong></td>
                            </tr>
                            <tr>
                               <td>Browser</td>
-                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 570 */ ?> <?php
-			echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 570 */ ?></strong></td>
+                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 579 */ ?> <?php
+			echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 579 */ ?></strong></td>
                            </tr>
                            <tr>
                               <td>Image type</td>
-                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 574 */ ?></strong></td>
+                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 583 */ ?></strong></td>
                            </tr>
                            <tr>
                               <td>Created</td>
-                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 578 */ ?></strong></td>
+                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 587 */ ?></strong></td>
+                           </tr>
+                           <tr>
+                              <td>User</td>
+                              <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->user->username) /* line 591 */ ?></strong></td>
                            </tr>
                            <tr>
                               <td>
@@ -837,49 +850,53 @@ class Template711af195f2 extends Latte\Runtime\Template
 ?>
                                  <div class="col-xs-12 col-lg-6">
                                     <h3>
-                                       <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 607 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 607 */ ?></a>
+                                       <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 620 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 620 */ ?></a>
                                     </h3>
 
                                     <div class="image">
                                        <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 611 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 611 */ ?>" class="shoot-thumbnail"
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 624 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 624 */ ?>" class="shoot-thumbnail"
                                           data-toggle="lightbox"
-                                          data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 613 */ ?>">
+                                          data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 626 */ ?>">
                                           <img class="img-thumbnail img-responsive"
                                                src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 615 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 615 */ ?>"
-                                               alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 616 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 628 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 628 */ ?>"
+                                               alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 629 */ ?>">
                                        </a>
                                     </div>
 
                                     <table class="table">
                                        <tr>
                                           <td>URL</td>
-                                          <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 623 */ ?>"
-                                                         target="_blank"><?php echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 624 */ ?></a></strong>
+                                          <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 636 */ ?>"
+                                                         target="_blank"><?php echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 637 */ ?></a></strong>
                                           </td>
                                        </tr>
                                        <tr>
                                           <td>Engine</td>
-                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->engine)) /* line 629 */ ?></strong></td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->engine)) /* line 642 */ ?></strong></td>
                                        </tr>
                                        <tr>
                                           <td>Browser</td>
                                           <td>
-                                             <strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->browser_name)) /* line 634 */ ?> <?php
-					echo LR\Filters::escapeHtmlText($similar->browser_version) /* line 634 */ ?></strong>
+                                             <strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->browser_name)) /* line 647 */ ?> <?php
+					echo LR\Filters::escapeHtmlText($similar->browser_version) /* line 647 */ ?></strong>
                                           </td>
                                        </tr>
                                        <tr>
                                           <td>Image type</td>
-                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $similar->img_type)) /* line 639 */ ?></strong></td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $similar->img_type)) /* line 652 */ ?></strong></td>
                                        </tr>
                                        <tr>
                                           <td>Created</td>
-                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 643 */ ?></strong></td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 656 */ ?></strong></td>
+                                       </tr>
+                                       <tr>
+                                          <td>User</td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText($similar->user->username) /* line 660 */ ?></strong></td>
                                        </tr>
                                        <tr>
                                           <td>
@@ -940,6 +957,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                               <th>Browser</th>
                               <th>Image type</th>
                               <th>Created</th>
+                              <th>User</th>
                               <th></th>
                            </tr>
                            </thead>
@@ -948,36 +966,40 @@ class Template711af195f2 extends Latte\Runtime\Template
                               <td data-title="Shoot" data-shoot>
                                  <div class="image">
                                     <a href="<?php
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 698 */;
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 698 */ ?>" class="shoot-thumbnail"
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 716 */;
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 716 */ ?>" class="shoot-thumbnail"
                                        data-toggle="lightbox"
-                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 700 */ ?>">
+                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 718 */ ?>">
                                        <img class="img-thumbnail img-responsive" src="<?php
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 701 */;
-			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 701 */ ?>"
-                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 702 */ ?>">
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 719 */;
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 719 */ ?>"
+                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 720 */ ?>">
                                     </a>
                                  </div>
                               </td>
                               <td data-title="URL" data-url>
-                                 <strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 707 */ ?>" target="_blank"><?php
-			echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 707 */ ?></a></strong>
+                                 <strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 725 */ ?>" target="_blank"><?php
+			echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 725 */ ?></a></strong>
                               </td>
                               <td data-title="Engine">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 710 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 728 */ ?>
 
                               </td>
                               <td data-title="Browser">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 713 */ ?> <?php
-			echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 713 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 731 */ ?> <?php
+			echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 731 */ ?>
 
                               </td>
                               <td data-title="Image type">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 716 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 734 */ ?>
 
                               </td>
                               <td data-title="Created">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 719 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 737 */ ?>
+
+                              </td>
+                              <td data-title="User">
+                                 <?php echo LR\Filters::escapeHtmlText($shoot->user->username) /* line 740 */ ?>
 
                               </td>
                               <td data-title="Action">
@@ -1011,6 +1033,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                                  <th>Browser</th>
                                  <th>Image type</th>
                                  <th>Created</th>
+                                 <th>User</th>
                                  <th></th>
                               </tr>
                               </thead>
@@ -1023,38 +1046,42 @@ class Template711af195f2 extends Latte\Runtime\Template
                                     <td data-title="Shoot" data-shoot>
                                        <div class="image">
                                           <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 758 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 758 */ ?>" class="shoot-thumbnail"
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 780 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 780 */ ?>" class="shoot-thumbnail"
                                              data-toggle="lightbox"
                                              data-parent="" data-gallery="#shoots"
-                                             data-title="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 761 */ ?>">
+                                             data-title="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 783 */ ?>">
                                              <img class="img-thumbnail img-responsive"
                                                   src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 763 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 763 */ ?>"
-                                                  alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 764 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 785 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->path_img)) /* line 785 */ ?>"
+                                                  alt="<?php echo LR\Filters::escapeHtmlAttr($similar->url_autority) /* line 786 */ ?>">
                                           </a>
                                        </div>
                                     </td>
                                     <td data-title="URL" data-url>
-                                       <strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 769 */ ?>"
-                                                  target="_blank"><?php echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 770 */ ?></a></strong>
+                                       <strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($similar->url)) /* line 791 */ ?>"
+                                                  target="_blank"><?php echo LR\Filters::escapeHtmlText($similar->url_autority) /* line 792 */ ?></a></strong>
                                     </td>
                                     <td data-title="Engine">
-                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->engine)) /* line 773 */ ?>
+                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->engine)) /* line 795 */ ?>
 
                                     </td>
                                     <td data-title="Browser">
-                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->browser_name)) /* line 776 */ ?> <?php
-					echo LR\Filters::escapeHtmlText($similar->browser_version) /* line 776 */ ?>
+                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $similar->browser_name)) /* line 798 */ ?> <?php
+					echo LR\Filters::escapeHtmlText($similar->browser_version) /* line 798 */ ?>
 
                                     </td>
                                     <td data-title="Image type">
-                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $similar->img_type)) /* line 779 */ ?>
+                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $similar->img_type)) /* line 801 */ ?>
 
                                     </td>
                                     <td data-title="Created">
-                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 782 */ ?>
+                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 804 */ ?>
+
+                                    </td>
+                                    <td data-title="User">
+                                       <?php echo LR\Filters::escapeHtmlText($similar->user->username) /* line 807 */ ?>
 
                                     </td>
                                     <td data-title="Action">

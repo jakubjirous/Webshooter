@@ -47,7 +47,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['shoot'])) trigger_error('Variable $shoot overwritten in foreach on line 109, 322, 370, 471');
+		if (isset($this->params['shoot'])) trigger_error('Variable $shoot overwritten in foreach on line 109, 326, 374, 480');
 		$this->parentName = '../@index.latte';
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
@@ -443,26 +443,8 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                  <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 275 */ ?></strong></td>
                               </tr>
                               <tr>
-                                 <td>
-                                    <a class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
-                                       <i class="fa fa-download"></i>
-                                       Download
-                                    </a>
-                                 </td>
-<?php
-					if (isset($roleAdmin)) {
-?>
-                                    <td>
-                                       <a class="btn btn-danger btn-outline-danger"
-                                                                            data-confirm="Are you sure to delete this shoot?" href="<?php
-						echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("delete!", [$shoot->id_shoot])) ?>">
-                                          <i class="fa fa-trash"></i>
-                                          Delete
-                                       </a>
-                                    </td>
-<?php
-					}
-?>
+                                 <td>User</td>
+                                 <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->user->username) /* line 279 */ ?></strong></td>
                               </tr>
                               <tr>
                                  <td>
@@ -471,8 +453,30 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                        Comparison
                                     </a>
                                  </td>
-                                 <td></td>
+                                 <td>
+                                    <a class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
+                                       <i class="fa fa-download"></i>
+                                       Download
+                                    </a>
+                                 </td>
                               </tr>
+<?php
+					if (isset($roleAdmin)) {
+?>
+                                 <tr>
+                                    <td>
+                                       <a class="btn btn-danger btn-outline-danger"
+                                                                            data-confirm="Are you sure to delete this shoot?" href="<?php
+						echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("delete!", [$shoot->id_shoot])) ?>">
+                                          <i class="fa fa-trash"></i>
+                                          Delete
+                                       </a>
+                                    </td>
+                                    <td></td>
+                                 </tr>
+<?php
+					}
+?>
                            </table>
                         </div>
                      </div>
@@ -516,31 +520,31 @@ class Templatec3258be271 extends Latte\Runtime\Template
                            <div class="row">
                               <div class="col-xs-12">
                                  <h3>
-                                    <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 328 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 328 */ ?></a>
+                                    <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 332 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 332 */ ?></a>
                                  </h3>
                               </div>
                               <div class="col-xs-12">
                                  <div class="image">
                                     <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 333 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 333 */ ?>" class="shoot-thumbnail"
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 337 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 337 */ ?>" class="shoot-thumbnail"
                                        data-toggle="lightbox"
-                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 335 */ ?>">
+                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 339 */ ?>">
                                        <img class="img-thumbnail img-responsive" src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 336 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 336 */ ?>"
-                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 337 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 340 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 340 */ ?>"
+                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 341 */ ?>">
                                     </a>
                                  </div>
                                  <div class="action">
-                                    <a class="btn btn-primary btn-outline-primary" title="Download" href="<?php
-					echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
-                                       <i class="fa fa-download"></i>
-                                    </a>
                                     <a class="btn btn-success btn-outline-success" title="Comparison" href="<?php
 					echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Compare:list", [$shoot->id_shoot])) ?>">
                                        <i class="fa fa-exchange"></i>
+                                    </a>
+                                    <a class="btn btn-primary btn-outline-primary" title="Download" href="<?php
+					echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
+                                       <i class="fa fa-download"></i>
                                     </a>
 <?php
 					if (isset($roleAdmin)) {
@@ -592,20 +596,20 @@ class Templatec3258be271 extends Latte\Runtime\Template
                         <div class="row">
                            <div class="col-xs-12">
                               <h3>
-                                 <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 376 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 376 */ ?></a>
+                                 <a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 380 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 380 */ ?></a>
                               </h3>
                            </div>
                            <div class="col-xs-12">
                               <div class="image">
                                  <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 381 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 381 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
-                                    data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 382 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 385 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 385 */ ?>" class="shoot-thumbnail" data-toggle="lightbox"
+                                    data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 386 */ ?>">
                                     <img class="img-thumbnail img-responsive" src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 383 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 383 */ ?>"
-                                         alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 384 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 387 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 387 */ ?>"
+                                         alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 388 */ ?>">
                                  </a>
                               </div>
                            </div>
@@ -613,49 +617,30 @@ class Templatec3258be271 extends Latte\Runtime\Template
                               <table class="table">
                                  <tr>
                                     <td>URL</td>
-                                    <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 392 */ ?>"
-                                                   target="_blank"><?php echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 393 */ ?></a></strong>
+                                    <td><strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 396 */ ?>"
+                                                   target="_blank"><?php echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 397 */ ?></a></strong>
                                     </td>
                                  </tr>
                                  <tr>
                                     <td>Engine</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 398 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 402 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Browser</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 402 */ ?> <?php
-					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 402 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 406 */ ?> <?php
+					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 406 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Image type</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 406 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 410 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>Created</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 410 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 414 */ ?></strong></td>
                                  </tr>
                                  <tr>
-                                    <td>
-                                       <a
-                                             class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
-                                          <i class="fa fa-download"></i>
-                                          Download
-                                       </a>
-                                    </td>
-<?php
-					if (isset($roleAdmin)) {
-?>
-                                       <td>
-                                          <a class="btn btn-danger btn-outline-danger"
-                                                                               data-confirm="Are you sure to delete this shoot?" href="<?php
-						echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("delete!", [$shoot->id_shoot])) ?>">
-                                             <i class="fa fa-trash"></i>
-                                             Delete
-                                          </a>
-                                       </td>
-<?php
-					}
-?>
+                                    <td>User</td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText($shoot->user->username) /* line 418 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>
@@ -664,8 +649,31 @@ class Templatec3258be271 extends Latte\Runtime\Template
                                           Comparison
                                        </a>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                       <a
+                                             class="btn btn-primary btn-outline-primary" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("download!", [$shoot->id_shoot])) ?>">
+                                          <i class="fa fa-download"></i>
+                                          Download
+                                       </a>
+                                    </td>
                                  </tr>
+<?php
+					if (isset($roleAdmin)) {
+?>
+                                    <tr>
+                                       <td>
+                                          <a class="btn btn-danger btn-outline-danger"
+                                                                               data-confirm="Are you sure to delete this shoot?" href="<?php
+						echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("delete!", [$shoot->id_shoot])) ?>">
+                                             <i class="fa fa-trash"></i>
+                                             Delete
+                                          </a>
+                                       </td>
+                                       <td></td>
+                                    </tr>
+<?php
+					}
+?>
                               </table>
                            </div>
                         </div>
@@ -707,6 +715,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
                            <th>Browser</th>
                            <th>Image type</th>
                            <th>Created</th>
+                           <th>User</th>
                            <th></th>
                         </tr>
                         </thead>
@@ -719,36 +728,40 @@ class Templatec3258be271 extends Latte\Runtime\Template
                               <td data-title="Shoot" data-shoot>
                                  <div class="image">
                                     <a href="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 475 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 475 */ ?>" class="shoot-thumbnail"
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 484 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 484 */ ?>" class="shoot-thumbnail"
                                        data-toggle="lightbox"
-                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 477 */ ?>">
+                                       data-parent="" data-gallery="#shoots" data-title="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 486 */ ?>">
                                        <img class="img-thumbnail img-responsive" src="<?php
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 478 */;
-					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 478 */ ?>"
-                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 479 */ ?>">
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 487 */;
+					echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->path_img)) /* line 487 */ ?>"
+                                            alt="<?php echo LR\Filters::escapeHtmlAttr($shoot->url_autority) /* line 488 */ ?>">
                                     </a>
                                  </div>
                               </td>
                               <td data-title="URL" data-url>
-                                 <strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 484 */ ?>" target="_blank"><?php
-					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 484 */ ?></a></strong>
+                                 <strong><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($shoot->url)) /* line 493 */ ?>" target="_blank"><?php
+					echo LR\Filters::escapeHtmlText($shoot->url_autority) /* line 493 */ ?></a></strong>
                               </td>
                               <td data-title="Engine">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 487 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->engine)) /* line 496 */ ?>
 
                               </td>
                               <td data-title="Browser">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 490 */ ?> <?php
-					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 490 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->firstupper, $shoot->browser_name)) /* line 499 */ ?> <?php
+					echo LR\Filters::escapeHtmlText($shoot->browser_version) /* line 499 */ ?>
 
                               </td>
                               <td data-title="Image type">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 493 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $shoot->img_type)) /* line 502 */ ?>
 
                               </td>
                               <td data-title="Created">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 496 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 505 */ ?>
+
+                              </td>
+                              <td data-title="User">
+                                 <?php echo LR\Filters::escapeHtmlText($shoot->user->username) /* line 508 */ ?>
 
                               </td>
                               <td data-title="Action">
@@ -830,7 +843,7 @@ class Templatec3258be271 extends Latte\Runtime\Template
 				}
 ?>">
                         <a class="page-link ajax" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("paginator!", [$view, $page])) ?>"><?php
-				echo LR\Filters::escapeHtmlText($page) /* line 550 */ ?></a>
+				echo LR\Filters::escapeHtmlText($page) /* line 562 */ ?></a>
                      </li>
 <?php
 			}

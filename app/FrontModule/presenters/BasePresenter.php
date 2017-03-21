@@ -127,6 +127,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
    {
       $frontMenu = new \FrontMenu(
          $this->getUser()->getIdentity(),
+         $this->getUser()->getId(),
          $this->getUser()->isLoggedIn(),
          self::ROLE_USER,
          self::ROLE_SUPER_USER,

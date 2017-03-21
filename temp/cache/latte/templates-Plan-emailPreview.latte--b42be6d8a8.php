@@ -277,6 +277,10 @@ class Templateb42be6d8a8 extends Latte\Runtime\Template
          <td style="width: 200px;">Created:</td>
          <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $source->date, 'd.m.Y H:i')) /* line 164 */ ?></td>
       </tr>
+      <tr>
+         <td style="width: 200px;">User:</td>
+         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($source->user->username) /* line 168 */ ?></td>
+      </tr>
    </table>
 
 
@@ -285,35 +289,35 @@ class Templateb42be6d8a8 extends Latte\Runtime\Template
    </h2>
 
    <a href="<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 173 */;
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($target->path_img)) /* line 173 */ ?>" style="display: block; position: relative; overflow: hidden; height: 400px; border: 1px solid #007fff; border-radius: 0.25rem;">
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 177 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($target->path_img)) /* line 177 */ ?>" style="display: block; position: relative; overflow: hidden; height: 400px; border: 1px solid #007fff; border-radius: 0.25rem;">
       <img src="<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 174 */;
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($target->path_img)) /* line 174 */ ?>" alt="Target" style="width: 100%; margin: auto; display: block;">
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 178 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($target->path_img)) /* line 178 */ ?>" alt="Target" style="width: 100%; margin: auto; display: block;">
    </a>
 
    <table cellspacing="3" cellpadding="3" style="margin-top: 10px;">
       <tr>
          <td style="width: 200px;">URL:</td>
-         <td style="font-weight: bold;"><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($target->url)) /* line 180 */ ?>" style="font-weight: bold; color:#007fff; text-decoration: underline;"><?php
-		echo LR\Filters::escapeHtmlText($target->url_autority) /* line 180 */ ?></a></td>
+         <td style="font-weight: bold;"><a href="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($target->url)) /* line 184 */ ?>" style="font-weight: bold; color:#007fff; text-decoration: underline;"><?php
+		echo LR\Filters::escapeHtmlText($target->url_autority) /* line 184 */ ?></a></td>
       </tr>
       <tr>
          <td style="width: 200px;">Engine:</td>
-         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->capitalize, $target->engine)) /* line 184 */ ?></td>
+         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->capitalize, $target->engine)) /* line 188 */ ?></td>
       </tr>
       <tr>
          <td style="width: 200px;">Browser:</td>
-         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($target->browser_name) /* line 188 */ ?> <?php
-		echo LR\Filters::escapeHtmlText($target->browser_version) /* line 188 */ ?></td>
+         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($target->browser_name) /* line 192 */ ?> <?php
+		echo LR\Filters::escapeHtmlText($target->browser_version) /* line 192 */ ?></td>
       </tr>
       <tr>
          <td style="width: 200px;">Image type:</td>
-         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $target->img_type)) /* line 192 */ ?></td>
+         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->upper, $target->img_type)) /* line 196 */ ?></td>
       </tr>
       <tr>
          <td style="width: 200px;">Created:</td>
-         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $target->date, 'd.m.Y H:i')) /* line 196 */ ?></td>
+         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $target->date, 'd.m.Y H:i')) /* line 200 */ ?></td>
       </tr>
    </table>
 
@@ -323,11 +327,11 @@ class Templateb42be6d8a8 extends Latte\Runtime\Template
    </h2>
 
    <a href="<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 205 */;
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 205 */ ?>" style="display: block; position: relative; overflow: hidden; height: 400px; border: 1px solid #007fff; border-radius: 0.25rem;">
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 209 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 209 */ ?>" style="display: block; position: relative; overflow: hidden; height: 400px; border: 1px solid #007fff; border-radius: 0.25rem;">
       <img src="<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 206 */;
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 206 */ ?>" alt="Result" style="width: 100%; margin: auto; display: block;">
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 210 */;
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->path_img)) /* line 210 */ ?>" alt="Result" style="width: 100%; margin: auto; display: block;">
    </a>
 
 
@@ -335,23 +339,23 @@ class Templateb42be6d8a8 extends Latte\Runtime\Template
       <tr>
          <td style="width: 200px;">Result color:</td>
          <td style="font-weight: bold;">
-            <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 214 */ ?>/images/fa-image-<?php
-		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->color)) /* line 214 */ ?>.png" alt="<?php
-		echo LR\Filters::escapeHtmlAttr($result->color) /* line 214 */ ?>" style="float: left;"
-                 title="<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 215 */ ?>">
+            <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 218 */ ?>/images/fa-image-<?php
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($result->color)) /* line 218 */ ?>.png" alt="<?php
+		echo LR\Filters::escapeHtmlAttr($result->color) /* line 218 */ ?>" style="float: left;"
+                 title="<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 219 */ ?>">
          </td>
       </tr>
       <tr>
          <td style="width: 200px;">Result background:</td>
-         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($result->background) /* line 220 */ ?></td>
+         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($result->background) /* line 224 */ ?></td>
       </tr>
       <tr>
          <td style="width: 200px;">Tolerance:</td>
-         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($result->tolerance) /* line 224 */ ?>%</td>
+         <td style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($result->tolerance) /* line 228 */ ?>%</td>
       </tr>
       <tr>
          <td style="width: 200px;">Difference:</td>
-         <td style="font-weight: bold;">&le; <?php echo LR\Filters::escapeHtmlText($result->difference) /* line 228 */ ?>%</td>
+         <td style="font-weight: bold;">&le; <?php echo LR\Filters::escapeHtmlText($result->difference) /* line 232 */ ?>%</td>
       </tr>
       <tr>
          <td style="width: 200px;">Result difference:</td>
@@ -359,20 +363,42 @@ class Templateb42be6d8a8 extends Latte\Runtime\Template
 <?php
 		if ($result->difference_result <= $result->difference) {
 			?>               <i style="color: #ffffff; background: #5cb85c; padding: 1px 5px; border-radius: 0.25rem;"><?php
-			echo LR\Filters::escapeHtmlText($result->difference_result) /* line 234 */ ?>
+			echo LR\Filters::escapeHtmlText($result->difference_result) /* line 238 */ ?>
 
                   %</i>
 <?php
 		}
 		else {
 			?>               <i style="color: #ffffff; background: #d9534f; padding: 1px 5px; border-radius: 0.25rem;"><?php
-			echo LR\Filters::escapeHtmlText($result->difference_result) /* line 237 */ ?>
+			echo LR\Filters::escapeHtmlText($result->difference_result) /* line 241 */ ?>
 
                   %</i>
 <?php
 		}
 ?>
          </td>
+      </tr>
+      <tr>
+         <td style="width: 200px; vertical-align: top;">Ignore part:</td>
+<?php
+		if ($result->ignore_active) {
+?>
+            <td style="font-weight: bold;">
+               Top: <span style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($result->ignore_top == null ? 0 : $result->ignore_top) /* line 250 */ ?></span> <small>px</small><br>
+               Left: <span style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($result->ignore_left == null ? 0 : $result->ignore_left) /* line 251 */ ?></span> <small>px</small><br>
+               Width: <span style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($result->ignore_width == null ? 0 : $result->ignore_width) /* line 252 */ ?></span> <small>px</small><br>
+               Height: <span style="font-weight: bold;"><?php echo LR\Filters::escapeHtmlText($result->ignore_height == null ? 0 : $result->ignore_height) /* line 253 */ ?></span> <small>px</small>
+            </td>
+<?php
+		}
+		else {
+?>
+            <td style="font-weight: bold;">
+               <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($webURI)) /* line 257 */ ?>/images/fa-close.png" alt="No">
+            </td>
+<?php
+		}
+?>
       </tr>
    </table>
 <?php
@@ -382,7 +408,7 @@ class Templateb42be6d8a8 extends Latte\Runtime\Template
 	function blockEmailYear($_args)
 	{
 		extract($_args);
-		?>   <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $year, 'Y')) /* line 246 */ ?>
+		?>   <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $year, 'Y')) /* line 265 */ ?>
 
 <?php
 	}

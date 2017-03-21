@@ -27,6 +27,10 @@
          {if $results}
 
             {foreach $results as $result}
+               <a n:href="Plan:emailPreview $result->id_plan_result"
+                     class="btn btn-primary btn-sm float-xs-right">
+                  E-mail preview
+               </a>
                <div class="history-item {if $iterator->counter > 1}hr{/if}">
                   <table class="table table-striped">
                      <thead>
@@ -82,18 +86,18 @@
                         <td data-title="Ignore part">
                            {if $result->ignore_active}
                               <span>
-                              <small class="float-lg-left">
-                                 Top: {$result->ignore_top}px
+                              <small class="float-xl-left">
+                                 Top: <strong>{$result->ignore_top}</strong> px
                               </small>
-                              <small class="float-lg-right">
-                                 Left: {$result->ignore_left}px
+                              <small class="float-xl-right">
+                                 Left: <strong>{$result->ignore_left}</strong> px
                               </small>
                               <br>
-                              <small class="float-lg-left">
-                                 Width: {$result->ignore_width}px
+                              <small class="float-xl-left">
+                                 Width: <strong>{$result->ignore_width}</strong> px
                               </small>
-                              <small class="float-lg-right">
-                                 Height: {$result->ignore_height}px
+                              <small class="float-xl-right">
+                                 Height: <strong>{$result->ignore_height}</strong> px
                               </small>
                            </span>
                            {else}
@@ -105,12 +109,8 @@
                                    data-target="#info-modal-{$iterator->counter}">
                               <i class="fa fa-info-circle"></i>
                            </button>
-                           <a n:href="Plan:emailPreview $result->id_plan_result"
-                                 class="btn btn-success btn-sm float-sm-right float-lg-none">
-                              Preview
-                           </a>
                            <a n:href="sendEmail! $result->id_plan_result"
-                                 class="btn btn-success btn-sm float-sm-right float-lg-none"
+                                 class="btn btn-success btn-sm"
                                  title="Send e-mail with result" data-confirm="Are you sure to send this result?">
                               <i class="fa fa-envelope"></i> Send
                            </a>
@@ -233,6 +233,10 @@
                               <tr>
                                  <td>Created</td>
                                  <td><strong>{$result->source->date|date:'d.n.Y H:i:s'}</strong></td>
+                              </tr>
+                              <tr>
+                                 <td>User</td>
+                                 <td><strong>{$result->source->user->username}</strong></td>
                               </tr>
                            </table>
 

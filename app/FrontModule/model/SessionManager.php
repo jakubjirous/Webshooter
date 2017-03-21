@@ -95,7 +95,17 @@ class SessionManager
    {
       return $this->section->userEditID;
    }
-   
+
+
+   public function setUserAccountID($id)
+   {
+      $this->section->userAccountID = $id;
+   }
+   public function getUserAccountID()
+   {
+      return $this->section->userAccountID;
+   }
+
    
    public function setUserSortColumn($column)
    {
@@ -130,6 +140,17 @@ class SessionManager
    {
       return $this->section->shootView;
    }
+
+
+   public function setShootUserID($id)
+   {
+      $this->section->shootUserID = $id;
+   }
+   public function getShootUserID()
+   {
+      return $this->section->shootUserID;
+   }
+
 
 
    /**
