@@ -650,7 +650,7 @@ class Template711af195f2 extends Latte\Runtime\Template
 			else {
 ?>
                            <div class="alert alert-info" role="alert">
-                              There is no similar shoots with source shoot yet.
+                              There is no similar shoots with this source shoot yet.
                               <strong><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new here</a></strong>
                            </div>
 <?php
@@ -753,7 +753,7 @@ class Template711af195f2 extends Latte\Runtime\Template
 			else {
 ?>
                            <div class="alert alert-info" role="alert">
-                              There is no similar shoots with source shoot yet.
+                              There is no similar shoots with this source shoot yet.
                               <strong><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new here</a></strong>
                            </div>
 <?php
@@ -928,7 +928,7 @@ class Template711af195f2 extends Latte\Runtime\Template
 			else {
 ?>
                            <div class="alert alert-info" role="alert">
-                              There is no similar shoots with source shoot yet.
+                              There is no similar shoots with this source shoot yet.
                               <strong><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new here</a></strong>
                            </div>
 <?php
@@ -1110,7 +1110,8 @@ class Template711af195f2 extends Latte\Runtime\Template
 			else {
 ?>
                            <div class="alert alert-info" role="alert">
-                              There is no similar shoots with source shoot yet. <strong><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new
+                              There is no similar shoots with this source shoot yet. <strong><a href="<?php
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new
                                     here</a></strong>
                            </div>
 <?php

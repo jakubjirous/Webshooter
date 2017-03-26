@@ -151,7 +151,7 @@ class Templatea10196a76c extends Latte\Runtime\Template
                            Shoots settings
                         </a>
                         <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:user")) ?>">
-                           <i class="fa fa-bullseye"></i>
+                           <i class="fa fa-user-circle"></i>
                            User shoots
                         </a>
                         <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">
@@ -173,7 +173,7 @@ class Templatea10196a76c extends Latte\Runtime\Template
                            Shoots settings
                         </a>
                         <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Shoot:user")) ?>">
-                           <i class="fa fa-bullseye"></i>
+                           <i class="fa fa-user-circle"></i>
                            User shoots
                         </a>
                         <a class="dropdown-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiPresenter->link("Plan:settings")) ?>">

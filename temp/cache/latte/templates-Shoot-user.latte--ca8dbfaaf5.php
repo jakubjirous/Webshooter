@@ -533,7 +533,7 @@ class Templateca8dbfaaf5 extends Latte\Runtime\Template
 			else {
 ?>
                <div class="alert alert-info" role="alert">
-                  There is no shoots yet. <strong><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new here</a></strong>
+                  This user hasn't created any shoot.
                </div>
 <?php
 			}
@@ -609,7 +609,7 @@ class Templateca8dbfaaf5 extends Latte\Runtime\Template
 			else {
 ?>
                <div class="alert alert-info" role="alert">
-                  There is no shoots yet. <strong><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new here</a></strong>
+                  This user hasn't created any shoot.
                </div>
 <?php
 			}
@@ -726,7 +726,7 @@ class Templateca8dbfaaf5 extends Latte\Runtime\Template
 			else {
 ?>
                <div class="alert alert-info" role="alert">
-                  There is no shoots yet. <strong><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new here</a></strong>
+                  This user hasn't created any shoot.
                </div>
 <?php
 			}
@@ -837,7 +837,7 @@ class Templateca8dbfaaf5 extends Latte\Runtime\Template
 			else {
 ?>
                <div class="alert alert-info" role="alert">
-                  There is no shoots yet. <strong><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Shoot:add")) ?>">Make new here</a></strong>
+                  This user hasn't created any shoot.
                </div>
 <?php
 			}

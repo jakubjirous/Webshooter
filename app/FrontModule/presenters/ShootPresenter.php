@@ -124,7 +124,9 @@ class ShootPresenter extends BasePresenter
             $paginator->setItemsPerPage(self::PAGINATION_SHOOTS);
             $paginator->setPage($this->page === NULL ? 1 : $this->page);
             $shoots = $this->stm->getAllShootLimitByUserID($paginator, $shootUserID);
-            $this->template->shoots = $shoots;
+            if($shoots != FALSE) {
+               $this->template->shoots = $shoots;
+            }
 
          } else {
             $shootsCount = $this->stm->getAllShootsCount();
@@ -132,7 +134,9 @@ class ShootPresenter extends BasePresenter
             $paginator->setItemsPerPage(self::PAGINATION_SHOOTS);
             $paginator->setPage($this->page === NULL ? 1 : $this->page);
             $shoots = $this->stm->getAllShootLimit($paginator);
-            $this->template->shoots = $shoots;
+            if($shoots != FALSE) {
+               $this->template->shoots = $shoots;
+            }
          }
       } else {
          $this->error();
