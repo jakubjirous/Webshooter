@@ -291,7 +291,7 @@
                               </tr>
                               <tr>
                                  <td>Created</td>
-                                 <td><strong>{$shoot->date|date:'d.n.Y H:i:s'}</strong></td>
+                                 <td><strong>{$shoot->date|date:'d.m.Y H:i:s'}</strong></td>
                               </tr>
                               <tr>
                                  <td>User</td>
@@ -430,7 +430,7 @@
                                  </tr>
                                  <tr>
                                     <td>Created</td>
-                                    <td><strong>{$shoot->date|date:'d.n.Y H:i:s'}</strong></td>
+                                    <td><strong>{$shoot->date|date:'d.m.Y H:i:s'}</strong></td>
                                  </tr>
                                  <tr>
                                     <td>User</td>
@@ -521,7 +521,7 @@
                                  {$shoot->img_type|upper}
                               </td>
                               <td data-title="Created">
-                                 {$shoot->date|date:'d.n.Y H:i:s'}
+                                 {$shoot->date|date:'d.m.Y H:i:s'}
                               </td>
                               <td data-title="User">
                                  {$shoot->user->username}

@@ -477,7 +477,7 @@ class Templateca8dbfaaf5 extends Latte\Runtime\Template
                               </tr>
                               <tr>
                                  <td>Created</td>
-                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 294 */ ?></strong></td>
+                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.m.Y H:i:s')) /* line 294 */ ?></strong></td>
                               </tr>
                               <tr>
                                  <td>User</td>
@@ -673,7 +673,7 @@ class Templateca8dbfaaf5 extends Latte\Runtime\Template
                                  </tr>
                                  <tr>
                                     <td>Created</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 433 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.m.Y H:i:s')) /* line 433 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>User</td>
@@ -794,7 +794,7 @@ class Templateca8dbfaaf5 extends Latte\Runtime\Template
 
                               </td>
                               <td data-title="Created">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 524 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.m.Y H:i:s')) /* line 524 */ ?>
 
                               </td>
                               <td data-title="User">

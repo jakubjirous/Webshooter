@@ -425,7 +425,7 @@ class Template35dbeb20e0 extends Latte\Runtime\Template
                            </tr>
                            <tr>
                               <td>Created</td>
-                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->source->date, 'd.n.Y H:i:s')) /* line 245 */ ?></strong></td>
+                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $plan->source->date, 'd.m.Y H:i:s')) /* line 245 */ ?></strong></td>
                            </tr>
                            <tr>
                               <td>User</td>

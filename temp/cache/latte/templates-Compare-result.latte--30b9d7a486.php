@@ -369,7 +369,7 @@ class Template30b9d7a486 extends Latte\Runtime\Template
                         </tr>
                         <tr>
                            <td>Created</td>
-                           <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $source->date, 'd.n.Y H:i:s')) /* line 194 */ ?></strong></td>
+                           <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $source->date, 'd.m.Y H:i:s')) /* line 194 */ ?></strong></td>
                         </tr>
                         <tr>
                            <td>User</td>
@@ -419,7 +419,7 @@ class Template30b9d7a486 extends Latte\Runtime\Template
                         </tr>
                         <tr>
                            <td>Created</td>
-                           <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $target->date, 'd.n.Y H:i:s')) /* line 239 */ ?></strong></td>
+                           <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $target->date, 'd.m.Y H:i:s')) /* line 239 */ ?></strong></td>
                         </tr>
                         <tr>
                            <td>User</td>

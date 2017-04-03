@@ -27,10 +27,6 @@
          {if $results}
 
             {foreach $results as $result}
-               <a n:href="Plan:emailPreview $result->id_plan_result"
-                     class="btn btn-primary btn-sm float-xs-right">
-                  E-mail preview
-               </a>
                <div class="history-item {if $iterator->counter > 1}hr{/if}">
                   <table class="table table-striped">
                      <thead>
@@ -105,6 +101,10 @@
                            {/if}
                         </td>
                         <td>
+                           <a n:href="Plan:emailPreview $result->id_plan_result" title="E-mail preview" target="_blank"
+                                 class="btn btn-primary btn-sm">
+                              @
+                           </a>
                            <button class="btn btn-warning btn-sm" title="History information" data-toggle="modal"
                                    data-target="#info-modal-{$iterator->counter}">
                               <i class="fa fa-info-circle"></i>
@@ -232,7 +232,7 @@
                               </tr>
                               <tr>
                                  <td>Created</td>
-                                 <td><strong>{$result->source->date|date:'d.n.Y H:i:s'}</strong></td>
+                                 <td><strong>{$result->source->date|date:'d.m.Y H:i:s'}</strong></td>
                               </tr>
                               <tr>
                                  <td>User</td>

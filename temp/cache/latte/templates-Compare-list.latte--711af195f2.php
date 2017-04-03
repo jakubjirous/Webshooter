@@ -361,7 +361,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                                  </tr>
                                  <tr>
                                     <td>Created</td>
-                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 225 */ ?></strong></td>
+                                    <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.m.Y H:i:s')) /* line 225 */ ?></strong></td>
                                  </tr>
                                  <tr>
                                     <td>User</td>
@@ -608,7 +608,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                                        </tr>
                                        <tr>
                                           <td>Created</td>
-                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 432 */ ?></strong></td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.m.Y H:i:s')) /* line 432 */ ?></strong></td>
                                        </tr>
                                        <tr>
                                           <td>User</td>
@@ -812,7 +812,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                            </tr>
                            <tr>
                               <td>Created</td>
-                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 587 */ ?></strong></td>
+                              <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.m.Y H:i:s')) /* line 587 */ ?></strong></td>
                            </tr>
                            <tr>
                               <td>User</td>
@@ -892,7 +892,7 @@ class Template711af195f2 extends Latte\Runtime\Template
                                        </tr>
                                        <tr>
                                           <td>Created</td>
-                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 656 */ ?></strong></td>
+                                          <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.m.Y H:i:s')) /* line 656 */ ?></strong></td>
                                        </tr>
                                        <tr>
                                           <td>User</td>
@@ -995,7 +995,7 @@ class Template711af195f2 extends Latte\Runtime\Template
 
                               </td>
                               <td data-title="Created">
-                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.n.Y H:i:s')) /* line 737 */ ?>
+                                 <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $shoot->date, 'd.m.Y H:i:s')) /* line 737 */ ?>
 
                               </td>
                               <td data-title="User">
@@ -1077,7 +1077,7 @@ class Template711af195f2 extends Latte\Runtime\Template
 
                                     </td>
                                     <td data-title="Created">
-                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.n.Y H:i:s')) /* line 804 */ ?>
+                                       <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $similar->date, 'd.m.Y H:i:s')) /* line 804 */ ?>
 
                                     </td>
                                     <td data-title="User">

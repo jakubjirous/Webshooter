@@ -105,12 +105,7 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 <?php
 			$iterations = 0;
 			foreach ($iterator = $this->global->its[] = new LR\CachingIterator($results) as $result) {
-?>
-               <a
-                     class="btn btn-primary btn-sm float-xs-right" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:emailPreview", [$result->id_plan_result])) ?>">
-                  E-mail preview
-               </a>
-               <div class="history-item <?php
+				?>               <div class="history-item <?php
 				if ($iterator->counter > 1) {
 					?>hr<?php
 				}
@@ -132,47 +127,47 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                      </thead>
                      <tbody>
                      <tr>
-                        <td data-title="#"><?php echo LR\Filters::escapeHtmlText($iterator->counter) /* line 52 */ ?></td>
+                        <td data-title="#"><?php echo LR\Filters::escapeHtmlText($iterator->counter) /* line 48 */ ?></td>
                         <td data-title="Date">
                         <span>
-                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'j.n.Y')) /* line 55 */ ?> <br>
+                           <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'j.n.Y')) /* line 51 */ ?> <br>
                            <small>
-                              <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'H:i')) /* line 57 */ ?>
+                              <?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->date, 'H:i')) /* line 53 */ ?>
 
                            </small>
                         </span>
                         </td>
                         <td data-title="E-mail">
                         <span>
-                           <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->primary_email)) /* line 63 */ ?>" title="Primary e-mail"><?php
-				echo LR\Filters::escapeHtmlText($plan->primary_email) /* line 63 */ ?></a>
+                           <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->primary_email)) /* line 59 */ ?>" title="Primary e-mail"><?php
+				echo LR\Filters::escapeHtmlText($plan->primary_email) /* line 59 */ ?></a>
 <?php
 				if ($plan->secondary_email != NULL) {
 ?>
                               <br>
                               <small>
-                                 <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->secondary_email)) /* line 67 */ ?>"
-                                    title="Secondary e-mail"><?php echo LR\Filters::escapeHtmlText($plan->secondary_email) /* line 68 */ ?></a>
+                                 <a href="mailto:<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($plan->secondary_email)) /* line 63 */ ?>"
+                                    title="Secondary e-mail"><?php echo LR\Filters::escapeHtmlText($plan->secondary_email) /* line 64 */ ?></a>
                               </small>
 <?php
 				}
 ?>
                         </span>
                         </td>
-                        <td class="color-<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 73 */ ?>" data-title="Result color">
-                           <i class="fa fa-image" title="<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 74 */ ?>"></i>
+                        <td class="color-<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 69 */ ?>" data-title="Result color">
+                           <i class="fa fa-image" title="<?php echo LR\Filters::escapeHtmlAttr($result->color) /* line 70 */ ?>"></i>
                         </td>
-                        <td data-title="Result background"><?php echo LR\Filters::escapeHtmlText($result->background) /* line 76 */ ?></td>
-                        <td data-title="Tolerance"><?php echo LR\Filters::escapeHtmlText($result->tolerance) /* line 77 */ ?>%</td>
-                        <td data-title="Difference">&le; <?php echo LR\Filters::escapeHtmlText($result->difference) /* line 78 */ ?>%</td>
+                        <td data-title="Result background"><?php echo LR\Filters::escapeHtmlText($result->background) /* line 72 */ ?></td>
+                        <td data-title="Tolerance"><?php echo LR\Filters::escapeHtmlText($result->tolerance) /* line 73 */ ?>%</td>
+                        <td data-title="Difference">&le; <?php echo LR\Filters::escapeHtmlText($result->difference) /* line 74 */ ?>%</td>
                         <td data-title="Result difference">
 <?php
 				if ($result->difference_result <= $result->difference) {
-					?>                              <i class="tag tag-success"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 81 */ ?>%</i>
+					?>                              <i class="tag tag-success"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 77 */ ?>%</i>
 <?php
 				}
 				else {
-					?>                              <i class="tag tag-danger"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 83 */ ?>%</i>
+					?>                              <i class="tag tag-danger"><?php echo LR\Filters::escapeHtmlText($result->difference_result) /* line 79 */ ?>%</i>
 <?php
 				}
 ?>
@@ -183,17 +178,17 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 ?>
                               <span>
                               <small class="float-xl-left">
-                                 Top: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_top) /* line 90 */ ?></strong> px
+                                 Top: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_top) /* line 86 */ ?></strong> px
                               </small>
                               <small class="float-xl-right">
-                                 Left: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_left) /* line 93 */ ?></strong> px
+                                 Left: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_left) /* line 89 */ ?></strong> px
                               </small>
                               <br>
                               <small class="float-xl-left">
-                                 Width: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_width) /* line 97 */ ?></strong> px
+                                 Width: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_width) /* line 93 */ ?></strong> px
                               </small>
                               <small class="float-xl-right">
-                                 Height: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_height) /* line 100 */ ?></strong> px
+                                 Height: <strong><?php echo LR\Filters::escapeHtmlText($result->ignore_height) /* line 96 */ ?></strong> px
                               </small>
                            </span>
 <?php
@@ -206,6 +201,10 @@ class Template8337f7cf84 extends Latte\Runtime\Template
 ?>
                         </td>
                         <td>
+                           <a title="E-mail preview" target="_blank"
+                                 class="btn btn-primary btn-sm" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Plan:emailPreview", [$result->id_plan_result])) ?>">
+                              @
+                           </a>
                            <button class="btn btn-warning btn-sm" title="History information" data-toggle="modal"
                                    data-target="#info-modal-<?php echo LR\Filters::escapeHtmlAttr($iterator->counter) /* line 109 */ ?>">
                               <i class="fa fa-info-circle"></i>
@@ -365,7 +364,7 @@ class Template8337f7cf84 extends Latte\Runtime\Template
                               </tr>
                               <tr>
                                  <td>Created</td>
-                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->source->date, 'd.n.Y H:i:s')) /* line 235 */ ?></strong></td>
+                                 <td><strong><?php echo LR\Filters::escapeHtmlText(call_user_func($this->filters->date, $result->source->date, 'd.m.Y H:i:s')) /* line 235 */ ?></strong></td>
                               </tr>
                               <tr>
                                  <td>User</td>
