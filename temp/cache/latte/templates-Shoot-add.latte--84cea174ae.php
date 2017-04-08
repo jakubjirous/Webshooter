@@ -538,11 +538,11 @@ class Template84cea174ae extends Latte\Runtime\Template
                      <table class="table">
                         <thead>
                         <tr>
-                           <th>Custom screenshot</th>
+                           <th>Custom shoot</th>
                         </tr>
                         </thead>
                      </table>
-                     <div class="form-group row">
+                     <div class="form-group row required">
                         <div class="col-xs-12 col-sm-4 col-md-5 text-sm-right control-label">
                            <label class="required"<?php
 		$_input = end($this->global->formsStack)["otherWidth"];
@@ -597,7 +597,7 @@ class Template84cea174ae extends Latte\Runtime\Template
                         </tr>
                         </thead>
                      </table>
-                     <div class="form-group row">
+                     <div class="form-group row required">
                         <div class="col-xs-12 col-sm-4 col-md-5 text-sm-right control-label">
                            <label class="required"<?php
 		$_input = end($this->global->formsStack)["cropViewportWidth"];
@@ -617,7 +617,7 @@ class Template84cea174ae extends Latte\Runtime\Template
                            <div class="input-group-addon addon-right">px</div>
                         </div>
                      </div>
-                     <div class="form-group row">
+                     <div class="form-group row required">
                         <div class="col-xs-12 col-sm-4 col-md-5 text-sm-right control-label">
                            <label class="required"<?php
 		$_input = end($this->global->formsStack)["cropViewportHeight"];
@@ -637,7 +637,7 @@ class Template84cea174ae extends Latte\Runtime\Template
                            <div class="input-group-addon addon-right">px</div>
                         </div>
                      </div>
-                     <div class="form-group row">
+                     <div class="form-group row required">
                         <div class="col-xs-12 col-sm-4 col-md-5 text-sm-right control-label">
                            <label class="required"<?php
 		$_input = end($this->global->formsStack)["cropTop"];
@@ -663,7 +663,7 @@ class Template84cea174ae extends Latte\Runtime\Template
                            </p>
                         </div>
                      </div>
-                     <div class="form-group row">
+                     <div class="form-group row required">
                         <div class="col-xs-12 col-sm-4 col-md-5 text-sm-right control-label">
                            <label class="required"<?php
 		$_input = end($this->global->formsStack)["cropLeft"];
@@ -689,7 +689,7 @@ class Template84cea174ae extends Latte\Runtime\Template
                            </p>
                         </div>
                      </div>
-                     <div class="form-group row">
+                     <div class="form-group row required">
                         <div class="col-xs-12 col-sm-4 col-md-5 text-sm-right control-label">
                            <label class="required"<?php
 		$_input = end($this->global->formsStack)["cropWidth"];
@@ -715,7 +715,7 @@ class Template84cea174ae extends Latte\Runtime\Template
                            </p>
                         </div>
                      </div>
-                     <div class="form-group row">
+                     <div class="form-group row required">
                         <div class="col-xs-12 col-sm-4 col-md-5 text-sm-right control-label">
                            <label class="required"<?php
 		$_input = end($this->global->formsStack)["cropHeight"];
