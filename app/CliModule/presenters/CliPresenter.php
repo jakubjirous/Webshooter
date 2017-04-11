@@ -69,8 +69,6 @@ class CliPresenter extends BasePresenter
       $this->ptm = $ptm;
       $this->prm = $prm;
 
-      // user agent parsing browser name and version
-      $uap = new UserAgentParser();
       $this->browserName = 'Webshooter Cron';
       $this->browserVersion = '';
    }

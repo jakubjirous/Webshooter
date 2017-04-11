@@ -21,7 +21,7 @@ class Template4b7713fc87 extends Latte\Runtime\Template
          <p class="text-muted">
             <a href="http://www.tul.cz/">TUL</a> <span>|</span>
             <a href="http://www.nti.tul.cz/cz/">NTI</a> <span>|</span>
-            <a href="http://www.jakubjirous.cz/">JJ</a>
+            <a href="http://www.jakubjirous.cz/">&lt;JJ /&gt;</a>
          </p>
       </div>
    </div>

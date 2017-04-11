@@ -169,7 +169,7 @@ class PlanManager
     */
    public function getAllPlansForTerminate($daily, $weekly, $monthly, $yearly, $never, $occurrence, $date)
    {
-      $cronRunTime = 30;   // cron run each 10 minutes
+      $cronRunTime = 15;   // cron run each 15 minutes
 
       $result = [];
       $now = new DateTime();

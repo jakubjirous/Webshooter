@@ -62,7 +62,7 @@ class Templatef9d7b8eaa9 extends Latte\Runtime\Template
 ?> Webshooter <br>
                      <a href="http://www.tul.cz/" style="color: #ffffff; text-decoration: underline; padding: 0 5px;">TUL</a> <span>|</span>
                      <a href="http://www.nti.tul.cz/cz/" style="color: #ffffff; text-decoration: underline; padding: 0 5px;">NTI</a> <span>|</span>
-                     <a href="http://www.jakubjirous.cz/" style="color: #ffffff; text-decoration: underline; padding: 0 5px;">JJ</a>
+                     <a href="http://www.jakubjirous.cz/" style="color: #ffffff; text-decoration: underline; padding: 0 5px;">&lt;JJ /&gt;</a>
                   </td>
                </tr>
             </table>
