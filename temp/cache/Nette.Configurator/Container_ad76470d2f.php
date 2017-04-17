@@ -709,7 +709,8 @@ class Container_ad76470d2f extends Nette\DI\Container
 	public function createServiceApplication__10()
 	{
 		$service = new App\FrontModule\Presenters\UserPresenter($this->getService('51_App_FrontModule_Model_SessionManager'),
-			$this->getService('53_App_FrontModule_Model_UserManager'));
+			$this->getService('53_App_FrontModule_Model_UserManager'), $this->getService('52_App_FrontModule_Model_ShootManager'),
+			$this->getService('45_App_FrontModule_Model_PlanManager'));
 		$service->injectPrimary($this, $this->getService('application.presenterFactory'),
 			$this->getService('routing.router'), $this->getService('http.request'),
 			$this->getService('http.response'), $this->getService('session.session'),

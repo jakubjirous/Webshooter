@@ -5,6 +5,7 @@ namespace App\FrontModule\Presenters;
 use Nette;
 use App\FrontModule\Model;
 use App\FrontModule\Forms;
+use Nette\Utils\FileSystem;
 
 
 class UserPresenter extends BasePresenter
@@ -15,6 +16,12 @@ class UserPresenter extends BasePresenter
 
    /** @var Model\UserManager */
    private $um;
+
+   /** @var Model\ShootManager */
+   private $stm;
+
+   /** @var Model\PlanManager */
+   private $pm;
 
    /** @var Forms\UserEditFormFactory @inject */
    public $userEditFactory;
@@ -33,10 +40,12 @@ class UserPresenter extends BasePresenter
    private $sortOrder = "asc";
 
 
-   public function __construct(Model\SessionManager $sm, Model\UserManager $um)
+   public function __construct(Model\SessionManager $sm, Model\UserManager $um, Model\ShootManager $stm, Model\PlanManager $pm)
    {
       $this->sm = $sm;
       $this->um = $um;
+      $this->stm = $stm;
+      $this->pm = $pm;
    }
 
 
@@ -176,7 +185,48 @@ class UserPresenter extends BasePresenter
    public function handleDelete($id)
    {
       $this->um->deleteUser($id);
-      $this->flashMessage('User was deleted.', self::FLASH_MESSAGE_SUCCESS);
+
+      /**
+       * Delete all user shoots and results
+       */
+      $shoots = $this->stm->getAllShootByUserID($id);
+      foreach($shoots as $shoot) {
+         // delete shoot from server & DB
+         $fullPathShoot = $this->wwwDir . $shoot->path_img;
+         $fullPathJS = $this->wwwDir . $shoot->path_js;
+         FileSystem::delete($fullPathShoot);
+         FileSystem::delete($fullPathJS);
+         $this->stm->deleteShoot($shoot->id_shoot);
+
+         // delete results from server
+         $results = $this->rm->getResultBySourceTargetID($shoot->id_shoot);
+         foreach($results as $result) {
+            $fullPathResult = $this->wwwDir . $result->path_img;
+            FileSystem::delete($fullPathResult);
+         }
+      }
+
+
+      /**
+       * Delete all users plans with history
+       */
+      $plans = $this->pm->getAllPlansByUserID($id);
+      foreach($plans as $plan) {
+         $this->pm->deletePlan($id);
+
+         $results = $this->prm->getResultsByPlanID($plan->id_plan);
+         foreach($results as $result) {
+            $resultPath = $this->wwwDir . $result->path_img;
+            $targetPath = $this->wwwDir . $result->plan_target->path_img;
+            $targetPathJS = $this->wwwDir . $result->plan_target->path_js;
+            FileSystem::delete($resultPath);
+            FileSystem::delete($targetPath);
+            FileSystem::delete($targetPathJS);
+         }
+      }
+
+
+      $this->flashMessage('User and all his shoots and plans with history was deleted.', self::FLASH_MESSAGE_SUCCESS);
       $this->redirect('this');
    }
 }
