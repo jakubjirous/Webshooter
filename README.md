@@ -7,3 +7,7 @@ Rendering can be parameterized based on a wide range of input devices resolution
 The screenshot you create can be compared to one another in the application, both in a one-time and adjustable schedule. The result of the comparison can be modified depending on the change of predefined criteria. All outputs from the application are stored in history or downloaded directly.
 
 The result of the work is an application that allows developers or users to easily test websites, including automatically creating and comparing images.
+
+## Key words:
+
+Rendering engine, web browser, server rendering, image analysis, PHP, Nette Framework, Webkit, Gecko, PhantomJS, SlimerJS
