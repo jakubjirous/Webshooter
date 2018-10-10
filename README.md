@@ -1,6 +1,6 @@
 # Webshooter
 
-This master thesis deals with the creation of an application for rendering websites with more rendering engines of web browsers. The goal is to create an online application that will be able to~render any web page into graphic files.
+This master thesis deals with the creation of an application for rendering websites with more rendering engines of web browsers. The goal is to create an online application that will be able to render any web page into graphic files.
 
 Rendering can be parameterized based on a wide range of input devices resolution, rendering engine options, destination URL and output image format.
 
